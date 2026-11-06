@@ -40,9 +40,6 @@ describe("getServerEnv", () => {
     const env = getServerEnv();
 
     expect(env.NEXT_PUBLIC_APP_URL).toBe("http://localhost:3000");
-    expect(env.SHIPPING_STANDARD_FEE_VND).toBe(30000);
-    expect(env.SHIPPING_EXPRESS_FEE_VND).toBe(50000);
-    expect(env.SHIPPING_FREE_THRESHOLD_VND).toBe(500000);
     expect(env.AI_QUOTA_PER_USER_PER_DAY).toBe(30);
     expect(env.AI_QUOTA_PER_USER_PER_MINUTE).toBe(5);
     expect(env.AI_QUOTA_GLOBAL_PER_DAY).toBe(500);
@@ -78,18 +75,6 @@ describe("getServerEnv", () => {
         perUserPerMinute: 5,
         globalPerDay: 500,
       },
-    });
-  });
-
-  it("returns the shipping configuration", async () => {
-    stubRequiredEnv();
-
-    const { getShippingConfig } = await loadEnvModule();
-
-    expect(getShippingConfig()).toEqual({
-      standardFeeVnd: 30000,
-      expressFeeVnd: 50000,
-      freeStandardThresholdVnd: 500000,
     });
   });
 });

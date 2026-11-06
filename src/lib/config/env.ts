@@ -40,10 +40,6 @@ const serverEnvSchema = z.object({
   AI_QUOTA_PER_USER_PER_MINUTE: z.coerce.number().int().positive().default(5),
   AI_QUOTA_GLOBAL_PER_DAY: z.coerce.number().int().positive().default(500),
 
-  SHIPPING_STANDARD_FEE_VND: z.coerce.number().int().nonnegative().default(30000),
-  SHIPPING_EXPRESS_FEE_VND: z.coerce.number().int().nonnegative().default(50000),
-  SHIPPING_FREE_THRESHOLD_VND: z.coerce.number().int().nonnegative().default(500000),
-
   MEDIA_VERSION: optionalString,
   MEDIA_BASE_URL: optionalUrl,
   MEDIA_ARCHIVE_SHA256: optionalSha256,
@@ -144,22 +140,6 @@ export function getAiConfig(): AiConfig | null {
       perUserPerMinute: env.AI_QUOTA_PER_USER_PER_MINUTE,
       globalPerDay: env.AI_QUOTA_GLOBAL_PER_DAY,
     },
-  };
-}
-
-export type ShippingConfig = {
-  standardFeeVnd: number;
-  expressFeeVnd: number;
-  freeStandardThresholdVnd: number;
-};
-
-export function getShippingConfig(): ShippingConfig {
-  const env = getServerEnv();
-
-  return {
-    standardFeeVnd: env.SHIPPING_STANDARD_FEE_VND,
-    expressFeeVnd: env.SHIPPING_EXPRESS_FEE_VND,
-    freeStandardThresholdVnd: env.SHIPPING_FREE_THRESHOLD_VND,
   };
 }
 
