@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import type { AssistantLimits } from "@/lib/config/env";
-import { redactContactDetails, sanitizeHistory } from "@/server/assistant/history";
+import { sanitizeHistory } from "@/server/assistant/history";
 
 const limits: AssistantLimits = {
   historyMaxMessages: 3,
@@ -11,18 +11,6 @@ const limits: AssistantLimits = {
   maxResponseChars: 4000,
   requestMaxBytes: 65_536,
 };
-
-describe("redactContactDetails", () => {
-  it("removes emails and phone numbers but keeps prices and measurements", () => {
-    expect(
-      redactContactDetails(
-        "Mail a.b@shop.vn or +84 912 345 678 or 0283.123.4567; budget 400.000 VND, 400000đ, chest 86",
-      ),
-    ).toBe(
-      "Mail [email removed] or [phone removed] or [phone removed]; budget 400.000 VND, 400000đ, chest 86",
-    );
-  });
-});
 
 describe("sanitizeHistory", () => {
   it("keeps only user and assistant text and the newest messages within the limits", () => {

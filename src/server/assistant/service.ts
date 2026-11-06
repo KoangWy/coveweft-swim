@@ -7,6 +7,7 @@ import type { ErrorCode } from "@/server/errors";
 import { parseInput } from "@/server/result";
 
 import { sanitizeHistory } from "./history";
+import type { PrivacyProfile } from "./privacy";
 import type { QuotaStore } from "./quota";
 import type { AssistantCatalog } from "./tools";
 import { runAssistantTurn } from "./turn";
@@ -39,6 +40,11 @@ export type ChatDependencies = {
   createProvider(): ChatProvider | null;
   /** The signed-in user from the verified session, or `null`. */
   getUser(): Promise<{ id: string } | null>;
+  /**
+   * Profile values of the signed-in customer (name, email, phone, default
+   * address), used only by the privacy gate to redact them.
+   */
+  getPrivacyProfile(userId: string): Promise<PrivacyProfile | null>;
   /** The quota store, or `null` when the server cannot reach it. */
   quota(config: AiConfig): QuotaStore | null;
   catalog: AssistantCatalog;
@@ -195,6 +201,16 @@ export async function handleChatRequest(
     return errorResponse("AI_NOT_CONFIGURED");
   }
 
+  // The privacy gate needs the profile; without it the turn does not start,
+  // so a profile read failure never sends unredacted profile values.
+  let privacyProfile: PrivacyProfile | null;
+
+  try {
+    privacyProfile = await dependencies.getPrivacyProfile(user.id);
+  } catch {
+    return errorResponse("INTERNAL");
+  }
+
   let decision;
 
   try {
@@ -219,6 +235,7 @@ export async function handleChatRequest(
         for await (const event of runAssistantTurn({
           provider,
           history: history.messages,
+          privacyProfile,
           locale: parsed.data.locale,
           catalog: dependencies.catalog,
           limits: config.limits,

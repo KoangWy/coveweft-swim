@@ -8,6 +8,7 @@ import { getAuthenticatedUser } from "@/server/auth/guard";
 import { getProductBySku, getStoreSettings, listProducts } from "@/server/catalog";
 import { imageUrl } from "@/server/media";
 
+import type { PrivacyProfile } from "./privacy";
 import { createDatabaseQuotaStore } from "./quota";
 import type { ChatDependencies } from "./service";
 
@@ -31,6 +32,35 @@ export const chatDependencies: ChatDependencies = {
     const user = await getAuthenticatedUser(await createSupabaseServerClient());
 
     return user.ok ? { id: user.data.id } : null;
+  },
+  async getPrivacyProfile(userId): Promise<PrivacyProfile | null> {
+    // Read with the customer's own session; RLS limits it to their profile.
+    const supabase = await createSupabaseServerClient();
+    const [{ data: auth }, profile] = await Promise.all([
+      supabase.auth.getUser(),
+      supabase
+        .from("profiles")
+        .select("full_name, phone, default_address")
+        .eq("id", userId)
+        .maybeSingle(),
+    ]);
+
+    if (profile.error) {
+      throw profile.error;
+    }
+
+    const row = profile.data as {
+      full_name: string | null;
+      phone: string | null;
+      default_address: string | null;
+    } | null;
+
+    return {
+      email: auth.user?.id === userId ? (auth.user.email ?? null) : null,
+      fullName: row?.full_name ?? null,
+      phone: row?.phone ?? null,
+      defaultAddress: row?.default_address ?? null,
+    };
   },
   quota(config) {
     return hasAdminKey()

@@ -3,6 +3,7 @@ import type { AssistantLimits } from "@/lib/config/env";
 import { ProviderError, type ChatMessage, type ChatProvider, type ToolCall } from "@/server/ai";
 
 import { toChatMessages, type HistoryMessage } from "./history";
+import { createPrivacyGate, type PrivacyProfile } from "./privacy";
 import { buildSystemPrompt } from "./prompt";
 import {
   runTool,
@@ -26,6 +27,11 @@ export type AssistantTurnInput = {
   /** One provider per turn, so failover is decided once for every round. */
   provider: ChatProvider;
   history: HistoryMessage[];
+  /**
+   * The signed-in customer's profile, used only to redact those values from
+   * the history. It is never sent to the provider.
+   */
+  privacyProfile?: PrivacyProfile | null;
   locale: Locale;
   catalog: AssistantCatalog;
   limits: Pick<AssistantLimits, "maxToolRounds" | "maxResponseChars">;
@@ -84,7 +90,7 @@ export async function* runAssistantTurn(input: AssistantTurnInput): AsyncGenerat
   const context: ToolContext = { locale: input.locale, catalog: input.catalog, cards: new Map() };
   const messages: ChatMessage[] = [
     { role: "system", content: buildSystemPrompt(input.locale) },
-    ...toChatMessages(input.history),
+    ...toChatMessages(input.history, createPrivacyGate(input.privacyProfile ?? null)),
   ];
   let answer = "";
 

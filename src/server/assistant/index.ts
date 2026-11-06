@@ -1,5 +1,6 @@
 export { chatDependencies } from "./dependencies";
-export { redactContactDetails, sanitizeHistory, type HistoryMessage } from "./history";
+export { sanitizeHistory, type HistoryMessage } from "./history";
+export { createPrivacyGate, REDACTED, type PrivacyProfile } from "./privacy";
 export { buildSystemPrompt } from "./prompt";
 export { createDatabaseQuotaStore, type QuotaDecision, type QuotaStore } from "./quota";
 export { MeasurementsInput, recommendSize, type SizeRecommendation } from "./recommend-size";

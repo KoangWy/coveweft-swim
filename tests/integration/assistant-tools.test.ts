@@ -17,7 +17,12 @@ vi.mock("@/lib/supabase/server", async () => {
 import { chatDependencies } from "@/server/assistant";
 import { runTool, type ToolContext } from "@/server/assistant/tools";
 
-import { createAnonClient } from "./support/clients";
+import {
+  createAnonClient,
+  createCustomer,
+  createServiceClient,
+  deleteUsers,
+} from "./support/clients";
 import { selectServiceClient } from "./support/service-context";
 
 function context(locale: "en" | "vi" = "vi"): ToolContext {
@@ -122,5 +127,38 @@ describe("assistant tools on the seeded catalog", () => {
     expect(await call("getProductDetails", { sku: "AIMEE", extra: true })).toMatchObject({
       error: "invalid_arguments",
     });
+  });
+});
+
+describe("assistant privacy profile", () => {
+  it("reads only the signed-in customer's own profile values for redaction", async () => {
+    const service = createServiceClient();
+    const customer = await createCustomer(service, "privacy-own");
+    const other = await createCustomer(service, "privacy-other");
+
+    try {
+      await service
+        .from("profiles")
+        .update({ phone: "0912 345 678", default_address: "12 Nguyễn Huệ, Quận 1" })
+        .eq("id", customer.id);
+      selectServiceClient(customer.client);
+
+      expect(await chatDependencies.getPrivacyProfile(customer.id)).toEqual({
+        email: customer.email,
+        fullName: "Test privacy-own",
+        phone: "0912 345 678",
+        defaultAddress: "12 Nguyễn Huệ, Quận 1",
+      });
+      // Another user's row is hidden by RLS, and the session email is not theirs.
+      expect(await chatDependencies.getPrivacyProfile(other.id)).toEqual({
+        email: null,
+        fullName: null,
+        phone: null,
+        defaultAddress: null,
+      });
+    } finally {
+      selectServiceClient(createAnonClient());
+      await deleteUsers(service, [customer, other]);
+    }
   });
 });

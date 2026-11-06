@@ -7,20 +7,6 @@ export type SanitizedHistory =
   | { ok: true; messages: HistoryMessage[] }
   | { ok: false; code: "AI_INPUT_TOO_LONG" | "VALIDATION_ERROR"; reason: string };
 
-const EMAIL = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi;
-// Vietnamese mobile and landline numbers (0xx or +84) and other international
-// numbers written with a leading "+". Prices such as "400.000" or "400000"
-// never start with 0 or +, so they are kept.
-const PHONE = /(?:\+\d{1,3}|\b0)(?:[\s.-]?\d){8,11}\b/g;
-
-/**
- * Replaces email addresses and phone numbers with placeholders, so contact
- * details a customer types by mistake are not sent to the provider.
- */
-export function redactContactDetails(text: string): string {
-  return text.replace(EMAIL, "[email removed]").replace(PHONE, "[phone removed]");
-}
-
 function textOf(entry: unknown): HistoryMessage | null {
   if (!entry || typeof entry !== "object") {
     return null;
@@ -46,7 +32,9 @@ function textOf(entry: unknown): HistoryMessage | null {
  *   than the per-message or total limit is rejected, never cut.
  * - Earlier messages longer than the per-message limit are dropped whole, then
  *   the oldest are dropped until the count and total length fit.
- * - Contact details are redacted from every message.
+ *
+ * Personal data is removed later, by the privacy gate, right before the
+ * messages reach the provider.
  */
 export function sanitizeHistory(entries: unknown[], limits: AssistantLimits): SanitizedHistory {
   const messages = entries.map(textOf).filter((entry) => entry !== null);
@@ -91,13 +79,17 @@ export function sanitizeHistory(entries: unknown[], limits: AssistantLimits): Sa
 
   return {
     ok: true,
-    messages: [...kept, question].map((message) => ({
-      role: message.role,
-      content: redactContactDetails(message.content),
-    })),
+    messages: [...kept, question],
   };
 }
 
-export function toChatMessages(history: HistoryMessage[]): ChatMessage[] {
-  return history.map((message) => ({ role: message.role, content: message.content }));
+/**
+ * Maps history to model messages, passing every text through the privacy
+ * gate. This is the only way history reaches a provider request.
+ */
+export function toChatMessages(
+  history: HistoryMessage[],
+  gate: (text: string) => string,
+): ChatMessage[] {
+  return history.map((message) => ({ role: message.role, content: gate(message.content) }));
 }

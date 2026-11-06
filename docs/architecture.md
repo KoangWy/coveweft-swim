@@ -876,7 +876,9 @@ check consumes exactly one question and answers `200` with
 `AI_UNAVAILABLE` means no text was streamed (both models failed, or a
 configuration or authentication error that `retryable: false` marks as not
 worth retrying). `AI_STREAM_INTERRUPTED` means text was already streamed and
-the widget should keep it marked as incomplete. `imageUrl` is the 480 px image
+the widget should keep it marked as incomplete; any failure after the first
+`delta`, expected or not, uses it. `INTERNAL` only appears for an unexpected
+failure before any text. `imageUrl` is the 480 px image
 or `null`; `url` is the localized product page `/<locale>/products/<sku>`.
 A failed turn still counts as the accepted question.
 
@@ -887,8 +889,37 @@ A failed turn still counts as the accepted question.
   other fields are dropped. The question must fit `AI_MESSAGE_MAX_CHARS` and
   `AI_HISTORY_MAX_CHARS` or it is rejected, never cut. Earlier messages over
   the per-message limit are dropped whole, then the oldest are dropped until
-  `AI_HISTORY_MAX_MESSAGES` and the total fit. Email addresses and phone
-  numbers are replaced with placeholders before anything reaches the provider.
+  `AI_HISTORY_MAX_MESSAGES` and the total fit.
+- **Privacy gate.** Every user and assistant message passes through
+  `createPrivacyGate` (`src/server/assistant/privacy.ts`) right before the
+  first provider request; history reaches the model no other way. It replaces
+  with `[name removed]`, `[email removed]`, `[phone removed]`, or
+  `[address removed]`:
+  - the signed-in customer's own full name, email, phone, default address,
+    and each comma-separated part of that address, matched case- and
+    diacritic-insensitively (`NGUYEN THI LAN` matches `Nguyễn Thị Lan`); the
+    profile is read with the customer's session only for this matching and
+    is never sent to the provider, and a profile read failure stops the
+    request with `INTERNAL` before any quota is used;
+  - email addresses;
+  - phone numbers starting with `0`, `84`, or `+`, written with spaces, dots,
+    dashes, or parentheses (`(091) 234 5678`, `+84 (912) 345 678`,
+    `84912345678`);
+  - street addresses: a house number (`12`, `12A`, `45/7`, `số 12`) followed
+    within a few words by a street word (`đường`, `phố`, `hẻm`, `ngõ`,
+    `street`, `st.`, `road`, `avenue`, `lane`) or an area word (`phường`,
+    `quận`, `huyện`, or `ward`/`district` before a number), up to the end of
+    the sentence;
+  - names after a first-person phrase such as `my name is`, `tên mình là`,
+    or `họ và tên:`.
+
+  Numbers followed by a unit or a currency (`86 cm`, `3 tuổi`, `400.000 VND`)
+  and sizes are never treated as addresses or phone numbers, so measurements
+  reach `recommendSize`. Free-text redaction is best-effort: no pattern can
+  recognise every way a person writes a name or an address. The system prompt
+  and the chat widget therefore also warn customers not to type personal
+  data.
+
 - **Prompt.** The system prompt is built on the server for every turn. It
   sets the answer language from `locale`, requires answers from tool results
   of the current turn only, forbids invented prices, stock, SKUs, and links,
@@ -898,7 +929,9 @@ A failed turn still counts as the accepted question.
 - **Tools.** Six read-only tools call the catalog services with the caller's
   permissions; none writes to the cart, orders, or stock, and none runs SQL.
   Arguments are validated with zod (unknown fields rejected) and results are
-  capped. Invalid arguments and unknown tools are returned to the model as
+  capped. Tools are looked up in a `Map`, so names such as `constructor` or
+  `__proto__` are unknown tools rather than inherited properties. Invalid
+  arguments, unknown tools, and tool failures are returned to the model as
   `{ data: { error } }`. Every tool result is wrapped as `{ data: … }`.
 
   | Tool                   | Input                                                      | Result                                                         |

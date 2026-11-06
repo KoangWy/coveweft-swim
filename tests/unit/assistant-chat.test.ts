@@ -7,6 +7,7 @@ import {
   handleChatRequest,
   type AssistantCatalog,
   type ChatDependencies,
+  type PrivacyProfile,
   type QuotaDecision,
   type QuotaStore,
 } from "@/server/assistant";
@@ -148,12 +149,21 @@ function setup(
     user?: { id: string } | null;
     quota?: QuotaStore | null;
     config?: AiConfig | null;
+    profile?: PrivacyProfile | null | Error;
+    catalog?: AssistantCatalog;
   } = {},
 ) {
   const primaryFetch = scriptedFetch(options.primary ?? []);
   const fallbackFetch = scriptedFetch(options.fallback ?? []);
   const quota = options.quota === undefined ? fakeQuota() : options.quota;
-  const catalog = fakeCatalog();
+  const catalog = (options.catalog ?? fakeCatalog()) as ReturnType<typeof fakeCatalog>;
+  const getPrivacyProfile = vi.fn(async () => {
+    if (options.profile instanceof Error) {
+      throw options.profile;
+    }
+
+    return options.profile ?? null;
+  });
   const createProvider = vi.fn(() =>
     withFailover(
       createChatProvider(settings({ model: "primary" }), { fetch: primaryFetch }),
@@ -166,11 +176,20 @@ function setup(
     config: () => (options.config === undefined ? config : options.config),
     createProvider,
     getUser: async () => (options.user === undefined ? { id: "user-1" } : options.user),
+    getPrivacyProfile,
     quota: () => quota,
     catalog,
   };
 
-  return { dependencies, primaryFetch, fallbackFetch, quota, catalog, createProvider };
+  return {
+    dependencies,
+    primaryFetch,
+    fallbackFetch,
+    quota,
+    catalog,
+    createProvider,
+    getPrivacyProfile,
+  };
 }
 
 function chatRequest(body: unknown): Request {
@@ -403,6 +422,57 @@ describe("POST /api/chat stream", () => {
     expect(messages[3]!.content).toBe(
       "Email tôi là [email removed], số [phone removed]. Có đồ bơi 400.000 VND không?",
     );
+  });
+
+  it("passes every history message through the privacy gate before the provider", async () => {
+    const profile: PrivacyProfile = {
+      fullName: "Nguyễn Thị Lan",
+      email: "lan@example.com",
+      phone: "0912 345 678",
+      defaultAddress: "12 Nguyễn Huệ, Phường Bến Nghé, Quận 1",
+    };
+    const { dependencies, primaryFetch, getPrivacyProfile } = setup({
+      profile,
+      primary: [() => toolCall("getStorePolicies", {}), () => text("Phí giao hàng 30.000 VND.")],
+    });
+
+    await readEvents(
+      await handleChatRequest(
+        ask("Giao về nhà mình ở Nguyen Hue được không? Ngực 86 cm, eo 68 cm.", [
+          {
+            role: "user",
+            content:
+              "My name is Jane Nguyen. Ship to 123 Le Loi, District 1. Phone (091) 234 5678 or +84 (912) 345 678.",
+          },
+          { role: "assistant", content: "Chào NGUYEN THI LAN! Mình đã ghi nhận lan@example.com." },
+        ]),
+        dependencies,
+      ),
+    );
+
+    expect(getPrivacyProfile).toHaveBeenCalledWith("user-1");
+
+    for (const call of [0, 1]) {
+      const { messages } = sentBody(primaryFetch, call);
+      const sent = JSON.stringify(messages);
+
+      expect(messages.slice(1, 4).map((message) => message.content)).toEqual([
+        "My name is [name removed]. Ship to [address removed]. Phone [phone removed] or [phone removed].",
+        "Chào [name removed]! Mình đã ghi nhận [email removed].",
+        "Giao về nhà mình ở [address removed] được không? Ngực 86 cm, eo 68 cm.",
+      ]);
+      expect(sent).not.toMatch(/Jane|Le Loi|234 5678|912|Lan\b|lan@|Nguy[eễ]n Hu[eệ]|Bến Nghé/i);
+    }
+  });
+
+  it("does not start a turn when the profile for the privacy gate cannot be read", async () => {
+    const { dependencies, quota, primaryFetch } = setup({ profile: new Error("db down") });
+    const response = await handleChatRequest(ask("Xin chào"), dependencies);
+
+    expect(response.status).toBe(500);
+    expect(await response.json()).toEqual({ error: { code: "INTERNAL" } });
+    expect(quota!.consume).not.toHaveBeenCalled();
+    expect(primaryFetch).not.toHaveBeenCalled();
   });
 
   it("never streams thinking chunks", async () => {
