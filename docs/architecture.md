@@ -736,6 +736,58 @@ returns `null` so the UI can render a neutral placeholder. Upload images use
 the public `product-uploads` Storage URL. `imageUrl` is server-only because it
 reads the media configuration; pass the returned string to client components.
 
+### Assistant provider
+
+`src/server/ai/` calls OpenAI-compatible Chat Completions endpoints with
+`fetch` and normalizes Mistral's response format itself; no SDK and no proxy
+sit in between.
+
+```ts
+getAiStatus(): AiStatus; // { status: "ready", primaryModel, fallbackModel } | { status: "not_configured", reason }
+createAiProvider(options?): ChatProvider | null; // primary with failover, one per turn
+
+interface ChatProvider {
+  readonly model: string;
+  stream(request: { messages; tools?; signal? }): AsyncIterable<ProviderEvent>;
+  complete(request: { messages; tools?; signal? }): Promise<ChatCompletion>;
+}
+
+type ProviderEvent =
+  | { type: "text"; text: string }
+  | { type: "tool_call"; id: string; name: string; arguments: string }
+  | { type: "finish"; reason: "stop" | "length" | "tool_calls" | "content_filter" | "other"; usage };
+```
+
+- **Response.** A string `content` is kept. An array `content` is reduced to
+  its `text` chunks; `thinking` chunks (string or `{ type: "text" }` parts) and
+  `reasoning_content` are dropped in full responses and in every streamed
+  `delta`. Reasoning is never streamed to the browser, shown, stored, or sent
+  back. Streams are read from `data:` lines until `data: [DONE]`; tool call
+  fragments are assembled by `index` and emitted whole, before `finish`.
+- **Request.** Messages are mapped field by field, so only standard fields are
+  sent. An assistant message that only carries tool calls omits `content`;
+  tool results carry `tool_call_id` and `name`. `reasoning_effort` is sent only
+  when the role configures it, because Mistral answers `422 extra_forbidden`
+  to parameters a model does not accept. `max_tokens` leaves room for reasoning
+  tokens, and every request sends `User-Agent: coveweft-swim/<version>`.
+- **Errors.** `ProviderError.kind` is `timeout`, `rate_limit`, `server`,
+  `auth`, `config`, or `bad_request`, with the HTTP `status` when there is one.
+  `AI_TIMEOUT_MS` aborts a request that receives no data for that long. Error
+  `detail` is for logs only.
+- **Failover.** `withFailover(primary, fallback)` moves to the fallback at most
+  once, on `timeout`, `rate_limit`, or `server`, and only before any text or
+  tool call was emitted. Later requests of the same turn stay on the fallback,
+  and the primary's tool calls and results are removed from the history first,
+  because tool call ids differ between models. An error after output ends the
+  stream with a retryable error instead of joining two answers; `auth`,
+  `config`, and `bad_request` errors are not retried.
+
+`pnpm ai:smoke` runs a plain chat, a two-round tool call with a stub
+`searchProducts` tool, and a streamed answer against each configured role. It
+prints the model, HTTP status, latency, and whether reasoning text from the
+raw response reached the normalized output, never the key. A failure names the
+role and its variables; the script does not switch models.
+
 ### Demo account provisioning
 
 `pnpm provision:demo` runs `scripts/provision-demo.mjs`. It creates one
@@ -832,9 +884,13 @@ report that they are not configured instead of failing at boot.
 | `AI_PRIMARY_BASE_URL`                  | Server        | No             | `https://api.mistral.ai/v1`    |
 | `AI_PRIMARY_MODEL`                     | Server        | No             | `deepseek-v4-1-flash-1017`     |
 | `AI_PRIMARY_API_KEY`                   | Server        | No             | —                              |
+| `AI_PRIMARY_REASONING_EFFORT`          | Server        | No             | `low`                          |
 | `AI_FALLBACK_BASE_URL`                 | Server        | No             | `https://api.mistral.ai/v1`    |
 | `AI_FALLBACK_MODEL`                    | Server        | No             | `mistral-small-2603`           |
 | `AI_FALLBACK_API_KEY`                  | Server        | No             | —                              |
+| `AI_FALLBACK_REASONING_EFFORT`         | Server        | No             | — (not sent)                   |
+| `AI_TIMEOUT_MS`                        | Server        | No             | `30000`                        |
+| `AI_MAX_TOKENS`                        | Server        | No             | `4096`                         |
 | `AI_QUOTA_PER_USER_PER_DAY`            | Server        | No             | `30`                           |
 | `AI_QUOTA_PER_USER_PER_MINUTE`         | Server        | No             | `5`                            |
 | `AI_QUOTA_GLOBAL_PER_DAY`              | Server        | No             | `500`                          |
@@ -852,7 +908,10 @@ report that they are not configured instead of failing at boot.
 
 `.env.example` lists every variable with local defaults or an empty placeholder
 for values that come from `supabase status`. Never commit `.env.local` or a
-real key. Shipping fees and the free-shipping threshold are not environment
+real key. `getAiConfig()` reads only the `AI_*` variables, so the assistant
+provider and `pnpm ai:smoke` work without the Supabase settings. An empty
+`AI_*_REASONING_EFFORT` means the parameter is not sent; models can be changed
+through these variables without code changes. Shipping fees and the free-shipping threshold are not environment
 variables; they live in the database `store_settings` row.
 
 ## Supabase clients
@@ -908,8 +967,10 @@ their own client, or run with the `react-server` condition.
 
 - **Unit tests** (`tests/unit`) cover pure modules: contracts, money
   formatting, environment parsing, the shared Supabase cookie name, the
-  database error mapper, and the proxy refresh helper when Supabase is not
-  configured. They run in CI with `pnpm test` and need no Docker.
+  database error mapper, the proxy refresh helper when Supabase is not
+  configured, and the assistant provider (content normalization, request
+  fields, SSE parsing, error classification, and failover against mocked
+  responses). They run in CI with `pnpm test` and need no Docker.
 - **Integration tests** (`tests/integration`) call Postgres functions and RLS
   policies against a local Supabase stack. They cover consent, RLS isolation,
   order placement, idempotency, concurrent last-item checkout, payment and

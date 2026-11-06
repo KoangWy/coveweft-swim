@@ -53,6 +53,7 @@ the commands above.
 | `pnpm media:build`      | Download studio photos and build the versioned WebP media set                    |
 | `pnpm media:verify`     | Re-check the media manifest, exported files, and archive                         |
 | `pnpm provision:demo`   | Create the demo customer and administrator accounts through the Auth Admin API   |
+| `pnpm ai:smoke`         | Call the configured AI provider roles with live requests and report the results  |
 | `pnpm format`           | Format the repository with Prettier                                              |
 
 ### Catalog import
@@ -127,6 +128,18 @@ from `.env.local` (see `.env.example` for the local defaults). Running it again
 keeps the existing passwords and does not duplicate accounts. Use the same
 command against a cloud project with that project's environment values; do not
 commit cloud passwords.
+
+### Shopping Assistant provider
+
+The assistant calls Mistral through its OpenAI-compatible Chat Completions
+API. Put the API key in `.env.local` as `AI_PRIMARY_API_KEY` and
+`AI_FALLBACK_API_KEY`; without a key the app still starts and the assistant
+reports that it is not configured. The default models are
+`deepseek-v4-1-flash-1017` (primary, `reasoning_effort` `low`) and
+`mistral-small-2603` (fallback, no `reasoning_effort`); change them with the
+`AI_*` variables in `.env.example`. `pnpm ai:smoke` checks a plain chat, a
+two-round tool call, and streaming against both roles; it needs only the
+`AI_*` variables and a funded Mistral account.
 
 ### Continuous integration
 
