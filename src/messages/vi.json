@@ -359,6 +359,11 @@
     "QUOTA_EXCEEDED": "Bạn đã dùng hết lượt cho phép. Vui lòng thử lại sau.",
     "AI_NOT_CONFIGURED": "Trợ lý mua sắm chưa được cấu hình trên môi trường này.",
     "AI_UNAVAILABLE": "Trợ lý mua sắm tạm thời không khả dụng. Vui lòng thử lại.",
+    "AI_QUOTA_USER_DAY": "Bạn đã dùng hết lượt hỏi trợ lý mua sắm hôm nay. Vui lòng quay lại vào ngày mai.",
+    "AI_QUOTA_USER_MINUTE": "Bạn đang gửi câu hỏi quá nhanh. Vui lòng chờ một phút rồi thử lại.",
+    "AI_QUOTA_GLOBAL": "Trợ lý mua sắm tạm ngưng trong hôm nay. Bạn vẫn mua sắm bình thường.",
+    "AI_INPUT_TOO_LONG": "Tin nhắn quá dài. Vui lòng rút gọn rồi thử lại.",
+    "AI_STREAM_INTERRUPTED": "Câu trả lời bị gián đoạn. Vui lòng hỏi lại.",
     "INTERNAL": "Đã có lỗi xảy ra. Vui lòng thử lại."
   }
 }

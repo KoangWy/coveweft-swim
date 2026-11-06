@@ -77,8 +77,26 @@ describe("getServerEnv", () => {
         perUserPerDay: 30,
         perUserPerMinute: 5,
         globalPerDay: 500,
+        timeZone: "Asia/Ho_Chi_Minh",
+      },
+      limits: {
+        historyMaxMessages: 10,
+        messageMaxChars: 1000,
+        historyMaxChars: 8000,
+        maxToolRounds: 4,
+        maxResponseChars: 4000,
+        requestMaxBytes: 65_536,
       },
     });
+  });
+
+  it("rejects an unknown quota time zone", async () => {
+    vi.stubEnv("AI_PRIMARY_API_KEY", "test-key");
+    vi.stubEnv("AI_QUOTA_TIME_ZONE", "Mars/Olympus");
+
+    const { getAiConfig } = await loadEnvModule();
+
+    expect(() => getAiConfig()).toThrow(/AI_QUOTA_TIME_ZONE/);
   });
 
   it("does not need the Supabase settings to read the AI configuration", async () => {

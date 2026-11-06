@@ -20,6 +20,15 @@ const optionalSha256 = z.preprocess(
     .optional(),
 );
 
+function isTimeZone(value: string): boolean {
+  try {
+    new Intl.DateTimeFormat("en", { timeZone: value });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 /**
  * Reasoning effort sent to a provider. An unset variable uses the role
  * default; an empty value means the parameter is not sent at all, because
@@ -50,6 +59,18 @@ const aiEnvSchema = z.object({
   AI_QUOTA_PER_USER_PER_DAY: z.coerce.number().int().positive().default(30),
   AI_QUOTA_PER_USER_PER_MINUTE: z.coerce.number().int().positive().default(5),
   AI_QUOTA_GLOBAL_PER_DAY: z.coerce.number().int().positive().default(500),
+  AI_QUOTA_TIME_ZONE: z
+    .string()
+    .trim()
+    .refine(isTimeZone, { message: "Unknown IANA time zone" })
+    .default("Asia/Ho_Chi_Minh"),
+
+  AI_HISTORY_MAX_MESSAGES: z.coerce.number().int().min(0).max(50).default(10),
+  AI_MESSAGE_MAX_CHARS: z.coerce.number().int().min(50).max(10_000).default(1000),
+  AI_HISTORY_MAX_CHARS: z.coerce.number().int().min(100).max(100_000).default(8000),
+  AI_MAX_TOOL_ROUNDS: z.coerce.number().int().min(1).max(10).default(4),
+  AI_MAX_RESPONSE_CHARS: z.coerce.number().int().min(200).max(50_000).default(4000),
+  AI_REQUEST_MAX_BYTES: z.coerce.number().int().min(1024).max(1_048_576).default(65_536),
 });
 
 const serverEnvSchema = aiEnvSchema.extend({
@@ -137,7 +158,26 @@ export type AiConfig = {
     perUserPerDay: number;
     perUserPerMinute: number;
     globalPerDay: number;
+    /** IANA time zone that decides when a quota day starts. */
+    timeZone: string;
   };
+  limits: AssistantLimits;
+};
+
+/** Limits the assistant applies to each request and turn. */
+export type AssistantLimits = {
+  /** Earlier messages kept from the client history, newest first. */
+  historyMaxMessages: number;
+  /** Characters allowed in one message; a longer new question is rejected. */
+  messageMaxChars: number;
+  /** Characters allowed across the kept history and the new question. */
+  historyMaxChars: number;
+  /** Model requests per turn; the last one is sent without tools. */
+  maxToolRounds: number;
+  /** Characters of answer text streamed per turn. */
+  maxResponseChars: number;
+  /** Size of the `POST /api/chat` body. */
+  requestMaxBytes: number;
 };
 
 /**
@@ -175,6 +215,15 @@ export function getAiConfig(): AiConfig | null {
       perUserPerDay: env.AI_QUOTA_PER_USER_PER_DAY,
       perUserPerMinute: env.AI_QUOTA_PER_USER_PER_MINUTE,
       globalPerDay: env.AI_QUOTA_GLOBAL_PER_DAY,
+      timeZone: env.AI_QUOTA_TIME_ZONE,
+    },
+    limits: {
+      historyMaxMessages: env.AI_HISTORY_MAX_MESSAGES,
+      messageMaxChars: env.AI_MESSAGE_MAX_CHARS,
+      historyMaxChars: env.AI_HISTORY_MAX_CHARS,
+      maxToolRounds: env.AI_MAX_TOOL_ROUNDS,
+      maxResponseChars: env.AI_MAX_RESPONSE_CHARS,
+      requestMaxBytes: env.AI_REQUEST_MAX_BYTES,
     },
   };
 }

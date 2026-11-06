@@ -359,6 +359,11 @@
     "QUOTA_EXCEEDED": "You have reached the usage limit. Please try again later.",
     "AI_NOT_CONFIGURED": "The shopping assistant is not configured on this environment.",
     "AI_UNAVAILABLE": "The shopping assistant is temporarily unavailable. Please try again.",
+    "AI_QUOTA_USER_DAY": "You have used all of today's shopping assistant questions. Please come back tomorrow.",
+    "AI_QUOTA_USER_MINUTE": "You are sending questions too quickly. Please wait a minute and try again.",
+    "AI_QUOTA_GLOBAL": "The shopping assistant is paused for today. You can keep shopping as usual.",
+    "AI_INPUT_TOO_LONG": "Your message is too long. Please shorten it and try again.",
+    "AI_STREAM_INTERRUPTED": "The answer was interrupted. Please ask again.",
     "INTERNAL": "Something went wrong. Please try again."
   }
 }
