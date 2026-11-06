@@ -1,0 +1,2 @@
+-- Seed data is added together with the catalog import. This file exists so the
+-- local Supabase stack can run `db reset` from the first commit.
