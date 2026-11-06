@@ -1,0 +1,592 @@
+{
+  "name": "Demo Size Guide",
+  "method": "constructed demo data",
+  "createdAt": "2026-11-06",
+  "unit": "cm",
+  "ageUnit": "months",
+  "notice": "Illustrative ranges built for the COVEWEFT Swim demo; not SOBIE's official sizing.",
+  "labelMap": [
+    {
+      "group": "baby",
+      "sourceLabel": "S (2Y)",
+      "sizeGuideKey": "baby-S"
+    },
+    {
+      "group": "baby",
+      "sourceLabel": "S (Y)",
+      "sizeGuideKey": "baby-S"
+    },
+    {
+      "group": "baby",
+      "sourceLabel": "M (3Y)",
+      "sizeGuideKey": "baby-M"
+    },
+    {
+      "group": "baby",
+      "sourceLabel": "L (4Y)",
+      "sizeGuideKey": "baby-L"
+    },
+    {
+      "group": "baby",
+      "sourceLabel": "XL (5Y)",
+      "sizeGuideKey": "baby-XL"
+    },
+    {
+      "group": "kids",
+      "sourceLabel": "S",
+      "sizeGuideKey": "kids-S"
+    },
+    {
+      "group": "kids",
+      "sourceLabel": "M",
+      "sizeGuideKey": "kids-M"
+    },
+    {
+      "group": "kids",
+      "sourceLabel": "L",
+      "sizeGuideKey": "kids-L"
+    },
+    {
+      "group": "kids",
+      "sourceLabel": "XL",
+      "sizeGuideKey": "kids-XL"
+    },
+    {
+      "group": "kids",
+      "sourceLabel": "XXL",
+      "sizeGuideKey": "kids-XXL"
+    },
+    {
+      "group": "men",
+      "sourceLabel": "S",
+      "sizeGuideKey": "men-S"
+    },
+    {
+      "group": "men",
+      "sourceLabel": "M",
+      "sizeGuideKey": "men-M"
+    },
+    {
+      "group": "men",
+      "sourceLabel": "L",
+      "sizeGuideKey": "men-L"
+    },
+    {
+      "group": "men",
+      "sourceLabel": "XL",
+      "sizeGuideKey": "men-XL"
+    },
+    {
+      "group": "men",
+      "sourceLabel": "XXL",
+      "sizeGuideKey": "men-XXL"
+    },
+    {
+      "group": "men",
+      "sourceLabel": "XXXL",
+      "sizeGuideKey": "men-XXXL"
+    },
+    {
+      "group": "teen",
+      "sourceLabel": "2XL",
+      "sizeGuideKey": "teen-2XL"
+    },
+    {
+      "group": "teen",
+      "sourceLabel": "3XL",
+      "sizeGuideKey": "teen-3XL"
+    },
+    {
+      "group": "teen",
+      "sourceLabel": "4XL",
+      "sizeGuideKey": "teen-4XL"
+    },
+    {
+      "group": "women",
+      "sourceLabel": "XS",
+      "sizeGuideKey": "women-XS"
+    },
+    {
+      "group": "women",
+      "sourceLabel": "S",
+      "sizeGuideKey": "women-S"
+    },
+    {
+      "group": "women",
+      "sourceLabel": "M",
+      "sizeGuideKey": "women-M"
+    },
+    {
+      "group": "women",
+      "sourceLabel": "L",
+      "sizeGuideKey": "women-L"
+    },
+    {
+      "group": "women",
+      "sourceLabel": "XL",
+      "sizeGuideKey": "women-XL"
+    },
+    {
+      "group": "women",
+      "sourceLabel": "2XL",
+      "sizeGuideKey": "women-XXL"
+    },
+    {
+      "group": "women",
+      "sourceLabel": "XXL",
+      "sizeGuideKey": "women-XXL"
+    },
+    {
+      "group": "women",
+      "sourceLabel": "3XL",
+      "sizeGuideKey": "women-XXXL"
+    },
+    {
+      "group": "women",
+      "sourceLabel": "XXXL",
+      "sizeGuideKey": "women-XXXL"
+    }
+  ],
+  "tables": [
+    {
+      "group": "baby",
+      "garment": "full-body",
+      "measurements": ["height", "age_months"],
+      "rows": [
+        {
+          "sizeGuideKey": "baby-S",
+          "label": "S (2Y)",
+          "height": [81, 89],
+          "age_months": [18, 30]
+        },
+        {
+          "sizeGuideKey": "baby-M",
+          "label": "M (3Y)",
+          "height": [89, 97],
+          "age_months": [30, 42]
+        },
+        {
+          "sizeGuideKey": "baby-L",
+          "label": "L (4Y)",
+          "height": [97, 105],
+          "age_months": [42, 54]
+        },
+        {
+          "sizeGuideKey": "baby-XL",
+          "label": "XL (5Y)",
+          "height": [105, 113],
+          "age_months": [54, 66]
+        }
+      ]
+    },
+    {
+      "group": "kids",
+      "garment": "bottoms",
+      "measurements": ["height"],
+      "rows": [
+        {
+          "sizeGuideKey": "kids-S",
+          "label": "S",
+          "height": [100, 110]
+        },
+        {
+          "sizeGuideKey": "kids-M",
+          "label": "M",
+          "height": [110, 120]
+        },
+        {
+          "sizeGuideKey": "kids-L",
+          "label": "L",
+          "height": [120, 130]
+        },
+        {
+          "sizeGuideKey": "kids-XL",
+          "label": "XL",
+          "height": [130, 140]
+        }
+      ]
+    },
+    {
+      "group": "kids",
+      "garment": "full-body",
+      "measurements": ["height", "chest"],
+      "rows": [
+        {
+          "sizeGuideKey": "kids-S",
+          "label": "S",
+          "height": [100, 110],
+          "chest": [52, 56]
+        },
+        {
+          "sizeGuideKey": "kids-M",
+          "label": "M",
+          "height": [110, 120],
+          "chest": [56, 60]
+        },
+        {
+          "sizeGuideKey": "kids-L",
+          "label": "L",
+          "height": [120, 130],
+          "chest": [60, 64]
+        },
+        {
+          "sizeGuideKey": "kids-XL",
+          "label": "XL",
+          "height": [130, 140],
+          "chest": [64, 68]
+        },
+        {
+          "sizeGuideKey": "kids-XXL",
+          "label": "XXL",
+          "height": [140, 150],
+          "chest": [68, 72]
+        }
+      ]
+    },
+    {
+      "group": "kids",
+      "garment": "tops",
+      "measurements": ["height", "chest"],
+      "rows": [
+        {
+          "sizeGuideKey": "kids-S",
+          "label": "S",
+          "height": [100, 110],
+          "chest": [52, 56]
+        },
+        {
+          "sizeGuideKey": "kids-M",
+          "label": "M",
+          "height": [110, 120],
+          "chest": [56, 60]
+        },
+        {
+          "sizeGuideKey": "kids-L",
+          "label": "L",
+          "height": [120, 130],
+          "chest": [60, 64]
+        },
+        {
+          "sizeGuideKey": "kids-XL",
+          "label": "XL",
+          "height": [130, 140],
+          "chest": [64, 68]
+        }
+      ]
+    },
+    {
+      "group": "men",
+      "garment": "bottoms",
+      "measurements": ["waist"],
+      "rows": [
+        {
+          "sizeGuideKey": "men-S",
+          "label": "S",
+          "waist": [70, 74]
+        },
+        {
+          "sizeGuideKey": "men-M",
+          "label": "M",
+          "waist": [74, 78]
+        },
+        {
+          "sizeGuideKey": "men-L",
+          "label": "L",
+          "waist": [78, 82]
+        },
+        {
+          "sizeGuideKey": "men-XL",
+          "label": "XL",
+          "waist": [82, 86]
+        },
+        {
+          "sizeGuideKey": "men-XXL",
+          "label": "XXL",
+          "waist": [86, 90]
+        },
+        {
+          "sizeGuideKey": "men-XXXL",
+          "label": "XXXL",
+          "waist": [90, 94]
+        }
+      ]
+    },
+    {
+      "group": "men",
+      "garment": "full-body",
+      "measurements": ["chest", "waist"],
+      "rows": [
+        {
+          "sizeGuideKey": "men-S",
+          "label": "S",
+          "chest": [84, 88],
+          "waist": [70, 74]
+        },
+        {
+          "sizeGuideKey": "men-M",
+          "label": "M",
+          "chest": [88, 92],
+          "waist": [74, 78]
+        },
+        {
+          "sizeGuideKey": "men-L",
+          "label": "L",
+          "chest": [92, 96],
+          "waist": [78, 82]
+        },
+        {
+          "sizeGuideKey": "men-XL",
+          "label": "XL",
+          "chest": [96, 100],
+          "waist": [82, 86]
+        }
+      ]
+    },
+    {
+      "group": "men",
+      "garment": "tops",
+      "measurements": ["chest"],
+      "rows": [
+        {
+          "sizeGuideKey": "men-S",
+          "label": "S",
+          "chest": [84, 88]
+        },
+        {
+          "sizeGuideKey": "men-M",
+          "label": "M",
+          "chest": [88, 92]
+        },
+        {
+          "sizeGuideKey": "men-L",
+          "label": "L",
+          "chest": [92, 96]
+        },
+        {
+          "sizeGuideKey": "men-XL",
+          "label": "XL",
+          "chest": [96, 100]
+        },
+        {
+          "sizeGuideKey": "men-XXL",
+          "label": "XXL",
+          "chest": [100, 104]
+        }
+      ]
+    },
+    {
+      "group": "teen",
+      "garment": "bottoms",
+      "measurements": ["height"],
+      "rows": [
+        {
+          "sizeGuideKey": "teen-2XL",
+          "label": "2XL",
+          "height": [150, 158]
+        },
+        {
+          "sizeGuideKey": "teen-3XL",
+          "label": "3XL",
+          "height": [158, 166]
+        },
+        {
+          "sizeGuideKey": "teen-4XL",
+          "label": "4XL",
+          "height": [166, 174]
+        }
+      ]
+    },
+    {
+      "group": "teen",
+      "garment": "full-body",
+      "measurements": ["height", "chest"],
+      "rows": [
+        {
+          "sizeGuideKey": "teen-2XL",
+          "label": "2XL",
+          "height": [150, 158],
+          "chest": [72, 76]
+        },
+        {
+          "sizeGuideKey": "teen-3XL",
+          "label": "3XL",
+          "height": [158, 166],
+          "chest": [76, 80]
+        },
+        {
+          "sizeGuideKey": "teen-4XL",
+          "label": "4XL",
+          "height": [166, 174],
+          "chest": [80, 84]
+        }
+      ]
+    },
+    {
+      "group": "teen",
+      "garment": "tops",
+      "measurements": ["height", "chest"],
+      "rows": [
+        {
+          "sizeGuideKey": "teen-2XL",
+          "label": "2XL",
+          "height": [150, 158],
+          "chest": [72, 76]
+        },
+        {
+          "sizeGuideKey": "teen-3XL",
+          "label": "3XL",
+          "height": [158, 166],
+          "chest": [76, 80]
+        },
+        {
+          "sizeGuideKey": "teen-4XL",
+          "label": "4XL",
+          "height": [166, 174],
+          "chest": [80, 84]
+        }
+      ]
+    },
+    {
+      "group": "women",
+      "garment": "bottoms",
+      "measurements": ["waist", "hips"],
+      "rows": [
+        {
+          "sizeGuideKey": "women-S",
+          "label": "S",
+          "waist": [62, 66],
+          "hips": [86, 90]
+        },
+        {
+          "sizeGuideKey": "women-M",
+          "label": "M",
+          "waist": [66, 70],
+          "hips": [90, 94]
+        },
+        {
+          "sizeGuideKey": "women-L",
+          "label": "L",
+          "waist": [70, 74],
+          "hips": [94, 98]
+        },
+        {
+          "sizeGuideKey": "women-XL",
+          "label": "XL",
+          "waist": [74, 78],
+          "hips": [98, 102]
+        },
+        {
+          "sizeGuideKey": "women-XXL",
+          "label": "XXL",
+          "waist": [78, 82],
+          "hips": [102, 106]
+        },
+        {
+          "sizeGuideKey": "women-XXXL",
+          "label": "XXXL",
+          "waist": [82, 86],
+          "hips": [106, 110]
+        }
+      ]
+    },
+    {
+      "group": "women",
+      "garment": "full-body",
+      "measurements": ["chest", "waist", "hips"],
+      "rows": [
+        {
+          "sizeGuideKey": "women-XS",
+          "label": "XS",
+          "chest": [76, 80],
+          "waist": [58, 62],
+          "hips": [82, 86]
+        },
+        {
+          "sizeGuideKey": "women-S",
+          "label": "S",
+          "chest": [80, 84],
+          "waist": [62, 66],
+          "hips": [86, 90]
+        },
+        {
+          "sizeGuideKey": "women-M",
+          "label": "M",
+          "chest": [84, 88],
+          "waist": [66, 70],
+          "hips": [90, 94]
+        },
+        {
+          "sizeGuideKey": "women-L",
+          "label": "L",
+          "chest": [88, 92],
+          "waist": [70, 74],
+          "hips": [94, 98]
+        },
+        {
+          "sizeGuideKey": "women-XL",
+          "label": "XL",
+          "chest": [92, 96],
+          "waist": [74, 78],
+          "hips": [98, 102]
+        },
+        {
+          "sizeGuideKey": "women-XXL",
+          "label": "XXL",
+          "chest": [96, 100],
+          "waist": [78, 82],
+          "hips": [102, 106]
+        },
+        {
+          "sizeGuideKey": "women-XXXL",
+          "label": "XXXL",
+          "chest": [100, 104],
+          "waist": [82, 86],
+          "hips": [106, 110]
+        }
+      ]
+    },
+    {
+      "group": "women",
+      "garment": "tops",
+      "measurements": ["chest", "waist"],
+      "rows": [
+        {
+          "sizeGuideKey": "women-S",
+          "label": "S",
+          "chest": [80, 84],
+          "waist": [62, 66]
+        },
+        {
+          "sizeGuideKey": "women-M",
+          "label": "M",
+          "chest": [84, 88],
+          "waist": [66, 70]
+        },
+        {
+          "sizeGuideKey": "women-L",
+          "label": "L",
+          "chest": [88, 92],
+          "waist": [70, 74]
+        },
+        {
+          "sizeGuideKey": "women-XL",
+          "label": "XL",
+          "chest": [92, 96],
+          "waist": [74, 78]
+        },
+        {
+          "sizeGuideKey": "women-XXL",
+          "label": "XXL",
+          "chest": [96, 100],
+          "waist": [78, 82]
+        },
+        {
+          "sizeGuideKey": "women-XXXL",
+          "label": "XXXL",
+          "chest": [100, 104],
+          "waist": [82, 86]
+        }
+      ]
+    }
+  ]
+}
