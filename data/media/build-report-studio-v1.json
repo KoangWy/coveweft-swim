@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "createdAt": "2026-11-06T14:46:27.456Z",
+  "status": "complete",
+  "durationMs": 2943125,
+  "inventory": {
+    "file": "sobie-drive-inventory.csv",
+    "studioImages": 3224,
+    "skus": 475,
+    "limit": null
+  },
+  "images": {
+    "total": 3224,
+    "succeeded": 3224,
+    "failed": 0,
+    "reused": 0,
+    "downloaded": 3224
+  },
+  "source": {
+    "bytesDownloaded": 1526078635
+  },
+  "sizes": {
+    "480": {
+      "images": 3224,
+      "bytes": 50736714
+    },
+    "960": {
+      "images": 3224,
+      "bytes": 151581576
+    },
+    "1600": {
+      "images": 3224,
+      "bytes": 312511906
+    }
+  },
+  "total": {
+    "images": 3224,
+    "files": 9672,
+    "bytes": 514830196
+  },
+  "failures": [],
+  "manifest": "data/media/manifest-studio-v1.json",
+  "archive": {
+    "file": ".media-build/coveweft-media-studio-v1.tar.gz",
+    "bytes": 508872832,
+    "sha256": "dec69ff80d043268e38f29739a27b244485f018d6a023290a83a92567c2b92d7"
+  }
+}
