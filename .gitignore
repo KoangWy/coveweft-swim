@@ -26,8 +26,9 @@ next-env.d.ts
 /supabase/.temp/
 /supabase/.branches/
 
-# Downloaded media cache
-/data/media/
+# Media build output and runtime cache
+/.media-build/
+/.media-cache/
 
 # Misc
 .DS_Store
