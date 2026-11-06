@@ -90,9 +90,13 @@ export function kindForStatus(status: number): ProviderErrorKind {
 /**
  * Extracts a short, safe message from a provider error body. Reasoning
  * fields and `thinking` chunks are removed and secrets are redacted before
- * the text is truncated.
+ * the text is truncated. A body that is not JSON gets a fixed message.
  */
-export function errorDetail(body: string, secrets: readonly string[] = []): string | null {
+export function errorDetail(
+  body: string,
+  status: number,
+  secrets: readonly string[] = [],
+): string | null {
   const trimmed = body.trim();
 
   if (trimmed === "") {
@@ -104,8 +108,8 @@ export function errorDetail(body: string, secrets: readonly string[] = []): stri
   try {
     parsed = JSON.parse(trimmed);
   } catch {
-    // Plain-text body; redact it as is.
-    return sanitizeDetail(trimmed, secrets);
+    // Unparsable text cannot be checked for reasoning, so it is not echoed.
+    return `Provider returned a non-JSON error body (HTTP ${status}).`;
   }
 
   const safe = stripReasoning(parsed);

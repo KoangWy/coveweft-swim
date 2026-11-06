@@ -59,7 +59,7 @@ describe("errorDetail", () => {
     ],
     ["a body without a message", { reasoning: "PRIVATE-THOUGHT", code: 500 }],
   ])("drops %s", (_label, body) => {
-    expect(errorDetail(JSON.stringify(body))).not.toContain("PRIVATE-THOUGHT");
+    expect(errorDetail(JSON.stringify(body), 500)).not.toContain("PRIVATE-THOUGHT");
   });
 });
 
@@ -106,5 +106,102 @@ describe("provider errors", () => {
     expect(error.cause).toBeUndefined();
     expect(String(error.detail)).not.toContain(KEY.slice(0, 6));
     expect(error.detail).toBe("Malformed JSON response.");
+  });
+});
+
+describe("re-verification probes", () => {
+  const ATTACHED = `invalid-key-${KEY.slice(0, 12)}…`;
+
+  it.each([
+    ["joined by hyphens", ATTACHED],
+    ["joined to letters", `key${KEY.slice(4, 16)}end`],
+    ["inside punctuation", `(${KEY.slice(10, 18)}),"${KEY.slice(-7)}"`],
+  ])("masks a key fragment %s", (_label, text) => {
+    const redacted = redactSecrets(text, [KEY]);
+
+    for (let start = 0; start + 6 <= KEY.length; start += 1) {
+      expect(redacted).not.toContain(KEY.slice(start, start + 6));
+    }
+  });
+
+  it("keeps the surrounding text of a masked fragment", () => {
+    expect(redactSecrets(ATTACHED, [KEY])).toBe("invalid-key-***…");
+  });
+
+  async function caughtError(run: () => Promise<unknown>): Promise<ProviderError> {
+    const error = await run().then(
+      () => undefined,
+      (caught: unknown) => caught,
+    );
+
+    expect(error).toBeInstanceOf(ProviderError);
+
+    return error as ProviderError;
+  }
+
+  function surfaces(error: ProviderError): string {
+    return [
+      error.detail,
+      error.message,
+      String(error.stack),
+      String(error.cause),
+      JSON.stringify(error),
+    ].join("\n");
+  }
+
+  async function drain(events: AsyncIterable<unknown>) {
+    for await (const event of events) {
+      void event;
+    }
+  }
+
+  it.each(["complete", "stream"] as const)(
+    "masks an attached key fragment from an HTTP 401 body on %s",
+    async (path) => {
+      const provider = createChatProvider(settings({ apiKey: KEY }), {
+        fetch: async () => jsonResponse({ error: { message: ATTACHED } }, 401),
+      });
+      const error = await caughtError(() =>
+        path === "complete" ? provider.complete(request) : drain(provider.stream(request)),
+      );
+
+      expect(error.detail).toBe("invalid-key-***…");
+      expect(surfaces(error)).not.toContain(KEY.slice(0, 6));
+    },
+  );
+
+  it.each(["complete", "stream"] as const)(
+    "does not echo a non-JSON HTTP error body on %s",
+    async (path) => {
+      const provider = createChatProvider(settings({ apiKey: KEY }), {
+        fetch: async () =>
+          new Response('{"reasoning_content":"PRIVATE-THOUGHT", "error":', { status: 500 }),
+      });
+      const error = await caughtError(() =>
+        path === "complete" ? provider.complete(request) : drain(provider.stream(request)),
+      );
+
+      expect(error).toMatchObject({
+        kind: "server",
+        status: 500,
+        detail: "Provider returned a non-JSON error body (HTTP 500).",
+      });
+      expect(surfaces(error)).not.toContain("PRIVATE-THOUGHT");
+    },
+  );
+
+  it("keeps only the class and system code of a native error", async () => {
+    const provider = createChatProvider(settings({ apiKey: KEY }), {
+      fetch: async () => {
+        throw new TypeError(`fetch failed: PRIVATE-THOUGHT ${ATTACHED}`, {
+          cause: Object.assign(new Error("socket said PRIVATE-THOUGHT"), { code: "ECONNRESET" }),
+        });
+      },
+    });
+    const error = await caughtError(() => provider.complete(request));
+
+    expect(error.detail).toBe("TypeError (ECONNRESET)");
+    expect(surfaces(error)).not.toContain("PRIVATE-THOUGHT");
+    expect(surfaces(error)).not.toContain(KEY.slice(0, 6));
   });
 });

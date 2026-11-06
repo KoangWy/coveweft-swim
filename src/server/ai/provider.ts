@@ -12,7 +12,6 @@ import {
   ToolCallAccumulator,
   toUsage,
 } from "./normalize.ts";
-import { sanitizeDetail } from "./redact.ts";
 import { readSseData } from "./sse.ts";
 import type {
   ChatCompletion,
@@ -59,12 +58,6 @@ export function createChatProvider(
   const userAgent = options.userAgent ?? DEFAULT_USER_AGENT;
   const url = `${settings.baseUrl.replace(/\/+$/, "")}/chat/completions`;
   const secrets = [settings.apiKey];
-  /** A sanitized one-line summary of a native error, never the error itself. */
-  const describe = (error: unknown) =>
-    sanitizeDetail(
-      error instanceof Error ? `${error.name}: ${error.message}` : String(error),
-      secrets,
-    );
 
   async function open(request: ChatRequest, stream: boolean): Promise<OpenRequest> {
     const timeout = new AbortController();
@@ -85,11 +78,11 @@ export function createChatProvider(
       }
 
       if (timeout.signal.aborted) {
-        return new ProviderError("timeout", { detail: describe(error) });
+        return new ProviderError("timeout", { detail: describeNativeError(error) });
       }
 
       // Network failure: DNS, connection reset, or a broken stream.
-      return new ProviderError("server", { detail: describe(error) });
+      return new ProviderError("server", { detail: describeNativeError(error) });
     };
 
     const signal = request.signal
@@ -134,7 +127,7 @@ export function createChatProvider(
 
       throw new ProviderError(kindForStatus(response.status), {
         status: response.status,
-        detail: errorDetail(body, secrets),
+        detail: errorDetail(body, response.status, secrets),
       });
     }
 
@@ -244,6 +237,30 @@ export function createChatProvider(
   return { model: settings.model, stream, complete };
 }
 
+const SAFE_NAME = /^[A-Za-z]{1,40}$/;
+const SAFE_CODE = /^[A-Z0-9_]{1,40}$/;
+
+/**
+ * Summarizes a native error by its class and system code only, such as
+ * `TypeError (ECONNRESET)`. Messages are never kept: they can quote request
+ * headers or response text.
+ */
+export function describeNativeError(error: unknown): string {
+  if (!(error instanceof Error)) {
+    return "Unknown error";
+  }
+
+  const name = SAFE_NAME.test(error.name) ? error.name : "Error";
+  const codes = [error, error.cause].map((source) =>
+    source && typeof source === "object" ? (source as { code?: unknown }).code : undefined,
+  );
+  const code = codes.find(
+    (value): value is string => typeof value === "string" && SAFE_CODE.test(value),
+  );
+
+  return code ? `${name} (${code})` : name;
+}
+
 function parseChunk(
   payload: string,
   status: number,
@@ -262,7 +279,7 @@ function parseChunk(
   }
 
   if (chunk.error !== undefined || chunk.object === "error") {
-    throw new ProviderError("server", { status, detail: errorDetail(payload, secrets) });
+    throw new ProviderError("server", { status, detail: errorDetail(payload, status, secrets) });
   }
 
   return chunk;

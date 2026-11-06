@@ -776,9 +776,13 @@ type ProviderEvent =
   including while an error body is read; a caller abort is rethrown as is.
   Error `detail` is for logs only and is built by one redactor
   (`src/server/ai/redact.ts`): reasoning fields and `thinking` chunks are
-  removed from error bodies, bearer tokens, configured keys, key fragments,
-  and long key-like tokens are masked, and only then is the text truncated.
-  Native errors are summarized into `detail` and never attached as `cause`.
+  removed from JSON error bodies, and bearer tokens, configured keys, any key
+  fragment of six or more characters (also inside a longer word, such as
+  `invalid-key-<prefix>`), and long key-like tokens are masked; only then is
+  the text truncated. An error body that is not JSON gets a fixed message
+  instead of being echoed, and a native error is summarized by its class and
+  system code only (for example `TypeError (ECONNRESET)`), never attached as
+  `cause`.
 - **Failover.** `withFailover(primary, fallback)` returns a turn-scoped
   provider; `createAiProvider()` builds one. Create one per customer turn and
   reuse it for every request of that turn, including each tool round. It moves

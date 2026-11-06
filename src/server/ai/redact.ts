@@ -18,11 +18,54 @@ export function redactSecrets(text: string, secrets: readonly string[] = []): st
     result = result.split(secret).join(MASK);
   }
 
-  result = result.replace(/[A-Za-z0-9_-]{6,}/g, (token) =>
-    known.some((secret) => secret.includes(token)) ? MASK : token,
-  );
+  result = maskFragments(result, known);
 
   return result.replace(/\b[A-Za-z0-9]{32,}\b/g, MASK);
+}
+
+/**
+ * Masks every substring of `text` that is a fragment of a secret of at least
+ * six characters, even when it is joined to other text, as in
+ * `invalid-key-<prefix>`. Overlapping matches merge into one mask.
+ */
+function maskFragments(text: string, secrets: readonly string[]): string {
+  if (secrets.length === 0 || text.length < MIN_FRAGMENT_LENGTH) {
+    return text;
+  }
+
+  const grams = new Set<string>();
+
+  for (const secret of secrets) {
+    for (let start = 0; start + MIN_FRAGMENT_LENGTH <= secret.length; start += 1) {
+      grams.add(secret.slice(start, start + MIN_FRAGMENT_LENGTH));
+    }
+  }
+
+  const covered = new Uint8Array(text.length);
+  let found = false;
+
+  for (let start = 0; start + MIN_FRAGMENT_LENGTH <= text.length; start += 1) {
+    if (grams.has(text.slice(start, start + MIN_FRAGMENT_LENGTH))) {
+      covered.fill(1, start, start + MIN_FRAGMENT_LENGTH);
+      found = true;
+    }
+  }
+
+  if (!found) {
+    return text;
+  }
+
+  let result = "";
+
+  for (let index = 0; index < text.length; index += 1) {
+    if (!covered[index]) {
+      result += text[index];
+    } else if (index === 0 || !covered[index - 1]) {
+      result += MASK;
+    }
+  }
+
+  return result;
 }
 
 /** Removes reasoning fields and `thinking` chunks from a parsed JSON value. */
