@@ -1,7 +1,133 @@
 @import "tailwindcss";
 
+/*
+ * Design tokens. The default Tailwind color, type, radius, and shadow scales
+ * are cleared so every component draws from this fixed set.
+ *
+ * Color rules:
+ * - Text and icons are navy on white.
+ * - Lime is the only accent. It is used as a fill (primary buttons, badges,
+ *   accent lines) with navy text on top, never as text on white.
+ * - Status colors always appear next to a text label or an icon.
+ *
+ * tests/unit/contrast.test.ts parses this block and checks every text and UI
+ * pairing used by the components against WCAG AA.
+ */
+@theme {
+  --color-*: initial;
+  --color-white: #ffffff;
+
+  --color-navy-950: #06152b;
+  --color-navy-900: #0b2545;
+  --color-navy-800: #133461;
+  --color-navy-700: #1e3f6e;
+
+  --color-lime-300: #dcf78a;
+  --color-lime-400: #c8f03c;
+  --color-lime-500: #b2dc1e;
+
+  --color-neutral-50: #f5f7fa;
+  --color-neutral-100: #edf1f6;
+  --color-neutral-200: #dce3ec;
+  --color-neutral-300: #c2ccd9;
+  --color-neutral-500: #5b6880;
+  --color-neutral-600: #46536b;
+  --color-neutral-700: #333f55;
+
+  --color-error-50: #fef3f2;
+  --color-error-200: #fecdca;
+  --color-error-700: #b42318;
+
+  --color-success-50: #ecfdf3;
+  --color-success-200: #abefc6;
+  --color-success-700: #067647;
+
+  --color-warning-50: #fffaeb;
+  --color-warning-200: #fedf89;
+  --color-warning-700: #b54708;
+
+  --color-soldout-50: #f2f3f5;
+  --color-soldout-200: #d5d9e0;
+  --color-soldout-700: #4a5263;
+
+  /* Fixed type scale. Headings, body, and captions only use these sizes. */
+  --text-*: initial;
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1rem;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.25rem;
+  --text-body: 1rem;
+  --text-body--line-height: 1.625rem;
+  --text-lead: 1.125rem;
+  --text-lead--line-height: 1.75rem;
+  --text-heading-sm: 1.25rem;
+  --text-heading-sm--line-height: 1.75rem;
+  --text-heading: 1.5rem;
+  --text-heading--line-height: 2rem;
+  --text-title: 2rem;
+  --text-title--line-height: 2.5rem;
+  --text-display: 2.75rem;
+  --text-display--line-height: 3.125rem;
+
+  /* One corner radius for controls, panels, and badges. */
+  --radius-*: initial;
+  --radius-md: 0.375rem;
+
+  /* Shadows are tinted with navy instead of black. */
+  --shadow-*: initial;
+  --shadow-raised: 0 1px 2px 0 rgb(11 37 69 / 0.08), 0 2px 8px -2px rgb(11 37 69 / 0.08);
+  --shadow-overlay: 0 16px 40px -12px rgb(11 37 69 / 0.28);
+}
+
+@theme inline {
+  --font-sans:
+    var(--font-be-vietnam-pro), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
 @layer base {
+  :root {
+    /* Layer scale. Dialogs and drawers use the browser top layer instead. */
+    --z-header: 30;
+    --z-toast: 50;
+  }
+
+  html {
+    scroll-padding-top: 8rem;
+  }
+
   body {
-    @apply bg-white text-slate-900 antialiased;
+    @apply bg-white font-sans text-body text-navy-900 antialiased;
+  }
+
+  ::placeholder {
+    @apply text-neutral-500 opacity-100;
+  }
+
+  ::selection {
+    @apply bg-lime-300 text-navy-950;
+  }
+
+  /* Keep the page behind an open modal dialog or drawer from scrolling. */
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+
+  dialog::backdrop {
+    background: rgb(6 21 43 / 0.45);
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-navy-900;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }
