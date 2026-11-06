@@ -1,0 +1,2132 @@
+{
+  "locale": "vi",
+  "sourceLocale": "en",
+  "method": "machine translation",
+  "createdAt": "2026-11-06",
+  "source": "SOBIE catalog snapshot (products.csv, accessed 2026-11-06)",
+  "notice": "Unofficial translation for a study demo; not provided by SOBIE.",
+  "attributes": {
+    "category": {
+      "Accessories": "Phụ kiện",
+      "Bottoms": "Đồ bơi phần dưới",
+      "Full body": "Đồ bơi toàn thân",
+      "Tops": "Đồ bơi phần trên"
+    },
+    "product_type": {
+      "Backpack": "Ba lô",
+      "Beach bag": "Túi đi biển",
+      "Beach shorts": "Quần short đi biển",
+      "Bikini bottoms": "Quần bikini",
+      "Bikini set": "Bộ bikini",
+      "Bikini top": "Áo bikini",
+      "Board shorts": "Quần short lướt sóng",
+      "Bra pads": "Miếng đệm ngực",
+      "Dry bag": "Túi chống nước",
+      "Jammers": "Quần bơi bó",
+      "Mask & snorkel set": "Bộ kính lặn và ống thở",
+      "Monokini": "Đồ bơi monokini",
+      "Poncho towel": "Khăn choàng poncho",
+      "Rash guard": "Áo bơi rash guard",
+      "Shirt": "Áo sơ mi",
+      "Sun hat": "Mũ chống nắng",
+      "Swim boxers": "Quần bơi boxer",
+      "Swim briefs": "Quần bơi tam giác",
+      "Swim cap": "Mũ bơi",
+      "Swim dress": "Váy bơi",
+      "Swim fins": "Chân vịt bơi",
+      "Swim goggles": "Kính bơi",
+      "Swim leggings": "Quần legging bơi",
+      "Swim shorts": "Quần short bơi",
+      "Swim skirt": "Chân váy bơi",
+      "Swim trunks": "Quần bơi suông",
+      "Swimsuit": "Đồ bơi",
+      "T-shirt": "Áo thun",
+      "Towel": "Khăn tắm",
+      "Water shoes": "Giày lội nước",
+      "Wetsuit": "Bộ đồ lặn",
+      "Wetsuit shorts": "Quần lặn",
+      "Wetsuit top": "Áo lặn"
+    },
+    "color": {
+      "Beige": "Be",
+      "Black": "Đen",
+      "Blue": "Xanh dương",
+      "Brown": "Nâu",
+      "Dark Blue": "Xanh dương đậm",
+      "Dark Brown": "Nâu đậm",
+      "Dark Grey": "Xám đậm",
+      "Dark Red": "Đỏ đậm",
+      "Dark Turquoise": "Xanh ngọc đậm",
+      "Green": "Xanh lá",
+      "Greenish Khaki": "Kaki ánh xanh",
+      "Grey": "Xám",
+      "Greyish Blue": "Xanh ánh xám",
+      "Light Blue": "Xanh dương nhạt",
+      "Light Green": "Xanh lá nhạt",
+      "Light Orange": "Cam nhạt",
+      "Light Pink": "Hồng nhạt",
+      "Light Purple": "Tím nhạt",
+      "Light Turquoise": "Xanh ngọc nhạt",
+      "Light Yellow": "Vàng nhạt",
+      "Off White": "Trắng ngà",
+      "Orange": "Cam",
+      "Other": "Khác",
+      "Pink": "Hồng",
+      "Purple": "Tím",
+      "Red": "Đỏ",
+      "Turquoise": "Xanh ngọc",
+      "White": "Trắng",
+      "Yellow": "Vàng"
+    },
+    "color_family": {
+      "Beige": "Be",
+      "Black": "Đen",
+      "Blue": "Xanh dương",
+      "Brown": "Nâu",
+      "Green": "Xanh lá",
+      "Grey": "Xám",
+      "Khaki green": "Xanh kaki",
+      "Lilac Purple": "Tím oải hương",
+      "Orange": "Cam",
+      "Pink": "Hồng",
+      "Red": "Đỏ",
+      "Turquoise": "Xanh ngọc",
+      "Unknown": "Không xác định",
+      "White": "Trắng",
+      "Yellow": "Vàng"
+    },
+    "pattern": {
+      "All over pattern": "Họa tiết toàn bề mặt",
+      "Check": "Kẻ ca-rô",
+      "Colour blocking": "Phối màu",
+      "Dot": "Chấm bi",
+      "Solid": "Màu trơn",
+      "Stripe": "Kẻ sọc"
+    },
+    "material": {
+      "Cotton": "Cotton",
+      "Foam": "Mút xốp",
+      "Functional fabric": "Vải tính năng",
+      "Linen": "Vải lanh",
+      "Mesh": "Vải lưới",
+      "Microfibre": "Vải microfiber",
+      "Neoprene": "Cao su tổng hợp neoprene",
+      "Nylon": "Nylon",
+      "PVC": "Nhựa PVC",
+      "Polycarbonate": "Nhựa polycarbonate",
+      "Polyester": "Polyester",
+      "Silicone": "Silicone",
+      "TPR": "Cao su nhiệt dẻo TPR",
+      "Unknown": "Không xác định"
+    },
+    "fabric_desc": {
+      "1.5mm neoprene": "Neoprene 1.5mm",
+      "2.5mm neoprene": "Neoprene 2.5mm",
+      "500D PVC": "Vải PVC 500D",
+      "AquaLite™ fabric": "Vải AquaLite™",
+      "PVC": "Vải PVC",
+      "Soendu™ fabric": "Vải Soendu™",
+      "Sotek™ fabric": "Vải Sotek™",
+      "Sowave™ fabric": "Vải Sowave™",
+      "Sowave™ fabric and Soshine™ fabric": "Vải Sowave™ và vải Soshine™",
+      "Sowave™ fabric and mesh": "Vải Sowave™ và vải lưới",
+      "Sowave™ fabric and nylon": "Vải Sowave™ và nylon",
+      "Sowave™ fabric, mesh and Soshine™ fabric": "Vải Sowave™, vải lưới và vải Soshine™",
+      "TPR": "Cao su nhiệt dẻo TPR",
+      "cotton jersey": "Vải cotton jersey",
+      "foam": "Mút xốp",
+      "linen-rayon blend": "Vải pha lanh-rayon",
+      "mesh": "Vải lưới",
+      "microfibre": "Vải microfiber",
+      "microfibre terry": "Vải terry microfiber",
+      "neoprene": "Neoprene",
+      "nylon": "Nylon",
+      "polycarbonate and silicone": "Polycarbonate và silicone",
+      "polyester": "Polyester",
+      "silicone": "Silicone",
+      "silicone and polycarbonate": "Silicone và polycarbonate",
+      "silicone and tempered glass": "Silicone và kính cường lực"
+    },
+    "fit": {
+      "Fitted": "Dáng ôm sát",
+      "Loose": "Dáng rộng",
+      "Plus size": "Dáng ngoại cỡ",
+      "Relaxed": "Dáng thoải mái"
+    },
+    "length": {
+      "Ankle-length": "Dài đến mắt cá",
+      "Cropped": "Dáng lửng",
+      "Knee-length": "Dài đến đầu gối",
+      "Long": "Dài",
+      "Short": "Ngắn"
+    },
+    "sleeve": {
+      "3/4 sleeves": "Tay lỡ",
+      "Long sleeves": "Tay dài",
+      "Short sleeves": "Tay ngắn",
+      "Sleeveless": "Không tay",
+      "Straps": "Dây áo"
+    },
+    "neckline": {
+      "Collar": "Cổ áo",
+      "Halterneck": "Cổ yếm"
+    },
+    "closure": {
+      "Buckle": "Khóa cài",
+      "Drawstring": "Dây rút",
+      "Zip": "Khóa kéo"
+    },
+    "lining": {
+      "Lined": "Có lót",
+      "Unlined": "Không lót"
+    },
+    "season": {
+      "All season": "Bốn mùa",
+      "Spring/Summer": "Xuân/Hè"
+    },
+    "features": {
+      "4-way stretch": "Co giãn 4 chiều",
+      "absorbent": "Thấm hút tốt",
+      "anti-fog": "Chống đọng sương",
+      "anti-slip": "Chống trượt",
+      "antibacterial": "Kháng khuẩn",
+      "breathable": "Thoáng khí",
+      "buckle": "Khóa cài",
+      "built-in shorts": "Quần trong may liền",
+      "chiffon cover-up": "Khăn choàng chiffon khoác ngoài",
+      "chlorine-resistant": "Kháng clo",
+      "cut-out waist": "Khoét eo",
+      "drainage holes": "Lỗ thoát nước",
+      "ergonomic": "Thiết kế công thái học",
+      "flatlock seams": "Đường may phẳng flatlock",
+      "full coverage": "Độ che phủ cao",
+      "high waist": "Cạp cao",
+      "hydrodynamic": "Kiểu dáng thủy động học",
+      "long-hair fit": "Phù hợp cho tóc dài",
+      "matching hat": "Kèm mũ đồng bộ",
+      "microfibre": "Vải microfiber",
+      "mirrored lenses": "Tròng kính tráng gương",
+      "open back": "Hở lưng",
+      "quick-dry": "Nhanh khô",
+      "silicone": "Silicone",
+      "skin-fit": "Ôm sát cơ thể",
+      "thermal": "Giữ nhiệt",
+      "thumbholes": "Lỗ xỏ ngón cái",
+      "tpr sole": "Đế TPR",
+      "upf 50+": "Chống nắng UPF 50+",
+      "water-repellent": "Đẩy nước",
+      "waterproof": "Chống thấm nước",
+      "windproof": "Cản gió"
+    },
+    "collection": {
+      "Accessory": "Phụ kiện",
+      "Chic": "Sành điệu",
+      "Lifestyle": "Phong cách sống",
+      "Swim": "Đồ bơi",
+      "Watersport": "Thể thao dưới nước",
+      "Wetsuit": "Đồ lặn"
+    }
+  },
+  "products": {
+    "JAP5": {
+      "description": "Quần bơi boxer dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và chất vải nhanh khô.",
+      "caption": "Quần bơi boxer dáng ngắn trơn màu xanh ngọc đậm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và chất vải nhanh khô."
+    },
+    "JAP4": {
+      "description": "Quần bơi boxer dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và chất vải nhanh khô.",
+      "caption": "Quần bơi boxer dáng ngắn trơn màu xám đậm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và chất vải nhanh khô."
+    },
+    "JAP3": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và chất vải nhanh khô.",
+      "caption": "Quần bơi bó dài đến đầu gối trơn màu xanh ngọc đậm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và chất vải nhanh khô."
+    },
+    "JAP2": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và chất vải nhanh khô.",
+      "caption": "Quần bơi bó dài đến đầu gối trơn màu xám bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và chất vải nhanh khô."
+    },
+    "JAP1": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và chất vải nhanh khô.",
+      "caption": "Quần bơi bó dài đến đầu gối trơn màu đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và chất vải nhanh khô."
+    },
+    "WSA7": {
+      "description": "Bộ đồ lặn không tay dáng ôm dài đến mắt cá bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn không tay dáng ôm dài đến mắt cá phối màu đen và trắng ngà bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "WSA6": {
+      "description": "Bộ đồ lặn dáng ôm dài đến mắt cá bằng neoprene 2.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt. Khóa kéo.",
+      "caption": "Bộ đồ lặn dáng ôm dài đến mắt cá phối màu đen, trắng ngà và xanh ngọc bằng neoprene 2.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt. Khóa kéo."
+    },
+    "WSA5": {
+      "description": "Bộ đồ lặn dáng ôm ngắn bằng neoprene 1.5mm với tay ngắn, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm ngắn phối màu trắng ngà và đen bằng neoprene 1.5mm với tay ngắn, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "WSA4": {
+      "description": "Bộ đồ lặn dáng ôm ngắn bằng neoprene 1.5mm với tay dài, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm ngắn phối màu trắng ngà và xám đậm bằng neoprene 1.5mm với tay dài, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "WSA3": {
+      "description": "Bộ đồ lặn dáng ôm ngắn bằng neoprene 1.5mm với tay ngắn, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm ngắn phối màu xám, đen và cam bằng neoprene 1.5mm với tay ngắn, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "WSA2": {
+      "description": "Bộ đồ lặn dáng ôm ngắn bằng neoprene 1.5mm với tay dài, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm ngắn phối màu đen, cam và xám bằng neoprene 1.5mm với tay dài, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "WSA1": {
+      "description": "Bộ đồ lặn dáng ôm dài đến mắt cá bằng neoprene 2.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt. Khóa kéo.",
+      "caption": "Bộ đồ lặn dáng ôm dài đến mắt cá phối màu đen, cam và xám bằng neoprene 2.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt. Khóa kéo."
+    },
+    "RS06": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo và xử lý kháng khuẩn.",
+      "caption": "Đồ bơi monokini kẻ sọc màu cam bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo và xử lý kháng khuẩn."
+    },
+    "RS05": {
+      "description": "Đồ bơi monokini dáng dài bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, xử lý kháng khuẩn và khăn choàng chiffon khoác ngoài.",
+      "caption": "Đồ bơi monokini dáng dài kẻ ca-rô màu xanh dương và đỏ bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, xử lý kháng khuẩn và khăn choàng chiffon khoác ngoài."
+    },
+    "RS04": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo và xử lý kháng khuẩn.",
+      "caption": "Đồ bơi monokini kẻ sọc màu vàng bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo và xử lý kháng khuẩn."
+    },
+    "RS03": {
+      "description": "Bộ bikini bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo và xử lý kháng khuẩn.",
+      "caption": "Bộ bikini kẻ ca-rô màu vàng bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo và xử lý kháng khuẩn."
+    },
+    "RS02": {
+      "description": "Bộ bikini bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, xử lý kháng khuẩn và khăn choàng chiffon khoác ngoài.",
+      "caption": "Bộ bikini kẻ ca-rô màu xanh dương và đỏ bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, xử lý kháng khuẩn và khăn choàng chiffon khoác ngoài."
+    },
+    "RS01": {
+      "description": "Bộ bikini bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo và xử lý kháng khuẩn.",
+      "caption": "Bộ bikini kẻ ca-rô màu xanh dương và đỏ bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo và xử lý kháng khuẩn."
+    },
+    "MA05": {
+      "description": "Bộ kính lặn và ống thở bằng silicone và kính cường lực với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại.",
+      "caption": "Bộ kính lặn và ống thở trơn màu xanh dương đậm bằng silicone và kính cường lực với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại."
+    },
+    "MA04": {
+      "description": "Bộ kính lặn và ống thở bằng silicone và kính cường lực với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại.",
+      "caption": "Bộ kính lặn và ống thở trơn màu đỏ bằng silicone và kính cường lực với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại."
+    },
+    "MA03": {
+      "description": "Bộ kính lặn và ống thở bằng silicone và kính cường lực với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại.",
+      "caption": "Bộ kính lặn và ống thở trơn màu cam nhạt bằng silicone và kính cường lực với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại."
+    },
+    "MA02": {
+      "description": "Bộ kính lặn và ống thở bằng silicone và kính cường lực với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại.",
+      "caption": "Bộ kính lặn và ống thở trơn màu trắng bằng silicone và kính cường lực với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại."
+    },
+    "MA01": {
+      "description": "Bộ kính lặn và ống thở bằng silicone và kính cường lực với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại.",
+      "caption": "Bộ kính lặn và ống thở trơn màu xanh ngọc bằng silicone và kính cường lực với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại."
+    },
+    "PCA02": {
+      "description": "Khăn choàng poncho bằng vải terry microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại.",
+      "caption": "Khăn choàng poncho kẻ sọc màu trắng ngà và vàng bằng vải terry microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại."
+    },
+    "PCA01": {
+      "description": "Khăn choàng poncho bằng vải terry microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại.",
+      "caption": "Khăn choàng poncho kẻ sọc màu vàng và trắng bằng vải terry microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại."
+    },
+    "PCK04": {
+      "description": "Khăn choàng poncho bằng vải terry microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại.",
+      "caption": "Khăn choàng poncho kẻ sọc màu nâu và trắng bằng vải terry microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại."
+    },
+    "PCK03": {
+      "description": "Khăn choàng poncho bằng vải terry microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại.",
+      "caption": "Khăn choàng poncho kẻ sọc màu xanh ngọc và trắng bằng vải terry microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại."
+    },
+    "PCK02": {
+      "description": "Khăn choàng poncho bằng vải terry microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại.",
+      "caption": "Khăn choàng poncho kẻ sọc màu vàng và trắng bằng vải terry microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại."
+    },
+    "PCK01": {
+      "description": "Khăn choàng poncho bằng vải terry microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại.",
+      "caption": "Khăn choàng poncho họa tiết toàn bề mặt màu trắng và xanh dương bằng vải terry microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại."
+    },
+    "SSK25": {
+      "description": "Quần short bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Quần short bơi trơn màu xanh ngọc đậm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SSK24": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard phối màu xanh dương đậm và xanh lá nhạt bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SSM40": {
+      "description": "Quần short đi biển bằng nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần short đi biển trơn màu xanh lá nhạt bằng nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSM39": {
+      "description": "Quần short đi biển bằng nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần short đi biển phối màu xanh dương đậm và trắng bằng nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSM38": {
+      "description": "Quần short đi biển bằng nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần short đi biển phối màu xanh dương đậm và trắng bằng nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSM37": {
+      "description": "Quần short đi biển bằng nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần short đi biển trơn màu đen bằng nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSM36": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard trơn màu xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SSM35": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard trơn màu xanh lá nhạt bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SSM34": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo.",
+      "caption": "Áo bơi rash guard trơn màu xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo."
+    },
+    "SSM33": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard trơn màu xanh dương đậm bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SSK32": {
+      "description": "Quần legging bơi dáng ôm dài đến mắt cá bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Quần legging bơi dáng ôm dài đến mắt cá trơn màu xanh dương đậm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SSK31": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard trơn màu xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSK30": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard phối màu xanh ngọc đậm và xanh lá nhạt bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSK29": {
+      "description": "Quần short đi biển bằng nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Quần short đi biển kẻ sọc màu xanh lá nhạt bằng nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SSK28": {
+      "description": "Quần short đi biển bằng nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Quần short đi biển kẻ ca-rô màu xanh dương đậm và trắng bằng nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SSK26": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard phối màu xanh dương đậm và xanh lá nhạt bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SSK27": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi phối màu xanh lá nhạt và xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSK23": {
+      "description": "Chân váy bơi dài đến mắt cá bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock, quần trong may liền và độ che phủ cao.",
+      "caption": "Chân váy bơi dài đến mắt cá trơn màu xanh lá nhạt bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock, quần trong may liền và độ che phủ cao."
+    },
+    "SSK22": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi kẻ sọc màu xanh lá nhạt bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSK21": {
+      "description": "Váy bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Váy bơi trơn màu xanh lá nhạt bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSK20": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard trơn màu xanh lá nhạt bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SH06": {
+      "description": "Mũ chống nắng bằng nylon với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa.",
+      "caption": "Mũ chống nắng trơn màu xanh dương bằng nylon với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa."
+    },
+    "SH05": {
+      "description": "Mũ chống nắng với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa.",
+      "caption": "Mũ chống nắng trơn màu đen với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa."
+    },
+    "SH04": {
+      "description": "Mũ chống nắng bằng nylon với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa.",
+      "caption": "Mũ chống nắng trơn màu cam nhạt bằng nylon với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa."
+    },
+    "SH03": {
+      "description": "Mũ chống nắng bằng nylon với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa.",
+      "caption": "Mũ chống nắng trơn màu trắng bằng nylon với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa."
+    },
+    "SH02": {
+      "description": "Mũ chống nắng bằng nylon với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa.",
+      "caption": "Mũ chống nắng trơn màu xanh dương đậm bằng nylon với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa."
+    },
+    "SH01": {
+      "description": "Mũ chống nắng bằng nylon với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa.",
+      "caption": "Mũ chống nắng trơn màu đen bằng nylon với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa."
+    },
+    "WSH02": {
+      "description": "Giày lội nước bằng cao su nhiệt dẻo TPR với độ bám chống trượt, ôm sát chân, đế TPR và lỗ thoát nước.",
+      "caption": "Giày lội nước trơn màu trắng bằng cao su nhiệt dẻo TPR với độ bám chống trượt, ôm sát chân, đế TPR và lỗ thoát nước."
+    },
+    "WSH01": {
+      "description": "Giày lội nước bằng cao su nhiệt dẻo TPR với độ bám chống trượt, ôm sát chân, đế TPR và lỗ thoát nước.",
+      "caption": "Giày lội nước trơn màu đen bằng cao su nhiệt dẻo TPR với độ bám chống trượt, ôm sát chân, đế TPR và lỗ thoát nước."
+    },
+    "AQM5": {
+      "description": "Quần bơi boxer dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi boxer dáng ngắn phối màu đen và nâu bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "AQM4": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi bó dài đến đầu gối phối màu đen và cam nhạt bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "AQM3": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi bó dài đến đầu gối phối màu đen và xanh dương nhạt bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "AQM2": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi bó dài đến đầu gối phối màu đen và nâu bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "AQM1": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi bó dài đến đầu gối phối màu đen và xanh lá nhạt bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "AQK5": {
+      "description": "Quần bơi boxer dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi boxer dáng ngắn phối màu đen và xanh dương nhạt bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "AQK4": {
+      "description": "Quần bơi boxer dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi boxer dáng ngắn phối màu đen và xanh lá nhạt bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "AQK3": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi bó dài đến đầu gối phối màu đen và cam nhạt bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "AQK2": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi bó dài đến đầu gối phối màu đen và xanh dương nhạt bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "AQK1": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi bó dài đến đầu gối phối màu đen và xanh lá nhạt bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSW19": {
+      "description": "Chân váy bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Chân váy bơi trơn màu xanh ngọc đậm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SSW18": {
+      "description": "Quần bikini dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bikini dáng ngắn phối màu xanh ngọc đậm và xanh lá nhạt bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSW17": {
+      "description": "Quần short bơi dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp.",
+      "caption": "Quần short bơi dáng ngắn trơn màu hồng bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp."
+    },
+    "SSW16": {
+      "description": "Quần short đi biển dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Thiết kế 2 lớp.",
+      "caption": "Quần short đi biển dáng ngắn trơn màu xanh ngọc đậm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Thiết kế 2 lớp."
+    },
+    "SSW15": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ với dây áo hai vai, cổ yếm, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi monokini kẻ sọc màu xanh lá nhạt và hồng bằng vải Sowave™ với dây áo hai vai, cổ yếm, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSW14": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi monokini trơn màu xanh lá nhạt bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSW13": {
+      "description": "Áo bơi rash guard dáng lửng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard dáng lửng kẻ sọc màu xanh lá nhạt bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSW12": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ và vải lưới với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và thiết kế hở lưng.",
+      "caption": "Đồ bơi monokini trơn màu xanh ngọc đậm bằng vải Sowave™ và vải lưới với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và thiết kế hở lưng."
+    },
+    "SSW11": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi monokini phối màu xanh dương đậm và xanh lá nhạt bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSW10": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ và vải lưới với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi monokini phối màu xanh lá nhạt và xanh ngọc đậm bằng vải Sowave™ và vải lưới với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSW09": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock, chất vải nhanh khô và độ che phủ cao. Khóa kéo.",
+      "caption": "Áo bơi rash guard phối màu xanh ngọc đậm và xanh lá nhạt bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock, chất vải nhanh khô và độ che phủ cao. Khóa kéo."
+    },
+    "SSW08": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock, lỗ xỏ ngón cái và độ che phủ cao. Khóa kéo.",
+      "caption": "Áo bơi rash guard phối màu xanh lá nhạt và xanh ngọc đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock, lỗ xỏ ngón cái và độ che phủ cao. Khóa kéo."
+    },
+    "SSW07": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard phối màu xanh ngọc đậm và xanh lá nhạt bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSW06": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo.",
+      "caption": "Áo bơi rash guard phối màu xanh dương đậm và hồng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo."
+    },
+    "SSW05": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi phối màu xanh dương đậm và xanh lá nhạt bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSW04": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi phối màu xanh ngọc đậm và xanh lá nhạt bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSW03": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi trơn màu xanh ngọc đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSW02": {
+      "description": "Váy bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Váy bơi phối màu xanh lá nhạt và xanh ngọc đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SSW01": {
+      "description": "Váy bơi bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Váy bơi trơn màu xanh lá nhạt bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SCJ": {
+      "description": "Quần short đi biển dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Dáng ngoại cỡ. Thiết kế 2 lớp.",
+      "caption": "Quần short đi biển dáng ngắn trơn màu xanh dương đậm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Dáng ngoại cỡ. Thiết kế 2 lớp."
+    },
+    "SCLY": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Dáng ngoại cỡ.",
+      "caption": "Đồ bơi phối màu xanh dương đậm và hồng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Dáng ngoại cỡ."
+    },
+    "SCF": {
+      "description": "Váy bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Dáng ngoại cỡ.",
+      "caption": "Váy bơi phối màu xanh dương đậm và hồng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Dáng ngoại cỡ."
+    },
+    "SCS": {
+      "description": "Váy bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Dáng ngoại cỡ.",
+      "caption": "Váy bơi phối màu xanh dương đậm và hồng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Dáng ngoại cỡ."
+    },
+    "HAZEL": {
+      "description": "Quần short đi biển dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp.",
+      "caption": "Quần short đi biển dáng ngắn trơn màu nâu bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp."
+    },
+    "ASTER": {
+      "description": "Quần legging bơi dáng ôm dài đến mắt cá bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp.",
+      "caption": "Quần legging bơi dáng ôm dài đến mắt cá phối màu cam nhạt và đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp."
+    },
+    "ROSA": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi monokini họa tiết toàn bề mặt màu cam nhạt bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "POPPY": {
+      "description": "Quần short đi biển dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock, quần trong may liền và độ che phủ cao. Thiết kế 2 lớp.",
+      "caption": "Quần short đi biển dáng ngắn trơn màu cam nhạt bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock, quần trong may liền và độ che phủ cao. Thiết kế 2 lớp."
+    },
+    "HOLLY": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard phối màu đen và cam bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "NORA": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi phối màu nâu, cam nhạt và đen bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "NATALIE": {
+      "description": "Váy bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Váy bơi phối màu cam nhạt và đen bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "BILY": {
+      "description": "Váy bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Váy bơi trơn màu nâu bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "AIMEE": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Đồ bơi phối màu đen và cam bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "IVY": {
+      "description": "Áo bơi rash guard dáng lửng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard dáng lửng phối màu đen và cam bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "FLORAL": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Đồ bơi phối màu cam nhạt và nâu bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "EMMA": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard phối màu cam nhạt và đen bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "ALICE": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard họa tiết toàn bề mặt màu cam nhạt bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "Chloe": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard phối màu cam nhạt và nâu bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "GRSB": {
+      "description": "Áo bơi rash guard dáng lửng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard dáng lửng phối màu trắng và đỏ bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "BYSB": {
+      "description": "Quần short đi biển dáng thoải mái bằng nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần short đi biển dáng thoải mái trơn màu đen bằng nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "BYSN1": {
+      "description": "Quần short đi biển dáng thoải mái bằng nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần short đi biển dáng thoải mái trơn màu xanh dương đậm bằng nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "BYSSS": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard phối màu đen và cam bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "BYSBO": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard phối màu đen và cam bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "BYSBW": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard trơn màu đen bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "BYSNW": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard phối màu xanh dương đậm và trắng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "GRSA": {
+      "description": "Quần short bơi dáng ôm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần short bơi dáng ôm phối màu đỏ và trắng bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "GRSRS": {
+      "description": "Quần short đi biển dáng thoải mái bằng nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần short đi biển dáng thoải mái trơn màu đỏ bằng nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "GRSF": {
+      "description": "Chân váy bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Chân váy bơi trơn màu đỏ bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "GRSS": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Đồ bơi phối màu đỏ và trắng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "GRSL": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard phối màu đỏ và trắng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "GRSR": {
+      "description": "Áo bơi rash guard dáng lửng bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard dáng lửng phối màu đỏ và trắng bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "KWP": {
+      "description": "Bộ đồ lặn dáng ôm bằng neoprene 1.5mm với tay dài, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm trơn màu hồng bằng neoprene 1.5mm với tay dài, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "KWOB": {
+      "description": "Bộ đồ lặn dáng ôm bằng neoprene 1.5mm với tay ngắn, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm trơn màu xanh dương bằng neoprene 1.5mm với tay ngắn, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "KWBB": {
+      "description": "Bộ đồ lặn dáng ôm bằng neoprene 1.5mm với tay dài, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm phối màu xanh ngọc và hồng bằng neoprene 1.5mm với tay dài, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "KWM": {
+      "description": "Bộ đồ lặn dáng ôm bằng neoprene 1.5mm với tay ngắn, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm phối màu xanh ngọc, trắng ngà và tím bằng neoprene 1.5mm với tay ngắn, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "KWR": {
+      "description": "Bộ đồ lặn dáng ôm bằng neoprene 1.5mm với tay dài, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm phối màu đỏ và xám đậm bằng neoprene 1.5mm với tay dài, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "KWB": {
+      "description": "Bộ đồ lặn dáng ôm bằng neoprene 1.5mm với tay dài, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm phối màu xanh dương đậm và cam bằng neoprene 1.5mm với tay dài, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "KWG": {
+      "description": "Bộ đồ lặn dáng ôm bằng neoprene 1.5mm với tay ngắn, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm phối màu xanh dương và đỏ bằng neoprene 1.5mm với tay ngắn, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "KWY": {
+      "description": "Bộ đồ lặn dáng ôm bằng neoprene 1.5mm với tay ngắn, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm phối màu vàng và xám đậm bằng neoprene 1.5mm với tay ngắn, khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "KTM08": {
+      "description": "Khăn tắm bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại.",
+      "caption": "Khăn tắm kẻ ca-rô màu đỏ và trắng bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại."
+    },
+    "KTM07": {
+      "description": "Khăn tắm bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại.",
+      "caption": "Khăn tắm kẻ sọc màu hồng và trắng bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại."
+    },
+    "KTM06": {
+      "description": "Khăn tắm bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại.",
+      "caption": "Khăn tắm chấm bi màu đen và trắng bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại."
+    },
+    "KTM05": {
+      "description": "Khăn tắm bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại.",
+      "caption": "Khăn tắm kẻ sọc màu vàng và trắng bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại."
+    },
+    "KTM04": {
+      "description": "Khăn tắm bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại.",
+      "caption": "Khăn tắm trơn màu trắng ngà bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại."
+    },
+    "KTM03": {
+      "description": "Khăn tắm bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại.",
+      "caption": "Khăn tắm chấm bi màu trắng và đỏ bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại."
+    },
+    "KTM02": {
+      "description": "Khăn tắm bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại.",
+      "caption": "Khăn tắm họa tiết toàn bề mặt màu cam và đỏ bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại."
+    },
+    "KTM01": {
+      "description": "Khăn tắm bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại.",
+      "caption": "Khăn tắm kẻ ca-rô màu xanh dương nhạt và trắng bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại."
+    },
+    "SOJE": {
+      "description": "Áo bơi rash guard dáng lửng bằng vải Sowave™, vải lưới và vải Soshine™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard dáng lửng phối màu xám và đen bằng vải Sowave™, vải lưới và vải Soshine™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SOLA": {
+      "description": "Quần short bơi dáng ngắn bằng vải Sowave™ và vải Soshine™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp.",
+      "caption": "Quần short bơi dáng ngắn trơn màu đen bằng vải Sowave™ và vải Soshine™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp."
+    },
+    "SOLE": {
+      "description": "Quần short bơi dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Thiết kế 1 lớp.",
+      "caption": "Quần short bơi dáng ngắn trơn màu đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Thiết kế 1 lớp."
+    },
+    "SOCA": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Đồ bơi trơn màu đen bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SOXA": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ và vải Soshine™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Đồ bơi monokini phối màu đen và xám bằng vải Sowave™ và vải Soshine™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SOVE": {
+      "description": "Đồ bơi dài đến đầu gối bằng vải Sowave™ và vải Soshine™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Đồ bơi dài đến đầu gối trơn màu đen bằng vải Sowave™ và vải Soshine™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SOTA": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ và vải Soshine™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard phối màu xám và đen bằng vải Sowave™ và vải Soshine™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SOZO": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ và vải Soshine™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard phối màu đen và xám bằng vải Sowave™ và vải Soshine™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SOLU": {
+      "description": "Đồ bơi bằng vải Sowave™ và vải Soshine™ với tay lỡ, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Đồ bơi trơn màu đen bằng vải Sowave™ và vải Soshine™ với tay lỡ, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SOOL": {
+      "description": "Đồ bơi bằng vải Sowave™, vải lưới và vải Soshine™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Đồ bơi trơn màu đen bằng vải Sowave™, vải lưới và vải Soshine™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SODE": {
+      "description": "Váy bơi bằng vải Sowave™, vải lưới và vải Soshine™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo.",
+      "caption": "Váy bơi trơn màu đen bằng vải Sowave™, vải lưới và vải Soshine™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo."
+    },
+    "SOAR": {
+      "description": "Váy bơi bằng vải Sowave™ và vải Soshine™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo.",
+      "caption": "Váy bơi trơn màu đen bằng vải Sowave™ và vải Soshine™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo."
+    },
+    "SWLP1": {
+      "description": "Đồ bơi dáng ôm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi dáng ôm trơn màu cam bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWLM1": {
+      "description": "Đồ bơi dáng ôm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi dáng ôm trơn màu nâu đậm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWLG1": {
+      "description": "Đồ bơi dáng ôm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi dáng ôm trơn màu vàng nhạt bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWLXO1": {
+      "description": "Đồ bơi dáng ôm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi dáng ôm phối màu nâu đậm và cam bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWLXG1": {
+      "description": "Đồ bơi dáng ôm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi dáng ôm phối màu đen và vàng nhạt bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWLSO1": {
+      "description": "Đồ bơi dáng ôm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi dáng ôm phối màu nâu đậm và cam bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWLSG1": {
+      "description": "Đồ bơi dáng ôm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi dáng ôm phối màu đen và vàng nhạt bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWLFO1": {
+      "description": "Đồ bơi dáng ôm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo.",
+      "caption": "Đồ bơi dáng ôm phối màu nâu đậm và cam bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo."
+    },
+    "SWLFG1": {
+      "description": "Đồ bơi dáng ôm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo.",
+      "caption": "Đồ bơi dáng ôm trơn màu đen bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo."
+    },
+    "SWLHO1": {
+      "description": "Đồ bơi dáng ôm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi dáng ôm phối màu nâu đậm và cam bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWLHG1": {
+      "description": "Đồ bơi dáng ôm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi dáng ôm trơn màu đen bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "FINP": {
+      "description": "Chân vịt bơi bằng silicone với kết cấu chống thấm nước, độ bám chống trượt, ôm sát chân và silicone mềm mại.",
+      "caption": "Chân vịt bơi phối màu hồng và trắng ngà bằng silicone với kết cấu chống thấm nước, độ bám chống trượt, ôm sát chân và silicone mềm mại."
+    },
+    "FINY": {
+      "description": "Chân vịt bơi bằng silicone với kết cấu chống thấm nước, độ bám chống trượt, ôm sát chân và silicone mềm mại.",
+      "caption": "Chân vịt bơi phối màu vàng và trắng ngà bằng silicone với kết cấu chống thấm nước, độ bám chống trượt, ôm sát chân và silicone mềm mại."
+    },
+    "FINB": {
+      "description": "Chân vịt bơi bằng silicone với kết cấu chống thấm nước, độ bám chống trượt, ôm sát chân và silicone mềm mại.",
+      "caption": "Chân vịt bơi phối màu xanh dương nhạt và trắng ngà bằng silicone với kết cấu chống thấm nước, độ bám chống trượt, ôm sát chân và silicone mềm mại."
+    },
+    "GGS06": {
+      "description": "Kính bơi bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại.",
+      "caption": "Kính bơi phối màu đen và xanh dương bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại."
+    },
+    "GGS05": {
+      "description": "Kính bơi bằng silicone và polycarbonate với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương, silicone mềm mại và tròng kính tráng gương.",
+      "caption": "Kính bơi trơn màu xanh ngọc bằng silicone và polycarbonate với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương, silicone mềm mại và tròng kính tráng gương."
+    },
+    "GGS04": {
+      "description": "Kính bơi bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại.",
+      "caption": "Kính bơi trơn màu trắng bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại."
+    },
+    "GGS03": {
+      "description": "Kính bơi bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại.",
+      "caption": "Kính bơi trơn màu xanh dương đậm bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại."
+    },
+    "GGS02": {
+      "description": "Kính bơi bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương, silicone mềm mại và tròng kính tráng gương.",
+      "caption": "Kính bơi trơn màu hồng bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương, silicone mềm mại và tròng kính tráng gương."
+    },
+    "GGS01": {
+      "description": "Kính bơi bằng silicone và polycarbonate với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại.",
+      "caption": "Kính bơi phối màu cam và đen bằng silicone và polycarbonate với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại."
+    },
+    "S27": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài.",
+      "caption": "Mũ bơi trơn màu xanh dương bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài."
+    },
+    "S26": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài.",
+      "caption": "Mũ bơi trơn màu đen bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài."
+    },
+    "S25": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài.",
+      "caption": "Mũ bơi trơn màu đen bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài."
+    },
+    "KID25SM": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi họa tiết toàn bề mặt màu xanh dương, cam và đen bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "KID25BH": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi họa tiết toàn bề mặt màu xanh ngọc và hồng bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "BB25CNN": {
+      "description": "Đồ bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và kèm mũ chống nắng đồng bộ.",
+      "caption": "Đồ bơi họa tiết toàn bề mặt màu tím nhạt bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và kèm mũ chống nắng đồng bộ."
+    },
+    "BB25CR": {
+      "description": "Đồ bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và kèm mũ chống nắng đồng bộ.",
+      "caption": "Đồ bơi họa tiết toàn bề mặt màu trắng, đỏ và xanh dương bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và kèm mũ chống nắng đồng bộ."
+    },
+    "BB25DBN": {
+      "description": "Đồ bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và kèm mũ chống nắng đồng bộ.",
+      "caption": "Đồ bơi trơn màu xanh dương bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và kèm mũ chống nắng đồng bộ."
+    },
+    "KMR": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi họa tiết toàn bề mặt màu xanh dương và trắng bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "KMR8": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi bó dài đến đầu gối trơn màu xanh dương đậm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "KMR7": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi bó dài đến đầu gối trơn màu đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "KMR6": {
+      "description": "Váy bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Váy bơi họa tiết toàn bề mặt màu vàng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "KMR5": {
+      "description": "Váy bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Váy bơi họa tiết toàn bề mặt màu hồng bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "KMR4": {
+      "description": "Váy bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Váy bơi trơn màu xanh dương đậm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "KMR3": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi phối màu đen và cam bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "KMR2": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi phối màu vàng và xanh dương nhạt bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "KMR1": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi phối màu xanh dương đậm và xanh dương nhạt bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "CAPSS": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài.",
+      "caption": "Mũ bơi họa tiết toàn bề mặt màu trắng bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài."
+    },
+    "CAPFS": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước và silicone mềm mại.",
+      "caption": "Mũ bơi họa tiết toàn bề mặt màu vàng bằng silicone với kết cấu chống thấm nước và silicone mềm mại."
+    },
+    "CAPFP": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước và silicone mềm mại.",
+      "caption": "Mũ bơi họa tiết toàn bề mặt màu trắng bằng silicone với kết cấu chống thấm nước và silicone mềm mại."
+    },
+    "CAPHL": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước và silicone mềm mại.",
+      "caption": "Mũ bơi họa tiết toàn bề mặt màu trắng bằng silicone với kết cấu chống thấm nước và silicone mềm mại."
+    },
+    "CAPHN1": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài.",
+      "caption": "Mũ bơi họa tiết toàn bề mặt màu trắng bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài."
+    },
+    "CAPHN": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước và silicone mềm mại.",
+      "caption": "Mũ bơi họa tiết toàn bề mặt màu trắng bằng silicone với kết cấu chống thấm nước và silicone mềm mại."
+    },
+    "CAPDN1": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài.",
+      "caption": "Mũ bơi họa tiết toàn bề mặt màu trắng bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài."
+    },
+    "CAPDN": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước và silicone mềm mại.",
+      "caption": "Mũ bơi họa tiết toàn bề mặt màu trắng bằng silicone với kết cấu chống thấm nước và silicone mềm mại."
+    },
+    "CAPCT1": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài.",
+      "caption": "Mũ bơi họa tiết toàn bề mặt màu trắng bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài."
+    },
+    "CAPCT": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước và silicone mềm mại.",
+      "caption": "Mũ bơi họa tiết toàn bề mặt màu trắng bằng silicone với kết cấu chống thấm nước và silicone mềm mại."
+    },
+    "CAPSG": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước và silicone mềm mại.",
+      "caption": "Mũ bơi họa tiết toàn bề mặt màu trắng bằng silicone với kết cấu chống thấm nước và silicone mềm mại."
+    },
+    "CAPVT1": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài.",
+      "caption": "Mũ bơi họa tiết toàn bề mặt màu trắng bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài."
+    },
+    "CAPVT": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước và silicone mềm mại.",
+      "caption": "Mũ bơi họa tiết toàn bề mặt màu trắng bằng silicone với kết cấu chống thấm nước và silicone mềm mại."
+    },
+    "LEO10": {
+      "description": "Quần legging bơi dáng ôm dài đến mắt cá bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần legging bơi dáng ôm dài đến mắt cá họa tiết toàn bề mặt màu đen bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "LEO09": {
+      "description": "Quần bơi boxer dáng ngắn bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi boxer dáng ngắn trơn màu xanh dương đậm bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "LEO08": {
+      "description": "Quần bơi boxer dáng ngắn bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi boxer dáng ngắn trơn màu đen bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "LEO07": {
+      "description": "Quần bơi tam giác dáng ôm ngắn bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi tam giác dáng ôm ngắn họa tiết toàn bề mặt màu kaki ánh xanh và nâu bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "LEO06": {
+      "description": "Quần bơi tam giác dáng ôm ngắn bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi tam giác dáng ôm ngắn trơn màu đen bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "LEO05": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi bó dài đến đầu gối trơn màu xanh dương đậm bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "LEO04": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi bó dài đến đầu gối trơn màu đen bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "LEO03": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi bó dài đến đầu gối trơn màu đen bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "LEO02": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi bó dài đến đầu gối họa tiết toàn bề mặt màu kaki ánh xanh và nâu bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "LEO01": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi bó dài đến đầu gối họa tiết toàn bề mặt màu đen và đỏ bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "GGARWHT": {
+      "description": "Kính bơi bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương, silicone mềm mại và tròng kính tráng gương.",
+      "caption": "Kính bơi trơn màu trắng bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương, silicone mềm mại và tròng kính tráng gương."
+    },
+    "GGARRED": {
+      "description": "Kính bơi bằng silicone và polycarbonate với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại.",
+      "caption": "Kính bơi trơn màu đỏ bằng silicone và polycarbonate với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại."
+    },
+    "OC15": {
+      "description": "Chân váy bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Chân váy bơi trơn màu xanh ngọc đậm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "OC14": {
+      "description": "Quần short đi biển dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp.",
+      "caption": "Quần short đi biển dáng ngắn trơn màu xanh ngọc bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp."
+    },
+    "OC13": {
+      "description": "Quần short bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và cạp cao.",
+      "caption": "Quần short bơi trơn màu xanh ngọc nhạt bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và cạp cao."
+    },
+    "OC12": {
+      "description": "Áo bikini bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bikini trơn màu xanh ngọc nhạt bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "OC11": {
+      "description": "Quần short đi biển dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp.",
+      "caption": "Quần short đi biển dáng ngắn trơn màu xanh ngọc đậm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp."
+    },
+    "OC10": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi monokini trơn màu xanh ngọc đậm bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "OC09": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock, thiết kế hở lưng và độ che phủ cao. Khóa kéo.",
+      "caption": "Đồ bơi phối màu xanh ngọc đậm và xanh ngọc bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock, thiết kế hở lưng và độ che phủ cao. Khóa kéo."
+    },
+    "OC08": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo.",
+      "caption": "Đồ bơi phối màu đen và xanh ngọc đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo."
+    },
+    "OC07": {
+      "description": "Váy bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo.",
+      "caption": "Váy bơi trơn màu xanh ngọc đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo."
+    },
+    "OC06": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo.",
+      "caption": "Áo bơi rash guard trơn màu xanh ngọc đậm bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo."
+    },
+    "OC05": {
+      "description": "Áo bơi rash guard dài đến đầu gối bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo.",
+      "caption": "Áo bơi rash guard dài đến đầu gối trơn màu xanh ngọc nhạt bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo."
+    },
+    "OC04": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo.",
+      "caption": "Áo bơi rash guard phối màu xanh ngọc và xanh ngọc đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo."
+    },
+    "OC03": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo.",
+      "caption": "Áo bơi rash guard phối màu xanh ngọc đậm và xanh ngọc bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo."
+    },
+    "OC01": {
+      "description": "Áo bơi rash guard dáng lửng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard dáng lửng họa tiết toàn bề mặt màu xanh ngọc đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "BB25CHM": {
+      "description": "Đồ bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và kèm mũ chống nắng đồng bộ.",
+      "caption": "Đồ bơi họa tiết toàn bề mặt màu đen và trắng bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và kèm mũ chống nắng đồng bộ."
+    },
+    "BB25HBX": {
+      "description": "Đồ bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và kèm mũ chống nắng đồng bộ.",
+      "caption": "Đồ bơi họa tiết toàn bề mặt màu hồng bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và kèm mũ chống nắng đồng bộ."
+    },
+    "BB25CV": {
+      "description": "Đồ bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và kèm mũ chống nắng đồng bộ.",
+      "caption": "Đồ bơi họa tiết toàn bề mặt màu khác bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và kèm mũ chống nắng đồng bộ."
+    },
+    "BB25MTN": {
+      "description": "Đồ bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và kèm mũ chống nắng đồng bộ.",
+      "caption": "Đồ bơi trơn màu vàng bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và kèm mũ chống nắng đồng bộ."
+    },
+    "BB25XBN": {
+      "description": "Đồ bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và kèm mũ chống nắng đồng bộ.",
+      "caption": "Đồ bơi họa tiết toàn bề mặt màu xanh ngọc bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và kèm mũ chống nắng đồng bộ."
+    },
+    "BB25SLL": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và kèm mũ chống nắng đồng bộ.",
+      "caption": "Đồ bơi họa tiết toàn bề mặt màu xanh dương đậm và trắng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và kèm mũ chống nắng đồng bộ."
+    },
+    "BB25CML": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và kèm mũ chống nắng đồng bộ.",
+      "caption": "Đồ bơi phối màu xanh ngọc và cam bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và kèm mũ chống nắng đồng bộ."
+    },
+    "MMLF": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi monokini trơn màu xanh dương nhạt bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "MMS": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, cổ thủy thủ, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard trơn màu xanh dương nhạt bằng vải Sowave™ với tay dài, cổ thủy thủ, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "MMR": {
+      "description": "Quần legging bơi dáng ôm dài đến mắt cá bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp.",
+      "caption": "Quần legging bơi dáng ôm dài đến mắt cá phối màu xanh dương đậm và đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp."
+    },
+    "MMC": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard trơn màu xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "WLMS": {
+      "description": "Quần legging bơi dáng ôm dài đến mắt cá bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp.",
+      "caption": "Quần legging bơi dáng ôm dài đến mắt cá phối màu xanh dương đậm và đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp."
+    },
+    "WMSO": {
+      "description": "Quần short đi biển dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp.",
+      "caption": "Quần short đi biển dáng ngắn trơn màu xanh dương đậm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp."
+    },
+    "WMS": {
+      "description": "Quần short đi biển dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock, quần trong may liền và độ che phủ cao. Thiết kế 2 lớp.",
+      "caption": "Quần short đi biển dáng ngắn trơn màu xanh dương nhạt bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock, quần trong may liền và độ che phủ cao. Thiết kế 2 lớp."
+    },
+    "WMB": {
+      "description": "Váy bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Váy bơi phối màu xanh dương nhạt và xanh dương bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "WMNM": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Đồ bơi trơn màu xanh dương đậm bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "WMM": {
+      "description": "Đồ bơi dài đến mắt cá bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Đồ bơi dài đến mắt cá họa tiết toàn bề mặt màu đen và xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "WMI": {
+      "description": "Quần short đi biển dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp.",
+      "caption": "Quần short đi biển dáng ngắn trơn màu xanh dương bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp."
+    },
+    "WMO": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo.",
+      "caption": "Áo bơi rash guard phối màu xanh dương và trắng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo."
+    },
+    "WMK": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard trơn màu xanh dương nhạt bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "WMD": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo.",
+      "caption": "Áo bơi rash guard trơn màu xanh dương nhạt bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo."
+    },
+    "WMN": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard họa tiết toàn bề mặt màu xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "WMC": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo.",
+      "caption": "Áo bơi rash guard họa tiết toàn bề mặt màu xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo."
+    },
+    "PONCHO3": {
+      "description": "Khăn choàng poncho bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại.",
+      "caption": "Khăn choàng poncho họa tiết toàn bề mặt màu hồng bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại."
+    },
+    "PONCHO2": {
+      "description": "Khăn choàng poncho bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại.",
+      "caption": "Khăn choàng poncho họa tiết toàn bề mặt màu vàng bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại."
+    },
+    "PONCHO1": {
+      "description": "Khăn choàng poncho bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại.",
+      "caption": "Khăn choàng poncho họa tiết toàn bề mặt màu xanh dương bằng vải microfiber với độ thấm hút cao, khả năng cản gió, xử lý kháng khuẩn và microfiber mềm mại."
+    },
+    "S304": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước và silicone mềm mại.",
+      "caption": "Mũ bơi trơn màu trắng bằng silicone với kết cấu chống thấm nước và silicone mềm mại."
+    },
+    "ST": {
+      "description": "Túi đi biển bằng vải lưới. Dây rút.",
+      "caption": "Túi đi biển phối màu trắng và xanh dương đậm bằng vải lưới. Dây rút."
+    },
+    "MDP": {
+      "description": "Quần legging bơi dáng ôm dài đến mắt cá bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần legging bơi dáng ôm dài đến mắt cá trơn màu xanh dương đậm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "MMM": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard trơn màu xanh ngọc bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "MNV": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo.",
+      "caption": "Áo bơi rash guard trơn màu xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo."
+    },
+    "MRV": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo.",
+      "caption": "Áo bơi rash guard trơn màu đỏ bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo."
+    },
+    "MPN": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard trơn màu hồng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "STSI": {
+      "description": "Áo bơi rash guard không tay với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard không tay trơn màu trắng ngà với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "STSB": {
+      "description": "Áo bơi rash guard không tay với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard không tay trơn màu đen với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "STSN": {
+      "description": "Áo bơi rash guard không tay với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard không tay trơn màu xanh dương đậm với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "RLSI": {
+      "description": "Áo bơi rash guard dáng rộng với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard dáng rộng trơn màu trắng ngà với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "RLSB": {
+      "description": "Áo bơi rash guard dáng rộng với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard dáng rộng trơn màu đen với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "RLSN": {
+      "description": "Áo bơi rash guard dáng rộng với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard dáng rộng trơn màu xanh dương đậm với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "STN7": {
+      "description": "Áo thun bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Áo thun trơn màu đen bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao."
+    },
+    "STN6": {
+      "description": "Áo thun bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Áo thun trơn màu hồng bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao."
+    },
+    "STN5": {
+      "description": "Áo thun bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Áo thun trơn màu xanh dương đậm bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao."
+    },
+    "STN4": {
+      "description": "Áo thun bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Áo thun trơn màu tím nhạt bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao."
+    },
+    "STN3": {
+      "description": "Áo thun bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Áo thun họa tiết toàn bề mặt màu tím nhạt bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao."
+    },
+    "STN2": {
+      "description": "Áo thun bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Áo thun họa tiết toàn bề mặt màu trắng ngà bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao."
+    },
+    "STN1": {
+      "description": "Áo thun bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Áo thun họa tiết toàn bề mặt màu đen bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao."
+    },
+    "SWWPT": {
+      "description": "Bộ đồ lặn dáng ôm bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm trơn màu hồng nhạt bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "SWWTR": {
+      "description": "Bộ đồ lặn dáng ôm bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm trơn màu xanh ngọc bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "SWWRT": {
+      "description": "Bộ đồ lặn dáng ôm bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm trơn màu đỏ bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "SWWBM": {
+      "description": "Quần lặn dáng ôm ngắn bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock, giữ nhiệt và cạp cao.",
+      "caption": "Quần lặn dáng ôm ngắn trơn màu nâu bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock, giữ nhiệt và cạp cao."
+    },
+    "SWWTM": {
+      "description": "Áo lặn dáng ôm bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt. Khóa kéo.",
+      "caption": "Áo lặn dáng ôm trơn màu nâu bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt. Khóa kéo."
+    },
+    "SWWBB": {
+      "description": "Quần lặn dáng ôm ngắn bằng neoprene với khả năng chống nắng UPF 50+, đường may phẳng flatlock, giữ nhiệt và cạp cao.",
+      "caption": "Quần lặn dáng ôm ngắn trơn màu xanh ngọc bằng neoprene với khả năng chống nắng UPF 50+, đường may phẳng flatlock, giữ nhiệt và cạp cao."
+    },
+    "SWWTB": {
+      "description": "Áo lặn dáng ôm bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt. Khóa kéo.",
+      "caption": "Áo lặn dáng ôm trơn màu xanh ngọc bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt. Khóa kéo."
+    },
+    "SWWBP": {
+      "description": "Quần lặn dáng ôm ngắn bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock, giữ nhiệt và cạp cao.",
+      "caption": "Quần lặn dáng ôm ngắn trơn màu hồng nhạt bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock, giữ nhiệt và cạp cao."
+    },
+    "SWWTP": {
+      "description": "Áo lặn dáng ôm bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt. Khóa kéo.",
+      "caption": "Áo lặn dáng ôm trơn màu hồng nhạt bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt. Khóa kéo."
+    },
+    "SB6": {
+      "description": "Quần short lướt sóng bằng vải AquaLite™ với chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Quần short lướt sóng họa tiết toàn bề mặt màu cam bằng vải AquaLite™ với chất vải thoáng khí và độ thấm hút cao."
+    },
+    "SB5": {
+      "description": "Quần short lướt sóng bằng vải AquaLite™ với chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Quần short lướt sóng họa tiết toàn bề mặt màu xanh dương nhạt bằng vải AquaLite™ với chất vải thoáng khí và độ thấm hút cao."
+    },
+    "SB4": {
+      "description": "Quần short lướt sóng bằng vải AquaLite™ với chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Quần short lướt sóng phối màu kaki ánh xanh và đen bằng vải AquaLite™ với chất vải thoáng khí và độ thấm hút cao."
+    },
+    "SB3": {
+      "description": "Quần short lướt sóng bằng vải AquaLite™ với chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Quần short lướt sóng họa tiết toàn bề mặt màu đen và nâu bằng vải AquaLite™ với chất vải thoáng khí và độ thấm hút cao."
+    },
+    "SB2": {
+      "description": "Quần short lướt sóng bằng vải AquaLite™ với chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Quần short lướt sóng trơn màu kaki ánh xanh bằng vải AquaLite™ với chất vải thoáng khí và độ thấm hút cao."
+    },
+    "SB1": {
+      "description": "Quần short lướt sóng bằng vải AquaLite™ với chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Quần short lướt sóng họa tiết toàn bề mặt màu đen và trắng bằng vải AquaLite™ với chất vải thoáng khí và độ thấm hút cao."
+    },
+    "ST7": {
+      "description": "Áo thun bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Áo thun họa tiết toàn bề mặt màu đen bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao."
+    },
+    "ST6": {
+      "description": "Áo thun bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Áo thun trơn màu trắng bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao."
+    },
+    "ST5": {
+      "description": "Áo thun bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Áo thun họa tiết toàn bề mặt màu trắng bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao."
+    },
+    "ST4": {
+      "description": "Áo thun bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Áo thun trơn màu trắng bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao."
+    },
+    "ST3": {
+      "description": "Áo thun bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Áo thun trơn màu đen bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao."
+    },
+    "ST2": {
+      "description": "Áo thun bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Áo thun trơn màu đen bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao."
+    },
+    "ST1": {
+      "description": "Áo thun bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Áo thun họa tiết toàn bề mặt màu đen bằng vải cotton jersey với tay ngắn, chất vải thoáng khí và độ thấm hút cao."
+    },
+    "5F4": {
+      "description": "Túi chống nước bằng vải PVC với kết cấu chống thấm nước.",
+      "caption": "Túi chống nước họa tiết toàn bề mặt màu xanh dương bằng vải PVC với kết cấu chống thấm nước."
+    },
+    "10F4": {
+      "description": "Túi chống nước bằng vải PVC 500D với kết cấu chống thấm nước.",
+      "caption": "Túi chống nước trơn màu trắng bằng vải PVC 500D với kết cấu chống thấm nước."
+    },
+    "10F3": {
+      "description": "Túi chống nước bằng vải PVC 500D với kết cấu chống thấm nước.",
+      "caption": "Túi chống nước họa tiết toàn bề mặt màu vàng bằng vải PVC 500D với kết cấu chống thấm nước."
+    },
+    "10F2": {
+      "description": "Túi chống nước bằng vải PVC 500D với kết cấu chống thấm nước.",
+      "caption": "Túi chống nước họa tiết toàn bề mặt màu đỏ bằng vải PVC 500D với kết cấu chống thấm nước."
+    },
+    "10F1": {
+      "description": "Túi chống nước bằng vải PVC 500D với kết cấu chống thấm nước.",
+      "caption": "Túi chống nước họa tiết toàn bề mặt màu đen bằng vải PVC 500D với kết cấu chống thấm nước."
+    },
+    "5F3": {
+      "description": "Túi chống nước bằng vải PVC với kết cấu chống thấm nước.",
+      "caption": "Túi chống nước họa tiết toàn bề mặt màu xanh lá bằng vải PVC với kết cấu chống thấm nước."
+    },
+    "5F2": {
+      "description": "Túi chống nước bằng vải PVC với kết cấu chống thấm nước.",
+      "caption": "Túi chống nước họa tiết toàn bề mặt màu cam bằng vải PVC với kết cấu chống thấm nước."
+    },
+    "5F1": {
+      "description": "Túi chống nước bằng vải PVC với kết cấu chống thấm nước.",
+      "caption": "Túi chống nước họa tiết toàn bề mặt màu hồng bằng vải PVC với kết cấu chống thấm nước."
+    },
+    "5T4": {
+      "description": "Túi chống nước bằng vải PVC với kết cấu chống thấm nước.",
+      "caption": "Túi chống nước trơn màu cam nhạt bằng vải PVC với kết cấu chống thấm nước."
+    },
+    "5T3": {
+      "description": "Túi chống nước bằng vải PVC với kết cấu chống thấm nước.",
+      "caption": "Túi chống nước trơn màu kaki ánh xanh bằng vải PVC với kết cấu chống thấm nước."
+    },
+    "5T2": {
+      "description": "Túi chống nước bằng vải PVC với kết cấu chống thấm nước.",
+      "caption": "Túi chống nước trơn màu xanh lá bằng vải PVC với kết cấu chống thấm nước."
+    },
+    "5T1": {
+      "description": "Túi chống nước bằng vải PVC với kết cấu chống thấm nước.",
+      "caption": "Túi chống nước trơn màu vàng bằng vải PVC với kết cấu chống thấm nước."
+    },
+    "GGPP": {
+      "description": "Quần short đi biển dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp.",
+      "caption": "Quần short đi biển dáng ngắn trơn màu vàng bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp."
+    },
+    "GGCS": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard họa tiết toàn bề mặt màu vàng bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "GGS": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard phối màu vàng và xanh dương nhạt bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "GGP": {
+      "description": "Đồ bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi phối màu xanh dương đậm và vàng bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "GGC": {
+      "description": "Áo bơi rash guard dáng lửng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard dáng lửng trơn màu xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "GGN": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard trơn màu xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "GGAE": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard phối màu vàng và xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "GGA": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard phối màu vàng và xanh dương đậm bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "GGV": {
+      "description": "Quần short bơi dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp.",
+      "caption": "Quần short bơi dáng ngắn phối màu xanh dương đậm và vàng bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp."
+    },
+    "GGL": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Đồ bơi phối màu xanh dương đậm và vàng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "GGO": {
+      "description": "Váy bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo.",
+      "caption": "Váy bơi trơn màu xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Khóa kéo."
+    },
+    "WPO": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và thiết kế hở lưng.",
+      "caption": "Đồ bơi phối màu đen và xám bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và thiết kế hở lưng."
+    },
+    "WWQ": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard phối màu đen và xám bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "WHN": {
+      "description": "Chân váy bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và quần trong may liền.",
+      "caption": "Chân váy bơi trơn màu đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và quần trong may liền."
+    },
+    "WBM": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay lỡ, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Đồ bơi trơn màu đen bằng vải Sowave™ với tay lỡ, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "WLS": {
+      "description": "Đồ bơi bằng vải Sotek™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Đồ bơi trơn màu đen bằng vải Sotek™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "WQW": {
+      "description": "Quần short bơi dài đến đầu gối bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Quần short bơi dài đến đầu gối trơn màu đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "WSL": {
+      "description": "Quần short bơi dáng ôm bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần short bơi dáng ôm trơn màu đen bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "WCM": {
+      "description": "Áo bơi rash guard dáng lửng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard dáng lửng trơn màu đen bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "WVS": {
+      "description": "Chân váy bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock, quần trong may liền và độ che phủ cao.",
+      "caption": "Chân váy bơi trơn màu đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock, quần trong may liền và độ che phủ cao."
+    },
+    "JSL": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi bó dài đến đầu gối trơn màu đen bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "JSBA": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi bó dài đến đầu gối phối màu đen và xanh dương bằng vải Soendu™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "JSSS": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi bó dài đến đầu gối trơn màu đen bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "JSCW": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi bó dài đến đầu gối họa tiết toàn bề mặt màu xám bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "JSC": {
+      "description": "Quần bơi bó dài đến đầu gối bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi bó dài đến đầu gối họa tiết toàn bề mặt màu kaki ánh xanh bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "PZSP": {
+      "description": "Đồ bơi dáng ôm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo.",
+      "caption": "Đồ bơi dáng ôm trơn màu vàng bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo."
+    },
+    "PZSV": {
+      "description": "Đồ bơi dáng ôm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo.",
+      "caption": "Đồ bơi dáng ôm trơn màu xanh dương nhạt bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo."
+    },
+    "PZSB": {
+      "description": "Đồ bơi dáng ôm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo.",
+      "caption": "Đồ bơi dáng ôm trơn màu đen bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo."
+    },
+    "PZSM": {
+      "description": "Đồ bơi dáng ôm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo.",
+      "caption": "Đồ bơi dáng ôm trơn màu đỏ đậm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo."
+    },
+    "YSRB": {
+      "description": "Đồ bơi dáng ôm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi dáng ôm họa tiết toàn bề mặt màu đỏ và trắng bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "YSBW": {
+      "description": "Đồ bơi dáng ôm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi dáng ôm họa tiết toàn bề mặt màu đen bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "YSGS": {
+      "description": "Đồ bơi dáng ôm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi dáng ôm họa tiết toàn bề mặt màu kaki ánh xanh bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "XSNI": {
+      "description": "Đồ bơi dáng ôm dài đến mắt cá bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi dáng ôm dài đến mắt cá trơn màu xanh dương đậm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "XSBP": {
+      "description": "Đồ bơi dáng ôm dài đến mắt cá bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi dáng ôm dài đến mắt cá trơn màu đen bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "ZSB": {
+      "description": "Đồ bơi dáng ôm bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo.",
+      "caption": "Đồ bơi dáng ôm trơn màu đen bằng vải Sotek™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo."
+    },
+    "S23": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước và silicone mềm mại.",
+      "caption": "Mũ bơi trơn màu hồng bằng silicone với kết cấu chống thấm nước và silicone mềm mại."
+    },
+    "S22": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước và silicone mềm mại.",
+      "caption": "Mũ bơi trơn màu đen bằng silicone với kết cấu chống thấm nước và silicone mềm mại."
+    },
+    "S21": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước và silicone mềm mại.",
+      "caption": "Mũ bơi trơn màu vàng nhạt bằng silicone với kết cấu chống thấm nước và silicone mềm mại."
+    },
+    "S20": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài.",
+      "caption": "Mũ bơi trơn màu tím nhạt bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài."
+    },
+    "S19": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài.",
+      "caption": "Mũ bơi trơn màu hồng nhạt bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài."
+    },
+    "S18": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài.",
+      "caption": "Mũ bơi trơn màu trắng bằng silicone với kết cấu chống thấm nước, silicone mềm mại và thiết kế rộng rãi cho tóc dài."
+    },
+    "S17": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước và silicone mềm mại.",
+      "caption": "Mũ bơi họa tiết toàn bề mặt màu trắng bằng silicone với kết cấu chống thấm nước và silicone mềm mại."
+    },
+    "S16": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước và silicone mềm mại.",
+      "caption": "Mũ bơi họa tiết toàn bề mặt màu trắng bằng silicone với kết cấu chống thấm nước và silicone mềm mại."
+    },
+    "S15": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước và silicone mềm mại.",
+      "caption": "Mũ bơi trơn màu đen bằng silicone với kết cấu chống thấm nước và silicone mềm mại."
+    },
+    "S14": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước và silicone mềm mại.",
+      "caption": "Mũ bơi trơn màu vàng nhạt bằng silicone với kết cấu chống thấm nước và silicone mềm mại."
+    },
+    "S13": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước và silicone mềm mại.",
+      "caption": "Mũ bơi trơn màu xanh dương bằng silicone với kết cấu chống thấm nước và silicone mềm mại."
+    },
+    "S12": {
+      "description": "Mũ bơi bằng silicone với kết cấu chống thấm nước và silicone mềm mại.",
+      "caption": "Mũ bơi trơn màu đen bằng silicone với kết cấu chống thấm nước và silicone mềm mại."
+    },
+    "S11": {
+      "description": "Kính bơi bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương, silicone mềm mại và tròng kính tráng gương.",
+      "caption": "Kính bơi phối màu xanh dương nhạt và cam bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương, silicone mềm mại và tròng kính tráng gương."
+    },
+    "S10": {
+      "description": "Kính bơi bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương, silicone mềm mại và tròng kính tráng gương.",
+      "caption": "Kính bơi trơn màu hồng bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương, silicone mềm mại và tròng kính tráng gương."
+    },
+    "S09": {
+      "description": "Kính bơi bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại.",
+      "caption": "Kính bơi phối màu vàng và xanh dương bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại."
+    },
+    "S08": {
+      "description": "Kính bơi bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương, silicone mềm mại và tròng kính tráng gương.",
+      "caption": "Kính bơi phối màu xanh dương và xanh lá bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương, silicone mềm mại và tròng kính tráng gương."
+    },
+    "S07": {
+      "description": "Kính bơi bằng silicone và polycarbonate với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại.",
+      "caption": "Kính bơi phối màu xanh lá và vàng bằng silicone và polycarbonate với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại."
+    },
+    "S06": {
+      "description": "Kính bơi bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương, silicone mềm mại và tròng kính tráng gương.",
+      "caption": "Kính bơi phối màu trắng và cam bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương, silicone mềm mại và tròng kính tráng gương."
+    },
+    "S05": {
+      "description": "Kính bơi bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương, silicone mềm mại và tròng kính tráng gương.",
+      "caption": "Kính bơi trơn màu trắng bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương, silicone mềm mại và tròng kính tráng gương."
+    },
+    "S04": {
+      "description": "Kính bơi bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại.",
+      "caption": "Kính bơi phối màu đen và xanh dương bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại."
+    },
+    "S03": {
+      "description": "Kính bơi bằng silicone và polycarbonate với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại.",
+      "caption": "Kính bơi trơn màu đen bằng silicone và polycarbonate với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương và silicone mềm mại."
+    },
+    "S02": {
+      "description": "Kính bơi bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương, silicone mềm mại và tròng kính tráng gương.",
+      "caption": "Kính bơi phối màu đen và cam bằng polycarbonate và silicone với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương, silicone mềm mại và tròng kính tráng gương."
+    },
+    "S01": {
+      "description": "Kính bơi bằng silicone và polycarbonate với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương, silicone mềm mại và tròng kính tráng gương.",
+      "caption": "Kính bơi phối màu đen và xanh ngọc bằng silicone và polycarbonate với kiểu dáng thủy động học, thiết kế công thái học vừa vặn, tròng kính chống đọng sương, silicone mềm mại và tròng kính tráng gương."
+    },
+    "MO": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi monokini họa tiết toàn bề mặt màu xanh dương và trắng bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "LML": {
+      "description": "Quần legging bơi dáng ôm dài đến mắt cá bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Quần legging bơi dáng ôm dài đến mắt cá phối màu đen và xanh dương bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "MS": {
+      "description": "Quần short bơi dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Quần short bơi dáng ngắn họa tiết toàn bề mặt màu xanh dương bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "MM": {
+      "description": "Quần short đi biển bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp.",
+      "caption": "Quần short đi biển trơn màu xanh dương đậm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp."
+    },
+    "MP": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và chi tiết khoét eo.",
+      "caption": "Đồ bơi monokini họa tiết toàn bề mặt màu xanh dương đậm và xanh dương bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và chi tiết khoét eo."
+    },
+    "RM": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và lỗ xỏ ngón cái.",
+      "caption": "Áo bơi rash guard phối màu đen và xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và lỗ xỏ ngón cái."
+    },
+    "MN": {
+      "description": "Váy bơi bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo.",
+      "caption": "Váy bơi họa tiết toàn bề mặt màu xanh dương đậm và xanh dương bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo."
+    },
+    "SMN": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi monokini họa tiết toàn bề mặt màu xanh dương bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "RMM": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Áo bơi rash guard họa tiết toàn bề mặt màu xanh dương đậm và xanh dương bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "P02": {
+      "description": "Miếng đệm ngực.",
+      "caption": "Miếng đệm ngực trơn màu be."
+    },
+    "P01": {
+      "description": "Miếng đệm ngực.",
+      "caption": "Miếng đệm ngực trơn màu đen."
+    },
+    "SKWYL": {
+      "description": "Bộ đồ lặn dáng ôm bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm họa tiết toàn bề mặt màu vàng và xanh dương đậm bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "SKWNE": {
+      "description": "Bộ đồ lặn dáng ôm bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm phối màu xanh lá và xanh dương đậm bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "SKWPP": {
+      "description": "Bộ đồ lặn dáng ôm bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm phối màu hồng và tím bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "SWWNP": {
+      "description": "Bộ đồ lặn dáng ôm bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm phối màu xanh dương đậm và hồng bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "SWWPP": {
+      "description": "Bộ đồ lặn dáng ôm bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm trơn màu tím nhạt bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "SWWGR": {
+      "description": "Bộ đồ lặn dáng ôm bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm phối màu xám đậm và đen bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "SWWBL": {
+      "description": "Bộ đồ lặn dáng ôm bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm trơn màu đen bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "SMWNV": {
+      "description": "Bộ đồ lặn dáng ôm bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm phối màu xanh dương đậm và xám bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "SMWBL": {
+      "description": "Bộ đồ lặn dáng ôm bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt.",
+      "caption": "Bộ đồ lặn dáng ôm trơn màu đen bằng neoprene 1.5mm với khả năng chống nắng UPF 50+, đường may phẳng flatlock và giữ nhiệt."
+    },
+    "SWSMA": {
+      "description": "Quần short bơi dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Quần short bơi dáng ngắn họa tiết toàn bề mặt màu tím và hồng bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SWRML": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Đồ bơi monokini họa tiết toàn bề mặt màu xanh dương đậm và tím bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SWRMN": {
+      "description": "Váy bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Váy bơi họa tiết toàn bề mặt màu xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWMMB": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ với dây áo hai vai, cổ yếm, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi monokini họa tiết toàn bề mặt màu xanh dương đậm và tím bằng vải Sowave™ với dây áo hai vai, cổ yếm, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWSML": {
+      "description": "Quần short đi biển dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp.",
+      "caption": "Quần short đi biển dáng ngắn phối màu xanh dương đậm và hồng bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao. Thiết kế 2 lớp."
+    },
+    "SWRMT": {
+      "description": "Áo bơi rash guard dáng lửng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard dáng lửng phối màu hồng nhạt và xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWRMK": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao.",
+      "caption": "Đồ bơi họa tiết toàn bề mặt màu xanh dương đậm và tím bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và độ che phủ cao."
+    },
+    "SMVC": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard phối màu đen và xám bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SMRC": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard phối màu đen và xanh dương bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SMET": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard họa tiết toàn bề mặt màu đen và cam bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SMLG": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard phối màu xám, xanh dương đậm và trắng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SMRL": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard phối màu vàng nhạt và đen bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SMS5": {
+      "description": "Áo sơ mi bằng vải pha lanh-rayon với tay ngắn, chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Áo sơ mi họa tiết toàn bề mặt màu xanh dương và trắng bằng vải pha lanh-rayon với tay ngắn, chất vải thoáng khí và độ thấm hút cao."
+    },
+    "SMS4": {
+      "description": "Áo sơ mi bằng vải pha lanh-rayon với tay ngắn, chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Áo sơ mi họa tiết toàn bề mặt màu kaki ánh xanh, đen và trắng ngà bằng vải pha lanh-rayon với tay ngắn, chất vải thoáng khí và độ thấm hút cao."
+    },
+    "SMS3": {
+      "description": "Áo sơ mi bằng vải pha lanh-rayon với tay ngắn, chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Áo sơ mi họa tiết toàn bề mặt màu nâu và đen bằng vải pha lanh-rayon với tay ngắn, chất vải thoáng khí và độ thấm hút cao."
+    },
+    "SMS2": {
+      "description": "Áo sơ mi bằng vải pha lanh-rayon với tay ngắn, chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Áo sơ mi họa tiết toàn bề mặt màu đỏ và trắng bằng vải pha lanh-rayon với tay ngắn, chất vải thoáng khí và độ thấm hút cao."
+    },
+    "SMS1": {
+      "description": "Áo sơ mi bằng vải pha lanh-rayon với tay ngắn, chất vải thoáng khí và độ thấm hút cao.",
+      "caption": "Áo sơ mi họa tiết toàn bề mặt màu trắng ngà và đen bằng vải pha lanh-rayon với tay ngắn, chất vải thoáng khí và độ thấm hút cao."
+    },
+    "SBB": {
+      "description": "Mũ chống nắng bằng polyester với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa.",
+      "caption": "Mũ chống nắng trơn màu vàng nhạt bằng polyester với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa."
+    },
+    "SBS": {
+      "description": "Mũ chống nắng bằng polyester với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa.",
+      "caption": "Mũ chống nắng trơn màu xanh dương đậm bằng polyester với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa."
+    },
+    "SBT": {
+      "description": "Mũ chống nắng bằng polyester với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa.",
+      "caption": "Mũ chống nắng trơn màu tím bằng polyester với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa."
+    },
+    "SBC": {
+      "description": "Mũ chống nắng bằng polyester với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa.",
+      "caption": "Mũ chống nắng trơn màu đỏ bằng polyester với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa."
+    },
+    "SBD": {
+      "description": "Mũ chống nắng bằng polyester với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa.",
+      "caption": "Mũ chống nắng trơn màu xanh dương bằng polyester với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa."
+    },
+    "SBL": {
+      "description": "Mũ chống nắng bằng polyester với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa.",
+      "caption": "Mũ chống nắng trơn màu vàng bằng polyester với chất vải thoáng khí, lớp hoàn thiện đẩy nước và quai cài khóa."
+    },
+    "SWMCC": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi monokini họa tiết toàn bề mặt màu xanh dương đậm bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWMCB": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi monokini họa tiết toàn bề mặt màu xanh ngọc đậm bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWMCD": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi monokini chấm bi màu xanh ngọc bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWMCS": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi monokini chấm bi màu đỏ đậm bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWDSM": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi monokini phối màu đen và xanh ngọc bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWDBM": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi monokini trơn màu xanh dương đậm bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWDCC": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard trơn màu xanh ngọc bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWDSZ": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo.",
+      "caption": "Áo bơi rash guard họa tiết toàn bề mặt màu xanh dương đậm và xanh dương bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo."
+    },
+    "SWDCB": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi họa tiết toàn bề mặt màu xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWDS": {
+      "description": "Quần short bơi dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Thiết kế 2 lớp.",
+      "caption": "Quần short bơi dáng ngắn phối màu xanh dương đậm và xanh ngọc bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Thiết kế 2 lớp."
+    },
+    "SMDR": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard phối màu xanh ngọc và xám đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SBDSC": {
+      "description": "Áo bơi rash guard dáng lửng bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo.",
+      "caption": "Áo bơi rash guard dáng lửng phối màu xanh ngọc và xanh dương đậm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo."
+    },
+    "SKAP": {
+      "description": "Đồ bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi họa tiết toàn bề mặt màu hồng bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SKTND": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi họa tiết toàn bề mặt màu xanh ngọc bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SKNTC": {
+      "description": "Váy bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Váy bơi họa tiết toàn bề mặt màu tím nhạt bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SKAPP": {
+      "description": "Váy bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Váy bơi họa tiết toàn bề mặt màu đỏ và trắng bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SKKL": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi họa tiết toàn bề mặt màu xanh lá và xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SKKC": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard họa tiết toàn bề mặt màu vàng nhạt và xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SKPHG": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard họa tiết toàn bề mặt màu xanh dương đậm và vàng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SLWC": {
+      "description": "Đồ bơi dáng ôm dài đến mắt cá bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi dáng ôm dài đến mắt cá trơn màu đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SLWT": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo.",
+      "caption": "Áo bơi rash guard phối màu đen và tím nhạt bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo."
+    },
+    "SLWZ": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard phối màu đen và tím nhạt bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SLWS": {
+      "description": "Quần short bơi dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Thiết kế 2 lớp.",
+      "caption": "Quần short bơi dáng ngắn trơn màu trắng bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Thiết kế 2 lớp."
+    },
+    "SLWM": {
+      "description": "Đồ bơi dáng ôm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi dáng ôm trơn màu tím nhạt bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SLWB": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo.",
+      "caption": "Áo bơi rash guard trơn màu tím nhạt bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo."
+    },
+    "SLWLC": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard phối màu tím nhạt và trắng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SMQML": {
+      "description": "Quần short đi biển bằng vải Sowave™ và nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Thiết kế 2 lớp.",
+      "caption": "Quần short đi biển trơn màu đen bằng vải Sowave™ và nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Thiết kế 2 lớp."
+    },
+    "SMSQL": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard trơn màu đen bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SBWVT": {
+      "description": "Quần short bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Dây rút.",
+      "caption": "Quần short bơi trơn màu đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Dây rút."
+    },
+    "SBWVC": {
+      "description": "Chân váy bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và cạp cao.",
+      "caption": "Chân váy bơi trơn màu đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và cạp cao."
+    },
+    "SBWVG": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và lỗ xỏ ngón cái. Khóa kéo.",
+      "caption": "Áo bơi rash guard trơn màu đen bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và lỗ xỏ ngón cái. Khóa kéo."
+    },
+    "SBWVA": {
+      "description": "Áo bơi rash guard dáng lửng bằng vải Sowave™ với tay lỡ, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard dáng lửng phối màu đen và trắng bằng vải Sowave™ với tay lỡ, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SBWVW": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay lỡ, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard phối màu xám và đen bằng vải Sowave™ với tay lỡ, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SBWVV": {
+      "description": "Váy bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Váy bơi trơn màu đen bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SBWVZ": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo.",
+      "caption": "Áo bơi rash guard trơn màu đen bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo."
+    },
+    "SBBCA": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Dáng ngoại cỡ.",
+      "caption": "Áo bơi rash guard phối màu đen và xanh ngọc bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Dáng ngoại cỡ."
+    },
+    "SBBCE": {
+      "description": "Váy bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Dáng ngoại cỡ.",
+      "caption": "Váy bơi phối màu đen và xanh dương bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Dáng ngoại cỡ."
+    },
+    "SBWLS": {
+      "description": "Quần short bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Thiết kế 2 lớp.",
+      "caption": "Quần short bơi trơn màu đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Thiết kế 2 lớp."
+    },
+    "SBWPP": {
+      "description": "Quần short bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Thiết kế 2 lớp.",
+      "caption": "Quần short bơi họa tiết toàn bề mặt màu đen và xanh lá bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Thiết kế 2 lớp."
+    },
+    "SBWPA": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi họa tiết toàn bề mặt màu đen bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWZHG": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo.",
+      "caption": "Áo bơi rash guard họa tiết toàn bề mặt màu xanh dương đậm và xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo."
+    },
+    "SBWHB": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard họa tiết toàn bề mặt màu xanh dương đậm và đen bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SBWST": {
+      "description": "Quần short đi biển dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Dáng ngoại cỡ. Thiết kế 2 lớp.",
+      "caption": "Quần short đi biển dáng ngắn trơn màu xanh dương đậm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Dáng ngoại cỡ. Thiết kế 2 lớp."
+    },
+    "SMSBB": {
+      "description": "Quần bơi boxer dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi boxer dáng ngắn trơn màu đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SMRTP": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard phối màu xanh dương đậm và đen bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SBKMX": {
+      "description": "Đồ bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi họa tiết toàn bề mặt màu xanh dương và xanh dương đậm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SBKMV": {
+      "description": "Đồ bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi họa tiết toàn bề mặt màu vàng và xanh dương đậm bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SBKCC": {
+      "description": "Đồ bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi họa tiết toàn bề mặt màu tím nhạt bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "CUPSVSBZ11": {
+      "description": "Miếng đệm ngực bằng mút xốp.",
+      "caption": "Miếng đệm ngực trơn màu be và đen bằng mút xốp."
+    },
+    "SBWZLL": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo.",
+      "caption": "Áo bơi rash guard trơn màu đen bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo."
+    },
+    "SBWCD": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard phối màu xám và đen bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SBWBS": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo. Dáng ngoại cỡ.",
+      "caption": "Áo bơi rash guard trơn màu đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo. Dáng ngoại cỡ."
+    },
+    "SBWLM": {
+      "description": "Quần short bơi dài đến đầu gối bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần short bơi dài đến đầu gối trơn màu đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SBWLN": {
+      "description": "Quần legging bơi dáng ôm dài đến mắt cá bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần legging bơi dáng ôm dài đến mắt cá trơn màu đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SBBIM": {
+      "description": "Đồ bơi monokini bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi monokini họa tiết toàn bề mặt màu xanh dương nhạt bằng vải Sowave™ với dây áo hai vai, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SBBIP": {
+      "description": "Đồ bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và chi tiết khoét eo. Khóa kéo.",
+      "caption": "Đồ bơi phối màu xanh dương nhạt và đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều, đường may phẳng flatlock và chi tiết khoét eo. Khóa kéo."
+    },
+    "SBLTR": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo.",
+      "caption": "Đồ bơi trơn màu đen bằng vải Sowave™ với tay ngắn, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo."
+    },
+    "SBCBB": {
+      "description": "Áo bơi rash guard dáng lửng bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard dáng lửng trơn màu xanh dương nhạt bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SBLTJ": {
+      "description": "Đồ bơi bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Đồ bơi phối màu xanh dương và xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SBMQB": {
+      "description": "Quần bơi suông bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần bơi suông trơn màu đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SMRB": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard trơn màu đen bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SBBFE": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard trơn màu đen bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SWBBT": {
+      "description": "Đồ bơi bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo.",
+      "caption": "Đồ bơi trơn màu đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Khóa kéo."
+    },
+    "SWBSF": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard phối màu xanh ánh xám và xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SMGRN": {
+      "description": "Áo bơi rash guard bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Áo bơi rash guard phối màu xanh ánh xám và xanh dương đậm bằng vải Sowave™ với tay dài, khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    },
+    "SMS2B": {
+      "description": "Quần short đi biển bằng vải Sowave™ và nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Thiết kế 2 lớp.",
+      "caption": "Quần short đi biển trơn màu đen bằng vải Sowave™ và nylon với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Thiết kế 2 lớp."
+    },
+    "SWS2B": {
+      "description": "Quần short đi biển dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Dáng ngoại cỡ. Thiết kế 2 lớp.",
+      "caption": "Quần short đi biển dáng ngắn trơn màu đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Dáng ngoại cỡ. Thiết kế 2 lớp."
+    },
+    "SWLL": {
+      "description": "Quần legging bơi dáng ôm dài đến mắt cá bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Thiết kế 2 lớp.",
+      "caption": "Quần legging bơi dáng ôm dài đến mắt cá trơn màu đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock. Thiết kế 2 lớp."
+    },
+    "SA-DB35B": {
+      "description": "Ba lô bằng vải PVC 500D.",
+      "caption": "Ba lô trơn màu đen bằng vải PVC 500D."
+    },
+    "SA-DB35O": {
+      "description": "Ba lô bằng vải PVC 500D.",
+      "caption": "Ba lô trơn màu cam bằng vải PVC 500D."
+    },
+    "SA-DB35G": {
+      "description": "Ba lô bằng vải PVC 500D.",
+      "caption": "Ba lô trơn màu xám bằng vải PVC 500D."
+    },
+    "SQN0202": {
+      "description": "Quần short bơi dáng ngắn bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock.",
+      "caption": "Quần short bơi dáng ngắn trơn màu đen bằng vải Sowave™ với khả năng chống nắng UPF 50+, kháng clo, co giãn 4 chiều và đường may phẳng flatlock."
+    }
+  }
+}
