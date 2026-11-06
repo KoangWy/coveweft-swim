@@ -48,7 +48,26 @@ the commands above.
 | `pnpm test`             | Run unit tests                                                                   |
 | `pnpm test:integration` | Run database integration tests against local Supabase (needs Docker)             |
 | `pnpm test:e2e`         | Run Playwright tests (install browsers once with `pnpm exec playwright install`) |
+| `pnpm media:build`      | Download studio photos and build the versioned WebP media set                    |
+| `pnpm media:verify`     | Re-check the media manifest, exported files, and archive                         |
 | `pnpm format`           | Format the repository with Prettier                                              |
+
+### Media
+
+Studio images are not committed. The media pipeline reads an inventory CSV as
+an argument, downloads the studio originals from the shared SOBIE Drive folder,
+and exports fixed WebP sizes with a SHA-256 manifest:
+
+```sh
+pnpm media:build --inventory /path/to/sobie-drive-inventory.csv
+pnpm media:verify
+```
+
+`data/media/` holds the committed manifest and build report; `.media-build/`
+holds the generated WebP files and the release archive and is ignored by Git.
+Position numbering matches the catalog export (`studio/<SKU>/<NN>-<size>.webp`).
+See [`docs/media.md`](docs/media.md) for options, resume behavior, and release
+steps.
 
 ### Local Supabase
 

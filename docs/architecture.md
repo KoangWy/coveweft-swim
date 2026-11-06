@@ -292,7 +292,8 @@ their own client, or run with the `react-server` condition.
   object keys. Admin uploads live in Storage and are separate from the archive.
   Committed media metadata lives in `data/media/` (manifest and build report).
   `/.media-build/` holds build output and `/.media-cache/` holds the runtime
-  extraction cache; both are ignored by git.
+  extraction cache; both are ignored by git. The pipeline commands and the
+  manifest contract are documented in [`media.md`](media.md).
 - **Configuration** differs per environment but names stay the same. Local
   values live in `.env.local`; cloud values live in the hosting provider's
   environment settings.
