@@ -45,8 +45,10 @@ export function AdminShell({ children }: { children: ReactNode }) {
           <Wordmark href="/admin" />
           <Badge tone="accent">{t("badge")}</Badge>
         </div>
-        <nav aria-label={t("nav")} className="px-2 pb-2 lg:flex-1 lg:px-3 lg:pt-4">
-          <ul className="flex gap-1 overflow-x-auto lg:flex-col">{links}</ul>
+        <nav aria-label={t("nav")} className="px-1 pb-1 lg:flex-1 lg:px-2 lg:pt-3">
+          {/* The list scrolls horizontally on small screens. Its padding keeps
+              the focus outline (2px plus 2px offset) inside the scroll area. */}
+          <ul className="flex gap-1 overflow-x-auto p-1 lg:flex-col">{links}</ul>
         </nav>
       </aside>
       <div className="flex min-w-0 flex-1 flex-col">

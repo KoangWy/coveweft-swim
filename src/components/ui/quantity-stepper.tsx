@@ -52,8 +52,10 @@ export function QuantityStepper({
     onChange?.(clamped);
   }
 
+  // The group clips its children to the rounded border, so focus outlines are
+  // drawn inside each control instead of around it.
   const stepClasses =
-    "inline-flex size-11 items-center justify-center text-navy-900 transition-colors duration-150 hover:bg-neutral-100 disabled:pointer-events-none disabled:text-neutral-500";
+    "inline-flex size-11 focus-visible:-outline-offset-2 items-center justify-center text-navy-900 transition-colors duration-150 hover:bg-neutral-100 disabled:pointer-events-none disabled:text-neutral-500";
 
   return (
     <div className={cx("flex flex-col gap-2", className)}>
@@ -81,7 +83,7 @@ export function QuantityStepper({
           value={current}
           disabled={disabled}
           onChange={(event) => update(event.currentTarget.valueAsNumber)}
-          className="h-11 w-14 [appearance:textfield] border-x border-neutral-300 bg-white text-center text-body font-semibold text-navy-900 tabular-nums [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+          className="h-11 w-14 [appearance:textfield] border-x border-neutral-300 bg-white text-center text-body font-semibold text-navy-900 tabular-nums focus-visible:-outline-offset-2 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
         />
         <button
           type="button"
