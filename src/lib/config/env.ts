@@ -20,7 +20,39 @@ const optionalSha256 = z.preprocess(
     .optional(),
 );
 
-const serverEnvSchema = z.object({
+/**
+ * Reasoning effort sent to a provider. An unset variable uses the role
+ * default; an empty value means the parameter is not sent at all, because
+ * some models reject values they do not support.
+ */
+function reasoningEffort(defaultValue: string | null) {
+  return z
+    .string()
+    .trim()
+    .regex(/^[a-z_]*$/)
+    .optional()
+    .transform((value) => (value === undefined ? defaultValue : value === "" ? null : value));
+}
+
+const aiEnvSchema = z.object({
+  AI_PRIMARY_BASE_URL: z.url().default("https://api.mistral.ai/v1"),
+  AI_PRIMARY_MODEL: z.string().trim().min(1).default("deepseek-v4-1-flash-1017"),
+  AI_PRIMARY_API_KEY: optionalString,
+  AI_PRIMARY_REASONING_EFFORT: reasoningEffort("low"),
+  AI_FALLBACK_BASE_URL: z.url().default("https://api.mistral.ai/v1"),
+  AI_FALLBACK_MODEL: z.string().trim().min(1).default("mistral-small-2603"),
+  AI_FALLBACK_API_KEY: optionalString,
+  AI_FALLBACK_REASONING_EFFORT: reasoningEffort(null),
+
+  AI_TIMEOUT_MS: z.coerce.number().int().min(1000).max(300_000).default(30_000),
+  AI_MAX_TOKENS: z.coerce.number().int().min(256).max(32_768).default(4096),
+
+  AI_QUOTA_PER_USER_PER_DAY: z.coerce.number().int().positive().default(30),
+  AI_QUOTA_PER_USER_PER_MINUTE: z.coerce.number().int().positive().default(5),
+  AI_QUOTA_GLOBAL_PER_DAY: z.coerce.number().int().positive().default(500),
+});
+
+const serverEnvSchema = aiEnvSchema.extend({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   NEXT_PUBLIC_APP_URL: z.url().default("http://localhost:3000"),
 
@@ -28,17 +60,6 @@ const serverEnvSchema = z.object({
   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: z.string().min(1),
   SUPABASE_URL_INTERNAL: z.url(),
   SUPABASE_SECRET_KEY: optionalString,
-
-  AI_PRIMARY_BASE_URL: z.url().default("https://api.mistral.ai/v1"),
-  AI_PRIMARY_MODEL: z.string().min(1).default("deepseek-v4-1-flash-1017"),
-  AI_PRIMARY_API_KEY: optionalString,
-  AI_FALLBACK_BASE_URL: z.url().default("https://api.mistral.ai/v1"),
-  AI_FALLBACK_MODEL: z.string().min(1).default("mistral-small-2603"),
-  AI_FALLBACK_API_KEY: optionalString,
-
-  AI_QUOTA_PER_USER_PER_DAY: z.coerce.number().int().positive().default(30),
-  AI_QUOTA_PER_USER_PER_MINUTE: z.coerce.number().int().positive().default(5),
-  AI_QUOTA_GLOBAL_PER_DAY: z.coerce.number().int().positive().default(500),
 
   MEDIA_VERSION: optionalString,
   MEDIA_BASE_URL: optionalUrl,
@@ -49,25 +70,28 @@ const serverEnvSchema = z.object({
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
 
 let cachedEnv: ServerEnv | undefined;
+let cachedAiEnv: z.infer<typeof aiEnvSchema> | undefined;
+
+function parseEnv<T>(schema: z.ZodType<T>): T {
+  const result = schema.safeParse(process.env);
+
+  if (!result.success) {
+    const issues = result.error.issues
+      .map((issue) => `${issue.path.join(".") || "(root)"}: ${issue.message}`)
+      .join("\n");
+
+    throw new Error(`Invalid environment configuration:\n${issues}`);
+  }
+
+  return result.data;
+}
 
 /**
  * Parses and caches the server environment. Missing or malformed values throw
  * a readable error instead of failing later with `undefined`.
  */
 export function getServerEnv(): ServerEnv {
-  if (!cachedEnv) {
-    const result = serverEnvSchema.safeParse(process.env);
-
-    if (!result.success) {
-      const issues = result.error.issues
-        .map((issue) => `${issue.path.join(".") || "(root)"}: ${issue.message}`)
-        .join("\n");
-
-      throw new Error(`Invalid environment configuration:\n${issues}`);
-    }
-
-    cachedEnv = result.data;
-  }
+  cachedEnv ??= parseEnv(serverEnvSchema);
 
   return cachedEnv;
 }
@@ -98,11 +122,17 @@ export type AiProviderConfig = {
   baseUrl: string;
   model: string;
   apiKey: string;
+  /** `null` means the `reasoning_effort` parameter is not sent. */
+  reasoningEffort: string | null;
 };
 
 export type AiConfig = {
   primary: AiProviderConfig;
   fallback: AiProviderConfig | null;
+  /** Abort a provider request after this many milliseconds without data. */
+  timeoutMs: number;
+  /** Completion budget per request, sized to leave room for reasoning tokens. */
+  maxTokens: number;
   quotas: {
     perUserPerDay: number;
     perUserPerMinute: number;
@@ -113,10 +143,12 @@ export type AiConfig = {
 /**
  * Returns the AI configuration, or `null` when no primary key is configured.
  * A missing key must not stop the app from starting; the assistant reports
- * that it is not configured instead.
+ * that it is not configured instead. Only the AI variables are read, so the
+ * provider can run without the Supabase settings. Malformed values throw.
  */
 export function getAiConfig(): AiConfig | null {
-  const env = getServerEnv();
+  cachedAiEnv ??= parseEnv(aiEnvSchema);
+  const env = cachedAiEnv;
 
   if (!env.AI_PRIMARY_API_KEY) {
     return null;
@@ -127,14 +159,18 @@ export function getAiConfig(): AiConfig | null {
       baseUrl: env.AI_PRIMARY_BASE_URL,
       model: env.AI_PRIMARY_MODEL,
       apiKey: env.AI_PRIMARY_API_KEY,
+      reasoningEffort: env.AI_PRIMARY_REASONING_EFFORT,
     },
     fallback: env.AI_FALLBACK_API_KEY
       ? {
           baseUrl: env.AI_FALLBACK_BASE_URL,
           model: env.AI_FALLBACK_MODEL,
           apiKey: env.AI_FALLBACK_API_KEY,
+          reasoningEffort: env.AI_FALLBACK_REASONING_EFFORT,
         }
       : null,
+    timeoutMs: env.AI_TIMEOUT_MS,
+    maxTokens: env.AI_MAX_TOKENS,
     quotas: {
       perUserPerDay: env.AI_QUOTA_PER_USER_PER_DAY,
       perUserPerMinute: env.AI_QUOTA_PER_USER_PER_MINUTE,
