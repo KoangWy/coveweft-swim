@@ -4,6 +4,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 
 import { getAuthenticatedUser } from "@/server/auth/guard";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { mapDatabaseError } from "@/server/db/errors";
 import { throwDatabaseError } from "@/server/db/throw";
 import { fail, ok, type Result } from "@/server/errors";
 import { parseInput, runService, ServiceError } from "@/server/result";
@@ -82,38 +83,14 @@ export async function addToCart(input: unknown): Promise<Result<Cart>> {
       return user;
     }
 
-    const { variant } = await loadVariantContext(supabase, parsed.data.variantId);
-
-    const { data: existing, error: existingError } = await supabase
-      .from("cart_items")
-      .select("quantity")
-      .eq("user_id", user.data.id)
-      .eq("variant_id", variant.id)
-      .maybeSingle();
-
-    if (existingError) {
-      throwDatabaseError(existingError);
-    }
-
-    const quantity = (existing?.quantity ?? 0) + parsed.data.quantity;
-
-    if (quantity > variant.stock) {
-      return fail("OUT_OF_STOCK", {
-        variantId: variant.id,
-        availableStock: variant.stock,
-        requestedQuantity: quantity,
-      });
-    }
-
-    const { error } = await supabase
-      .from("cart_items")
-      .upsert(
-        { user_id: user.data.id, variant_id: variant.id, quantity },
-        { onConflict: "user_id,variant_id" },
-      );
+    const { error } = await supabase.rpc("add_cart_item", {
+      p_variant_id: parsed.data.variantId,
+      p_quantity: parsed.data.quantity,
+    });
 
     if (error) {
-      throwDatabaseError(error);
+      const mapped = mapDatabaseError(error);
+      return fail(mapped.code, mapped.details);
     }
 
     return ok(await loadCart(supabase, user.data.id));

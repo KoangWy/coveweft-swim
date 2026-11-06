@@ -23,6 +23,12 @@ import {
   type TestUser,
 } from "./support/clients";
 import {
+  startSqlSession,
+  waitForActiveQuery,
+  waitForBlockedQuery,
+  waitForExit,
+} from "./support/database";
+import {
   createServiceProduct,
   deleteServiceProducts,
   deleteTestUsers,
@@ -179,6 +185,37 @@ describe("cart service", () => {
     if (!missing.ok) {
       expect(missing.error.code).toBe("NOT_FOUND");
     }
+  });
+
+  it("accumulates concurrent additions atomically", async () => {
+    selectServiceClient(customer.client);
+    await service.from("cart_items").delete().eq("user_id", customer.id);
+
+    // Hold a share lock on cart_items. Reads still pass, writes block, so both
+    // requests reach the database before either can store a quantity. This is
+    // a test scheduling seam, not a privilege available to API clients.
+    const lock = await startSqlSession(
+      "begin; lock table public.cart_items in share mode; select pg_sleep(4); commit;",
+    );
+
+    await waitForActiveQuery("pg_sleep");
+
+    const first = addToCart({ variantId: product.variantIds[0], quantity: 1 });
+    const second = addToCart({ variantId: product.variantIds[0], quantity: 1 });
+
+    await waitForBlockedQuery("add_cart_item");
+    await waitForExit(lock);
+
+    const [firstResult, secondResult] = await Promise.all([first, second]);
+
+    expect(firstResult.ok).toBe(true);
+    expect(secondResult.ok).toBe(true);
+
+    const cart = await getCart();
+
+    expect(cart.ok && cart.data.items[0]?.quantity).toBe(2);
+
+    await removeCartItem({ variantId: product.variantIds[0] });
   });
 
   it("validates quantities", async () => {
