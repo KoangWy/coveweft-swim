@@ -77,11 +77,12 @@ The script runs these steps:
    verifies it against `MEDIA_ARCHIVE_SHA256`, and extracts it into
    `.media-cache/studio-v1/`. A verified version is not downloaded again, and an
    interrupted download resumes.
-7. Creates the demo customer and administrator inside the app image, so the host
+7. Builds the app image.
+8. Creates the demo customer and administrator inside that image, so the host
    does not need Node.js.
-8. Builds the app image and starts the container on the Supabase Docker network,
-   where the server reaches Supabase through `SUPABASE_URL_INTERNAL`.
-9. Prints the URLs and the demo accounts.
+9. Starts the container on the Supabase Docker network, where the server reaches
+   Supabase through `SUPABASE_URL_INTERNAL`, and prints the URLs and the demo
+   accounts.
 
 When it finishes:
 
@@ -108,50 +109,82 @@ The scripts wrap the commands below. Run them from the repository root after
 starting Docker and the Supabase CLI.
 
 ```sh
+# 1. Start the stack and create .env.local only when it is missing, so a rerun
+#    keeps the AI keys you already set.
 supabase start
-cp .env.example .env.local
-supabase status -o env   # copy API_URL, PUBLISHABLE_KEY, and SECRET_KEY
-# then set NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY, and
-# SUPABASE_SECRET_KEY in .env.local
+[ -f .env.local ] || cp .env.example .env.local
 
+# 2. Read the local Supabase values and copy API_URL, PUBLISHABLE_KEY, and
+#    SECRET_KEY into .env.local. Keep the values unquoted: --env-file passes
+#    quotes through literally.
+supabase status -o env
+
+# 3. Apply the migrations and load the seed, which only inserts missing rows.
 supabase migration up
 docker cp supabase/seed.sql supabase_db_coveweft-swim:/tmp/coveweft-seed.sql
 docker exec supabase_db_coveweft-swim psql -U postgres -d postgres \
   -f /tmp/coveweft-seed.sql
 
+# 4. Download the media archive and check it against MEDIA_ARCHIVE_SHA256 from
+#    .env.local before extracting it.
 mkdir -p .media-cache/studio-v1
-curl -fL -o .media-cache/coveweft-media-studio-v1.tar.gz \
+ARCHIVE=.media-cache/coveweft-media-studio-v1.tar.gz
+curl -fL -o "$ARCHIVE" \
   https://github.com/KoangWy/coveweft-swim/releases/download/media-studio-v1/coveweft-media-studio-v1.tar.gz
-shasum -a 256 .media-cache/coveweft-media-studio-v1.tar.gz   # sha256sum on Linux
-# compare the digest with MEDIA_ARCHIVE_SHA256 in .env.local, then
-tar -xzf .media-cache/coveweft-media-studio-v1.tar.gz -C .media-cache/studio-v1
-printf '%s' <digest> > .media-cache/studio-v1/.verified
+DIGEST=$(sed -n 's/^MEDIA_ARCHIVE_SHA256=//p' .env.local)
+if command -v sha256sum >/dev/null 2>&1; then
+  ACTUAL=$(sha256sum "$ARCHIVE" | awk '{print $1}')
+else
+  ACTUAL=$(shasum -a 256 "$ARCHIVE" | awk '{print $1}')
+fi
+[ "$ACTUAL" = "$DIGEST" ] || echo "media archive does not match MEDIA_ARCHIVE_SHA256" >&2
+tar -xzf "$ARCHIVE" -C .media-cache/studio-v1
+printf '%s' "$DIGEST" > .media-cache/studio-v1/.verified
 
+# 5. Build the image, then create the demo accounts and start the container on
+#    the Supabase Docker network.
+PUBLISHABLE_KEY=$(supabase status -o env | grep '^PUBLISHABLE_KEY=' | cut -d= -f2- | tr -d '"')
 docker build -t coveweft-swim-app:local \
-  --build-arg NEXT_PUBLIC_APP_URL=http://localhost:3000 \
-  --build-arg NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321 \
-  --build-arg NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=<publishable key> .
+  --build-arg NEXT_PUBLIC_APP_URL="http://localhost:3000" \
+  --build-arg NEXT_PUBLIC_SUPABASE_URL="http://127.0.0.1:54321" \
+  --build-arg NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY="$PUBLISHABLE_KEY" .
 
 docker run --rm --network supabase_network_coveweft-swim \
   --env-file .env.local \
-  -e SUPABASE_URL_INTERNAL=http://supabase_kong_coveweft-swim:8000 \
+  -e SUPABASE_URL_INTERNAL="http://supabase_kong_coveweft-swim:8000" \
   coveweft-swim-app:local node scripts/provision-demo.mjs
 
 docker run -d --name coveweft-swim-app \
   --network supabase_network_coveweft-swim \
   --env-file .env.local \
-  -e SUPABASE_URL_INTERNAL=http://supabase_kong_coveweft-swim:8000 \
-  -e NEXT_PUBLIC_APP_URL=http://localhost:3000 \
-  -e MEDIA_BASE_URL=http://localhost:3000/media \
-  -p 3000:3000 \
+  -e SUPABASE_URL_INTERNAL="http://supabase_kong_coveweft-swim:8000" \
+  -e NEXT_PUBLIC_APP_URL="http://localhost:3000" \
+  -e MEDIA_BASE_URL="http://localhost:3000/media" \
+  -p "3000:3000" \
   -v "$PWD/.media-cache/studio-v1:/app/public/media:ro" \
   coveweft-swim-app:local
 ```
 
-On Windows, use `tar.exe` and `Get-FileHash -Algorithm SHA256` instead of
-`tar` and `shasum`, and replace `$PWD` with the repository path. The scripts
-create a temporary env file with the same overrides, so `.env.local` stays a
-normal environment file for `pnpm dev`.
+On Windows, run the same steps in PowerShell. `tar.exe` and
+`Get-FileHash -Algorithm SHA256` replace `tar` and `shasum`; set the values
+first, then use the same commands:
+
+```powershell
+$Digest = (Select-String -Path .env.local -Pattern '^MEDIA_ARCHIVE_SHA256=').Line -replace '^MEDIA_ARCHIVE_SHA256=', ''
+$Actual = (Get-FileHash -Algorithm SHA256 .media-cache/coveweft-media-studio-v1.tar.gz).Hash.ToLowerInvariant()
+if ($Actual -ne $Digest) { Write-Warning 'media archive does not match MEDIA_ARCHIVE_SHA256' }
+tar.exe -xzf .media-cache/coveweft-media-studio-v1.tar.gz -C .media-cache/studio-v1
+Set-Content -NoNewline -Encoding ascii -Path .media-cache/studio-v1/.verified -Value $Digest
+$PublishableKey = (supabase status -o env | Select-String '^PUBLISHABLE_KEY=').Line -replace '^PUBLISHABLE_KEY=', '' -replace '"', ''
+docker build -t coveweft-swim-app:local `
+  --build-arg NEXT_PUBLIC_APP_URL="http://localhost:3000" `
+  --build-arg NEXT_PUBLIC_SUPABASE_URL="http://127.0.0.1:54321" `
+  --build-arg NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY="$PublishableKey" .
+```
+
+Replace `$PWD` with the repository path in the bind mount. The scripts create
+a temporary env file with the same overrides, so `.env.local` stays a normal
+environment file for `pnpm dev`.
 
 ### Reset the database
 
@@ -175,7 +208,8 @@ Put the key in `.env.local` (see `.env.example` for the provider settings):
 
 ```sh
 AI_PRIMARY_API_KEY=your-key
-AI_FALLBACK_API_KEY=your-fallback-key   # optional
+# The fallback provider is optional:
+AI_FALLBACK_API_KEY=your-fallback-key
 ```
 
 Then run the demo script again. It recreates the app container from the current
@@ -218,6 +252,10 @@ environment, so `/media` keeps working on the new port.
 - **`supabase start` fails.** Ports 54321-54324 must be free, and Docker needs
   at least 4 GB of memory. `supabase stop` first if the stack is half started;
   the database volume is kept.
+- **Platform coverage.** The demo was run end to end on macOS with Docker
+  Desktop. The scripts are also written for Linux and Windows (Windows
+  PowerShell 5.1 and PowerShell 7), but no Linux or Windows run was performed
+  for this check.
 
 ## Development
 
@@ -424,22 +462,46 @@ Dừng demo bằng `docker stop coveweft-swim-app` và `supabase stop`; dữ li�
 Script chỉ gói lại các lệnh sau; chạy từ thư mục gốc của kho:
 
 ```sh
+# 1. Khởi động stack; chỉ tạo .env.local khi chưa có để giữ key AI đã nhập.
 supabase start
-cp .env.example .env.local
-supabase status -o env   # sao API_URL, PUBLISHABLE_KEY, SECRET_KEY vào .env.local
+[ -f .env.local ] || cp .env.example .env.local
+
+# 2. Đọc giá trị local rồi điền API_URL, PUBLISHABLE_KEY, SECRET_KEY vào
+#    .env.local. Để nguyên không có dấu ngoặc kép vì --env-file đọc đúng từng
+#    ký tự.
+supabase status -o env
+
+# 3. Áp migration và nạp seed; seed chỉ thêm dòng còn thiếu.
 supabase migration up
 docker cp supabase/seed.sql supabase_db_coveweft-swim:/tmp/coveweft-seed.sql
 docker exec supabase_db_coveweft-swim psql -U postgres -d postgres \
   -f /tmp/coveweft-seed.sql
+
+# 4. Tải gói media, đối chiếu với MEDIA_ARCHIVE_SHA256 trong .env.local rồi
+#    giải nén.
 mkdir -p .media-cache/studio-v1
-curl -fL -o .media-cache/coveweft-media-studio-v1.tar.gz \
+ARCHIVE=.media-cache/coveweft-media-studio-v1.tar.gz
+curl -fL -o "$ARCHIVE" \
   https://github.com/KoangWy/coveweft-swim/releases/download/media-studio-v1/coveweft-media-studio-v1.tar.gz
-shasum -a 256 .media-cache/coveweft-media-studio-v1.tar.gz   # sha256sum trên Linux
-tar -xzf .media-cache/coveweft-media-studio-v1.tar.gz -C .media-cache/studio-v1
-printf '%s' <mã-băm> > .media-cache/studio-v1/.verified
+DIGEST=$(sed -n 's/^MEDIA_ARCHIVE_SHA256=//p' .env.local)
+if command -v sha256sum >/dev/null 2>&1; then
+  ACTUAL=$(sha256sum "$ARCHIVE" | awk '{print $1}')
+else
+  ACTUAL=$(shasum -a 256 "$ARCHIVE" | awk '{print $1}')
+fi
+[ "$ACTUAL" = "$DIGEST" ] || echo "gói media không khớp MEDIA_ARCHIVE_SHA256" >&2
+tar -xzf "$ARCHIVE" -C .media-cache/studio-v1
+printf '%s' "$DIGEST" > .media-cache/studio-v1/.verified
+
+# 5. Build image với key công khai của Supabase.
+PUBLISHABLE_KEY=$(supabase status -o env | grep '^PUBLISHABLE_KEY=' | cut -d= -f2- | tr -d '"')
+docker build -t coveweft-swim-app:local \
+  --build-arg NEXT_PUBLIC_APP_URL="http://localhost:3000" \
+  --build-arg NEXT_PUBLIC_SUPABASE_URL="http://127.0.0.1:54321" \
+  --build-arg NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY="$PUBLISHABLE_KEY" .
 ```
 
-Sau đó build image và chạy container như mục "The same steps by hand" ở phần tiếng Anh, hoặc đọc trực tiếp `scripts/demo.sh`. Trên Windows, dùng `tar.exe` và `Get-FileHash -Algorithm SHA256` thay cho `tar` và `shasum`.
+Sau đó chạy hai lệnh `docker run` (tạo tài khoản demo và chạy container) như mục "The same steps by hand" ở phần tiếng Anh. Trên Windows, dùng `tar.exe` và `Get-FileHash -Algorithm SHA256`, đặt biến như đoạn PowerShell ở mục tiếng Anh.
 
 **Reset database**
 
