@@ -50,9 +50,11 @@ function SearchForm({ id, className }: { id: string; className?: string }) {
 export type SiteHeaderProps = {
   /** Number of items in the signed-in customer's cart. */
   cartCount?: number;
+  /** Whether a customer is signed in; visitors get a sign-in link instead. */
+  signedIn?: boolean;
 };
 
-export function SiteHeader({ cartCount = 0 }: SiteHeaderProps) {
+export function SiteHeader({ cartCount = 0, signedIn = false }: SiteHeaderProps) {
   const t = useTranslations("nav");
   const links = [
     { href: "/shop", label: t("shop") },
@@ -89,9 +91,9 @@ export function SiteHeader({ cartCount = 0 }: SiteHeaderProps) {
               <SearchForm id="header-search" className="hidden w-56 lg:block xl:w-72" />
               <LocaleSwitcher />
               <Link
-                href="/account"
-                aria-label={t("account")}
-                title={t("account")}
+                href={signedIn ? "/account" : "/sign-in"}
+                aria-label={signedIn ? t("account") : t("signIn")}
+                title={signedIn ? t("account") : t("signIn")}
                 className={iconButtonClasses()}
               >
                 <User aria-hidden size={22} />
