@@ -1,0 +1,31 @@
+{
+  "Metadata": {
+    "title": "COVEWEFT Swim",
+    "description": "A demo swimwear store built for a university e-commerce course."
+  },
+  "HomePage": {
+    "title": "COVEWEFT Swim",
+    "tagline": "Find your water.",
+    "description": "A demo storefront. Nothing here is for sale and no orders are shipped."
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist."
+  },
+  "errors": {
+    "VALIDATION_ERROR": "Please check the information you entered.",
+    "UNAUTHENTICATED": "Please sign in to continue.",
+    "FORBIDDEN": "You do not have permission to do that.",
+    "NOT_FOUND": "We could not find what you were looking for.",
+    "CONFLICT": "That action conflicts with the current state. Please refresh and try again.",
+    "OUT_OF_STOCK": "One or more items are no longer available in the requested quantity.",
+    "CART_CHANGED": "Your cart changed while you were checking out. Please review it and try again.",
+    "ORDER_NOT_CANCELLABLE": "This order can no longer be cancelled.",
+    "PAYMENT_FAILED": "The payment could not be completed. You can try again.",
+    "PAYMENT_EXPIRED": "The payment window for this order has expired.",
+    "QUOTA_EXCEEDED": "You have reached the usage limit. Please try again later.",
+    "AI_NOT_CONFIGURED": "The shopping assistant is not configured on this environment.",
+    "AI_UNAVAILABLE": "The shopping assistant is temporarily unavailable. Please try again.",
+    "INTERNAL": "Something went wrong. Please try again."
+  }
+}

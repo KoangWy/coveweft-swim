@@ -1,0 +1,31 @@
+{
+  "Metadata": {
+    "title": "COVEWEFT Swim",
+    "description": "Cửa hàng đồ bơi demo cho môn Thương mại điện tử tại trường đại học."
+  },
+  "HomePage": {
+    "title": "COVEWEFT Swim",
+    "tagline": "Find your water.",
+    "description": "Cửa hàng demo. Sản phẩm không được bán và không có đơn hàng nào được giao."
+  },
+  "NotFound": {
+    "title": "Không tìm thấy trang",
+    "description": "Trang bạn tìm không tồn tại."
+  },
+  "errors": {
+    "VALIDATION_ERROR": "Vui lòng kiểm tra lại thông tin đã nhập.",
+    "UNAUTHENTICATED": "Vui lòng đăng nhập để tiếp tục.",
+    "FORBIDDEN": "Bạn không có quyền thực hiện thao tác này.",
+    "NOT_FOUND": "Không tìm thấy nội dung bạn cần.",
+    "CONFLICT": "Thao tác không khớp với trạng thái hiện tại. Vui lòng tải lại và thử lại.",
+    "OUT_OF_STOCK": "Một hoặc nhiều sản phẩm không còn đủ số lượng.",
+    "CART_CHANGED": "Giỏ hàng đã thay đổi trong lúc thanh toán. Vui lòng kiểm tra và thử lại.",
+    "ORDER_NOT_CANCELLABLE": "Đơn hàng này không thể hủy nữa.",
+    "PAYMENT_FAILED": "Thanh toán không thành công. Bạn có thể thử lại.",
+    "PAYMENT_EXPIRED": "Đã hết thời gian thanh toán cho đơn hàng này.",
+    "QUOTA_EXCEEDED": "Bạn đã dùng hết lượt cho phép. Vui lòng thử lại sau.",
+    "AI_NOT_CONFIGURED": "Trợ lý mua sắm chưa được cấu hình trên môi trường này.",
+    "AI_UNAVAILABLE": "Trợ lý mua sắm tạm thời không khả dụng. Vui lòng thử lại.",
+    "INTERNAL": "Đã có lỗi xảy ra. Vui lòng thử lại."
+  }
+}
