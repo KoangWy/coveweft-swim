@@ -110,7 +110,18 @@ export function createChatProvider(
     }
 
     if (!response.ok) {
-      const body = await response.text().catch(() => "");
+      let body = "";
+
+      try {
+        body = await response.text();
+      } catch (error) {
+        // A cancelled or timed-out body read is not an HTTP failure.
+        if (request.signal?.aborted || timeout.signal.aborted) {
+          close();
+          throw mapError(error);
+        }
+      }
+
       close();
 
       throw new ProviderError(kindForStatus(response.status), {

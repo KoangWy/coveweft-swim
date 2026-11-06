@@ -53,10 +53,23 @@ export function withFailover(
   let active: ChatProvider = primary;
   const primaryToolCallIds = new Set<string>();
 
-  function shouldFailover(error: unknown): error is ProviderError {
+  // Turn-scoped: once customer-visible text was emitted by any request of
+  // this turn, later errors never switch providers.
+  let textEmitted = false;
+
+  function shouldFailover(error: unknown, request: ChatRequest): error is ProviderError {
     return (
-      fallback !== null && active === primary && error instanceof ProviderError && error.canFailover
+      fallback !== null &&
+      active === primary &&
+      !textEmitted &&
+      !request.signal?.aborted &&
+      error instanceof ProviderError &&
+      error.canFailover
     );
+  }
+
+  function afterTurnOutput(error: unknown): unknown {
+    return textEmitted && error instanceof ProviderError ? error.markAfterOutput() : error;
   }
 
   function switchToFallback(error: ProviderError): ChatProvider {
@@ -78,6 +91,10 @@ export function withFailover(
 
     try {
       for await (const event of provider.stream(forActive(request))) {
+        if (event.type === "text") {
+          textEmitted = true;
+        }
+
         if (event.type === "text" || event.type === "tool_call") {
           emitted = true;
         }
@@ -95,8 +112,8 @@ export function withFailover(
         throw error.markAfterOutput();
       }
 
-      if (!shouldFailover(error)) {
-        throw error;
+      if (!shouldFailover(error, request)) {
+        throw afterTurnOutput(error);
       }
 
       switchToFallback(error);
@@ -117,13 +134,23 @@ export function withFailover(
         }
       }
 
-      return completion;
-    } catch (error) {
-      if (!shouldFailover(error)) {
-        throw error;
+      if (completion.text.trim() !== "") {
+        textEmitted = true;
       }
 
-      return switchToFallback(error).complete(forActive(request));
+      return completion;
+    } catch (error) {
+      if (!shouldFailover(error, request)) {
+        throw afterTurnOutput(error);
+      }
+
+      const completion = await switchToFallback(error).complete(forActive(request));
+
+      if (completion.text.trim() !== "") {
+        textEmitted = true;
+      }
+
+      return completion;
     }
   }
 
