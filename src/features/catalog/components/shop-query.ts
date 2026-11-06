@@ -29,14 +29,11 @@ export type ShopQuery = {
 
 export type ShopSearchParams = Record<string, string | string[] | undefined>;
 
-/**
- * Catalog filters behind each header category. Kids covers the `Kids` gender
- * value; Baby and Teen stay reachable through the gender filter.
- */
-const GROUP_FILTERS: Record<ShopCategory, { gender?: string; category?: string }> = {
+/** Catalog filters behind each header category. Kids covers every child size range. */
+const GROUP_FILTERS: Record<ShopCategory, { gender?: string | string[]; category?: string }> = {
   women: { gender: "Women" },
   men: { gender: "Men" },
-  kids: { gender: "Kids" },
+  kids: { gender: ["Kids", "Baby", "Teen"] },
   accessories: { category: "Accessories" },
 };
 

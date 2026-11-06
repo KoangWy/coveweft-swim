@@ -511,10 +511,17 @@
   },
   "validation": {
     "required": "Vui lòng điền trường này.",
-    "too_long": "Giá trị quá dài.",
-    "too_short": "Giá trị quá ngắn.",
+    "invalid_type": "Giá trị không đúng kiểu.",
     "invalid_format": "Giá trị không đúng định dạng.",
-    "invalid": "Vui lòng kiểm tra lại trường này."
+    "invalid_value": "Giá trị này không được chấp nhận.",
+    "too_small": "Giá trị quá ngắn hoặc quá nhỏ.",
+    "too_large": "Giá trị quá dài hoặc quá lớn.",
+    "unknown_field": "Trường này không được chấp nhận.",
+    "invalid_range": "Khoảng giá trị không hợp lệ.",
+    "require_one_of": "Hãy điền ít nhất một trong các trường này.",
+    "at_least_one_field": "Hãy thay đổi ít nhất một trường.",
+    "missing_create_fields": "Còn thiếu một số trường bắt buộc.",
+    "unknown": "Vui lòng kiểm tra lại trường này."
   },
   "auth": {
     "signInTitle": "Đăng nhập",

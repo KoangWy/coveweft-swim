@@ -511,10 +511,17 @@
   },
   "validation": {
     "required": "This field is required.",
-    "too_long": "This value is too long.",
-    "too_short": "This value is too short.",
+    "invalid_type": "This value has the wrong type.",
     "invalid_format": "This value does not have the expected format.",
-    "invalid": "Please check this field."
+    "invalid_value": "This value is not allowed.",
+    "too_small": "This value is too short or too small.",
+    "too_large": "This value is too long or too large.",
+    "unknown_field": "This field is not accepted.",
+    "invalid_range": "The range is not valid.",
+    "require_one_of": "Fill in at least one of these fields.",
+    "at_least_one_field": "Change at least one field.",
+    "missing_create_fields": "Some required fields are missing.",
+    "unknown": "Please check this field."
   },
   "auth": {
     "signInTitle": "Sign in",

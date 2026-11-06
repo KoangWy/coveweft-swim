@@ -1,5 +1,5 @@
 import { DEFAULT_LOCALE, isLocale, type Locale } from "@/lib/locale";
-import type { ErrorCode } from "@/server/errors";
+import { VALIDATION_ISSUE_CODES, type ErrorCode } from "@/server/errors";
 
 /** Per-field validation codes, localized through `validation.<code>`. */
 export type FieldErrors = Record<string, string>;
@@ -12,14 +12,12 @@ export type FormState = {
   values?: Record<string, string>;
 };
 
-const KNOWN_CODES = ["required", "too_long", "too_short", "invalid_format", "invalid"] as const;
-
-type Issue = { path?: unknown; field?: unknown; code?: unknown; message?: unknown };
+type Issue = { field?: unknown; code?: unknown };
 
 /**
- * Turns the `details.issues` of a `VALIDATION_ERROR` into field codes. Issues
- * may carry a stable `code` per field; issues without one map to `invalid`.
- * Server text is never shown.
+ * Turns the `details.issues` of a `VALIDATION_ERROR` into one issue code per
+ * field. Unknown codes map to `unknown`; issues without a field (form-level)
+ * are left to the form's error summary.
  */
 export function fieldErrorsFrom(details: unknown): FieldErrors {
   const issues = (details as { issues?: unknown } | undefined)?.issues;
@@ -30,12 +28,15 @@ export function fieldErrorsFrom(details: unknown): FieldErrors {
   }
 
   for (const issue of issues as Issue[]) {
-    const field = typeof issue.field === "string" ? issue.field : issue.path;
+    const field = issue.field;
     if (typeof field !== "string" || field === "" || field in errors) {
       continue;
     }
-    const code = typeof issue.code === "string" ? issue.code : "invalid";
-    errors[field] = (KNOWN_CODES as readonly string[]).includes(code) ? code : "invalid";
+    errors[field] =
+      typeof issue.code === "string" &&
+      (VALIDATION_ISSUE_CODES as readonly string[]).includes(issue.code)
+        ? issue.code
+        : "unknown";
   }
 
   return errors;
