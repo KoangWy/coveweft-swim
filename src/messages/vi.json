@@ -3,14 +3,340 @@
     "title": "COVEWEFT Swim",
     "description": "Cửa hàng đồ bơi demo cho môn Thương mại điện tử tại trường đại học."
   },
-  "HomePage": {
-    "title": "COVEWEFT Swim",
+  "common": {
+    "brand": "COVEWEFT",
+    "brandFull": "COVEWEFT Swim",
     "tagline": "Find your water.",
-    "description": "Cửa hàng demo. Sản phẩm không được bán và không có đơn hàng nào được giao."
+    "skipToContent": "Chuyển đến nội dung chính",
+    "required": "(bắt buộc)",
+    "close": "Đóng",
+    "dismiss": "Ẩn thông báo",
+    "notifications": "Thông báo",
+    "loading": "Đang tải",
+    "backHome": "Về trang chủ",
+    "tryAgain": "Thử lại",
+    "decrease": "Giảm số lượng",
+    "increase": "Tăng số lượng",
+    "quantity": "Số lượng",
+    "originalPrice": "Giá gốc"
   },
-  "NotFound": {
+  "nav": {
+    "primary": "Điều hướng chính",
+    "openMenu": "Mở menu",
+    "menu": "Menu",
+    "shop": "Cửa hàng",
+    "categories": {
+      "women": "Nữ",
+      "men": "Nam",
+      "kids": "Trẻ em",
+      "accessories": "Phụ kiện"
+    },
+    "search": "Tìm sản phẩm",
+    "searchPlaceholder": "Tìm đồ bơi",
+    "searchSubmit": "Tìm",
+    "account": "Tài khoản",
+    "cart": "Giỏ hàng",
+    "cartWithCount": "{count, plural, =0 {Giỏ hàng, trống} other {Giỏ hàng, # sản phẩm}}",
+    "language": "Ngôn ngữ",
+    "languages": {
+      "en": "English",
+      "vi": "Tiếng Việt"
+    },
+    "breadcrumb": "Đường dẫn trang",
+    "home": "Trang chủ"
+  },
+  "demoBanner": {
+    "label": "Demo",
+    "message": "Dự án học tập. Không bán hàng, không thu tiền và không giao hàng thật.",
+    "link": "Giới thiệu bản demo"
+  },
+  "footer": {
+    "shopHeading": "Mua sắm",
+    "helpHeading": "Hỗ trợ",
+    "legalHeading": "Pháp lý",
+    "about": "COVEWEFT Swim là thương hiệu giả tưởng do một nhóm sinh viên môn CO3027, Trường Đại học Bách khoa TP.HCM xây dựng. Dữ liệu và hình ảnh sản phẩm lấy từ SOBIE, chỉ dùng cho mục đích học tập.",
+    "notice": "Website này là bản demo. Không bán sản phẩm, không thu tiền và không giao đơn hàng.",
+    "language": "Ngôn ngữ"
+  },
+  "home": {
+    "title": "Find your water.",
+    "description": "Đồ bơi cho những buổi bơi sải, lướt sóng và những ngày thong thả bên bờ biển. Đây là cửa hàng của một dự án học tập, bạn cứ thoải mái xem: không sản phẩm nào được bán.",
+    "shopCta": "Xem cửa hàng",
+    "aboutCta": "Giới thiệu bản demo"
+  },
+  "notFound": {
     "title": "Không tìm thấy trang",
-    "description": "Trang bạn tìm không tồn tại."
+    "description": "Trang bạn tìm không tồn tại hoặc đã được chuyển đi.",
+    "action": "Về trang chủ"
+  },
+  "errorPage": {
+    "title": "Đã có lỗi xảy ra",
+    "description": "Không tải được trang. Vui lòng thử lại hoặc quay lại sau ít phút.",
+    "retry": "Thử lại",
+    "home": "Về trang chủ",
+    "reference": "Mã tham chiếu: {digest}"
+  },
+  "admin": {
+    "title": "Quản trị",
+    "badge": "Quản trị demo",
+    "nav": "Điều hướng quản trị",
+    "overview": "Tổng quan",
+    "products": "Sản phẩm",
+    "orders": "Đơn hàng",
+    "backToStore": "Về cửa hàng",
+    "placeholderTitle": "Tổng quan quản trị",
+    "placeholderDescription": "Phần quản lý sản phẩm, tồn kho và đơn hàng sẽ hiển thị ở đây."
+  },
+  "pagination": {
+    "nav": "Phân trang",
+    "previous": "Trước",
+    "next": "Sau",
+    "page": "Trang {page}"
+  },
+  "policies": {
+    "updated": "Cập nhật lần cuối {date}",
+    "version": "Phiên bản chính sách {version}",
+    "related": "Chính sách cửa hàng",
+    "names": {
+      "about": "Giới thiệu bản demo",
+      "shipping": "Giao hàng",
+      "payment": "Thanh toán",
+      "returns": "Đổi trả",
+      "contact": "Khiếu nại & Liên hệ",
+      "privacy": "Bảo mật",
+      "terms": "Điều khoản sử dụng"
+    },
+    "contactCard": {
+      "title": "Liên hệ nhóm thực hiện",
+      "body": "Tạo một issue trên kho mã nguồn công khai của dự án. Mô tả câu hỏi, khiếu nại hoặc yêu cầu của bạn và không ghi dữ liệu cá nhân.",
+      "action": "Mở trang issue"
+    },
+    "about": {
+      "title": "Giới thiệu bản demo",
+      "description": "Ai xây dựng COVEWEFT Swim, sản phẩm lấy từ đâu và những gì bản demo không làm.",
+      "lead": "COVEWEFT Swim là cửa hàng đồ bơi trực tuyến dạng demo. Đây là dự án học tập, không phải doanh nghiệp thật.",
+      "sections": {
+        "team": {
+          "title": "Đơn vị thực hiện",
+          "body": "Cửa hàng là đồ án của một nhóm sinh viên môn CO3027 Thương mại điện tử, Trường Đại học Bách khoa TP.HCM (HCMUT), học kỳ 261."
+        },
+        "brand": {
+          "title": "Thương hiệu giả tưởng",
+          "body": "COVEWEFT Swim là tên thương hiệu tự đặt. Thương hiệu này chưa đăng ký, không có công ty đứng sau, không có mã số thuế hay số đăng ký kinh doanh. Chúng tôi không đưa ra thông tin doanh nghiệp tự dựng."
+        },
+        "products": {
+          "title": "Sản phẩm và hình ảnh",
+          "body": "Tên, thuộc tính và hình ảnh sản phẩm lấy từ SOBIE, một nhà bán lẻ đồ bơi tại Việt Nam. Dữ liệu chỉ được dùng để bản demo sát thực tế phục vụ học tập. Tên mẫu sản phẩm giữ nguyên như nguồn công bố."
+        },
+        "limits": {
+          "title": "Những gì bản demo không làm",
+          "items": {
+            "sell": "Không bán bất kỳ sản phẩm nào. Đơn hàng chỉ tồn tại trong bản demo.",
+            "pay": "Không thu tiền. Chuyển khoản và thanh toán khi nhận hàng đều là mô phỏng.",
+            "ship": "Không giao hàng. Trạng thái đơn do quản trị viên demo cập nhật.",
+            "data": "Vui lòng không nhập dữ liệu cá nhân thật như địa chỉ hay số điện thoại thật của bạn."
+          }
+        }
+      }
+    },
+    "shipping": {
+      "title": "Giao hàng",
+      "description": "Phương thức và phí giao hàng cho đơn demo của COVEWEFT Swim.",
+      "lead": "Cửa hàng có hai phương thức giao hàng. Phí được máy chủ tính khi bạn đặt đơn. Không có kiện hàng nào được gửi đi.",
+      "rates": {
+        "caption": "Phí giao hàng",
+        "method": "Phương thức",
+        "fee": "Phí",
+        "notes": "Ghi chú",
+        "standard": "Tiêu chuẩn",
+        "express": "Hỏa tốc",
+        "standardNote": "Miễn phí khi tổng tiền hàng từ {threshold} trở lên.",
+        "expressNote": "Luôn là {expressFee}, bất kể tổng giá trị đơn."
+      },
+      "sections": {
+        "threshold": {
+          "title": "Miễn phí giao hàng Tiêu chuẩn",
+          "body": "Giao hàng Tiêu chuẩn được miễn phí khi tổng tiền các sản phẩm trong đơn từ {threshold} trở lên. Ngưỡng này tính trên tổng tiền hàng trước phí giao hàng. Giao hàng Hỏa tốc không bao giờ được miễn phí."
+        },
+        "calculation": {
+          "title": "Cách tính phí",
+          "body": "Trang thanh toán hiển thị phí theo phương thức bạn chọn. Khi bạn đặt đơn, máy chủ tính lại giá, tồn kho và phí giao hàng rồi lưu vào đơn. Thay đổi về phí sau đó không ảnh hưởng đến các đơn đã đặt."
+        },
+        "status": {
+          "title": "Trạng thái đơn hàng",
+          "body": "Đơn hàng đi từ Chờ xử lý sang Đã xác nhận, Đang giao rồi Đã giao. Trong bản demo, quản trị viên demo chuyển đơn qua các bước này; không có đơn vị vận chuyển nào tham gia."
+        },
+        "area": {
+          "title": "Khu vực giao hàng",
+          "body": "Địa chỉ chỉ được thu thập để quy trình thanh toán giống thật. Vì không có hàng được gửi, sẽ không có thời gian giao, đơn vị vận chuyển hay mã vận đơn."
+        }
+      }
+    },
+    "payment": {
+      "title": "Thanh toán",
+      "description": "Các phương thức thanh toán trong bản demo COVEWEFT Swim và cách thanh toán mô phỏng hoạt động.",
+      "lead": "Mọi khoản thanh toán trong cửa hàng này đều là mô phỏng. Cửa hàng không bao giờ hỏi thông tin thẻ và không chuyển tiền thật.",
+      "sections": {
+        "methods": {
+          "title": "Phương thức thanh toán",
+          "items": {
+            "cod": "Thanh toán khi nhận hàng (mô phỏng): đơn được ghi nhận đã thanh toán khi quản trị viên demo đánh dấu đã giao.",
+            "transfer": "Chuyển khoản (mô phỏng): sau khi đặt đơn, bạn chọn kết quả thanh toán mô phỏng là thành công hay thất bại."
+          }
+        },
+        "window": {
+          "title": "Thời hạn thanh toán",
+          "body": "Đơn chuyển khoản cần được thanh toán trong vòng {minutes} phút sau khi đặt. Quá thời hạn mà chưa thanh toán, đơn tự động bị hủy và sản phẩm được hoàn lại tồn kho."
+        },
+        "failed": {
+          "title": "Thanh toán thất bại",
+          "body": "Một lần thanh toán mô phỏng thất bại không làm thay đổi đơn hay sản phẩm trong đơn. Bạn có thể thử lại khi vẫn còn trong thời hạn thanh toán."
+        },
+        "refunds": {
+          "title": "Hoàn tiền",
+          "body": "Nếu đơn đã thanh toán bị hủy, trạng thái thanh toán chuyển sang đã hoàn tiền. Đây chỉ là bản ghi trong demo; không có tiền được trả lại vì chưa có khoản nào được thu."
+        },
+        "prices": {
+          "title": "Giá",
+          "body": "Giá hiển thị bằng đồng Việt Nam (VND). Tổng tiền ở bước thanh toán gồm tổng tiền hàng và phí giao hàng."
+        }
+      }
+    },
+    "returns": {
+      "title": "Đổi trả",
+      "description": "Hủy đơn, đổi trả và hoàn tiền trong bản demo COVEWEFT Swim.",
+      "lead": "Vì không có đơn nào được giao, sẽ không có hàng cần gửi trả. Trang này giải thích những gì bạn có thể làm với đơn demo.",
+      "sections": {
+        "cancel": {
+          "title": "Hủy đơn",
+          "body": "Bạn có thể tự hủy đơn của mình khi đơn đang Chờ xử lý. Sản phẩm được hoàn lại tồn kho ngay. Khi đơn đã được xác nhận, chỉ quản trị viên demo mới hủy được và chỉ trước khi đơn chuyển sang Đang giao."
+        },
+        "refund": {
+          "title": "Trạng thái hoàn tiền",
+          "body": "Khi đơn đã thanh toán bị hủy, trạng thái thanh toán chuyển sang đã hoàn tiền. Không có tiền được chuyển vì thanh toán là mô phỏng."
+        },
+        "real": {
+          "title": "Nếu đây là cửa hàng thật",
+          "body": "Một cửa hàng thật sẽ nêu rõ thời hạn đổi trả, tình trạng sản phẩm được chấp nhận, bên chịu phí gửi trả và cách hoàn tiền. Các điều khoản này nằm ngoài phạm vi bản demo."
+        }
+      }
+    },
+    "contact": {
+      "title": "Khiếu nại & Liên hệ",
+      "description": "Cách liên hệ nhóm thực hiện COVEWEFT Swim để hỏi đáp, khiếu nại hoặc yêu cầu về dữ liệu.",
+      "lead": "Câu hỏi và khiếu nại về bản demo được gửi tới nhóm sinh viên thực hiện.",
+      "sections": {
+        "how": {
+          "title": "Cách liên hệ",
+          "body": "Tạo một issue trên kho mã nguồn công khai của dự án. Ghi rõ nội dung liên quan đến trang hay đơn hàng nào. Vui lòng không đăng dữ liệu cá nhân trong issue vì issue là công khai."
+        },
+        "complaints": {
+          "title": "Khiếu nại",
+          "body": "Nếu thấy nội dung nào trong bản demo sai, gây hiểu nhầm hoặc bị lỗi, hãy cho chúng tôi biết bạn thấy gì và ở trang nào. Chúng tôi đọc mọi phản hồi và trả lời ngay trong issue đó."
+        },
+        "data": {
+          "title": "Yêu cầu về dữ liệu",
+          "body": "Để yêu cầu xóa tài khoản demo và dữ liệu đi kèm, hãy tạo issue ghi rõ bạn muốn xóa tài khoản. Trước khi xóa, chúng tôi xác nhận yêu cầu qua địa chỉ email của tài khoản."
+        },
+        "business": {
+          "title": "Không có liên hệ doanh nghiệp",
+          "body": "COVEWEFT Swim không phải công ty nên không có đường dây nóng, địa chỉ cửa hàng hay email doanh nghiệp."
+        }
+      }
+    },
+    "privacy": {
+      "title": "Bảo mật",
+      "description": "Bản demo COVEWEFT Swim thu thập dữ liệu cá nhân nào, vì sao, xử lý ở đâu và quyền của bạn.",
+      "lead": "Thông báo này giải thích bản demo lưu gì về bạn và vì sao. Vui lòng dùng thông tin tự đặt: không nhập họ tên, số điện thoại hay địa chỉ thật.",
+      "sections": {
+        "collected": {
+          "title": "Dữ liệu chúng tôi thu thập",
+          "items": {
+            "account": "Tài khoản: địa chỉ email và mật khẩu (mật khẩu được dịch vụ xác thực lưu dưới dạng băm).",
+            "profile": "Hồ sơ: họ tên, số điện thoại và địa chỉ giao hàng mặc định, nếu bạn thêm vào.",
+            "orders": "Đơn hàng: sản phẩm, giá, phương thức giao hàng, thông tin người nhận và lịch sử đơn.",
+            "consent": "Sự đồng ý: thời điểm bạn đồng ý với chính sách này và phiên bản chính sách bạn đã đồng ý."
+          }
+        },
+        "purpose": {
+          "title": "Mục đích sử dụng",
+          "items": {
+            "account": "Cho phép bạn đăng nhập và giữ giỏ hàng trên nhiều thiết bị.",
+            "orders": "Đặt đơn demo, hiển thị lịch sử đơn và mô phỏng thanh toán.",
+            "admin": "Cho phép quản trị viên demo xử lý đơn demo.",
+            "proof": "Chứng minh bạn đã đồng ý với chính sách này trước khi tạo tài khoản."
+          }
+        },
+        "processors": {
+          "title": "Nơi xử lý dữ liệu",
+          "body": "Dữ liệu được lưu và xử lý bởi Supabase (cơ sở dữ liệu và đăng nhập), website được phục vụ bởi Vercel. Trợ lý mua sắm gửi câu hỏi của bạn tới nhà cung cấp mô hình AI. Các nhà cung cấp này có thể xử lý dữ liệu trên máy chủ đặt ngoài Việt Nam."
+        },
+        "assistant": {
+          "title": "Trợ lý mua sắm",
+          "items": {
+            "sent": "Trợ lý chỉ gửi câu hỏi của bạn, các tin nhắn gần đây trong cùng cuộc trò chuyện và kết quả tìm kiếm catalog tới nhà cung cấp AI.",
+            "notSent": "Trợ lý không gửi email, họ tên, số điện thoại hay địa chỉ của bạn.",
+            "measurements": "Nếu bạn nhập số đo cơ thể để được gợi ý size, số đo đó được gửi tới nhà cung cấp để trả lời.",
+            "notStored": "Cuộc trò chuyện không được lưu trên máy chủ của chúng tôi. Lịch sử chat chỉ nằm trong tab trình duyệt và bị xóa khi bạn đăng xuất."
+          }
+        },
+        "rights": {
+          "title": "Quyền của bạn",
+          "items": {
+            "view": "Bạn có thể xem và sửa hồ sơ bất cứ lúc nào trong trang tài khoản.",
+            "delete": "Bạn có thể yêu cầu xóa tài khoản và dữ liệu đi kèm qua kênh liên hệ ở trang Khiếu nại & Liên hệ.",
+            "withdraw": "Bạn có thể ngừng dùng bản demo bất cứ lúc nào. Dữ liệu của tài khoản đã xóa không được giữ lại."
+          }
+        },
+        "retention": {
+          "title": "Thời gian lưu trữ",
+          "body": "Dữ liệu demo được lưu trong thời gian thực hiện đồ án môn học. Cơ sở dữ liệu demo có thể được đặt lại bất cứ lúc nào, khi đó tài khoản và đơn hàng sẽ bị xóa."
+        },
+        "law": {
+          "title": "Căn cứ pháp lý",
+          "body": "Thông báo này được soạn có tham chiếu Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15 và Nghị định 356/2025/NĐ-CP. Vì cửa hàng là dự án học tập, chúng tôi không lập hồ sơ đánh giá tác động, hồ sơ chuyển dữ liệu xuyên biên giới hay bố trí nhân sự bảo vệ dữ liệu như một doanh nghiệp thật cần làm."
+        },
+        "changes": {
+          "title": "Thay đổi chính sách",
+          "body": "Mỗi lần thay đổi, chính sách có phiên bản mới. Tài khoản của bạn lưu phiên bản mà bạn đã đồng ý."
+        }
+      }
+    },
+    "terms": {
+      "title": "Điều khoản sử dụng",
+      "description": "Điều khoản khi sử dụng cửa hàng demo COVEWEFT Swim.",
+      "lead": "Khi sử dụng website này, bạn chấp nhận rằng đây là bản demo xây dựng cho một môn học đại học. Các điều khoản dưới đây giải thích điều đó có nghĩa là gì.",
+      "sections": {
+        "demo": {
+          "title": "Bản demo, không phải cửa hàng thật",
+          "body": "Đặt đơn không tạo ra hợp đồng mua bán. Không có hàng được giao và không có khoản thanh toán nào được thu. Trạng thái đơn và thanh toán chỉ dùng để minh họa cửa hàng."
+        },
+        "accounts": {
+          "title": "Tài khoản",
+          "body": "Bất kỳ ai cũng có thể tạo tài khoản khách hàng. Hãy dùng thông tin cá nhân tự đặt. Tài khoản, giỏ hàng và đơn hàng có thể bị xóa khi bản demo được đặt lại."
+        },
+        "use": {
+          "title": "Sử dụng hợp lệ",
+          "items": {
+            "abuse": "Không tìm cách phá hoại, gây quá tải hoặc truy cập trái phép vào cửa hàng hay tài khoản khác.",
+            "assistant": "Trợ lý mua sắm có giới hạn lượt dùng theo người dùng và theo ngày. Không dùng trợ lý cho mục đích không liên quan đến mua sắm tại cửa hàng này.",
+            "data": "Không nhập dữ liệu cá nhân của người khác."
+          }
+        },
+        "content": {
+          "title": "Nội dung sản phẩm",
+          "body": "Dữ liệu và hình ảnh sản phẩm lấy từ SOBIE, chỉ hiển thị cho mục đích học tập. COVEWEFT Swim là thương hiệu giả tưởng và không nhận bất kỳ quyền nào đối với các nội dung này."
+        },
+        "warranty": {
+          "title": "Không bảo đảm",
+          "body": "Bản demo được cung cấp nguyên trạng. Giá, tồn kho và gợi ý size chỉ là ví dụ và có thể sai. Đừng dựa vào chúng để mua đồ bơi ở nơi khác."
+        },
+        "law": {
+          "title": "Tham chiếu pháp lý",
+          "body": "Các trang của cửa hàng công khai thông tin theo yêu cầu của Luật Thương mại điện tử số 122/2025/QH15 ở mức demo. Website không thông báo với cơ quan quản lý như một website thương mại điện tử vì không hoạt động kinh doanh."
+        }
+      }
+    }
   },
   "errors": {
     "VALIDATION_ERROR": "Vui lòng kiểm tra lại thông tin đã nhập.",

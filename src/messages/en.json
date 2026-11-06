@@ -3,14 +3,340 @@
     "title": "COVEWEFT Swim",
     "description": "A demo swimwear store built for a university e-commerce course."
   },
-  "HomePage": {
-    "title": "COVEWEFT Swim",
+  "common": {
+    "brand": "COVEWEFT",
+    "brandFull": "COVEWEFT Swim",
     "tagline": "Find your water.",
-    "description": "A demo storefront. Nothing here is for sale and no orders are shipped."
+    "skipToContent": "Skip to content",
+    "required": "(required)",
+    "close": "Close",
+    "dismiss": "Dismiss",
+    "notifications": "Notifications",
+    "loading": "Loading",
+    "backHome": "Back to home",
+    "tryAgain": "Try again",
+    "decrease": "Decrease quantity",
+    "increase": "Increase quantity",
+    "quantity": "Quantity",
+    "originalPrice": "Original price"
   },
-  "NotFound": {
+  "nav": {
+    "primary": "Main navigation",
+    "openMenu": "Open menu",
+    "menu": "Menu",
+    "shop": "Shop",
+    "categories": {
+      "women": "Women",
+      "men": "Men",
+      "kids": "Kids",
+      "accessories": "Accessories"
+    },
+    "search": "Search products",
+    "searchPlaceholder": "Search swimwear",
+    "searchSubmit": "Search",
+    "account": "Account",
+    "cart": "Cart",
+    "cartWithCount": "{count, plural, =0 {Cart, empty} one {Cart, # item} other {Cart, # items}}",
+    "language": "Language",
+    "languages": {
+      "en": "English",
+      "vi": "Tiếng Việt"
+    },
+    "breadcrumb": "Breadcrumb",
+    "home": "Home"
+  },
+  "demoBanner": {
+    "label": "Demo",
+    "message": "Study project. Nothing is sold, no payment is taken, and no order is shipped.",
+    "link": "About this demo"
+  },
+  "footer": {
+    "shopHeading": "Shop",
+    "helpHeading": "Help",
+    "legalHeading": "Legal",
+    "about": "COVEWEFT Swim is a fictional brand created by a CO3027 student team at Ho Chi Minh City University of Technology. Product data and images come from SOBIE and are used for study purposes.",
+    "notice": "This website is a demo. It does not sell products, take payments, or ship orders.",
+    "language": "Language"
+  },
+  "home": {
+    "title": "Find your water.",
+    "description": "Swimwear for laps, surf, and slow days at the beach. This storefront is a study project, so browse freely: nothing here is for sale.",
+    "shopCta": "Browse the shop",
+    "aboutCta": "About this demo"
+  },
+  "notFound": {
     "title": "Page not found",
-    "description": "The page you are looking for does not exist."
+    "description": "The page you are looking for does not exist or has moved.",
+    "action": "Back to home"
+  },
+  "errorPage": {
+    "title": "Something went wrong",
+    "description": "The page could not be loaded. Try again, or come back in a moment.",
+    "retry": "Try again",
+    "home": "Back to home",
+    "reference": "Reference: {digest}"
+  },
+  "admin": {
+    "title": "Admin",
+    "badge": "Demo admin",
+    "nav": "Admin navigation",
+    "overview": "Overview",
+    "products": "Products",
+    "orders": "Orders",
+    "backToStore": "Back to store",
+    "placeholderTitle": "Admin overview",
+    "placeholderDescription": "Product, stock, and order management will appear here."
+  },
+  "pagination": {
+    "nav": "Pagination",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page {page}"
+  },
+  "policies": {
+    "updated": "Last updated {date}",
+    "version": "Policy version {version}",
+    "related": "Store policies",
+    "names": {
+      "about": "About this demo",
+      "shipping": "Shipping",
+      "payment": "Payment",
+      "returns": "Returns",
+      "contact": "Complaints & Contact",
+      "privacy": "Privacy",
+      "terms": "Terms of use"
+    },
+    "contactCard": {
+      "title": "Contact the project team",
+      "body": "Open an issue on the public project repository. Describe your question, complaint, or request without including personal data.",
+      "action": "Open the issue tracker"
+    },
+    "about": {
+      "title": "About this demo",
+      "description": "Who built COVEWEFT Swim, where the products come from, and what the demo does not do.",
+      "lead": "COVEWEFT Swim is a demo online swimwear store. It was built as a study project and is not a real business.",
+      "sections": {
+        "team": {
+          "title": "Who built it",
+          "body": "The store is a course project by a student team in CO3027 Electronic Commerce at Ho Chi Minh City University of Technology (HCMUT), semester 261."
+        },
+        "brand": {
+          "title": "A fictional brand",
+          "body": "COVEWEFT Swim is a made-up brand name. It is not registered, has no company behind it, and has no tax code or business registration number. We do not show invented business details."
+        },
+        "products": {
+          "title": "Products and images",
+          "body": "Product names, attributes, and images come from SOBIE, a Vietnamese swimwear retailer. They are used only to make the demo realistic for study. Product names are kept as published by the source."
+        },
+        "limits": {
+          "title": "What the demo does not do",
+          "items": {
+            "sell": "It does not sell anything. Orders exist only inside the demo.",
+            "pay": "It does not take money. Bank transfer and cash on delivery are simulated.",
+            "ship": "It does not ship. Order status changes are made by a demo admin.",
+            "data": "Please do not enter real personal data such as your real address or phone number."
+          }
+        }
+      }
+    },
+    "shipping": {
+      "title": "Shipping",
+      "description": "Shipping methods and fees for COVEWEFT Swim demo orders.",
+      "lead": "The store offers two shipping methods. Fees are calculated by the server when you place an order. No parcel is ever sent.",
+      "rates": {
+        "caption": "Shipping fees",
+        "method": "Method",
+        "fee": "Fee",
+        "notes": "Notes",
+        "standard": "Standard",
+        "express": "Express",
+        "standardNote": "Free when your items total {threshold} or more.",
+        "expressNote": "Always {expressFee}, whatever the order total."
+      },
+      "sections": {
+        "threshold": {
+          "title": "Free Standard shipping",
+          "body": "Standard shipping is free when the items in your order add up to {threshold} or more. The threshold is checked against the item subtotal before shipping. Express shipping is never free."
+        },
+        "calculation": {
+          "title": "How fees are calculated",
+          "body": "Checkout shows the fee for the method you choose. When you place the order, the server recalculates prices, stock, and the shipping fee, and saves them on the order. Later changes to fees do not change orders you already placed."
+        },
+        "status": {
+          "title": "Order status",
+          "body": "Orders move from Pending to Confirmed, then Shipping, then Delivered. In this demo, a demo admin moves orders between these steps; no courier is involved."
+        },
+        "area": {
+          "title": "Delivery area",
+          "body": "Addresses are collected only to make the checkout realistic. Because nothing is shipped, there are no delivery times, couriers, or tracking numbers."
+        }
+      }
+    },
+    "payment": {
+      "title": "Payment",
+      "description": "Payment methods available in the COVEWEFT Swim demo and how simulated payments work.",
+      "lead": "Every payment in this store is simulated. The store never asks for card details and never moves real money.",
+      "sections": {
+        "methods": {
+          "title": "Payment methods",
+          "items": {
+            "cod": "Cash on delivery (simulated): the order is marked paid when a demo admin marks it delivered.",
+            "transfer": "Bank transfer (simulated): after placing the order, you choose whether the simulated payment succeeds or fails."
+          }
+        },
+        "window": {
+          "title": "Payment window",
+          "body": "A bank transfer order must be paid within {minutes} minutes of being placed. If it is still unpaid after that, the order is cancelled automatically and its items go back into stock."
+        },
+        "failed": {
+          "title": "Failed payments",
+          "body": "A failed simulated payment does not change your order or its items. You can try again while the payment window is open."
+        },
+        "refunds": {
+          "title": "Refunds",
+          "body": "If a paid order is cancelled, its payment status changes to refunded. This is a record in the demo; no money is returned because none was taken."
+        },
+        "prices": {
+          "title": "Prices",
+          "body": "Prices are shown in Vietnamese dong (VND). The total at checkout includes the item subtotal and the shipping fee."
+        }
+      }
+    },
+    "returns": {
+      "title": "Returns",
+      "description": "Cancellations, returns, and refunds in the COVEWEFT Swim demo.",
+      "lead": "Since no order is ever shipped, there is nothing to send back. This page explains what you can do with a demo order instead.",
+      "sections": {
+        "cancel": {
+          "title": "Cancelling an order",
+          "body": "You can cancel your own order while it is Pending. The items go back into stock straight away. After an order is Confirmed, only a demo admin can cancel it, and only before it is Shipping."
+        },
+        "refund": {
+          "title": "Refund status",
+          "body": "When a paid order is cancelled, its payment status changes to refunded. No money moves because payments are simulated."
+        },
+        "real": {
+          "title": "If this were a real store",
+          "body": "A real store would state the return window, the condition items must be in, who pays return shipping, and how refunds are sent. These terms are outside the scope of this demo."
+        }
+      }
+    },
+    "contact": {
+      "title": "Complaints & Contact",
+      "description": "How to contact the COVEWEFT Swim project team with questions, complaints, or data requests.",
+      "lead": "Questions and complaints about the demo go to the student team that built it.",
+      "sections": {
+        "how": {
+          "title": "How to reach us",
+          "body": "Open an issue on the public project repository. Say which page or order your message is about. Please do not post personal data in an issue, because issues are public."
+        },
+        "complaints": {
+          "title": "Complaints",
+          "body": "If something in the demo looks wrong, misleading, or broken, tell us what you saw and on which page. We read every report and reply in the same issue."
+        },
+        "data": {
+          "title": "Data requests",
+          "body": "To ask us to delete your demo account and its data, open an issue that says you want your account deleted. Before deleting anything, we confirm the request with the email address on the account."
+        },
+        "business": {
+          "title": "No business contact",
+          "body": "COVEWEFT Swim is not a company, so there is no hotline, store address, or business email."
+        }
+      }
+    },
+    "privacy": {
+      "title": "Privacy",
+      "description": "What personal data the COVEWEFT Swim demo collects, why, where it is processed, and your rights.",
+      "lead": "This notice explains what the demo stores about you and why. Please use made-up details: do not enter your real name, phone number, or address.",
+      "sections": {
+        "collected": {
+          "title": "Data we collect",
+          "items": {
+            "account": "Account: email address and password (the password is stored as a hash by the authentication service).",
+            "profile": "Profile: name, phone number, and default delivery address, if you add them.",
+            "orders": "Orders: items, prices, shipping choice, recipient details, and order history.",
+            "consent": "Consent: the time you agreed to this policy and the policy version you agreed to."
+          }
+        },
+        "purpose": {
+          "title": "Why we use it",
+          "items": {
+            "account": "To let you sign in and keep your cart across devices.",
+            "orders": "To place demo orders, show your order history, and simulate payments.",
+            "admin": "To let the demo admin process demo orders.",
+            "proof": "To show that you agreed to this policy before creating an account."
+          }
+        },
+        "processors": {
+          "title": "Where it is processed",
+          "body": "Data is stored and processed by Supabase (database and sign-in) and the site is served by Vercel. The shopping assistant sends your questions to an AI model provider. These providers may process data on servers outside Vietnam."
+        },
+        "assistant": {
+          "title": "Shopping assistant",
+          "items": {
+            "sent": "The assistant sends only your question, recent messages from the same chat, and catalog search results to the AI provider.",
+            "notSent": "It does not send your email, name, phone number, or address.",
+            "measurements": "If you type body measurements to get a size suggestion, they are sent to the provider for that answer.",
+            "notStored": "Conversations are not saved on our servers. The chat history stays in your browser tab and is cleared when you sign out."
+          }
+        },
+        "rights": {
+          "title": "Your rights",
+          "items": {
+            "view": "You can view and edit your profile at any time on your account page.",
+            "delete": "You can ask us to delete your account and its data through the contact channel on the Complaints & Contact page.",
+            "withdraw": "You can stop using the demo at any time. Data from deleted accounts is not kept."
+          }
+        },
+        "retention": {
+          "title": "How long we keep it",
+          "body": "Demo data is kept for the duration of the course project. The demo database may be reset at any time, which deletes accounts and orders."
+        },
+        "law": {
+          "title": "Legal basis",
+          "body": "This notice is written with reference to Personal Data Protection Law No. 91/2025/QH15 and Decree 356/2025/ND-CP. Because the store is a study project, it does not carry out the impact assessments, cross-border transfer filings, or data protection staffing a real business would need."
+        },
+        "changes": {
+          "title": "Changes to this policy",
+          "body": "Each change to this policy gets a new version. Your account records the version you agreed to."
+        }
+      }
+    },
+    "terms": {
+      "title": "Terms of use",
+      "description": "Terms for using the COVEWEFT Swim demo store.",
+      "lead": "By using this website you accept that it is a demo built for a university course. These terms describe what that means.",
+      "sections": {
+        "demo": {
+          "title": "A demo, not a shop",
+          "body": "Placing an order does not create a contract of sale. Nothing is delivered, and no payment is collected. Order and payment statuses exist only to demonstrate the store."
+        },
+        "accounts": {
+          "title": "Accounts",
+          "body": "Anyone can create a customer account. Use made-up personal details. Accounts, carts, and orders may be deleted when the demo is reset."
+        },
+        "use": {
+          "title": "Acceptable use",
+          "items": {
+            "abuse": "Do not try to break, overload, or gain unauthorized access to the store or other accounts.",
+            "assistant": "The shopping assistant has usage limits per user and per day. Do not use it for anything unrelated to shopping in this store.",
+            "data": "Do not enter other people's personal data."
+          }
+        },
+        "content": {
+          "title": "Product content",
+          "body": "Product data and images come from SOBIE and are shown for study purposes only. COVEWEFT Swim is a fictional brand and does not claim any rights in them."
+        },
+        "warranty": {
+          "title": "No warranty",
+          "body": "The demo is provided as is. Prices, stock, and size suggestions are examples and may be wrong. Do not rely on them to buy swimwear elsewhere."
+        },
+        "law": {
+          "title": "Legal references",
+          "body": "The store pages follow the disclosures expected under E-commerce Law No. 122/2025/QH15 at a demo level. The website is not notified to the authorities as an e-commerce website because it does not do business."
+        }
+      }
+    }
   },
   "errors": {
     "VALIDATION_ERROR": "Please check the information you entered.",
