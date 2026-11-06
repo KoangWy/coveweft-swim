@@ -1,3 +1,5 @@
+import { sanitizeDetail, stripReasoning } from "./redact.ts";
+
 export type ProviderErrorKind =
   "timeout" | "rate_limit" | "server" | "auth" | "config" | "bad_request";
 
@@ -25,17 +27,16 @@ export class ProviderError extends Error {
       status?: number | null;
       detail?: string | null;
       afterOutput?: boolean;
-      cause?: unknown;
     } = {},
   ) {
     const status = options.status ?? null;
-    super(`AI provider request failed: ${kind}${status === null ? "" : ` (HTTP ${status})`}`, {
-      cause: options.cause,
-    });
+    // No `cause`: native errors and response bodies can carry headers, keys,
+    // or reasoning text, so only a sanitized `detail` is kept.
+    super(`AI provider request failed: ${kind}${status === null ? "" : ` (HTTP ${status})`}`);
     this.name = "ProviderError";
     this.kind = kind;
     this.status = status;
-    this.detail = options.detail ?? null;
+    this.detail = sanitizeDetail(options.detail);
     this.afterOutput = options.afterOutput ?? false;
   }
 
@@ -58,7 +59,6 @@ export class ProviderError extends Error {
       status: this.status,
       detail: this.detail,
       afterOutput: true,
-      cause: this.cause,
     });
   }
 }
@@ -87,38 +87,44 @@ export function kindForStatus(status: number): ProviderErrorKind {
   return "bad_request";
 }
 
-const MAX_DETAIL_LENGTH = 500;
-
-/** Extracts a short message from a provider error body. */
-export function errorDetail(body: string): string | null {
+/**
+ * Extracts a short, safe message from a provider error body. Reasoning
+ * fields and `thinking` chunks are removed and secrets are redacted before
+ * the text is truncated.
+ */
+export function errorDetail(body: string, secrets: readonly string[] = []): string | null {
   const trimmed = body.trim();
 
   if (trimmed === "") {
     return null;
   }
 
-  let detail = trimmed;
+  let parsed: unknown;
 
   try {
-    const parsed: unknown = JSON.parse(trimmed);
-
-    if (parsed && typeof parsed === "object") {
-      const record = parsed as Record<string, unknown>;
-      const nested = record.error;
-      const candidate =
-        (nested && typeof nested === "object"
-          ? (nested as Record<string, unknown>).message
-          : nested) ??
-        record.message ??
-        record.detail;
-
-      if (candidate !== undefined) {
-        detail = typeof candidate === "string" ? candidate : JSON.stringify(candidate);
-      }
-    }
+    parsed = JSON.parse(trimmed);
   } catch {
-    // Plain-text body; keep it as is.
+    // Plain-text body; redact it as is.
+    return sanitizeDetail(trimmed, secrets);
   }
 
-  return detail.length > MAX_DETAIL_LENGTH ? `${detail.slice(0, MAX_DETAIL_LENGTH)}…` : detail;
+  const safe = stripReasoning(parsed);
+  let candidate: unknown = safe;
+
+  if (safe && typeof safe === "object" && !Array.isArray(safe)) {
+    const record = safe as Record<string, unknown>;
+    const nested = record.error;
+    candidate =
+      (nested && typeof nested === "object"
+        ? (nested as Record<string, unknown>).message
+        : nested) ??
+      record.message ??
+      record.detail ??
+      safe;
+  }
+
+  return sanitizeDetail(
+    typeof candidate === "string" ? candidate : JSON.stringify(candidate ?? null),
+    secrets,
+  );
 }

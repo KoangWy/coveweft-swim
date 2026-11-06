@@ -12,6 +12,7 @@ import {
   ToolCallAccumulator,
   toUsage,
 } from "./normalize.ts";
+import { sanitizeDetail } from "./redact.ts";
 import { readSseData } from "./sse.ts";
 import type {
   ChatCompletion,
@@ -57,6 +58,13 @@ export function createChatProvider(
   const fetchImpl = options.fetch ?? fetch;
   const userAgent = options.userAgent ?? DEFAULT_USER_AGENT;
   const url = `${settings.baseUrl.replace(/\/+$/, "")}/chat/completions`;
+  const secrets = [settings.apiKey];
+  /** A sanitized one-line summary of a native error, never the error itself. */
+  const describe = (error: unknown) =>
+    sanitizeDetail(
+      error instanceof Error ? `${error.name}: ${error.message}` : String(error),
+      secrets,
+    );
 
   async function open(request: ChatRequest, stream: boolean): Promise<OpenRequest> {
     const timeout = new AbortController();
@@ -77,11 +85,11 @@ export function createChatProvider(
       }
 
       if (timeout.signal.aborted) {
-        return new ProviderError("timeout", { cause: error });
+        return new ProviderError("timeout", { detail: describe(error) });
       }
 
       // Network failure: DNS, connection reset, or a broken stream.
-      return new ProviderError("server", { cause: error });
+      return new ProviderError("server", { detail: describe(error) });
     };
 
     const signal = request.signal
@@ -126,7 +134,7 @@ export function createChatProvider(
 
       throw new ProviderError(kindForStatus(response.status), {
         status: response.status,
-        detail: errorDetail(body),
+        detail: errorDetail(body, secrets),
       });
     }
 
@@ -137,7 +145,20 @@ export function createChatProvider(
     const { response, mapError, close } = await open(request, false);
 
     try {
-      const completion = parseCompletion(await response.json());
+      const text = await response.text();
+      let body: unknown;
+
+      try {
+        body = JSON.parse(text);
+      } catch {
+        // The parser message can quote the body, so it is not kept.
+        throw new ProviderError("server", {
+          status: response.status,
+          detail: "Malformed JSON response.",
+        });
+      }
+
+      const completion = parseCompletion(body);
 
       if (!completion) {
         throw new ProviderError("server", {
@@ -167,7 +188,7 @@ export function createChatProvider(
       }
 
       for await (const payload of readSseData(response.body, touch)) {
-        const chunk = parseChunk(payload, response.status);
+        const chunk = parseChunk(payload, response.status, secrets);
         usage = toUsage(chunk.usage) ?? usage;
 
         const choices = Array.isArray(chunk.choices) ? chunk.choices : [];
@@ -223,7 +244,11 @@ export function createChatProvider(
   return { model: settings.model, stream, complete };
 }
 
-function parseChunk(payload: string, status: number): Record<string, unknown> {
+function parseChunk(
+  payload: string,
+  status: number,
+  secrets: readonly string[],
+): Record<string, unknown> {
   let chunk: Record<string, unknown> | null;
 
   try {
@@ -237,7 +262,7 @@ function parseChunk(payload: string, status: number): Record<string, unknown> {
   }
 
   if (chunk.error !== undefined || chunk.object === "error") {
-    throw new ProviderError("server", { status, detail: errorDetail(payload) });
+    throw new ProviderError("server", { status, detail: errorDetail(payload, secrets) });
   }
 
   return chunk;

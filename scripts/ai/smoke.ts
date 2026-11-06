@@ -15,6 +15,7 @@ import { fileURLToPath } from "node:url";
 
 import { getAiConfig, type AiProviderConfig } from "../../src/lib/config/env.ts";
 import { ProviderError } from "../../src/server/ai/errors.ts";
+import { redactSecrets } from "../../src/server/ai/redact.ts";
 import {
   createChatProvider,
   DEFAULT_USER_AGENT,
@@ -252,16 +253,23 @@ const CHECKS = [
   { name: "stream", run: checkStream },
 ];
 
-function redact(value: string, secrets: string[]): string {
-  return secrets.reduce((text, secret) => (secret ? text.split(secret).join("***") : text), value);
-}
-
 function describeError(error: unknown): string {
   if (error instanceof ProviderError) {
     return `${error.kind}${error.status === null ? "" : ` HTTP ${error.status}`}${error.detail ? `: ${error.detail}` : ""}`;
   }
 
   return error instanceof Error ? error.message : String(error);
+}
+
+/** Every role key; all output passes through the shared redactor. */
+const secrets: string[] = [];
+
+function print(text: string): void {
+  console.log(redactSecrets(text, secrets));
+}
+
+function printError(text: string): void {
+  console.error(redactSecrets(text, secrets));
 }
 
 async function runRole(
@@ -272,7 +280,7 @@ async function runRole(
   const prefix = role === "primary" ? "AI_PRIMARY" : "AI_FALLBACK";
   const failures: string[] = [];
 
-  console.log(
+  print(
     `\n[${role}] ${roleConfig.model} at ${roleConfig.baseUrl}, reasoning_effort ${roleConfig.reasoningEffort ?? "(not sent)"}`,
   );
 
@@ -317,17 +325,14 @@ async function runRole(
       effortMismatch ? "reasoning_effort did not match the configuration" : null,
     ].filter(Boolean);
 
-    console.log(
-      redact(
-        [
-          `  ${passed ? "PASS" : "FAIL"} ${name.padEnd(6)}`,
-          `HTTP ${statuses.length > 0 ? statuses.join(",") : "-"}`,
-          `${latencyMs} ms`,
-          `thinking chunks ${thinkingChunks}, leaked ${leaked ? "YES" : "no"}`,
-          notes.join("; "),
-        ].join(" | "),
-        [roleConfig.apiKey],
-      ),
+    print(
+      [
+        `  ${passed ? "PASS" : "FAIL"} ${name.padEnd(6)}`,
+        `HTTP ${statuses.length > 0 ? statuses.join(",") : "-"}`,
+        `${latencyMs} ms`,
+        `thinking chunks ${thinkingChunks}, leaked ${leaked ? "YES" : "no"}`,
+        notes.join("; "),
+      ].join(" | "),
     );
 
     if (!passed) {
@@ -343,13 +348,19 @@ async function runRole(
 async function main(): Promise<void> {
   const config = getAiConfig();
 
+  for (const role of [config?.primary, config?.fallback]) {
+    if (role) {
+      secrets.push(role.apiKey);
+    }
+  }
+
   if (!config) {
-    console.error("AI is not configured: set AI_PRIMARY_API_KEY in .env.local or the environment.");
+    printError("AI is not configured: set AI_PRIMARY_API_KEY in .env.local or the environment.");
     process.exitCode = 1;
     return;
   }
 
-  console.log(
+  print(
     `User-Agent ${DEFAULT_USER_AGENT}, max_tokens ${config.maxTokens}, timeout ${config.timeoutMs} ms`,
   );
 
@@ -362,14 +373,14 @@ async function main(): Promise<void> {
   }
 
   if (failures.length > 0) {
-    console.error(
+    printError(
       `\nSmoke test failed. Models were not changed.\n${failures.map((line) => `- ${line}`).join("\n")}`,
     );
     process.exitCode = 1;
     return;
   }
 
-  console.log("\nAll checks passed.");
+  print("\nAll checks passed.");
 }
 
 await main();
