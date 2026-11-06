@@ -1,0 +1,3127 @@
+{
+  "snapshotDate": "2026-11-06",
+  "source": {
+    "products": "products.csv",
+    "inventory": "sobie-drive-inventory.csv",
+    "translations": "data/translations/vi.json",
+    "sizeGuide": "data/size-guides/demo-size-guide.json"
+  },
+  "counts": {
+    "products": 475,
+    "variants": 1541,
+    "images": 3224,
+    "productTranslations": 475,
+    "attributeTranslations": 188,
+    "garmentVariants": 1417,
+    "accessoryVariants": 124
+  },
+  "checks": [
+    {
+      "name": "products",
+      "expected": 475,
+      "actual": 475
+    },
+    {
+      "name": "variants",
+      "expected": 1541,
+      "actual": 1541
+    },
+    {
+      "name": "images",
+      "expected": 3224,
+      "actual": 3224
+    },
+    {
+      "name": "productTranslations",
+      "expected": 475,
+      "actual": 475
+    },
+    {
+      "name": "attributeTranslations",
+      "expected": 188,
+      "actual": 188
+    }
+  ],
+  "anomalies": [
+    {
+      "code": "DUPLICATE_PRODUCT_NAME",
+      "summary": "12 product names shared by 25 SKUs; the extra rows are kept instead of merged.",
+      "count": 12,
+      "items": [
+        {
+          "name": "Black - Blue swim cap",
+          "skus": ["S12", "S25"]
+        },
+        {
+          "name": "Black - White swim cap",
+          "skus": ["S15", "S26"]
+        },
+        {
+          "name": "Black sun hat",
+          "skus": ["SH01", "SH05"]
+        },
+        {
+          "name": "Blue - Wave swim cap",
+          "skus": ["S13", "S27"]
+        },
+        {
+          "name": "Blue Mirror swim goggles",
+          "skus": ["S01", "S08"]
+        },
+        {
+          "name": "Blue swim goggles",
+          "skus": ["S04", "S07"]
+        },
+        {
+          "name": "Bra pads",
+          "skus": ["CUPSVSBZ11", "P01", "P02"]
+        },
+        {
+          "name": "Chợ Nổi swim cap",
+          "skus": ["CAPCT", "CAPCT1"]
+        },
+        {
+          "name": "Cầu Rồng swim cap",
+          "skus": ["CAPDN", "CAPDN1"]
+        },
+        {
+          "name": "Hồ Gươm swim cap",
+          "skus": ["CAPHN", "CAPHN1"]
+        },
+        {
+          "name": "Ngọn Hải Đăng swim cap",
+          "skus": ["CAPVT", "CAPVT1"]
+        },
+        {
+          "name": "màu AURA swim goggles",
+          "skus": ["GGARRED", "GGARWHT"]
+        }
+      ]
+    },
+    {
+      "code": "ZERO_STOCK_VARIANT",
+      "summary": "411 variants with zero stock across 183 products.",
+      "count": 411,
+      "items": [
+        {
+          "sku": "10F3",
+          "variants": [
+            {
+              "variantSku": "10F3",
+              "optionLabel": "Free size"
+            }
+          ]
+        },
+        {
+          "sku": "5F1",
+          "variants": [
+            {
+              "variantSku": "5F1",
+              "optionLabel": "Free size"
+            }
+          ]
+        },
+        {
+          "sku": "5F2",
+          "variants": [
+            {
+              "variantSku": "5F2",
+              "optionLabel": "Free size"
+            }
+          ]
+        },
+        {
+          "sku": "5F4",
+          "variants": [
+            {
+              "variantSku": "5F4",
+              "optionLabel": "Free size"
+            }
+          ]
+        },
+        {
+          "sku": "AQM3",
+          "variants": [
+            {
+              "variantSku": "AQM3-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "BILY",
+          "variants": [
+            {
+              "variantSku": "BILY-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "BILY-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "BILY-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "BYSBW",
+          "variants": [
+            {
+              "variantSku": "BYSBW-3",
+              "optionLabel": "4XL"
+            }
+          ]
+        },
+        {
+          "sku": "CAPFS",
+          "variants": [
+            {
+              "variantSku": "CAPFS",
+              "optionLabel": "Free size"
+            }
+          ]
+        },
+        {
+          "sku": "CAPHN1",
+          "variants": [
+            {
+              "variantSku": "CAPHN1",
+              "optionLabel": "Free size"
+            }
+          ]
+        },
+        {
+          "sku": "CAPSG",
+          "variants": [
+            {
+              "variantSku": "CAPSG",
+              "optionLabel": "Free size"
+            }
+          ]
+        },
+        {
+          "sku": "CAPSS",
+          "variants": [
+            {
+              "variantSku": "CAPSS",
+              "optionLabel": "Free size"
+            }
+          ]
+        },
+        {
+          "sku": "CAPVT1",
+          "variants": [
+            {
+              "variantSku": "CAPVT1",
+              "optionLabel": "Free size"
+            }
+          ]
+        },
+        {
+          "sku": "Chloe",
+          "variants": [
+            {
+              "variantSku": "Chloe-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "Chloe-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "EMMA",
+          "variants": [
+            {
+              "variantSku": "EMMA-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "EMMA-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "EMMA-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "EMMA-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "FINB",
+          "variants": [
+            {
+              "variantSku": "FINB-2",
+              "optionLabel": "S"
+            }
+          ]
+        },
+        {
+          "sku": "FINP",
+          "variants": [
+            {
+              "variantSku": "FINP-2",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "FINP-4",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "GGC",
+          "variants": [
+            {
+              "variantSku": "GGC-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "GGC-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "GGC-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "GGCS",
+          "variants": [
+            {
+              "variantSku": "GGCS-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "GGCS-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "GGCS-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "GGCS-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "GGL",
+          "variants": [
+            {
+              "variantSku": "GGL-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "GGP",
+          "variants": [
+            {
+              "variantSku": "GGP-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "GGP-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "GRSL",
+          "variants": [
+            {
+              "variantSku": "GRSL-2",
+              "optionLabel": "3XL"
+            },
+            {
+              "variantSku": "GRSL-3",
+              "optionLabel": "4XL"
+            }
+          ]
+        },
+        {
+          "sku": "HOLLY",
+          "variants": [
+            {
+              "variantSku": "HOLLY-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "JSBA",
+          "variants": [
+            {
+              "variantSku": "JSBA-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "JSBA-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "JSBA-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "JSBA-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "JSC",
+          "variants": [
+            {
+              "variantSku": "JSC-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "JSC-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "JSCW",
+          "variants": [
+            {
+              "variantSku": "JSCW-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "JSCW-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "JSCW-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "JSL",
+          "variants": [
+            {
+              "variantSku": "JSL-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "JSL-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "JSSS",
+          "variants": [
+            {
+              "variantSku": "JSSS-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "JSSS-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "KMR3",
+          "variants": [
+            {
+              "variantSku": "KMR3-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "KMR4",
+          "variants": [
+            {
+              "variantSku": "KMR4-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "KMR5",
+          "variants": [
+            {
+              "variantSku": "KMR5-1",
+              "optionLabel": "S"
+            }
+          ]
+        },
+        {
+          "sku": "KMR7",
+          "variants": [
+            {
+              "variantSku": "KMR7-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "KMR7-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "LML",
+          "variants": [
+            {
+              "variantSku": "LML-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "LML-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "LML-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "LML-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "MA02",
+          "variants": [
+            {
+              "variantSku": "MA02",
+              "optionLabel": "Free size"
+            }
+          ]
+        },
+        {
+          "sku": "MM",
+          "variants": [
+            {
+              "variantSku": "MM-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "MM-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "MM-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "MMC",
+          "variants": [
+            {
+              "variantSku": "MMC-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "MMC-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "MMC-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "MMC-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "MMM",
+          "variants": [
+            {
+              "variantSku": "MMM-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "MMM-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "MMM-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "MMR",
+          "variants": [
+            {
+              "variantSku": "MMR-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "MN",
+          "variants": [
+            {
+              "variantSku": "MN-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "MN-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "MN-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "MO",
+          "variants": [
+            {
+              "variantSku": "MO-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "MO-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "MP",
+          "variants": [
+            {
+              "variantSku": "MP-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "MP-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "MP-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "MS",
+          "variants": [
+            {
+              "variantSku": "MS-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "MS-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "OC01",
+          "variants": [
+            {
+              "variantSku": "OC01-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "OC01-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "OC01-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "OC01-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "OC03",
+          "variants": [
+            {
+              "variantSku": "OC03-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "OC03-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "OC03-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "OC03-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "OC04",
+          "variants": [
+            {
+              "variantSku": "OC04-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "OC06",
+          "variants": [
+            {
+              "variantSku": "OC06-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "OC07",
+          "variants": [
+            {
+              "variantSku": "OC07-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "OC07-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "OC07-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "OC07-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "OC09",
+          "variants": [
+            {
+              "variantSku": "OC09-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "OC09-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "OC09-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "OC09-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "OC11",
+          "variants": [
+            {
+              "variantSku": "OC11-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "OC11-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "OC11-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "OC12",
+          "variants": [
+            {
+              "variantSku": "OC12-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "OC13",
+          "variants": [
+            {
+              "variantSku": "OC13-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "OC13-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "OC15",
+          "variants": [
+            {
+              "variantSku": "OC15-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "OC15-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "PONCHO3",
+          "variants": [
+            {
+              "variantSku": "PONCHO3",
+              "optionLabel": "80x60"
+            }
+          ]
+        },
+        {
+          "sku": "PZSM",
+          "variants": [
+            {
+              "variantSku": "PZSM-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "PZSM-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "PZSP",
+          "variants": [
+            {
+              "variantSku": "PZSP-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "PZSP-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "PZSV",
+          "variants": [
+            {
+              "variantSku": "PZSV-1",
+              "optionLabel": "S"
+            }
+          ]
+        },
+        {
+          "sku": "RLSN",
+          "variants": [
+            {
+              "variantSku": "RLSN-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "RM",
+          "variants": [
+            {
+              "variantSku": "RM-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "RM-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "RM-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "RM-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "RMM",
+          "variants": [
+            {
+              "variantSku": "RMM-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "RMM-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "RMM-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "RMM-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "RS05",
+          "variants": [
+            {
+              "variantSku": "RS05-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "RS05-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "S11",
+          "variants": [
+            {
+              "variantSku": "S11",
+              "optionLabel": "Free size"
+            }
+          ]
+        },
+        {
+          "sku": "SB6",
+          "variants": [
+            {
+              "variantSku": "SB6-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SBBCA",
+          "variants": [
+            {
+              "variantSku": "SBBCA-1",
+              "optionLabel": "XL"
+            },
+            {
+              "variantSku": "SBBCA-2",
+              "optionLabel": "XXL"
+            },
+            {
+              "variantSku": "SBBCA-3",
+              "optionLabel": "XXXL"
+            }
+          ]
+        },
+        {
+          "sku": "SBBCE",
+          "variants": [
+            {
+              "variantSku": "SBBCE-1",
+              "optionLabel": "XL"
+            },
+            {
+              "variantSku": "SBBCE-2",
+              "optionLabel": "XXL"
+            },
+            {
+              "variantSku": "SBBCE-3",
+              "optionLabel": "XXXL"
+            }
+          ]
+        },
+        {
+          "sku": "SBBIM",
+          "variants": [
+            {
+              "variantSku": "SBBIM-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "SBCBB",
+          "variants": [
+            {
+              "variantSku": "SBCBB-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SBCBB-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SBCBB-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SBD",
+          "variants": [
+            {
+              "variantSku": "SBD",
+              "optionLabel": "Free size"
+            }
+          ]
+        },
+        {
+          "sku": "SBDSC",
+          "variants": [
+            {
+              "variantSku": "SBDSC-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SBDSC-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SBDSC-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SBDSC-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SBKMV",
+          "variants": [
+            {
+              "variantSku": "SBKMV-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SBKMV-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SBKMV-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SBKMV-4",
+              "optionLabel": "XL"
+            },
+            {
+              "variantSku": "SBKMV-5",
+              "optionLabel": "XXL"
+            }
+          ]
+        },
+        {
+          "sku": "SBKMX",
+          "variants": [
+            {
+              "variantSku": "SBKMX-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SBKMX-4",
+              "optionLabel": "XL"
+            },
+            {
+              "variantSku": "SBKMX5",
+              "optionLabel": "XXL"
+            }
+          ]
+        },
+        {
+          "sku": "SBL",
+          "variants": [
+            {
+              "variantSku": "SBL",
+              "optionLabel": "Free size"
+            }
+          ]
+        },
+        {
+          "sku": "SBWBS",
+          "variants": [
+            {
+              "variantSku": "SBWBS-2",
+              "optionLabel": "XXL"
+            },
+            {
+              "variantSku": "SBWBS-3",
+              "optionLabel": "XXXL"
+            }
+          ]
+        },
+        {
+          "sku": "SBWHB",
+          "variants": [
+            {
+              "variantSku": "SBWHB-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SBWHB-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SBWHB-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SBWLM",
+          "variants": [
+            {
+              "variantSku": "SBWLM-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SBWLM-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SBWLM-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SBWLM-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SBWLS",
+          "variants": [
+            {
+              "variantSku": "SBWLS-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SBWLS-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SBWLS-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SBWLS-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SBWPA",
+          "variants": [
+            {
+              "variantSku": "SBWPA-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SBWPA-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SBWPP",
+          "variants": [
+            {
+              "variantSku": "SBWPP-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SBWPP-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SBWPP-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SBWPP-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SBWST",
+          "variants": [
+            {
+              "variantSku": "SBWST-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SBWST-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SBWST-4",
+              "optionLabel": "XL"
+            },
+            {
+              "variantSku": "SBWST-5",
+              "optionLabel": "XXL"
+            }
+          ]
+        },
+        {
+          "sku": "SBWVA",
+          "variants": [
+            {
+              "variantSku": "SBWVA-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SBWVA-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SBWVA-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SBWVA-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SBWVT",
+          "variants": [
+            {
+              "variantSku": "SBWVT-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SBWVT-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SBWVT-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SBWVT-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SBWVW",
+          "variants": [
+            {
+              "variantSku": "SBWVW-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SBWVZ",
+          "variants": [
+            {
+              "variantSku": "SBWVZ-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SBWVZ-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SBWVZ-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SCF",
+          "variants": [
+            {
+              "variantSku": "SCF-2",
+              "optionLabel": "3XL"
+            }
+          ]
+        },
+        {
+          "sku": "SCS",
+          "variants": [
+            {
+              "variantSku": "SCS-2",
+              "optionLabel": "3XL"
+            }
+          ]
+        },
+        {
+          "sku": "SKAP",
+          "variants": [
+            {
+              "variantSku": "SKAP-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SKAPP",
+          "variants": [
+            {
+              "variantSku": "SKAPP-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SKAPP-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SKAPP-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SKKC",
+          "variants": [
+            {
+              "variantSku": "SKKC-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SKKC-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SKKL",
+          "variants": [
+            {
+              "variantSku": "SKKL-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SKKL-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SKKL-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SKKL-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SKNTC",
+          "variants": [
+            {
+              "variantSku": "SKNTC-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SKNTC-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SKNTC-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SKPHG",
+          "variants": [
+            {
+              "variantSku": "SKPHG-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SKPHG-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SKWPP",
+          "variants": [
+            {
+              "variantSku": "SKWPP-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SKWYL",
+          "variants": [
+            {
+              "variantSku": "SKWYL-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SKWYL-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SLWB",
+          "variants": [
+            {
+              "variantSku": "SLWB-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "SLWLC",
+          "variants": [
+            {
+              "variantSku": "SLWLC-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SLWLC-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SLWLC-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SLWM",
+          "variants": [
+            {
+              "variantSku": "SLWM-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SLWM-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SLWM-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SLWT",
+          "variants": [
+            {
+              "variantSku": "SLWT-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SLWT-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SLWT-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SLWT-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SLWZ",
+          "variants": [
+            {
+              "variantSku": "SLWZ-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SLWZ-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SLWZ-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SMDR",
+          "variants": [
+            {
+              "variantSku": "SMDR-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "SMET",
+          "variants": [
+            {
+              "variantSku": "SMET-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SMET-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SMET-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SMET-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SMLG",
+          "variants": [
+            {
+              "variantSku": "SMLG-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SMLG-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SMLG-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SMLG-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SMN",
+          "variants": [
+            {
+              "variantSku": "SMN-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SMN-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SMRC",
+          "variants": [
+            {
+              "variantSku": "SMRC-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SMRC-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SMRC-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SMRTP",
+          "variants": [
+            {
+              "variantSku": "SMRTP-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SMRTP-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SMRTP-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SMS1",
+          "variants": [
+            {
+              "variantSku": "SMS1-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SMS2B",
+          "variants": [
+            {
+              "variantSku": "SMS2B-5",
+              "optionLabel": "XXL"
+            }
+          ]
+        },
+        {
+          "sku": "SMS4",
+          "variants": [
+            {
+              "variantSku": "SMS4-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SMS4-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "SMSBB",
+          "variants": [
+            {
+              "variantSku": "SMSBB-1",
+              "optionLabel": "S"
+            }
+          ]
+        },
+        {
+          "sku": "SMVC",
+          "variants": [
+            {
+              "variantSku": "SMVC-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SMVC-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SMVC-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SMVC-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SOAR",
+          "variants": [
+            {
+              "variantSku": "SOAR-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SOCA",
+          "variants": [
+            {
+              "variantSku": "SOCA-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SOCA-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SOJE",
+          "variants": [
+            {
+              "variantSku": "SOJE-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SOJE-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SOJE-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SOLA",
+          "variants": [
+            {
+              "variantSku": "SOLA-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SOLE",
+          "variants": [
+            {
+              "variantSku": "SOLE-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SOLE-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SOLE-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SOLE-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SOLU",
+          "variants": [
+            {
+              "variantSku": "SOLU-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SOLU-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SOOL",
+          "variants": [
+            {
+              "variantSku": "SOOL-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SOOL-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SOOL-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SOTA",
+          "variants": [
+            {
+              "variantSku": "SOTA-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SOTA-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SOVE",
+          "variants": [
+            {
+              "variantSku": "SOVE-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SOVE-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SOVE-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SOXA",
+          "variants": [
+            {
+              "variantSku": "SOXA-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SOXA-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SOXA-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SOXA-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SOZO",
+          "variants": [
+            {
+              "variantSku": "SOZO-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SSK21",
+          "variants": [
+            {
+              "variantSku": "SSK21-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SSK21-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SSK21-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SSK26",
+          "variants": [
+            {
+              "variantSku": "SSK26-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SSK29",
+          "variants": [
+            {
+              "variantSku": "SSK29-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SSK29-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SSK30",
+          "variants": [
+            {
+              "variantSku": "SSK30-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SSK31",
+          "variants": [
+            {
+              "variantSku": "SSK31-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SSK32",
+          "variants": [
+            {
+              "variantSku": "SSK32-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SSM35",
+          "variants": [
+            {
+              "variantSku": "SSM35-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "SSM37",
+          "variants": [
+            {
+              "variantSku": "SSM37-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SSM37-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SSM37-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SSW01",
+          "variants": [
+            {
+              "variantSku": "SSW01-0",
+              "optionLabel": "XS"
+            }
+          ]
+        },
+        {
+          "sku": "SSW09",
+          "variants": [
+            {
+              "variantSku": "SSW09-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SSW14",
+          "variants": [
+            {
+              "variantSku": "SSW14-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "ST",
+          "variants": [
+            {
+              "variantSku": "ST",
+              "optionLabel": "Free size"
+            }
+          ]
+        },
+        {
+          "sku": "ST1",
+          "variants": [
+            {
+              "variantSku": "ST1-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "ST2",
+          "variants": [
+            {
+              "variantSku": "ST2-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "ST3",
+          "variants": [
+            {
+              "variantSku": "ST3-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "ST4",
+          "variants": [
+            {
+              "variantSku": "ST4-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "ST4-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "ST4-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "ST4-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "ST5",
+          "variants": [
+            {
+              "variantSku": "ST5-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "ST5-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "ST6",
+          "variants": [
+            {
+              "variantSku": "ST6-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "ST6-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SWBSF",
+          "variants": [
+            {
+              "variantSku": "SWBSF-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SWBSF-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SWBSF-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SWDBM",
+          "variants": [
+            {
+              "variantSku": "SWDBM-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SWDBM-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SWDBM-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SWDCB",
+          "variants": [
+            {
+              "variantSku": "SWDCB-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SWDCB-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SWDCB-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SWDCB-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SWDSM",
+          "variants": [
+            {
+              "variantSku": "SWDSM-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SWDSM-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "SWDSZ",
+          "variants": [
+            {
+              "variantSku": "SWDSZ-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SWDSZ-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SWDSZ-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SWDSZ-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SWLFG1",
+          "variants": [
+            {
+              "variantSku": "SWLFG1-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SWLFG1-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SWLFG1-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SWLFO1",
+          "variants": [
+            {
+              "variantSku": "SWLFO1-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SWLFO1-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SWLG1",
+          "variants": [
+            {
+              "variantSku": "SWLG1-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SWLHG1",
+          "variants": [
+            {
+              "variantSku": "SWLHG1-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SWLHG1-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SWLHG1-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SWLHG1-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SWLHO1",
+          "variants": [
+            {
+              "variantSku": "SWLHO1-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SWLHO1-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SWLM1",
+          "variants": [
+            {
+              "variantSku": "SWLM1-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SWLM1-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SWLP1",
+          "variants": [
+            {
+              "variantSku": "SWLP1-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SWLP1-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SWLSG1",
+          "variants": [
+            {
+              "variantSku": "SWLSG1-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SWLSG1-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SWLSO1",
+          "variants": [
+            {
+              "variantSku": "SWLSO1-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SWLSO1-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SWLXO1",
+          "variants": [
+            {
+              "variantSku": "SWLXO1-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "SWMCB",
+          "variants": [
+            {
+              "variantSku": "SWMCB-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "SWMCC",
+          "variants": [
+            {
+              "variantSku": "SWMCC-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SWMCC-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SWMCC-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SWMCD",
+          "variants": [
+            {
+              "variantSku": "SWMCD-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SWMCD-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SWMCD-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "SWRMK",
+          "variants": [
+            {
+              "variantSku": "SWRMK-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SWRMK-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SWRMK-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SWRMK-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SWRMN",
+          "variants": [
+            {
+              "variantSku": "SWRMN-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SWRMN-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SWRMN-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SWRMN-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SWRMT",
+          "variants": [
+            {
+              "variantSku": "SWRMT-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SWRMT-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SWRMT-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SWRMT-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SWSML",
+          "variants": [
+            {
+              "variantSku": "SWSML-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SWSML-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SWSML-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "SWWGR",
+          "variants": [
+            {
+              "variantSku": "SWWGR-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "SWWGR-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "SWWNP",
+          "variants": [
+            {
+              "variantSku": "SWWNP-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "SWWPT",
+          "variants": [
+            {
+              "variantSku": "SWWPT-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "SWWTB",
+          "variants": [
+            {
+              "variantSku": "SWWTB-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "SWWTR",
+          "variants": [
+            {
+              "variantSku": "SWWTR-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "SWZHG",
+          "variants": [
+            {
+              "variantSku": "SWZHG-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "SWZHG-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "SWZHG-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "WBM",
+          "variants": [
+            {
+              "variantSku": "WBM-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "WBM-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "WBM-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "WCM",
+          "variants": [
+            {
+              "variantSku": "WCM-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "WCM-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "WHN",
+          "variants": [
+            {
+              "variantSku": "WHN-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "WLMS",
+          "variants": [
+            {
+              "variantSku": "WLMS-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "WLS",
+          "variants": [
+            {
+              "variantSku": "WLS-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "WLS-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "WMC",
+          "variants": [
+            {
+              "variantSku": "WMC-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "WMC-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "WMC-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "WMM",
+          "variants": [
+            {
+              "variantSku": "WMM-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "WMM-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "WMM-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "WMN",
+          "variants": [
+            {
+              "variantSku": "WMN-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "WMN-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "WMN-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "WMNM",
+          "variants": [
+            {
+              "variantSku": "WMNM-2",
+              "optionLabel": "M"
+            }
+          ]
+        },
+        {
+          "sku": "WMO",
+          "variants": [
+            {
+              "variantSku": "WMO-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "WSL",
+          "variants": [
+            {
+              "variantSku": "WSL-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "WSL-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "WSL-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "WSL-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "WVS",
+          "variants": [
+            {
+              "variantSku": "WVS-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "WVS-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "WVS-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "WWQ",
+          "variants": [
+            {
+              "variantSku": "WWQ-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "WWQ-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "WWQ-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "XSBP",
+          "variants": [
+            {
+              "variantSku": "XSBP-1",
+              "optionLabel": "S"
+            },
+            {
+              "variantSku": "XSBP-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "XSBP-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "XSBP-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "XSNI",
+          "variants": [
+            {
+              "variantSku": "XSNI-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "XSNI-3",
+              "optionLabel": "L"
+            },
+            {
+              "variantSku": "XSNI-4",
+              "optionLabel": "XL"
+            }
+          ]
+        },
+        {
+          "sku": "YSBW",
+          "variants": [
+            {
+              "variantSku": "YSBW-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "YSBW-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "YSGS",
+          "variants": [
+            {
+              "variantSku": "YSGS-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "YSGS-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "YSRB",
+          "variants": [
+            {
+              "variantSku": "YSRB-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "YSRB-3",
+              "optionLabel": "L"
+            }
+          ]
+        },
+        {
+          "sku": "ZSB",
+          "variants": [
+            {
+              "variantSku": "ZSB-2",
+              "optionLabel": "M"
+            },
+            {
+              "variantSku": "ZSB-3",
+              "optionLabel": "L"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "OUT_OF_STOCK_PRODUCT",
+      "summary": "56 products with no stock in any variant.",
+      "count": 56,
+      "items": [
+        {
+          "sku": "10F3",
+          "name": "Sunstruck dry bag"
+        },
+        {
+          "sku": "5F1",
+          "name": "Pink Cosmos dry bag"
+        },
+        {
+          "sku": "5F2",
+          "name": "Vermilion dry bag"
+        },
+        {
+          "sku": "5F4",
+          "name": "Blue dry bag"
+        },
+        {
+          "sku": "CAPFS",
+          "name": "Fresh Summer swim cap"
+        },
+        {
+          "sku": "CAPHN1",
+          "name": "Hồ Gươm swim cap"
+        },
+        {
+          "sku": "CAPSG",
+          "name": "Bitexco swim cap"
+        },
+        {
+          "sku": "CAPSS",
+          "name": "Sweet Summer swim cap"
+        },
+        {
+          "sku": "CAPVT1",
+          "name": "Ngọn Hải Đăng swim cap"
+        },
+        {
+          "sku": "EMMA",
+          "name": "Floral Emma rash guard"
+        },
+        {
+          "sku": "GGCS",
+          "name": "Gorgeous Celeste rash guard"
+        },
+        {
+          "sku": "JSBA",
+          "name": "Soendu™ Blue Arrow jammers"
+        },
+        {
+          "sku": "LML",
+          "name": "Mermaid Lana swim leggings"
+        },
+        {
+          "sku": "MA02",
+          "name": "White mask & snorkel set"
+        },
+        {
+          "sku": "MMC",
+          "name": "Marine Cleo rash guard"
+        },
+        {
+          "sku": "MP",
+          "name": "Mermaid Pearl monokini"
+        },
+        {
+          "sku": "OC01",
+          "name": "Orchid Elara rash guard"
+        },
+        {
+          "sku": "OC03",
+          "name": "Orchid Alina rash guard"
+        },
+        {
+          "sku": "OC07",
+          "name": "Orchid swim dress"
+        },
+        {
+          "sku": "OC09",
+          "name": "Orchid Vela swimsuit"
+        },
+        {
+          "sku": "PONCHO3",
+          "name": "Bunny poncho towel"
+        },
+        {
+          "sku": "RM",
+          "name": "Mermaid Misty rash guard"
+        },
+        {
+          "sku": "RMM",
+          "name": "Mermaid Marina rash guard"
+        },
+        {
+          "sku": "S11",
+          "name": "Clear Mirror Blue swim goggles"
+        },
+        {
+          "sku": "SBBCA",
+          "name": "Chubby Andrea rash guard"
+        },
+        {
+          "sku": "SBBCE",
+          "name": "Chubby Edna swim dress"
+        },
+        {
+          "sku": "SBD",
+          "name": "Baby Doll sun hat"
+        },
+        {
+          "sku": "SBDSC",
+          "name": "Destiny Serena rash guard"
+        },
+        {
+          "sku": "SBKMV",
+          "name": "xiếc nhiệm màu swimsuit"
+        },
+        {
+          "sku": "SBL",
+          "name": "Baby Light sun hat"
+        },
+        {
+          "sku": "SBWLM",
+          "name": "Nero Mila swim shorts"
+        },
+        {
+          "sku": "SBWLS",
+          "name": "Life Style swim shorts"
+        },
+        {
+          "sku": "SBWPP",
+          "name": "Bird Paradise swim shorts"
+        },
+        {
+          "sku": "SBWVA",
+          "name": "Kaylin rash guard"
+        },
+        {
+          "sku": "SBWVT",
+          "name": "Erica swim shorts"
+        },
+        {
+          "sku": "SKKL",
+          "name": "Khủng long swimsuit"
+        },
+        {
+          "sku": "SLWT",
+          "name": "Lavender Wendy rash guard"
+        },
+        {
+          "sku": "SMET",
+          "name": "Ethan rash guard"
+        },
+        {
+          "sku": "SMLG",
+          "name": "Logan rash guard"
+        },
+        {
+          "sku": "SMVC",
+          "name": "Vincent rash guard"
+        },
+        {
+          "sku": "SOLE",
+          "name": "Ori Leva swim shorts"
+        },
+        {
+          "sku": "SOXA",
+          "name": "Ori Xavia monokini"
+        },
+        {
+          "sku": "ST",
+          "name": "White Navy beach bag"
+        },
+        {
+          "sku": "ST4",
+          "name": "Befree t-shirt"
+        },
+        {
+          "sku": "SWDBM",
+          "name": "Destiny Brenna monokini"
+        },
+        {
+          "sku": "SWDCB",
+          "name": "Destiny Cosima swimsuit"
+        },
+        {
+          "sku": "SWDSZ",
+          "name": "Destiny Stella rash guard"
+        },
+        {
+          "sku": "SWLHG1",
+          "name": "Sotek™ Line half-body suit Green"
+        },
+        {
+          "sku": "SWMCC",
+          "name": "Circle Catalina monokini"
+        },
+        {
+          "sku": "SWMCD",
+          "name": "Circle Dreamy monokini"
+        },
+        {
+          "sku": "SWRMK",
+          "name": "Muse Keelin swimsuit"
+        },
+        {
+          "sku": "SWRMN",
+          "name": "Muse Naila swim dress"
+        },
+        {
+          "sku": "SWRMT",
+          "name": "Muse Tina rash guard"
+        },
+        {
+          "sku": "WBM",
+          "name": "Mercy swimsuit"
+        },
+        {
+          "sku": "WSL",
+          "name": "Soendu™ Lucia swim shorts"
+        },
+        {
+          "sku": "XSBP",
+          "name": "Legsuit X-back Sotek™ Black-Pink"
+        }
+      ]
+    },
+    {
+      "code": "NON_SIZE_OPTION_LABEL",
+      "summary": "106 variants with option labels that are not garment sizes, such as \"Free size\" or a dimension.",
+      "count": 106,
+      "items": [
+        {
+          "label": "35L",
+          "count": 3,
+          "skus": ["SA-DB35B", "SA-DB35G", "SA-DB35O"]
+        },
+        {
+          "label": "36",
+          "count": 2,
+          "skus": ["WSH01", "WSH02"]
+        },
+        {
+          "label": "38",
+          "count": 2,
+          "skus": ["WSH01", "WSH02"]
+        },
+        {
+          "label": "40",
+          "count": 2,
+          "skus": ["WSH01", "WSH02"]
+        },
+        {
+          "label": "42",
+          "count": 2,
+          "skus": ["WSH01", "WSH02"]
+        },
+        {
+          "label": "44",
+          "count": 2,
+          "skus": ["WSH01", "WSH02"]
+        },
+        {
+          "label": "55-60CM",
+          "count": 6,
+          "skus": ["SH01", "SH02", "SH03", "SH04", "SH05", "SH06"]
+        },
+        {
+          "label": "70x140",
+          "count": 8,
+          "skus": ["KTM01", "KTM02", "KTM03", "KTM04", "KTM05", "KTM06", "KTM07", "KTM08"]
+        },
+        {
+          "label": "80x60",
+          "count": 3,
+          "skus": ["PONCHO1", "PONCHO2", "PONCHO3"]
+        },
+        {
+          "label": "Free size",
+          "count": 74,
+          "skus": [
+            "10F1",
+            "10F2",
+            "10F3",
+            "10F4",
+            "5F1",
+            "5F2",
+            "5F3",
+            "5F4",
+            "5T1",
+            "5T2",
+            "5T3",
+            "5T4",
+            "CAPCT",
+            "CAPCT1",
+            "CAPDN",
+            "CAPDN1",
+            "CAPFP",
+            "CAPFS",
+            "CAPHL",
+            "CAPHN",
+            "CAPHN1",
+            "CAPSG",
+            "CAPSS",
+            "CAPVT",
+            "CAPVT1",
+            "GGARRED",
+            "GGARWHT",
+            "GGS01",
+            "GGS02",
+            "GGS03",
+            "GGS04",
+            "GGS05",
+            "GGS06",
+            "MA01",
+            "MA02",
+            "MA03",
+            "MA04",
+            "MA05",
+            "P01",
+            "P02",
+            "S01",
+            "S02",
+            "S03",
+            "S04",
+            "S05",
+            "S06",
+            "S07",
+            "S08",
+            "S09",
+            "S10",
+            "S11",
+            "S12",
+            "S13",
+            "S14",
+            "S15",
+            "S16",
+            "S17",
+            "S18",
+            "S19",
+            "S20",
+            "S21",
+            "S22",
+            "S23",
+            "S25",
+            "S26",
+            "S27",
+            "S304",
+            "SBB",
+            "SBC",
+            "SBD",
+            "SBL",
+            "SBS",
+            "SBT",
+            "ST"
+          ]
+        },
+        {
+          "label": "Free size (Black)",
+          "count": 1,
+          "skus": ["CUPSVSBZ11"]
+        },
+        {
+          "label": "Free size (Nude)",
+          "count": 1,
+          "skus": ["CUPSVSBZ11"]
+        }
+      ]
+    },
+    {
+      "code": "ACCESSORY_SIZE_LIKE_LABEL",
+      "summary": "18 accessory variants with garment size labels; the size guide key stays null by rule.",
+      "count": 18,
+      "items": [
+        {
+          "label": "L",
+          "count": 3,
+          "skus": ["FINB", "FINP", "FINY"]
+        },
+        {
+          "label": "M",
+          "count": 3,
+          "skus": ["FINB", "FINP", "FINY"]
+        },
+        {
+          "label": "S",
+          "count": 9,
+          "skus": ["FINB", "FINP", "FINY", "PCA01", "PCA02", "PCK01", "PCK02", "PCK03", "PCK04"]
+        },
+        {
+          "label": "XS",
+          "count": 3,
+          "skus": ["FINB", "FINP", "FINY"]
+        }
+      ]
+    },
+    {
+      "code": "EMPTY_FEATURES",
+      "summary": "7 products without feature values in the source.",
+      "count": 7,
+      "items": [
+        {
+          "sku": "CUPSVSBZ11",
+          "name": "Bra pads"
+        },
+        {
+          "sku": "P01",
+          "name": "Bra pads"
+        },
+        {
+          "sku": "P02",
+          "name": "Bra pads"
+        },
+        {
+          "sku": "SA-DB35B",
+          "name": "T.O.U Black backpack"
+        },
+        {
+          "sku": "SA-DB35G",
+          "name": "T.O.U Grey backpack"
+        },
+        {
+          "sku": "SA-DB35O",
+          "name": "T.O.U Orange backpack"
+        },
+        {
+          "sku": "ST",
+          "name": "White Navy beach bag"
+        }
+      ]
+    },
+    {
+      "code": "NON_SOBIE_BRAND",
+      "summary": "1 product without the SOBIE brand label.",
+      "count": 1,
+      "items": [
+        {
+          "sku": "KMR5",
+          "brand": "Other"
+        }
+      ]
+    },
+    {
+      "code": "SIZE_LABEL_ALIAS",
+      "summary": "1 variant with an alias label that maps to the same size guide key as a canonical label.",
+      "count": 1,
+      "items": [
+        {
+          "sku": "BB25HBX",
+          "optionLabel": "S (Y)",
+          "canonicalLabel": "S (2Y)",
+          "sizeGuideKey": "baby-S"
+        }
+      ]
+    }
+  ]
+}

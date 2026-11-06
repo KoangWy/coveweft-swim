@@ -1,0 +1,9850 @@
+[
+  {
+    "sku": "10F1",
+    "stockQty": 58,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 58
+    },
+    "variantSkuBySize": {
+      "Free size": "10F1"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "10F2",
+    "stockQty": 65,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 65
+    },
+    "variantSkuBySize": {
+      "Free size": "10F2"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "10F3",
+    "stockQty": 0,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 0
+    },
+    "variantSkuBySize": {
+      "Free size": "10F3"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "10F4",
+    "stockQty": 73,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 73
+    },
+    "variantSkuBySize": {
+      "Free size": "10F4"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "5F1",
+    "stockQty": 0,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 0
+    },
+    "variantSkuBySize": {
+      "Free size": "5F1"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "5F2",
+    "stockQty": 0,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 0
+    },
+    "variantSkuBySize": {
+      "Free size": "5F2"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "5F3",
+    "stockQty": 61,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 61
+    },
+    "variantSkuBySize": {
+      "Free size": "5F3"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "5F4",
+    "stockQty": 0,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 0
+    },
+    "variantSkuBySize": {
+      "Free size": "5F4"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "5T1",
+    "stockQty": 68,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 68
+    },
+    "variantSkuBySize": {
+      "Free size": "5T1"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "5T2",
+    "stockQty": 145,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 145
+    },
+    "variantSkuBySize": {
+      "Free size": "5T2"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "5T3",
+    "stockQty": 29,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 29
+    },
+    "variantSkuBySize": {
+      "Free size": "5T3"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "5T4",
+    "stockQty": 61,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 61
+    },
+    "variantSkuBySize": {
+      "Free size": "5T4"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "AIMEE",
+    "stockQty": 97,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 28,
+      "M": 15,
+      "L": 31,
+      "XL": 23
+    },
+    "variantSkuBySize": {
+      "S": "AIMEE-1",
+      "M": "AIMEE-2",
+      "L": "AIMEE-3",
+      "XL": "AIMEE-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "ALICE",
+    "stockQty": 143,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 25,
+      "M": 60,
+      "L": 57,
+      "XL": 1
+    },
+    "variantSkuBySize": {
+      "S": "ALICE-1",
+      "M": "ALICE-2",
+      "L": "ALICE-3",
+      "XL": "ALICE-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "AQK1",
+    "stockQty": 129,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 34,
+      "M": 31,
+      "L": 29,
+      "XL": 35
+    },
+    "variantSkuBySize": {
+      "S": "AQK1-1",
+      "M": "AQK1-2",
+      "L": "AQK1-3",
+      "XL": "AQK1-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "AQK2",
+    "stockQty": 150,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 40,
+      "M": 43,
+      "L": 35,
+      "XL": 32
+    },
+    "variantSkuBySize": {
+      "S": "AQK2-1",
+      "M": "AQK2-2",
+      "L": "AQK2-3",
+      "XL": "AQK2-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "AQK3",
+    "stockQty": 157,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 39,
+      "M": 41,
+      "L": 36,
+      "XL": 41
+    },
+    "variantSkuBySize": {
+      "S": "AQK3-1",
+      "M": "AQK3-2",
+      "L": "AQK3-3",
+      "XL": "AQK3-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "AQK4",
+    "stockQty": 134,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 36,
+      "M": 41,
+      "L": 30,
+      "XL": 27
+    },
+    "variantSkuBySize": {
+      "S": "AQK4-1",
+      "M": "AQK4-2",
+      "L": "AQK4-3",
+      "XL": "AQK4-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "AQK5",
+    "stockQty": 145,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 40,
+      "M": 37,
+      "L": 37,
+      "XL": 31
+    },
+    "variantSkuBySize": {
+      "S": "AQK5-1",
+      "M": "AQK5-2",
+      "L": "AQK5-3",
+      "XL": "AQK5-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "AQM1",
+    "stockQty": 36,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 14,
+      "M": 13,
+      "L": 3,
+      "XL": 6
+    },
+    "variantSkuBySize": {
+      "S": "AQM1-1",
+      "M": "AQM1-2",
+      "L": "AQM1-3",
+      "XL": "AQM1-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "AQM2",
+    "stockQty": 123,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 37,
+      "M": 30,
+      "L": 29,
+      "XL": 27
+    },
+    "variantSkuBySize": {
+      "S": "AQM2-1",
+      "M": "AQM2-2",
+      "L": "AQM2-3",
+      "XL": "AQM2-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "AQM3",
+    "stockQty": 23,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 2,
+      "M": 8,
+      "L": 0,
+      "XL": 13
+    },
+    "variantSkuBySize": {
+      "S": "AQM3-1",
+      "M": "AQM3-2",
+      "L": "AQM3-3",
+      "XL": "AQM3-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "AQM4",
+    "stockQty": 154,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 40,
+      "M": 36,
+      "L": 40,
+      "XL": 38
+    },
+    "variantSkuBySize": {
+      "S": "AQM4-1",
+      "M": "AQM4-2",
+      "L": "AQM4-3",
+      "XL": "AQM4-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "AQM5",
+    "stockQty": 124,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 37,
+      "M": 33,
+      "L": 23,
+      "XL": 31
+    },
+    "variantSkuBySize": {
+      "S": "AQM5-1",
+      "M": "AQM5-2",
+      "L": "AQM5-3",
+      "XL": "AQM5-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "ASTER",
+    "stockQty": 75,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 21,
+      "M": 13,
+      "L": 33,
+      "XL": 8
+    },
+    "variantSkuBySize": {
+      "S": "ASTER-1",
+      "M": "ASTER-2",
+      "L": "ASTER-3",
+      "XL": "ASTER-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "BB25CHM",
+    "stockQty": 79,
+    "sizes": ["S (2Y)", "M (3Y)", "L (4Y)", "XL (5Y)"],
+    "stockBySize": {
+      "S (2Y)": 23,
+      "M (3Y)": 20,
+      "L (4Y)": 17,
+      "XL (5Y)": 19
+    },
+    "variantSkuBySize": {
+      "S (2Y)": "BB25CHM-1",
+      "M (3Y)": "BB25CHM-2",
+      "L (4Y)": "BB25CHM-3",
+      "XL (5Y)": "BB25CHM-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S (2Y)": "baby-S",
+      "M (3Y)": "baby-M",
+      "L (4Y)": "baby-L",
+      "XL (5Y)": "baby-XL"
+    }
+  },
+  {
+    "sku": "BB25CML",
+    "stockQty": 17,
+    "sizes": ["S (2Y)", "M (3Y)", "L (4Y)", "XL (5Y)"],
+    "stockBySize": {
+      "S (2Y)": 8,
+      "M (3Y)": 1,
+      "L (4Y)": 1,
+      "XL (5Y)": 7
+    },
+    "variantSkuBySize": {
+      "S (2Y)": "BB25CML-1",
+      "M (3Y)": "BB25CML-2",
+      "L (4Y)": "BB25CML-3",
+      "XL (5Y)": "BB25CML-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S (2Y)": "baby-S",
+      "M (3Y)": "baby-M",
+      "L (4Y)": "baby-L",
+      "XL (5Y)": "baby-XL"
+    }
+  },
+  {
+    "sku": "BB25CNN",
+    "stockQty": 145,
+    "sizes": ["S (2Y)", "M (3Y)", "L (4Y)", "XL (5Y)"],
+    "stockBySize": {
+      "S (2Y)": 47,
+      "M (3Y)": 37,
+      "L (4Y)": 30,
+      "XL (5Y)": 31
+    },
+    "variantSkuBySize": {
+      "S (2Y)": "BB25CNN-1",
+      "M (3Y)": "BB25CNN-2",
+      "L (4Y)": "BB25CNN-3",
+      "XL (5Y)": "BB25CNN-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S (2Y)": "baby-S",
+      "M (3Y)": "baby-M",
+      "L (4Y)": "baby-L",
+      "XL (5Y)": "baby-XL"
+    }
+  },
+  {
+    "sku": "BB25CR",
+    "stockQty": 164,
+    "sizes": ["S (2Y)", "M (3Y)", "L (4Y)", "XL (5Y)"],
+    "stockBySize": {
+      "S (2Y)": 42,
+      "M (3Y)": 43,
+      "L (4Y)": 41,
+      "XL (5Y)": 38
+    },
+    "variantSkuBySize": {
+      "S (2Y)": "BB25CR-1",
+      "M (3Y)": "BB25CR-2",
+      "L (4Y)": "BB25CR-3",
+      "XL (5Y)": "BB25CR-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S (2Y)": "baby-S",
+      "M (3Y)": "baby-M",
+      "L (4Y)": "baby-L",
+      "XL (5Y)": "baby-XL"
+    }
+  },
+  {
+    "sku": "BB25CV",
+    "stockQty": 144,
+    "sizes": ["S (2Y)", "M (3Y)", "L (4Y)", "XL (5Y)"],
+    "stockBySize": {
+      "S (2Y)": 42,
+      "M (3Y)": 37,
+      "L (4Y)": 32,
+      "XL (5Y)": 33
+    },
+    "variantSkuBySize": {
+      "S (2Y)": "BB25CV-1",
+      "M (3Y)": "BB25CV-2",
+      "L (4Y)": "BB25CV-3",
+      "XL (5Y)": "BB25CV-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S (2Y)": "baby-S",
+      "M (3Y)": "baby-M",
+      "L (4Y)": "baby-L",
+      "XL (5Y)": "baby-XL"
+    }
+  },
+  {
+    "sku": "BB25DBN",
+    "stockQty": 182,
+    "sizes": ["S (2Y)", "M (3Y)", "L (4Y)", "XL (5Y)"],
+    "stockBySize": {
+      "S (2Y)": 43,
+      "M (3Y)": 32,
+      "L (4Y)": 75,
+      "XL (5Y)": 32
+    },
+    "variantSkuBySize": {
+      "S (2Y)": "BB25DBN-1",
+      "M (3Y)": "BB25DBN-2",
+      "L (4Y)": "BB25DBN-3",
+      "XL (5Y)": "BB25DBN-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S (2Y)": "baby-S",
+      "M (3Y)": "baby-M",
+      "L (4Y)": "baby-L",
+      "XL (5Y)": "baby-XL"
+    }
+  },
+  {
+    "sku": "BB25HBX",
+    "stockQty": 80,
+    "sizes": ["S (Y)", "M (3Y)", "L (4Y)", "XL (5Y)"],
+    "stockBySize": {
+      "S (Y)": 21,
+      "M (3Y)": 21,
+      "L (4Y)": 18,
+      "XL (5Y)": 20
+    },
+    "variantSkuBySize": {
+      "S (Y)": "BB25HBX-1",
+      "M (3Y)": "BB25HBX-2",
+      "L (4Y)": "BB25HBX-3",
+      "XL (5Y)": "BB25HBX-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S (Y)": "baby-S",
+      "M (3Y)": "baby-M",
+      "L (4Y)": "baby-L",
+      "XL (5Y)": "baby-XL"
+    }
+  },
+  {
+    "sku": "BB25MTN",
+    "stockQty": 150,
+    "sizes": ["S (2Y)", "M (3Y)", "L (4Y)", "XL (5Y)"],
+    "stockBySize": {
+      "S (2Y)": 38,
+      "M (3Y)": 39,
+      "L (4Y)": 39,
+      "XL (5Y)": 34
+    },
+    "variantSkuBySize": {
+      "S (2Y)": "BB25MTN-1",
+      "M (3Y)": "BB25MTN-2",
+      "L (4Y)": "BB25MTN-3",
+      "XL (5Y)": "BB25MTN-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S (2Y)": "baby-S",
+      "M (3Y)": "baby-M",
+      "L (4Y)": "baby-L",
+      "XL (5Y)": "baby-XL"
+    }
+  },
+  {
+    "sku": "BB25SLL",
+    "stockQty": 137,
+    "sizes": ["S (2Y)", "M (3Y)", "L (4Y)", "XL (5Y)"],
+    "stockBySize": {
+      "S (2Y)": 40,
+      "M (3Y)": 34,
+      "L (4Y)": 30,
+      "XL (5Y)": 33
+    },
+    "variantSkuBySize": {
+      "S (2Y)": "BB25SLL-1",
+      "M (3Y)": "BB25SLL-2",
+      "L (4Y)": "BB25SLL-3",
+      "XL (5Y)": "BB25SLL-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S (2Y)": "baby-S",
+      "M (3Y)": "baby-M",
+      "L (4Y)": "baby-L",
+      "XL (5Y)": "baby-XL"
+    }
+  },
+  {
+    "sku": "BB25XBN",
+    "stockQty": 169,
+    "sizes": ["S (2Y)", "M (3Y)", "L (4Y)", "XL (5Y)"],
+    "stockBySize": {
+      "S (2Y)": 45,
+      "M (3Y)": 42,
+      "L (4Y)": 43,
+      "XL (5Y)": 39
+    },
+    "variantSkuBySize": {
+      "S (2Y)": "BB25XBN-1",
+      "M (3Y)": "BB25XBN-2",
+      "L (4Y)": "BB25XBN-3",
+      "XL (5Y)": "BB25XBN-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S (2Y)": "baby-S",
+      "M (3Y)": "baby-M",
+      "L (4Y)": "baby-L",
+      "XL (5Y)": "baby-XL"
+    }
+  },
+  {
+    "sku": "BILY",
+    "stockQty": 40,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 40,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "BILY-1",
+      "M": "BILY-2",
+      "L": "BILY-3",
+      "XL": "BILY-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "BYSB",
+    "stockQty": 653,
+    "sizes": ["2XL", "3XL", "4XL"],
+    "stockBySize": {
+      "2XL": 178,
+      "3XL": 227,
+      "4XL": 248
+    },
+    "variantSkuBySize": {
+      "2XL": "BYSB-1",
+      "3XL": "BYSB-2",
+      "4XL": "BYSB-3"
+    },
+    "sizeGuideKeyBySize": {
+      "2XL": "teen-2XL",
+      "3XL": "teen-3XL",
+      "4XL": "teen-4XL"
+    }
+  },
+  {
+    "sku": "BYSBO",
+    "stockQty": 426,
+    "sizes": ["2XL", "3XL", "4XL"],
+    "stockBySize": {
+      "2XL": 111,
+      "3XL": 163,
+      "4XL": 152
+    },
+    "variantSkuBySize": {
+      "2XL": "BYSBO-1",
+      "3XL": "BYSBO-2",
+      "4XL": "BYSBO-3"
+    },
+    "sizeGuideKeyBySize": {
+      "2XL": "teen-2XL",
+      "3XL": "teen-3XL",
+      "4XL": "teen-4XL"
+    }
+  },
+  {
+    "sku": "BYSBW",
+    "stockQty": 26,
+    "sizes": ["2XL", "3XL", "4XL"],
+    "stockBySize": {
+      "2XL": 15,
+      "3XL": 11,
+      "4XL": 0
+    },
+    "variantSkuBySize": {
+      "2XL": "BYSBW-1",
+      "3XL": "BYSBW-2",
+      "4XL": "BYSBW-3"
+    },
+    "sizeGuideKeyBySize": {
+      "2XL": "teen-2XL",
+      "3XL": "teen-3XL",
+      "4XL": "teen-4XL"
+    }
+  },
+  {
+    "sku": "BYSN1",
+    "stockQty": 657,
+    "sizes": ["2XL", "3XL", "4XL"],
+    "stockBySize": {
+      "2XL": 153,
+      "3XL": 232,
+      "4XL": 272
+    },
+    "variantSkuBySize": {
+      "2XL": "BYSN1-1",
+      "3XL": "BYSN1-2",
+      "4XL": "BYSN1-3"
+    },
+    "sizeGuideKeyBySize": {
+      "2XL": "teen-2XL",
+      "3XL": "teen-3XL",
+      "4XL": "teen-4XL"
+    }
+  },
+  {
+    "sku": "BYSNW",
+    "stockQty": 470,
+    "sizes": ["2XL", "3XL", "4XL"],
+    "stockBySize": {
+      "2XL": 115,
+      "3XL": 160,
+      "4XL": 195
+    },
+    "variantSkuBySize": {
+      "2XL": "BYSNW-1",
+      "3XL": "BYSNW-2",
+      "4XL": "BYSNW-3"
+    },
+    "sizeGuideKeyBySize": {
+      "2XL": "teen-2XL",
+      "3XL": "teen-3XL",
+      "4XL": "teen-4XL"
+    }
+  },
+  {
+    "sku": "BYSSS",
+    "stockQty": 304,
+    "sizes": ["2XL", "3XL", "4XL"],
+    "stockBySize": {
+      "2XL": 46,
+      "3XL": 113,
+      "4XL": 145
+    },
+    "variantSkuBySize": {
+      "2XL": "BYSSS-1",
+      "3XL": "BYSSS-2",
+      "4XL": "BYSSS-3"
+    },
+    "sizeGuideKeyBySize": {
+      "2XL": "teen-2XL",
+      "3XL": "teen-3XL",
+      "4XL": "teen-4XL"
+    }
+  },
+  {
+    "sku": "CAPCT",
+    "stockQty": 381,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 381
+    },
+    "variantSkuBySize": {
+      "Free size": "CAPCT"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "CAPCT1",
+    "stockQty": 147,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 147
+    },
+    "variantSkuBySize": {
+      "Free size": "CAPCT1"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "CAPDN",
+    "stockQty": 330,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 330
+    },
+    "variantSkuBySize": {
+      "Free size": "CAPDN"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "CAPDN1",
+    "stockQty": 7,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 7
+    },
+    "variantSkuBySize": {
+      "Free size": "CAPDN1"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "CAPFP",
+    "stockQty": 4,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 4
+    },
+    "variantSkuBySize": {
+      "Free size": "CAPFP"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "CAPFS",
+    "stockQty": 0,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 0
+    },
+    "variantSkuBySize": {
+      "Free size": "CAPFS"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "CAPHL",
+    "stockQty": 273,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 273
+    },
+    "variantSkuBySize": {
+      "Free size": "CAPHL"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "CAPHN",
+    "stockQty": 245,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 245
+    },
+    "variantSkuBySize": {
+      "Free size": "CAPHN"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "CAPHN1",
+    "stockQty": 0,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 0
+    },
+    "variantSkuBySize": {
+      "Free size": "CAPHN1"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "CAPSG",
+    "stockQty": 0,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 0
+    },
+    "variantSkuBySize": {
+      "Free size": "CAPSG"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "CAPSS",
+    "stockQty": 0,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 0
+    },
+    "variantSkuBySize": {
+      "Free size": "CAPSS"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "CAPVT",
+    "stockQty": 390,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 390
+    },
+    "variantSkuBySize": {
+      "Free size": "CAPVT"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "CAPVT1",
+    "stockQty": 0,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 0
+    },
+    "variantSkuBySize": {
+      "Free size": "CAPVT1"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "CUPSVSBZ11",
+    "stockQty": 281,
+    "sizes": ["Free size (Black)", "Free size (Nude)"],
+    "stockBySize": {
+      "Free size (Black)": 122,
+      "Free size (Nude)": 159
+    },
+    "variantSkuBySize": {
+      "Free size (Black)": "CUPSVSBZ11-1",
+      "Free size (Nude)": "CUPSVSBZ11-2"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size (Black)": null,
+      "Free size (Nude)": null
+    }
+  },
+  {
+    "sku": "Chloe",
+    "stockQty": 46,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 16,
+      "L": 30,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "Chloe-1",
+      "M": "Chloe-2",
+      "L": "Chloe-3",
+      "XL": "Chloe-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "EMMA",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "EMMA-1",
+      "M": "EMMA-2",
+      "L": "EMMA-3",
+      "XL": "EMMA-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "FINB",
+    "stockQty": 65,
+    "sizes": ["XS", "S", "M", "L"],
+    "stockBySize": {
+      "XS": 57,
+      "S": 0,
+      "M": 1,
+      "L": 7
+    },
+    "variantSkuBySize": {
+      "XS": "FINB-1",
+      "S": "FINB-2",
+      "M": "FINB-3",
+      "L": "FINB-4"
+    },
+    "sizeGuideKeyBySize": {
+      "XS": null,
+      "S": null,
+      "M": null,
+      "L": null
+    }
+  },
+  {
+    "sku": "FINP",
+    "stockQty": 71,
+    "sizes": ["XS", "S", "M", "L"],
+    "stockBySize": {
+      "XS": 61,
+      "S": 0,
+      "M": 10,
+      "L": 0
+    },
+    "variantSkuBySize": {
+      "XS": "FINP-1",
+      "S": "FINP-2",
+      "M": "FINP-3",
+      "L": "FINP-4"
+    },
+    "sizeGuideKeyBySize": {
+      "XS": null,
+      "S": null,
+      "M": null,
+      "L": null
+    }
+  },
+  {
+    "sku": "FINY",
+    "stockQty": 180,
+    "sizes": ["XS", "S", "M", "L"],
+    "stockBySize": {
+      "XS": 76,
+      "S": 21,
+      "M": 53,
+      "L": 30
+    },
+    "variantSkuBySize": {
+      "XS": "FINY-1",
+      "S": "FINY-2",
+      "M": "FINY-3",
+      "L": "FINY-4"
+    },
+    "sizeGuideKeyBySize": {
+      "XS": null,
+      "S": null,
+      "M": null,
+      "L": null
+    }
+  },
+  {
+    "sku": "FLORAL",
+    "stockQty": 123,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 8,
+      "M": 23,
+      "L": 58,
+      "XL": 34
+    },
+    "variantSkuBySize": {
+      "S": "FLORAL-1",
+      "M": "FLORAL-2",
+      "L": "FLORAL-3",
+      "XL": "FLORAL-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "GGA",
+    "stockQty": 814,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 97,
+      "M": 250,
+      "L": 370,
+      "XL": 97
+    },
+    "variantSkuBySize": {
+      "S": "GGA-1",
+      "M": "GGA-2",
+      "L": "GGA-3",
+      "XL": "GGA-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "GGAE",
+    "stockQty": 1874,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 334,
+      "M": 789,
+      "L": 634,
+      "XL": 117
+    },
+    "variantSkuBySize": {
+      "S": "GGAE-1",
+      "M": "GGAE-2",
+      "L": "GGAE-3",
+      "XL": "GGAE-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "GGARRED",
+    "stockQty": 844,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 844
+    },
+    "variantSkuBySize": {
+      "Free size": "GGARRED"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "GGARWHT",
+    "stockQty": 93,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 93
+    },
+    "variantSkuBySize": {
+      "Free size": "GGARWHT"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "GGC",
+    "stockQty": 46,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 46
+    },
+    "variantSkuBySize": {
+      "S": "GGC-1",
+      "M": "GGC-2",
+      "L": "GGC-3",
+      "XL": "GGC-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "GGCS",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "GGCS-1",
+      "M": "GGCS-2",
+      "L": "GGCS-3",
+      "XL": "GGCS-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "GGL",
+    "stockQty": 874,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 284,
+      "M": 483,
+      "L": 107,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "GGL-1",
+      "M": "GGL-2",
+      "L": "GGL-3",
+      "XL": "GGL-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "GGN",
+    "stockQty": 321,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 77,
+      "M": 113,
+      "L": 100,
+      "XL": 31
+    },
+    "variantSkuBySize": {
+      "S": "GGN-1",
+      "M": "GGN-2",
+      "L": "GGN-3",
+      "XL": "GGN-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "GGO",
+    "stockQty": 1185,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 141,
+      "M": 435,
+      "L": 503,
+      "XL": 106
+    },
+    "variantSkuBySize": {
+      "S": "GGO-1",
+      "M": "GGO-2",
+      "L": "GGO-3",
+      "XL": "GGO-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "GGP",
+    "stockQty": 4,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 3,
+      "M": 0,
+      "L": 0,
+      "XL": 1
+    },
+    "variantSkuBySize": {
+      "S": "GGP-1",
+      "M": "GGP-2",
+      "L": "GGP-3",
+      "XL": "GGP-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "GGPP",
+    "stockQty": 612,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 48,
+      "M": 299,
+      "L": 189,
+      "XL": 76
+    },
+    "variantSkuBySize": {
+      "S": "GGPP-1",
+      "M": "GGPP-2",
+      "L": "GGPP-3",
+      "XL": "GGPP-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "GGS",
+    "stockQty": 814,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 64,
+      "M": 347,
+      "L": 285,
+      "XL": 118
+    },
+    "variantSkuBySize": {
+      "S": "GGS-1",
+      "M": "GGS-2",
+      "L": "GGS-3",
+      "XL": "GGS-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "GGS01",
+    "stockQty": 841,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 841
+    },
+    "variantSkuBySize": {
+      "Free size": "GGS01"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "GGS02",
+    "stockQty": 1082,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 1082
+    },
+    "variantSkuBySize": {
+      "Free size": "GGS02"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "GGS03",
+    "stockQty": 505,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 505
+    },
+    "variantSkuBySize": {
+      "Free size": "GGS03"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "GGS04",
+    "stockQty": 402,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 402
+    },
+    "variantSkuBySize": {
+      "Free size": "GGS04"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "GGS05",
+    "stockQty": 252,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 252
+    },
+    "variantSkuBySize": {
+      "Free size": "GGS05"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "GGS06",
+    "stockQty": 131,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 131
+    },
+    "variantSkuBySize": {
+      "Free size": "GGS06"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "GGV",
+    "stockQty": 1331,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 225,
+      "M": 663,
+      "L": 382,
+      "XL": 61
+    },
+    "variantSkuBySize": {
+      "S": "GGV-1",
+      "M": "GGV-2",
+      "L": "GGV-3",
+      "XL": "GGV-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "GRSA",
+    "stockQty": 98,
+    "sizes": ["2XL", "3XL", "4XL"],
+    "stockBySize": {
+      "2XL": 35,
+      "3XL": 32,
+      "4XL": 31
+    },
+    "variantSkuBySize": {
+      "2XL": "GRSA-1",
+      "3XL": "GRSA-2",
+      "4XL": "GRSA-3"
+    },
+    "sizeGuideKeyBySize": {
+      "2XL": "teen-2XL",
+      "3XL": "teen-3XL",
+      "4XL": "teen-4XL"
+    }
+  },
+  {
+    "sku": "GRSB",
+    "stockQty": 4,
+    "sizes": ["2XL", "3XL", "4XL"],
+    "stockBySize": {
+      "2XL": 2,
+      "3XL": 1,
+      "4XL": 1
+    },
+    "variantSkuBySize": {
+      "2XL": "GRSB-1",
+      "3XL": "GRSB-2",
+      "4XL": "GRSB-3"
+    },
+    "sizeGuideKeyBySize": {
+      "2XL": "teen-2XL",
+      "3XL": "teen-3XL",
+      "4XL": "teen-4XL"
+    }
+  },
+  {
+    "sku": "GRSF",
+    "stockQty": 362,
+    "sizes": ["2XL", "3XL", "4XL"],
+    "stockBySize": {
+      "2XL": 80,
+      "3XL": 120,
+      "4XL": 162
+    },
+    "variantSkuBySize": {
+      "2XL": "GRSF-1",
+      "3XL": "GRSF-2",
+      "4XL": "GRSF-3"
+    },
+    "sizeGuideKeyBySize": {
+      "2XL": "teen-2XL",
+      "3XL": "teen-3XL",
+      "4XL": "teen-4XL"
+    }
+  },
+  {
+    "sku": "GRSL",
+    "stockQty": 10,
+    "sizes": ["2XL", "3XL", "4XL"],
+    "stockBySize": {
+      "2XL": 10,
+      "3XL": 0,
+      "4XL": 0
+    },
+    "variantSkuBySize": {
+      "2XL": "GRSL-1",
+      "3XL": "GRSL-2",
+      "4XL": "GRSL-3"
+    },
+    "sizeGuideKeyBySize": {
+      "2XL": "teen-2XL",
+      "3XL": "teen-3XL",
+      "4XL": "teen-4XL"
+    }
+  },
+  {
+    "sku": "GRSR",
+    "stockQty": 100,
+    "sizes": ["2XL", "3XL", "4XL"],
+    "stockBySize": {
+      "2XL": 32,
+      "3XL": 33,
+      "4XL": 35
+    },
+    "variantSkuBySize": {
+      "2XL": "GRSR-1",
+      "3XL": "GRSR-2",
+      "4XL": "GRSR-3"
+    },
+    "sizeGuideKeyBySize": {
+      "2XL": "teen-2XL",
+      "3XL": "teen-3XL",
+      "4XL": "teen-4XL"
+    }
+  },
+  {
+    "sku": "GRSRS",
+    "stockQty": 110,
+    "sizes": ["2XL", "3XL", "4XL"],
+    "stockBySize": {
+      "2XL": 44,
+      "3XL": 28,
+      "4XL": 38
+    },
+    "variantSkuBySize": {
+      "2XL": "GRSRS-1",
+      "3XL": "GRSRS-2",
+      "4XL": "GRSRS-3"
+    },
+    "sizeGuideKeyBySize": {
+      "2XL": "teen-2XL",
+      "3XL": "teen-3XL",
+      "4XL": "teen-4XL"
+    }
+  },
+  {
+    "sku": "GRSS",
+    "stockQty": 336,
+    "sizes": ["2XL", "3XL", "4XL"],
+    "stockBySize": {
+      "2XL": 69,
+      "3XL": 111,
+      "4XL": 156
+    },
+    "variantSkuBySize": {
+      "2XL": "GRSS-1",
+      "3XL": "GRSS-2",
+      "4XL": "GRSS-3"
+    },
+    "sizeGuideKeyBySize": {
+      "2XL": "teen-2XL",
+      "3XL": "teen-3XL",
+      "4XL": "teen-4XL"
+    }
+  },
+  {
+    "sku": "HAZEL",
+    "stockQty": 214,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 36,
+      "M": 88,
+      "L": 88,
+      "XL": 2
+    },
+    "variantSkuBySize": {
+      "S": "HAZEL-1",
+      "M": "HAZEL-2",
+      "L": "HAZEL-3",
+      "XL": "HAZEL-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "HOLLY",
+    "stockQty": 308,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 72,
+      "M": 117,
+      "L": 119,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "HOLLY-1",
+      "M": "HOLLY-2",
+      "L": "HOLLY-3",
+      "XL": "HOLLY-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "IVY",
+    "stockQty": 401,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 66,
+      "M": 134,
+      "L": 144,
+      "XL": 57
+    },
+    "variantSkuBySize": {
+      "S": "IVY-1",
+      "M": "IVY-2",
+      "L": "IVY-3",
+      "XL": "IVY-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "JAP1",
+    "stockQty": 153,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 40,
+      "M": 38,
+      "L": 36,
+      "XL": 39
+    },
+    "variantSkuBySize": {
+      "S": "JAP1-1",
+      "M": "JAP1-2",
+      "L": "JAP1-3",
+      "XL": "JAP1-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "JAP2",
+    "stockQty": 162,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 42,
+      "M": 39,
+      "L": 41,
+      "XL": 40
+    },
+    "variantSkuBySize": {
+      "S": "JAP2-1",
+      "M": "JAP2-2",
+      "L": "JAP2-3",
+      "XL": "JAP2-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "JAP3",
+    "stockQty": 158,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 37,
+      "M": 39,
+      "L": 41,
+      "XL": 41
+    },
+    "variantSkuBySize": {
+      "S": "JAP3-1",
+      "M": "JAP3-2",
+      "L": "JAP3-3",
+      "XL": "JAP3-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "JAP4",
+    "stockQty": 170,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 45,
+      "M": 38,
+      "L": 43,
+      "XL": 44
+    },
+    "variantSkuBySize": {
+      "S": "JAP4-1",
+      "M": "JAP4-2",
+      "L": "JAP4-3",
+      "XL": "JAP4-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "JAP5",
+    "stockQty": 145,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 38,
+      "M": 33,
+      "L": 37,
+      "XL": 37
+    },
+    "variantSkuBySize": {
+      "S": "JAP5-1",
+      "M": "JAP5-2",
+      "L": "JAP5-3",
+      "XL": "JAP5-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "JSBA",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "JSBA-1",
+      "M": "JSBA-2",
+      "L": "JSBA-3",
+      "XL": "JSBA-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "JSC",
+    "stockQty": 26,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 20,
+      "M": 0,
+      "L": 0,
+      "XL": 6
+    },
+    "variantSkuBySize": {
+      "S": "JSC-1",
+      "M": "JSC-2",
+      "L": "JSC-3",
+      "XL": "JSC-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "JSCW",
+    "stockQty": 11,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 11,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "JSCW-1",
+      "M": "JSCW-2",
+      "L": "JSCW-3",
+      "XL": "JSCW-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "JSL",
+    "stockQty": 9,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 5,
+      "M": 0,
+      "L": 0,
+      "XL": 4
+    },
+    "variantSkuBySize": {
+      "S": "JSL-1",
+      "M": "JSL-2",
+      "L": "JSL-3",
+      "XL": "JSL-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "JSSS",
+    "stockQty": 3,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 1,
+      "M": 2,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "JSSS-1",
+      "M": "JSSS-2",
+      "L": "JSSS-3",
+      "XL": "JSSS-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "KID25BH",
+    "stockQty": 317,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 81,
+      "M": 78,
+      "L": 81,
+      "XL": 77
+    },
+    "variantSkuBySize": {
+      "S": "KID25BH-1",
+      "M": "KID25BH-2",
+      "L": "KID25BH-3",
+      "XL": "KID25BH-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "KID25SM",
+    "stockQty": 285,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 63,
+      "M": 79,
+      "L": 78,
+      "XL": 65
+    },
+    "variantSkuBySize": {
+      "S": "KID25SM-1",
+      "M": "KID25SM-2",
+      "L": "KID25SM-3",
+      "XL": "KID25SM-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "KMR",
+    "stockQty": 158,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 40,
+      "M": 41,
+      "L": 38,
+      "XL": 39
+    },
+    "variantSkuBySize": {
+      "S": "KMR-1",
+      "M": "KMR-2",
+      "L": "KMR-3",
+      "XL": "KMR-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "KMR1",
+    "stockQty": 120,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 31,
+      "M": 44,
+      "L": 22,
+      "XL": 23
+    },
+    "variantSkuBySize": {
+      "S": "KMR1-1",
+      "M": "KMR1-2",
+      "L": "KMR1-3",
+      "XL": "KMR1-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "KMR2",
+    "stockQty": 108,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 15,
+      "M": 49,
+      "L": 18,
+      "XL": 26
+    },
+    "variantSkuBySize": {
+      "S": "KMR2-1",
+      "M": "KMR2-2",
+      "L": "KMR2-3",
+      "XL": "KMR2-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "KMR3",
+    "stockQty": 78,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 36,
+      "M": 26,
+      "L": 16,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "KMR3-1",
+      "M": "KMR3-2",
+      "L": "KMR3-3",
+      "XL": "KMR3-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "KMR4",
+    "stockQty": 135,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 38,
+      "M": 74,
+      "L": 23,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "KMR4-1",
+      "M": "KMR4-2",
+      "L": "KMR4-3",
+      "XL": "KMR4-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "KMR5",
+    "stockQty": 183,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 97,
+      "L": 61,
+      "XL": 25
+    },
+    "variantSkuBySize": {
+      "S": "KMR5-1",
+      "M": "KMR5-2",
+      "L": "KMR5-3",
+      "XL": "KMR5-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "KMR6",
+    "stockQty": 159,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 12,
+      "M": 77,
+      "L": 20,
+      "XL": 50
+    },
+    "variantSkuBySize": {
+      "S": "KMR6-1",
+      "M": "KMR6-2",
+      "L": "KMR6-3",
+      "XL": "KMR6-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "KMR7",
+    "stockQty": 15,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 7,
+      "M": 8,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "KMR7-1",
+      "M": "KMR7-2",
+      "L": "KMR7-3",
+      "XL": "KMR7-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "KMR8",
+    "stockQty": 76,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 21,
+      "M": 27,
+      "L": 17,
+      "XL": 11
+    },
+    "variantSkuBySize": {
+      "S": "KMR8-1",
+      "M": "KMR8-2",
+      "L": "KMR8-3",
+      "XL": "KMR8-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "KTM01",
+    "stockQty": 172,
+    "sizes": ["70x140"],
+    "stockBySize": {
+      "70x140": 172
+    },
+    "variantSkuBySize": {
+      "70x140": "KTM01"
+    },
+    "sizeGuideKeyBySize": {
+      "70x140": null
+    }
+  },
+  {
+    "sku": "KTM02",
+    "stockQty": 160,
+    "sizes": ["70x140"],
+    "stockBySize": {
+      "70x140": 160
+    },
+    "variantSkuBySize": {
+      "70x140": "KTM02"
+    },
+    "sizeGuideKeyBySize": {
+      "70x140": null
+    }
+  },
+  {
+    "sku": "KTM03",
+    "stockQty": 11,
+    "sizes": ["70x140"],
+    "stockBySize": {
+      "70x140": 11
+    },
+    "variantSkuBySize": {
+      "70x140": "KTM03"
+    },
+    "sizeGuideKeyBySize": {
+      "70x140": null
+    }
+  },
+  {
+    "sku": "KTM04",
+    "stockQty": 162,
+    "sizes": ["70x140"],
+    "stockBySize": {
+      "70x140": 162
+    },
+    "variantSkuBySize": {
+      "70x140": "KTM04"
+    },
+    "sizeGuideKeyBySize": {
+      "70x140": null
+    }
+  },
+  {
+    "sku": "KTM05",
+    "stockQty": 187,
+    "sizes": ["70x140"],
+    "stockBySize": {
+      "70x140": 187
+    },
+    "variantSkuBySize": {
+      "70x140": "KTM05"
+    },
+    "sizeGuideKeyBySize": {
+      "70x140": null
+    }
+  },
+  {
+    "sku": "KTM06",
+    "stockQty": 167,
+    "sizes": ["70x140"],
+    "stockBySize": {
+      "70x140": 167
+    },
+    "variantSkuBySize": {
+      "70x140": "KTM06"
+    },
+    "sizeGuideKeyBySize": {
+      "70x140": null
+    }
+  },
+  {
+    "sku": "KTM07",
+    "stockQty": 227,
+    "sizes": ["70x140"],
+    "stockBySize": {
+      "70x140": 227
+    },
+    "variantSkuBySize": {
+      "70x140": "KTM07"
+    },
+    "sizeGuideKeyBySize": {
+      "70x140": null
+    }
+  },
+  {
+    "sku": "KTM08",
+    "stockQty": 35,
+    "sizes": ["70x140"],
+    "stockBySize": {
+      "70x140": 35
+    },
+    "variantSkuBySize": {
+      "70x140": "KTM08"
+    },
+    "sizeGuideKeyBySize": {
+      "70x140": null
+    }
+  },
+  {
+    "sku": "KWB",
+    "stockQty": 117,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 24,
+      "M": 20,
+      "L": 32,
+      "XL": 41
+    },
+    "variantSkuBySize": {
+      "S": "KWB-1",
+      "M": "KWB-2",
+      "L": "KWB-3",
+      "XL": "KWB-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "KWBB",
+    "stockQty": 182,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 48,
+      "M": 31,
+      "L": 53,
+      "XL": 50
+    },
+    "variantSkuBySize": {
+      "S": "KWBB-1",
+      "M": "KWBB-2",
+      "L": "KWBB-3",
+      "XL": "KWBB-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "KWG",
+    "stockQty": 73,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 26,
+      "M": 21,
+      "L": 14,
+      "XL": 12
+    },
+    "variantSkuBySize": {
+      "S": "KWG-1",
+      "M": "KWG-2",
+      "L": "KWG-3",
+      "XL": "KWG-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "KWM",
+    "stockQty": 121,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 39,
+      "M": 31,
+      "L": 33,
+      "XL": 18
+    },
+    "variantSkuBySize": {
+      "S": "KWM-1",
+      "M": "KWM-2",
+      "L": "KWM-3",
+      "XL": "KWM-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "KWOB",
+    "stockQty": 126,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 39,
+      "M": 31,
+      "L": 29,
+      "XL": 27
+    },
+    "variantSkuBySize": {
+      "S": "KWOB-1",
+      "M": "KWOB-2",
+      "L": "KWOB-3",
+      "XL": "KWOB-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "KWP",
+    "stockQty": 91,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 32,
+      "M": 15,
+      "L": 22,
+      "XL": 22
+    },
+    "variantSkuBySize": {
+      "S": "KWP-1",
+      "M": "KWP-2",
+      "L": "KWP-3",
+      "XL": "KWP-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "KWR",
+    "stockQty": 110,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 31,
+      "M": 29,
+      "L": 25,
+      "XL": 25
+    },
+    "variantSkuBySize": {
+      "S": "KWR-1",
+      "M": "KWR-2",
+      "L": "KWR-3",
+      "XL": "KWR-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "KWY",
+    "stockQty": 99,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 28,
+      "M": 29,
+      "L": 23,
+      "XL": 19
+    },
+    "variantSkuBySize": {
+      "S": "KWY-1",
+      "M": "KWY-2",
+      "L": "KWY-3",
+      "XL": "KWY-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "LEO01",
+    "stockQty": 150,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 40,
+      "M": 35,
+      "L": 37,
+      "XL": 38
+    },
+    "variantSkuBySize": {
+      "S": "LEO01-1",
+      "M": "LEO01-2",
+      "L": "LEO01-3",
+      "XL": "LEO01-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "LEO02",
+    "stockQty": 122,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 37,
+      "M": 30,
+      "L": 24,
+      "XL": 31
+    },
+    "variantSkuBySize": {
+      "S": "LEO02-1",
+      "M": "LEO02-2",
+      "L": "LEO02-3",
+      "XL": "LEO02-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "LEO03",
+    "stockQty": 94,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 32,
+      "M": 21,
+      "L": 16,
+      "XL": 25
+    },
+    "variantSkuBySize": {
+      "S": "LEO03-1",
+      "M": "LEO03-2",
+      "L": "LEO03-3",
+      "XL": "LEO03-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "LEO04",
+    "stockQty": 77,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 30,
+      "M": 11,
+      "L": 19,
+      "XL": 17
+    },
+    "variantSkuBySize": {
+      "S": "LEO04-1",
+      "M": "LEO04-2",
+      "L": "LEO04-3",
+      "XL": "LEO04-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "LEO05",
+    "stockQty": 263,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 73,
+      "M": 60,
+      "L": 65,
+      "XL": 65
+    },
+    "variantSkuBySize": {
+      "S": "LEO05-1",
+      "M": "LEO05-2",
+      "L": "LEO05-3",
+      "XL": "LEO05-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "LEO06",
+    "stockQty": 127,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 32,
+      "M": 29,
+      "L": 34,
+      "XL": 32
+    },
+    "variantSkuBySize": {
+      "S": "LEO06-1",
+      "M": "LEO06-2",
+      "L": "LEO06-3",
+      "XL": "LEO06-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "LEO07",
+    "stockQty": 207,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 56,
+      "M": 47,
+      "L": 53,
+      "XL": 51
+    },
+    "variantSkuBySize": {
+      "S": "LEO07-1",
+      "M": "LEO07-2",
+      "L": "LEO07-3",
+      "XL": "LEO07-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "LEO08",
+    "stockQty": 85,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 25,
+      "M": 21,
+      "L": 23,
+      "XL": 16
+    },
+    "variantSkuBySize": {
+      "S": "LEO08-1",
+      "M": "LEO08-2",
+      "L": "LEO08-3",
+      "XL": "LEO08-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "LEO09",
+    "stockQty": 195,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 57,
+      "M": 40,
+      "L": 54,
+      "XL": 44
+    },
+    "variantSkuBySize": {
+      "S": "LEO09-1",
+      "M": "LEO09-2",
+      "L": "LEO09-3",
+      "XL": "LEO09-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "LEO10",
+    "stockQty": 114,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 29,
+      "M": 25,
+      "L": 35,
+      "XL": 25
+    },
+    "variantSkuBySize": {
+      "S": "LEO10-1",
+      "M": "LEO10-2",
+      "L": "LEO10-3",
+      "XL": "LEO10-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "LML",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "LML-1",
+      "M": "LML-2",
+      "L": "LML-3",
+      "XL": "LML-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "MA01",
+    "stockQty": 53,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 53
+    },
+    "variantSkuBySize": {
+      "Free size": "MA01"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "MA02",
+    "stockQty": 0,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 0
+    },
+    "variantSkuBySize": {
+      "Free size": "MA02"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "MA03",
+    "stockQty": 61,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 61
+    },
+    "variantSkuBySize": {
+      "Free size": "MA03"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "MA04",
+    "stockQty": 12,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 12
+    },
+    "variantSkuBySize": {
+      "Free size": "MA04"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "MA05",
+    "stockQty": 14,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 14
+    },
+    "variantSkuBySize": {
+      "Free size": "MA05"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "MDP",
+    "stockQty": 549,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 182,
+      "M": 110,
+      "L": 114,
+      "XL": 143
+    },
+    "variantSkuBySize": {
+      "S": "MDP-1",
+      "M": "MDP-2",
+      "L": "MDP-3",
+      "XL": "MDP-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "MM",
+    "stockQty": 22,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 22,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "MM-1",
+      "M": "MM-2",
+      "L": "MM-3",
+      "XL": "MM-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "MMC",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "MMC-1",
+      "M": "MMC-2",
+      "L": "MMC-3",
+      "XL": "MMC-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "MMLF",
+    "stockQty": 11,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 1,
+      "M": 4,
+      "L": 6
+    },
+    "variantSkuBySize": {
+      "S": "MMLF-1",
+      "M": "MMLF-2",
+      "L": "MMLF-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "MMM",
+    "stockQty": 3,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 3
+    },
+    "variantSkuBySize": {
+      "S": "MMM-1",
+      "M": "MMM-2",
+      "L": "MMM-3",
+      "XL": "MMM-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "MMR",
+    "stockQty": 61,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 4,
+      "M": 32,
+      "L": 25,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "MMR-1",
+      "M": "MMR-2",
+      "L": "MMR-3",
+      "XL": "MMR-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "MMS",
+    "stockQty": 567,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 100,
+      "M": 143,
+      "L": 189,
+      "XL": 135
+    },
+    "variantSkuBySize": {
+      "S": "MMS-1",
+      "M": "MMS-2",
+      "L": "MMS-3",
+      "XL": "MMS-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "MN",
+    "stockQty": 1,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 1,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "MN-1",
+      "M": "MN-2",
+      "L": "MN-3",
+      "XL": "MN-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "MNV",
+    "stockQty": 5207,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 581,
+      "M": 1735,
+      "L": 1834,
+      "XL": 1057
+    },
+    "variantSkuBySize": {
+      "S": "MNV-1",
+      "M": "MNV-2",
+      "L": "MNV-3",
+      "XL": "MNV-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "MO",
+    "stockQty": 1,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 1,
+      "M": 0,
+      "L": 0
+    },
+    "variantSkuBySize": {
+      "S": "MO-1",
+      "M": "MO-2",
+      "L": "MO-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "MP",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0
+    },
+    "variantSkuBySize": {
+      "S": "MP-1",
+      "M": "MP-2",
+      "L": "MP-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "MPN",
+    "stockQty": 1394,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 256,
+      "M": 503,
+      "L": 476,
+      "XL": 159
+    },
+    "variantSkuBySize": {
+      "S": "MPN-1",
+      "M": "MPN-2",
+      "L": "MPN-3",
+      "XL": "MPN-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "MRV",
+    "stockQty": 848,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 123,
+      "M": 234,
+      "L": 329,
+      "XL": 162
+    },
+    "variantSkuBySize": {
+      "S": "MRV-1",
+      "M": "MRV-2",
+      "L": "MRV-3",
+      "XL": "MRV-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "MS",
+    "stockQty": 36,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 31,
+      "M": 0,
+      "L": 0,
+      "XL": 5
+    },
+    "variantSkuBySize": {
+      "S": "MS-1",
+      "M": "MS-2",
+      "L": "MS-3",
+      "XL": "MS-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "NATALIE",
+    "stockQty": 76,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 2,
+      "M": 30,
+      "L": 1,
+      "XL": 43
+    },
+    "variantSkuBySize": {
+      "S": "NATALIE-1",
+      "M": "NATALIE-2",
+      "L": "NATALIE-3",
+      "XL": "NATALIE-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "NORA",
+    "stockQty": 336,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 45,
+      "M": 100,
+      "L": 130,
+      "XL": 61
+    },
+    "variantSkuBySize": {
+      "S": "NORA-1",
+      "M": "NORA-2",
+      "L": "NORA-3",
+      "XL": "NORA-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "OC01",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "OC01-1",
+      "M": "OC01-2",
+      "L": "OC01-3",
+      "XL": "OC01-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "OC03",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "OC03-1",
+      "M": "OC03-2",
+      "L": "OC03-3",
+      "XL": "OC03-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "OC04",
+    "stockQty": 112,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 40,
+      "M": 49,
+      "L": 23,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "OC04-1",
+      "M": "OC04-2",
+      "L": "OC04-3",
+      "XL": "OC04-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "OC05",
+    "stockQty": 116,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 2,
+      "M": 18,
+      "L": 69,
+      "XL": 27
+    },
+    "variantSkuBySize": {
+      "S": "OC05-1",
+      "M": "OC05-2",
+      "L": "OC05-3",
+      "XL": "OC05-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "OC06",
+    "stockQty": 63,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 27,
+      "M": 32,
+      "L": 4,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "OC06-1",
+      "M": "OC06-2",
+      "L": "OC06-3",
+      "XL": "OC06-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "OC07",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "OC07-1",
+      "M": "OC07-2",
+      "L": "OC07-3",
+      "XL": "OC07-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "OC08",
+    "stockQty": 446,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 65,
+      "M": 148,
+      "L": 164,
+      "XL": 69
+    },
+    "variantSkuBySize": {
+      "S": "OC08-1",
+      "M": "OC08-2",
+      "L": "OC08-3",
+      "XL": "OC08-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "OC09",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "OC09-1",
+      "M": "OC09-2",
+      "L": "OC09-3",
+      "XL": "OC09-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "OC10",
+    "stockQty": 130,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 55,
+      "M": 43,
+      "L": 32
+    },
+    "variantSkuBySize": {
+      "S": "OC10-1",
+      "M": "OC10-2",
+      "L": "OC10-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "OC11",
+    "stockQty": 21,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 21,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "OC11-1",
+      "M": "OC11-2",
+      "L": "OC11-3",
+      "XL": "OC11-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "OC12",
+    "stockQty": 38,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 32,
+      "M": 0,
+      "L": 6
+    },
+    "variantSkuBySize": {
+      "S": "OC12-1",
+      "M": "OC12-2",
+      "L": "OC12-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "OC13",
+    "stockQty": 33,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 33,
+      "M": 0,
+      "L": 0
+    },
+    "variantSkuBySize": {
+      "S": "OC13-1",
+      "M": "OC13-2",
+      "L": "OC13-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "OC14",
+    "stockQty": 104,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 24,
+      "M": 51,
+      "L": 26,
+      "XL": 3
+    },
+    "variantSkuBySize": {
+      "S": "OC14-1",
+      "M": "OC14-2",
+      "L": "OC14-3",
+      "XL": "OC14-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "OC15",
+    "stockQty": 22,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 17,
+      "M": 5,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "OC15-1",
+      "M": "OC15-2",
+      "L": "OC15-3",
+      "XL": "OC15-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "P01",
+    "stockQty": 479,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 479
+    },
+    "variantSkuBySize": {
+      "Free size": "P01"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "P02",
+    "stockQty": 210,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 210
+    },
+    "variantSkuBySize": {
+      "Free size": "P02"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "PCA01",
+    "stockQty": 105,
+    "sizes": ["S"],
+    "stockBySize": {
+      "S": 105
+    },
+    "variantSkuBySize": {
+      "S": "PCA01"
+    },
+    "sizeGuideKeyBySize": {
+      "S": null
+    }
+  },
+  {
+    "sku": "PCA02",
+    "stockQty": 125,
+    "sizes": ["S"],
+    "stockBySize": {
+      "S": 125
+    },
+    "variantSkuBySize": {
+      "S": "PCA02"
+    },
+    "sizeGuideKeyBySize": {
+      "S": null
+    }
+  },
+  {
+    "sku": "PCK01",
+    "stockQty": 117,
+    "sizes": ["S"],
+    "stockBySize": {
+      "S": 117
+    },
+    "variantSkuBySize": {
+      "S": "PCK01"
+    },
+    "sizeGuideKeyBySize": {
+      "S": null
+    }
+  },
+  {
+    "sku": "PCK02",
+    "stockQty": 124,
+    "sizes": ["S"],
+    "stockBySize": {
+      "S": 124
+    },
+    "variantSkuBySize": {
+      "S": "PCK02"
+    },
+    "sizeGuideKeyBySize": {
+      "S": null
+    }
+  },
+  {
+    "sku": "PCK03",
+    "stockQty": 140,
+    "sizes": ["S"],
+    "stockBySize": {
+      "S": 140
+    },
+    "variantSkuBySize": {
+      "S": "PCK03"
+    },
+    "sizeGuideKeyBySize": {
+      "S": null
+    }
+  },
+  {
+    "sku": "PCK04",
+    "stockQty": 176,
+    "sizes": ["S"],
+    "stockBySize": {
+      "S": 176
+    },
+    "variantSkuBySize": {
+      "S": "PCK04"
+    },
+    "sizeGuideKeyBySize": {
+      "S": null
+    }
+  },
+  {
+    "sku": "PONCHO1",
+    "stockQty": 25,
+    "sizes": ["80x60"],
+    "stockBySize": {
+      "80x60": 25
+    },
+    "variantSkuBySize": {
+      "80x60": "PONCHO1"
+    },
+    "sizeGuideKeyBySize": {
+      "80x60": null
+    }
+  },
+  {
+    "sku": "PONCHO2",
+    "stockQty": 35,
+    "sizes": ["80x60"],
+    "stockBySize": {
+      "80x60": 35
+    },
+    "variantSkuBySize": {
+      "80x60": "PONCHO2"
+    },
+    "sizeGuideKeyBySize": {
+      "80x60": null
+    }
+  },
+  {
+    "sku": "PONCHO3",
+    "stockQty": 0,
+    "sizes": ["80x60"],
+    "stockBySize": {
+      "80x60": 0
+    },
+    "variantSkuBySize": {
+      "80x60": "PONCHO3"
+    },
+    "sizeGuideKeyBySize": {
+      "80x60": null
+    }
+  },
+  {
+    "sku": "POPPY",
+    "stockQty": 266,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 50,
+      "M": 64,
+      "L": 128,
+      "XL": 24
+    },
+    "variantSkuBySize": {
+      "S": "POPPY-1",
+      "M": "POPPY-2",
+      "L": "POPPY-3",
+      "XL": "POPPY-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "PZSB",
+    "stockQty": 4,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 2,
+      "M": 1,
+      "L": 1
+    },
+    "variantSkuBySize": {
+      "S": "PZSB-1",
+      "M": "PZSB-2",
+      "L": "PZSB-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "PZSM",
+    "stockQty": 20,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 20,
+      "M": 0,
+      "L": 0
+    },
+    "variantSkuBySize": {
+      "S": "PZSM-1",
+      "M": "PZSM-2",
+      "L": "PZSM-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "PZSP",
+    "stockQty": 2,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 2
+    },
+    "variantSkuBySize": {
+      "S": "PZSP-1",
+      "M": "PZSP-2",
+      "L": "PZSP-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "PZSV",
+    "stockQty": 3,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 0,
+      "M": 1,
+      "L": 2
+    },
+    "variantSkuBySize": {
+      "S": "PZSV-1",
+      "M": "PZSV-2",
+      "L": "PZSV-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "RLSB",
+    "stockQty": 3,
+    "sizes": ["S", "M"],
+    "stockBySize": {
+      "S": 1,
+      "M": 2
+    },
+    "variantSkuBySize": {
+      "S": "RLSB-1",
+      "M": "RLSB-2"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M"
+    }
+  },
+  {
+    "sku": "RLSI",
+    "stockQty": 39,
+    "sizes": ["S", "M"],
+    "stockBySize": {
+      "S": 20,
+      "M": 19
+    },
+    "variantSkuBySize": {
+      "S": "RLSI-1",
+      "M": "RLSI-2"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M"
+    }
+  },
+  {
+    "sku": "RLSN",
+    "stockQty": 3,
+    "sizes": ["S", "M"],
+    "stockBySize": {
+      "S": 3,
+      "M": 0
+    },
+    "variantSkuBySize": {
+      "S": "RLSN-1",
+      "M": "RLSN-2"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M"
+    }
+  },
+  {
+    "sku": "RM",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "RM-1",
+      "M": "RM-2",
+      "L": "RM-3",
+      "XL": "RM-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "RMM",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "RMM-1",
+      "M": "RMM-2",
+      "L": "RMM-3",
+      "XL": "RMM-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "ROSA",
+    "stockQty": 67,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 27,
+      "M": 17,
+      "L": 23
+    },
+    "variantSkuBySize": {
+      "S": "ROSA-1",
+      "M": "ROSA-2",
+      "L": "ROSA-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "RS01",
+    "stockQty": 15,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 10,
+      "M": 4,
+      "L": 1
+    },
+    "variantSkuBySize": {
+      "S": "RS01-1",
+      "M": "RS01-2",
+      "L": "RS01-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "RS02",
+    "stockQty": 32,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 15,
+      "M": 10,
+      "L": 7
+    },
+    "variantSkuBySize": {
+      "S": "RS02-1",
+      "M": "RS02-2",
+      "L": "RS02-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "RS03",
+    "stockQty": 27,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 12,
+      "M": 5,
+      "L": 10
+    },
+    "variantSkuBySize": {
+      "S": "RS03-1",
+      "M": "RS03-2",
+      "L": "RS03-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "RS04",
+    "stockQty": 37,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 15,
+      "M": 7,
+      "L": 15
+    },
+    "variantSkuBySize": {
+      "S": "RS04-1",
+      "M": "RS04-2",
+      "L": "RS04-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "RS05",
+    "stockQty": 2,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 2,
+      "M": 0,
+      "L": 0
+    },
+    "variantSkuBySize": {
+      "S": "RS05-1",
+      "M": "RS05-2",
+      "L": "RS05-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "RS06",
+    "stockQty": 53,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 18,
+      "M": 17,
+      "L": 18
+    },
+    "variantSkuBySize": {
+      "S": "RS06-1",
+      "M": "RS06-2",
+      "L": "RS06-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "S01",
+    "stockQty": 214,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 214
+    },
+    "variantSkuBySize": {
+      "Free size": "S01"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S02",
+    "stockQty": 332,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 332
+    },
+    "variantSkuBySize": {
+      "Free size": "S02"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S03",
+    "stockQty": 230,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 230
+    },
+    "variantSkuBySize": {
+      "Free size": "S03"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S04",
+    "stockQty": 134,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 134
+    },
+    "variantSkuBySize": {
+      "Free size": "S04"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S05",
+    "stockQty": 1024,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 1024
+    },
+    "variantSkuBySize": {
+      "Free size": "S05"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S06",
+    "stockQty": 268,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 268
+    },
+    "variantSkuBySize": {
+      "Free size": "S06"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S07",
+    "stockQty": 188,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 188
+    },
+    "variantSkuBySize": {
+      "Free size": "S07"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S08",
+    "stockQty": 265,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 265
+    },
+    "variantSkuBySize": {
+      "Free size": "S08"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S09",
+    "stockQty": 261,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 261
+    },
+    "variantSkuBySize": {
+      "Free size": "S09"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S10",
+    "stockQty": 222,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 222
+    },
+    "variantSkuBySize": {
+      "Free size": "S10"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S11",
+    "stockQty": 0,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 0
+    },
+    "variantSkuBySize": {
+      "Free size": "S11"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S12",
+    "stockQty": 327,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 327
+    },
+    "variantSkuBySize": {
+      "Free size": "S12"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S13",
+    "stockQty": 274,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 274
+    },
+    "variantSkuBySize": {
+      "Free size": "S13"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S14",
+    "stockQty": 262,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 262
+    },
+    "variantSkuBySize": {
+      "Free size": "S14"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S15",
+    "stockQty": 171,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 171
+    },
+    "variantSkuBySize": {
+      "Free size": "S15"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S16",
+    "stockQty": 187,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 187
+    },
+    "variantSkuBySize": {
+      "Free size": "S16"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S17",
+    "stockQty": 277,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 277
+    },
+    "variantSkuBySize": {
+      "Free size": "S17"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S18",
+    "stockQty": 174,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 174
+    },
+    "variantSkuBySize": {
+      "Free size": "S18"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S19",
+    "stockQty": 176,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 176
+    },
+    "variantSkuBySize": {
+      "Free size": "S19"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S20",
+    "stockQty": 361,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 361
+    },
+    "variantSkuBySize": {
+      "Free size": "S20"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S21",
+    "stockQty": 120,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 120
+    },
+    "variantSkuBySize": {
+      "Free size": "S21"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S22",
+    "stockQty": 245,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 245
+    },
+    "variantSkuBySize": {
+      "Free size": "S22"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S23",
+    "stockQty": 300,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 300
+    },
+    "variantSkuBySize": {
+      "Free size": "S23"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S25",
+    "stockQty": 546,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 546
+    },
+    "variantSkuBySize": {
+      "Free size": "S25"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S26",
+    "stockQty": 486,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 486
+    },
+    "variantSkuBySize": {
+      "Free size": "S26"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S27",
+    "stockQty": 334,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 334
+    },
+    "variantSkuBySize": {
+      "Free size": "S27"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "S304",
+    "stockQty": 269,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 269
+    },
+    "variantSkuBySize": {
+      "Free size": "S304"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "SA-DB35B",
+    "stockQty": 5,
+    "sizes": ["35L"],
+    "stockBySize": {
+      "35L": 5
+    },
+    "variantSkuBySize": {
+      "35L": "SA-DB35B"
+    },
+    "sizeGuideKeyBySize": {
+      "35L": null
+    }
+  },
+  {
+    "sku": "SA-DB35G",
+    "stockQty": 3,
+    "sizes": ["35L"],
+    "stockBySize": {
+      "35L": 3
+    },
+    "variantSkuBySize": {
+      "35L": "SA-DB35G"
+    },
+    "sizeGuideKeyBySize": {
+      "35L": null
+    }
+  },
+  {
+    "sku": "SA-DB35O",
+    "stockQty": 4,
+    "sizes": ["35L"],
+    "stockBySize": {
+      "35L": 4
+    },
+    "variantSkuBySize": {
+      "35L": "SA-DB35O"
+    },
+    "sizeGuideKeyBySize": {
+      "35L": null
+    }
+  },
+  {
+    "sku": "SB1",
+    "stockQty": 164,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 44,
+      "M": 44,
+      "L": 43,
+      "XL": 33
+    },
+    "variantSkuBySize": {
+      "S": "SB1-1",
+      "M": "SB1-2",
+      "L": "SB1-3",
+      "XL": "SB1-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SB2",
+    "stockQty": 82,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 24,
+      "M": 17,
+      "L": 20,
+      "XL": 21
+    },
+    "variantSkuBySize": {
+      "S": "SB2-1",
+      "M": "SB2-2",
+      "L": "SB2-3",
+      "XL": "SB2-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SB3",
+    "stockQty": 196,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 54,
+      "M": 49,
+      "L": 50,
+      "XL": 43
+    },
+    "variantSkuBySize": {
+      "S": "SB3-1",
+      "M": "SB3-2",
+      "L": "SB3-3",
+      "XL": "SB3-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SB4",
+    "stockQty": 81,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 24,
+      "M": 19,
+      "L": 20,
+      "XL": 18
+    },
+    "variantSkuBySize": {
+      "S": "SB4-1",
+      "M": "SB4-2",
+      "L": "SB4-3",
+      "XL": "SB4-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SB5",
+    "stockQty": 45,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 19,
+      "M": 15,
+      "L": 2,
+      "XL": 9
+    },
+    "variantSkuBySize": {
+      "S": "SB5-1",
+      "M": "SB5-2",
+      "L": "SB5-3",
+      "XL": "SB5-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SB6",
+    "stockQty": 44,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 24,
+      "M": 13,
+      "L": 0,
+      "XL": 7
+    },
+    "variantSkuBySize": {
+      "S": "SB6-1",
+      "M": "SB6-2",
+      "L": "SB6-3",
+      "XL": "SB6-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SBB",
+    "stockQty": 132,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 132
+    },
+    "variantSkuBySize": {
+      "Free size": "SBB"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "SBBCA",
+    "stockQty": 0,
+    "sizes": ["XL", "XXL", "XXXL"],
+    "stockBySize": {
+      "XL": 0,
+      "XXL": 0,
+      "XXXL": 0
+    },
+    "variantSkuBySize": {
+      "XL": "SBBCA-1",
+      "XXL": "SBBCA-2",
+      "XXXL": "SBBCA-3"
+    },
+    "sizeGuideKeyBySize": {
+      "XL": "women-XL",
+      "XXL": "women-XXL",
+      "XXXL": "women-XXXL"
+    }
+  },
+  {
+    "sku": "SBBCE",
+    "stockQty": 0,
+    "sizes": ["XL", "XXL", "XXXL"],
+    "stockBySize": {
+      "XL": 0,
+      "XXL": 0,
+      "XXXL": 0
+    },
+    "variantSkuBySize": {
+      "XL": "SBBCE-1",
+      "XXL": "SBBCE-2",
+      "XXXL": "SBBCE-3"
+    },
+    "sizeGuideKeyBySize": {
+      "XL": "women-XL",
+      "XXL": "women-XXL",
+      "XXXL": "women-XXXL"
+    }
+  },
+  {
+    "sku": "SBBFE",
+    "stockQty": 526,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 26,
+      "M": 226,
+      "L": 192,
+      "XL": 82
+    },
+    "variantSkuBySize": {
+      "S": "SBBFE-1",
+      "M": "SBBFE-2",
+      "L": "SBBFE-3",
+      "XL": "SBBFE-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SBBIM",
+    "stockQty": 4,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 3,
+      "M": 0,
+      "L": 1
+    },
+    "variantSkuBySize": {
+      "S": "SBBIM-1",
+      "M": "SBBIM-2",
+      "L": "SBBIM-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "SBBIP",
+    "stockQty": 414,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 228,
+      "M": 150,
+      "L": 36
+    },
+    "variantSkuBySize": {
+      "S": "SBBIP-1",
+      "M": "SBBIP-2",
+      "L": "SBBIP-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "SBC",
+    "stockQty": 155,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 155
+    },
+    "variantSkuBySize": {
+      "Free size": "SBC"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "SBCBB",
+    "stockQty": 31,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 31
+    },
+    "variantSkuBySize": {
+      "S": "SBCBB-1",
+      "M": "SBCBB-2",
+      "L": "SBCBB-3",
+      "XL": "SBCBB-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SBD",
+    "stockQty": 0,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 0
+    },
+    "variantSkuBySize": {
+      "Free size": "SBD"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "SBDSC",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SBDSC-1",
+      "M": "SBDSC-2",
+      "L": "SBDSC-3",
+      "XL": "SBDSC-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SBKCC",
+    "stockQty": 859,
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "stockBySize": {
+      "S": 27,
+      "M": 162,
+      "L": 200,
+      "XL": 215,
+      "XXL": 255
+    },
+    "variantSkuBySize": {
+      "S": "SBKCC-1",
+      "M": "SBKCC-2",
+      "L": "SBKCC-3",
+      "XL": "SBKCC-4",
+      "XXL": "SBKCC-5"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL",
+      "XXL": "kids-XXL"
+    }
+  },
+  {
+    "sku": "SBKMV",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0,
+      "XXL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SBKMV-1",
+      "M": "SBKMV-2",
+      "L": "SBKMV-3",
+      "XL": "SBKMV-4",
+      "XXL": "SBKMV-5"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL",
+      "XXL": "kids-XXL"
+    }
+  },
+  {
+    "sku": "SBKMX",
+    "stockQty": 30,
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "stockBySize": {
+      "S": 21,
+      "M": 9,
+      "L": 0,
+      "XL": 0,
+      "XXL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SBKMX-1",
+      "M": "SBKMX-2",
+      "L": "SBKMX-3",
+      "XL": "SBKMX-4",
+      "XXL": "SBKMX5"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL",
+      "XXL": "kids-XXL"
+    }
+  },
+  {
+    "sku": "SBL",
+    "stockQty": 0,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 0
+    },
+    "variantSkuBySize": {
+      "Free size": "SBL"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "SBLTJ",
+    "stockQty": 471,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 41,
+      "M": 25,
+      "L": 273,
+      "XL": 132
+    },
+    "variantSkuBySize": {
+      "S": "SBLTJ-1",
+      "M": "SBLTJ-2",
+      "L": "SBLTJ-3",
+      "XL": "SBLTJ-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SBLTR",
+    "stockQty": 2506,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 438,
+      "M": 991,
+      "L": 860,
+      "XL": 217
+    },
+    "variantSkuBySize": {
+      "S": "SBLTR-1",
+      "M": "SBLTR-2",
+      "L": "SBLTR-3",
+      "XL": "SBLTR-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SBMQB",
+    "stockQty": 819,
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "stockBySize": {
+      "S": 178,
+      "M": 246,
+      "L": 188,
+      "XL": 189,
+      "XXL": 18
+    },
+    "variantSkuBySize": {
+      "S": "SBMQB-1",
+      "M": "SBMQB-2",
+      "L": "SBMQB-3",
+      "XL": "SBMQB-4",
+      "XXL": "SBMQB-5"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL",
+      "XXL": "men-XXL"
+    }
+  },
+  {
+    "sku": "SBS",
+    "stockQty": 242,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 242
+    },
+    "variantSkuBySize": {
+      "Free size": "SBS"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "SBT",
+    "stockQty": 75,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 75
+    },
+    "variantSkuBySize": {
+      "Free size": "SBT"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "SBWBS",
+    "stockQty": 9,
+    "sizes": ["XL", "XXL", "XXXL"],
+    "stockBySize": {
+      "XL": 9,
+      "XXL": 0,
+      "XXXL": 0
+    },
+    "variantSkuBySize": {
+      "XL": "SBWBS-1",
+      "XXL": "SBWBS-2",
+      "XXXL": "SBWBS-3"
+    },
+    "sizeGuideKeyBySize": {
+      "XL": "women-XL",
+      "XXL": "women-XXL",
+      "XXXL": "women-XXXL"
+    }
+  },
+  {
+    "sku": "SBWCD",
+    "stockQty": 320,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 23,
+      "M": 174,
+      "L": 97,
+      "XL": 26
+    },
+    "variantSkuBySize": {
+      "S": "SBWCD-1",
+      "M": "SBWCD-2",
+      "L": "SBWCD-3",
+      "XL": "SBWCD-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SBWHB",
+    "stockQty": 18,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 18,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SBWHB-1",
+      "M": "SBWHB-2",
+      "L": "SBWHB-3",
+      "XL": "SBWHB-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SBWLM",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SBWLM-1",
+      "M": "SBWLM-2",
+      "L": "SBWLM-3",
+      "XL": "SBWLM-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SBWLN",
+    "stockQty": 631,
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "stockBySize": {
+      "S": 55,
+      "M": 178,
+      "L": 139,
+      "XL": 86,
+      "XXL": 173
+    },
+    "variantSkuBySize": {
+      "S": "SBWLN-1",
+      "M": "SBWLN-2",
+      "L": "SBWLN-3",
+      "XL": "SBWLN-4",
+      "XXL": "SBWLN-5"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL",
+      "XXL": "women-XXL"
+    }
+  },
+  {
+    "sku": "SBWLS",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SBWLS-1",
+      "M": "SBWLS-2",
+      "L": "SBWLS-3",
+      "XL": "SBWLS-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SBWPA",
+    "stockQty": 33,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 23,
+      "M": 0,
+      "L": 0,
+      "XL": 10
+    },
+    "variantSkuBySize": {
+      "S": "SBWPA-1",
+      "M": "SBWPA-2",
+      "L": "SBWPA-3",
+      "XL": "SBWPA-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SBWPP",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SBWPP-1",
+      "M": "SBWPP-2",
+      "L": "SBWPP-3",
+      "XL": "SBWPP-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SBWST",
+    "stockQty": 155,
+    "sizes": ["S", "M", "L", "XL", "XXL", "XXXL"],
+    "stockBySize": {
+      "S": 140,
+      "M": 0,
+      "L": 0,
+      "XL": 0,
+      "XXL": 0,
+      "XXXL": 15
+    },
+    "variantSkuBySize": {
+      "S": "SBWST-1",
+      "M": "SBWST-2",
+      "L": "SBWST-3",
+      "XL": "SBWST-4",
+      "XXL": "SBWST-5",
+      "XXXL": "SBWST-6"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL",
+      "XXL": "women-XXL",
+      "XXXL": "women-XXXL"
+    }
+  },
+  {
+    "sku": "SBWVA",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SBWVA-1",
+      "M": "SBWVA-2",
+      "L": "SBWVA-3",
+      "XL": "SBWVA-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SBWVC",
+    "stockQty": 267,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 125,
+      "M": 47,
+      "L": 31,
+      "XL": 64
+    },
+    "variantSkuBySize": {
+      "S": "SBWVC-1",
+      "M": "SBWVC-2",
+      "L": "SBWVC-3",
+      "XL": "SBWVC-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SBWVG",
+    "stockQty": 508,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 105,
+      "M": 84,
+      "L": 288,
+      "XL": 31
+    },
+    "variantSkuBySize": {
+      "S": "SBWVG-1",
+      "M": "SBWVG-2",
+      "L": "SBWVG-3",
+      "XL": "SBWVG-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SBWVT",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SBWVT-1",
+      "M": "SBWVT-2",
+      "L": "SBWVT-3",
+      "XL": "SBWVT-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SBWVV",
+    "stockQty": 2568,
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "stockBySize": {
+      "S": 470,
+      "M": 1390,
+      "L": 122,
+      "XL": 277,
+      "XXL": 309
+    },
+    "variantSkuBySize": {
+      "S": "SBWVV-1",
+      "M": "SBWVV-2",
+      "L": "SBWVV-3",
+      "XL": "SBWVV-4",
+      "XXL": "SBWVV-5"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL",
+      "XXL": "women-XXL"
+    }
+  },
+  {
+    "sku": "SBWVW",
+    "stockQty": 75,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 41,
+      "M": 28,
+      "L": 6,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SBWVW-1",
+      "M": "SBWVW-2",
+      "L": "SBWVW-3",
+      "XL": "SBWVW-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SBWVZ",
+    "stockQty": 7,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 7,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SBWVZ-1",
+      "M": "SBWVZ-2",
+      "L": "SBWVZ-3",
+      "XL": "SBWVZ-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SBWZLL",
+    "stockQty": 160,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 79,
+      "M": 10,
+      "L": 65,
+      "XL": 6
+    },
+    "variantSkuBySize": {
+      "S": "SBWZLL-1",
+      "M": "SBWZLL-2",
+      "L": "SBWZLL-3",
+      "XL": "SBWZLL-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SCF",
+    "stockQty": 16,
+    "sizes": ["2XL", "3XL"],
+    "stockBySize": {
+      "2XL": 16,
+      "3XL": 0
+    },
+    "variantSkuBySize": {
+      "2XL": "SCF-1",
+      "3XL": "SCF-2"
+    },
+    "sizeGuideKeyBySize": {
+      "2XL": "women-XXL",
+      "3XL": "women-XXXL"
+    }
+  },
+  {
+    "sku": "SCJ",
+    "stockQty": 11,
+    "sizes": ["2XL", "3XL"],
+    "stockBySize": {
+      "2XL": 2,
+      "3XL": 9
+    },
+    "variantSkuBySize": {
+      "2XL": "SCJ-1",
+      "3XL": "SCJ-2"
+    },
+    "sizeGuideKeyBySize": {
+      "2XL": "women-XXL",
+      "3XL": "women-XXXL"
+    }
+  },
+  {
+    "sku": "SCLY",
+    "stockQty": 77,
+    "sizes": ["2XL", "3XL"],
+    "stockBySize": {
+      "2XL": 38,
+      "3XL": 39
+    },
+    "variantSkuBySize": {
+      "2XL": "SCLY-1",
+      "3XL": "SCLY-2"
+    },
+    "sizeGuideKeyBySize": {
+      "2XL": "women-XXL",
+      "3XL": "women-XXXL"
+    }
+  },
+  {
+    "sku": "SCS",
+    "stockQty": 17,
+    "sizes": ["2XL", "3XL"],
+    "stockBySize": {
+      "2XL": 17,
+      "3XL": 0
+    },
+    "variantSkuBySize": {
+      "2XL": "SCS-1",
+      "3XL": "SCS-2"
+    },
+    "sizeGuideKeyBySize": {
+      "2XL": "women-XXL",
+      "3XL": "women-XXXL"
+    }
+  },
+  {
+    "sku": "SH01",
+    "stockQty": 88,
+    "sizes": ["55-60CM"],
+    "stockBySize": {
+      "55-60CM": 88
+    },
+    "variantSkuBySize": {
+      "55-60CM": "SH01"
+    },
+    "sizeGuideKeyBySize": {
+      "55-60CM": null
+    }
+  },
+  {
+    "sku": "SH02",
+    "stockQty": 58,
+    "sizes": ["55-60CM"],
+    "stockBySize": {
+      "55-60CM": 58
+    },
+    "variantSkuBySize": {
+      "55-60CM": "SH02"
+    },
+    "sizeGuideKeyBySize": {
+      "55-60CM": null
+    }
+  },
+  {
+    "sku": "SH03",
+    "stockQty": 37,
+    "sizes": ["55-60CM"],
+    "stockBySize": {
+      "55-60CM": 37
+    },
+    "variantSkuBySize": {
+      "55-60CM": "SH03"
+    },
+    "sizeGuideKeyBySize": {
+      "55-60CM": null
+    }
+  },
+  {
+    "sku": "SH04",
+    "stockQty": 82,
+    "sizes": ["55-60CM"],
+    "stockBySize": {
+      "55-60CM": 82
+    },
+    "variantSkuBySize": {
+      "55-60CM": "SH04"
+    },
+    "sizeGuideKeyBySize": {
+      "55-60CM": null
+    }
+  },
+  {
+    "sku": "SH05",
+    "stockQty": 132,
+    "sizes": ["55-60CM"],
+    "stockBySize": {
+      "55-60CM": 132
+    },
+    "variantSkuBySize": {
+      "55-60CM": "SH05"
+    },
+    "sizeGuideKeyBySize": {
+      "55-60CM": null
+    }
+  },
+  {
+    "sku": "SH06",
+    "stockQty": 110,
+    "sizes": ["55-60CM"],
+    "stockBySize": {
+      "55-60CM": 110
+    },
+    "variantSkuBySize": {
+      "55-60CM": "SH06"
+    },
+    "sizeGuideKeyBySize": {
+      "55-60CM": null
+    }
+  },
+  {
+    "sku": "SKAP",
+    "stockQty": 25,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 19,
+      "M": 2,
+      "L": 0,
+      "XL": 4
+    },
+    "variantSkuBySize": {
+      "S": "SKAP-1",
+      "M": "SKAP-2",
+      "L": "SKAP-3",
+      "XL": "SKAP-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SKAPP",
+    "stockQty": 25,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 25,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SKAPP-1",
+      "M": "SKAPP-2",
+      "L": "SKAPP-3",
+      "XL": "SKAPP-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SKKC",
+    "stockQty": 11,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 10,
+      "M": 1,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SKKC-1",
+      "M": "SKKC-2",
+      "L": "SKKC-3",
+      "XL": "SKKC-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SKKL",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SKKL-1",
+      "M": "SKKL-2",
+      "L": "SKKL-3",
+      "XL": "SKKL-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SKNTC",
+    "stockQty": 7,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 7,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SKNTC-1",
+      "M": "SKNTC-2",
+      "L": "SKNTC-3",
+      "XL": "SKNTC-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SKPHG",
+    "stockQty": 39,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 24,
+      "M": 15,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SKPHG-1",
+      "M": "SKPHG-2",
+      "L": "SKPHG-3",
+      "XL": "SKPHG-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SKTND",
+    "stockQty": 131,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 39,
+      "M": 39,
+      "L": 37,
+      "XL": 16
+    },
+    "variantSkuBySize": {
+      "S": "SKTND-1",
+      "M": "SKTND-2",
+      "L": "SKTND-3",
+      "XL": "SKTND-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SKWNE",
+    "stockQty": 148,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 34,
+      "M": 49,
+      "L": 32,
+      "XL": 33
+    },
+    "variantSkuBySize": {
+      "S": "SKWNE-1",
+      "M": "SKWNE-2",
+      "L": "SKWNE-3",
+      "XL": "SKWNE-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SKWPP",
+    "stockQty": 63,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 27,
+      "M": 17,
+      "L": 19,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SKWPP-1",
+      "M": "SKWPP-2",
+      "L": "SKWPP-3",
+      "XL": "SKWPP-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SKWYL",
+    "stockQty": 32,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 7,
+      "L": 25,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SKWYL-1",
+      "M": "SKWYL-2",
+      "L": "SKWYL-3",
+      "XL": "SKWYL-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SLWB",
+    "stockQty": 13,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 4,
+      "M": 0,
+      "L": 5,
+      "XL": 4
+    },
+    "variantSkuBySize": {
+      "S": "SLWB-1",
+      "M": "SLWB-2",
+      "L": "SLWB-3",
+      "XL": "SLWB-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SLWC",
+    "stockQty": 255,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 47,
+      "M": 80,
+      "L": 87,
+      "XL": 41
+    },
+    "variantSkuBySize": {
+      "S": "SLWC-1",
+      "M": "SLWC-2",
+      "L": "SLWC-3",
+      "XL": "SLWC-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SLWLC",
+    "stockQty": 2,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 2
+    },
+    "variantSkuBySize": {
+      "S": "SLWLC-1",
+      "M": "SLWLC-2",
+      "L": "SLWLC-3",
+      "XL": "SLWLC-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SLWM",
+    "stockQty": 3,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 3
+    },
+    "variantSkuBySize": {
+      "S": "SLWM-1",
+      "M": "SLWM-2",
+      "L": "SLWM-3",
+      "XL": "SLWM-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SLWS",
+    "stockQty": 406,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 102,
+      "M": 74,
+      "L": 107,
+      "XL": 123
+    },
+    "variantSkuBySize": {
+      "S": "SLWS-1",
+      "M": "SLWS-2",
+      "L": "SLWS-3",
+      "XL": "SLWS-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SLWT",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SLWT-1",
+      "M": "SLWT-2",
+      "L": "SLWT-3",
+      "XL": "SLWT-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SLWZ",
+    "stockQty": 1,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 1,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SLWZ-1",
+      "M": "SLWZ-2",
+      "L": "SLWZ-3",
+      "XL": "SLWZ-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SMDR",
+    "stockQty": 27,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 1,
+      "M": 0,
+      "L": 25,
+      "XL": 1
+    },
+    "variantSkuBySize": {
+      "S": "SMDR-1",
+      "M": "SMDR-2",
+      "L": "SMDR-3",
+      "XL": "SMDR-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SMET",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SMET-1",
+      "M": "SMET-2",
+      "L": "SMET-3",
+      "XL": "SMET-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SMGRN",
+    "stockQty": 172,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 39,
+      "M": 30,
+      "L": 49,
+      "XL": 54
+    },
+    "variantSkuBySize": {
+      "S": "SMGRN-2",
+      "M": "SMGRN-3",
+      "L": "SMGRN-4",
+      "XL": "SMGRN-5"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SMLG",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SMLG-1",
+      "M": "SMLG-2",
+      "L": "SMLG-3",
+      "XL": "SMLG-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SMN",
+    "stockQty": 4,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 4,
+      "M": 0,
+      "L": 0
+    },
+    "variantSkuBySize": {
+      "S": "SMN-1",
+      "M": "SMN-2",
+      "L": "SMN-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "SMQML",
+    "stockQty": 400,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 121,
+      "M": 158,
+      "L": 28,
+      "XL": 93
+    },
+    "variantSkuBySize": {
+      "S": "SMQML-1",
+      "M": "SMQML-2",
+      "L": "SMQML-3",
+      "XL": "SMQML-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SMRB",
+    "stockQty": 210,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 74,
+      "M": 92,
+      "L": 28,
+      "XL": 16
+    },
+    "variantSkuBySize": {
+      "S": "SMRB-1",
+      "M": "SMRB-2",
+      "L": "SMRB-3",
+      "XL": "SMRB-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SMRC",
+    "stockQty": 7,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 7,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SMRC-1",
+      "M": "SMRC-2",
+      "L": "SMRC-3",
+      "XL": "SMRC-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SMRL",
+    "stockQty": 25,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 5,
+      "M": 1,
+      "L": 6,
+      "XL": 13
+    },
+    "variantSkuBySize": {
+      "S": "SMRL-1",
+      "M": "SMRL-2",
+      "L": "SMRL-3",
+      "XL": "SMRL-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SMRTP",
+    "stockQty": 6,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 6
+    },
+    "variantSkuBySize": {
+      "S": "SMRTP-1",
+      "M": "SMRTP-2",
+      "L": "SMRTP-3",
+      "XL": "SMRTP-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SMS1",
+    "stockQty": 38,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 27,
+      "M": 10,
+      "L": 1,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SMS1-1",
+      "M": "SMS1-2",
+      "L": "SMS1-3",
+      "XL": "SMS1-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SMS2",
+    "stockQty": 104,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 20,
+      "M": 16,
+      "L": 34,
+      "XL": 34
+    },
+    "variantSkuBySize": {
+      "S": "SMS2-1",
+      "M": "SMS2-2",
+      "L": "SMS2-3",
+      "XL": "SMS2-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SMS2B",
+    "stockQty": 440,
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "stockBySize": {
+      "S": 68,
+      "M": 125,
+      "L": 99,
+      "XL": 148,
+      "XXL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SMS2B-1",
+      "M": "SMS2B-2",
+      "L": "SMS2B-3",
+      "XL": "SMS2B-4",
+      "XXL": "SMS2B-5"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL",
+      "XXL": "men-XXL"
+    }
+  },
+  {
+    "sku": "SMS3",
+    "stockQty": 119,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 37,
+      "M": 33,
+      "L": 17,
+      "XL": 32
+    },
+    "variantSkuBySize": {
+      "S": "SMS3-1",
+      "M": "SMS3-2",
+      "L": "SMS3-3",
+      "XL": "SMS3-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SMS4",
+    "stockQty": 5,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 1,
+      "XL": 4
+    },
+    "variantSkuBySize": {
+      "S": "SMS4-1",
+      "M": "SMS4-2",
+      "L": "SMS4-3",
+      "XL": "SMS4-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SMS5",
+    "stockQty": 118,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 37,
+      "M": 23,
+      "L": 22,
+      "XL": 36
+    },
+    "variantSkuBySize": {
+      "S": "SMS5-1",
+      "M": "SMS5-2",
+      "L": "SMS5-3",
+      "XL": "SMS5-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SMSBB",
+    "stockQty": 881,
+    "sizes": ["S", "M", "L", "XL", "XXL", "XXXL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 103,
+      "L": 159,
+      "XL": 228,
+      "XXL": 213,
+      "XXXL": 178
+    },
+    "variantSkuBySize": {
+      "S": "SMSBB-1",
+      "M": "SMSBB-2",
+      "L": "SMSBB-3",
+      "XL": "SMSBB-4",
+      "XXL": "SMSBB-5",
+      "XXXL": "SMSBB-6"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL",
+      "XXL": "men-XXL",
+      "XXXL": "men-XXXL"
+    }
+  },
+  {
+    "sku": "SMSQL",
+    "stockQty": 650,
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "stockBySize": {
+      "S": 128,
+      "M": 183,
+      "L": 168,
+      "XL": 145,
+      "XXL": 26
+    },
+    "variantSkuBySize": {
+      "S": "SMSQL-1",
+      "M": "SMSQL-2",
+      "L": "SMSQL-3",
+      "XL": "SMSQL-4",
+      "XXL": "SMSQL-5"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL",
+      "XXL": "men-XXL"
+    }
+  },
+  {
+    "sku": "SMVC",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SMVC-1",
+      "M": "SMVC-2",
+      "L": "SMVC-3",
+      "XL": "SMVC-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SMWBL",
+    "stockQty": 280,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 70,
+      "M": 45,
+      "L": 78,
+      "XL": 87
+    },
+    "variantSkuBySize": {
+      "S": "SMWBL-1",
+      "M": "SMWBL-2",
+      "L": "SMWBL-3",
+      "XL": "SMWBL-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SMWNV",
+    "stockQty": 133,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 35,
+      "M": 29,
+      "L": 34,
+      "XL": 35
+    },
+    "variantSkuBySize": {
+      "S": "SMWNV-1",
+      "M": "SMWNV-2",
+      "L": "SMWNV-3",
+      "XL": "SMWNV-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SOAR",
+    "stockQty": 133,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 63,
+      "M": 32,
+      "L": 38,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SOAR-1",
+      "M": "SOAR-2",
+      "L": "SOAR-3",
+      "XL": "SOAR-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SOCA",
+    "stockQty": 71,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 6,
+      "M": 0,
+      "L": 65,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SOCA-1",
+      "M": "SOCA-2",
+      "L": "SOCA-3",
+      "XL": "SOCA-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SODE",
+    "stockQty": 682,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 110,
+      "M": 245,
+      "L": 249,
+      "XL": 78
+    },
+    "variantSkuBySize": {
+      "S": "SODE-1",
+      "M": "SODE-2",
+      "L": "SODE-3",
+      "XL": "SODE-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SOJE",
+    "stockQty": 4,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 4
+    },
+    "variantSkuBySize": {
+      "S": "SOJE-1",
+      "M": "SOJE-2",
+      "L": "SOJE-3",
+      "XL": "SOJE-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SOLA",
+    "stockQty": 129,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 37,
+      "M": 79,
+      "L": 13,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SOLA-1",
+      "M": "SOLA-2",
+      "L": "SOLA-3",
+      "XL": "SOLA-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SOLE",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SOLE-1",
+      "M": "SOLE-2",
+      "L": "SOLE-3",
+      "XL": "SOLE-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SOLU",
+    "stockQty": 12,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 9,
+      "M": 0,
+      "L": 0,
+      "XL": 3
+    },
+    "variantSkuBySize": {
+      "S": "SOLU-1",
+      "M": "SOLU-2",
+      "L": "SOLU-3",
+      "XL": "SOLU-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SOOL",
+    "stockQty": 1,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 1,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SOOL-1",
+      "M": "SOOL-2",
+      "L": "SOOL-3",
+      "XL": "SOOL-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SOTA",
+    "stockQty": 28,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 27,
+      "M": 0,
+      "L": 1,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SOTA-1",
+      "M": "SOTA-2",
+      "L": "SOTA-3",
+      "XL": "SOTA-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SOVE",
+    "stockQty": 1,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 1,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SOVE-1",
+      "M": "SOVE-2",
+      "L": "SOVE-3",
+      "XL": "SOVE-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SOXA",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SOXA-1",
+      "M": "SOXA-2",
+      "L": "SOXA-3",
+      "XL": "SOXA-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SOZO",
+    "stockQty": 126,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 65,
+      "M": 49,
+      "L": 12,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SOZO-1",
+      "M": "SOZO-2",
+      "L": "SOZO-3",
+      "XL": "SOZO-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SQN0202",
+    "stockQty": 508,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 100,
+      "M": 113,
+      "L": 131,
+      "XL": 164
+    },
+    "variantSkuBySize": {
+      "S": "SQN0202-1",
+      "M": "SQN0202-2",
+      "L": "SQN0202-3",
+      "XL": "SQN0202-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SSK20",
+    "stockQty": 90,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 32,
+      "M": 33,
+      "L": 17,
+      "XL": 8
+    },
+    "variantSkuBySize": {
+      "S": "SSK20-1",
+      "M": "SSK20-2",
+      "L": "SSK20-3",
+      "XL": "SSK20-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SSK21",
+    "stockQty": 15,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 15,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SSK21-1",
+      "M": "SSK21-2",
+      "L": "SSK21-3",
+      "XL": "SSK21-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SSK22",
+    "stockQty": 107,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 30,
+      "M": 30,
+      "L": 29,
+      "XL": 18
+    },
+    "variantSkuBySize": {
+      "S": "SSK22-1",
+      "M": "SSK22-2",
+      "L": "SSK22-3",
+      "XL": "SSK22-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SSK23",
+    "stockQty": 89,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 32,
+      "M": 24,
+      "L": 25,
+      "XL": 8
+    },
+    "variantSkuBySize": {
+      "S": "SSK23-1",
+      "M": "SSK23-2",
+      "L": "SSK23-3",
+      "XL": "SSK23-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SSK24",
+    "stockQty": 97,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 37,
+      "M": 28,
+      "L": 25,
+      "XL": 7
+    },
+    "variantSkuBySize": {
+      "S": "SSK24-1",
+      "M": "SSK24-2",
+      "L": "SSK24-3",
+      "XL": "SSK24-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SSK25",
+    "stockQty": 103,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 37,
+      "M": 32,
+      "L": 16,
+      "XL": 18
+    },
+    "variantSkuBySize": {
+      "S": "SSK25-1",
+      "M": "SSK25-2",
+      "L": "SSK25-3",
+      "XL": "SSK25-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SSK26",
+    "stockQty": 59,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 30,
+      "M": 23,
+      "L": 6,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SSK26-1",
+      "M": "SSK26-2",
+      "L": "SSK26-3",
+      "XL": "SSK26-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SSK27",
+    "stockQty": 77,
+    "sizes": ["S (2Y)", "M (3Y)", "L (4Y)", "XL (5Y)"],
+    "stockBySize": {
+      "S (2Y)": 40,
+      "M (3Y)": 13,
+      "L (4Y)": 13,
+      "XL (5Y)": 11
+    },
+    "variantSkuBySize": {
+      "S (2Y)": "SSK27-1",
+      "M (3Y)": "SSK27-2",
+      "L (4Y)": "SSK27-3",
+      "XL (5Y)": "SSK27-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S (2Y)": "baby-S",
+      "M (3Y)": "baby-M",
+      "L (4Y)": "baby-L",
+      "XL (5Y)": "baby-XL"
+    }
+  },
+  {
+    "sku": "SSK28",
+    "stockQty": 81,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 34,
+      "M": 30,
+      "L": 16,
+      "XL": 1
+    },
+    "variantSkuBySize": {
+      "S": "SSK28-1",
+      "M": "SSK28-2",
+      "L": "SSK28-3",
+      "XL": "SSK28-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SSK29",
+    "stockQty": 27,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 13,
+      "M": 14,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SSK29-1",
+      "M": "SSK29-2",
+      "L": "SSK29-3",
+      "XL": "SSK29-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SSK30",
+    "stockQty": 37,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 21,
+      "M": 12,
+      "L": 4,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SSK30-1",
+      "M": "SSK30-2",
+      "L": "SSK30-3",
+      "XL": "SSK30-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SSK31",
+    "stockQty": 96,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 39,
+      "M": 34,
+      "L": 23,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SSK31-1",
+      "M": "SSK31-2",
+      "L": "SSK31-3",
+      "XL": "SSK31-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SSK32",
+    "stockQty": 36,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 17,
+      "M": 17,
+      "L": 2,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SSK32-1",
+      "M": "SSK32-2",
+      "L": "SSK32-3",
+      "XL": "SSK32-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "kids-S",
+      "M": "kids-M",
+      "L": "kids-L",
+      "XL": "kids-XL"
+    }
+  },
+  {
+    "sku": "SSM33",
+    "stockQty": 92,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 27,
+      "M": 25,
+      "L": 28,
+      "XL": 12
+    },
+    "variantSkuBySize": {
+      "S": "SSM33-1",
+      "M": "SSM33-2",
+      "L": "SSM33-3",
+      "XL": "SSM33-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SSM34",
+    "stockQty": 254,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 76,
+      "M": 61,
+      "L": 55,
+      "XL": 62
+    },
+    "variantSkuBySize": {
+      "S": "SSM34-1",
+      "M": "SSM34-2",
+      "L": "SSM34-3",
+      "XL": "SSM34-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SSM35",
+    "stockQty": 17,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 7,
+      "M": 0,
+      "L": 7,
+      "XL": 3
+    },
+    "variantSkuBySize": {
+      "S": "SSM35-1",
+      "M": "SSM35-2",
+      "L": "SSM35-3",
+      "XL": "SSM35-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SSM36",
+    "stockQty": 152,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 49,
+      "M": 38,
+      "L": 36,
+      "XL": 29
+    },
+    "variantSkuBySize": {
+      "S": "SSM36-1",
+      "M": "SSM36-2",
+      "L": "SSM36-3",
+      "XL": "SSM36-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SSM37",
+    "stockQty": 17,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 17,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SSM37-1",
+      "M": "SSM37-2",
+      "L": "SSM37-3",
+      "XL": "SSM37-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SSM38",
+    "stockQty": 182,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 75,
+      "M": 42,
+      "L": 32,
+      "XL": 33
+    },
+    "variantSkuBySize": {
+      "S": "SSM38-1",
+      "M": "SSM38-2",
+      "L": "SSM38-3",
+      "XL": "SSM38-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SSM39",
+    "stockQty": 171,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 55,
+      "M": 44,
+      "L": 39,
+      "XL": 33
+    },
+    "variantSkuBySize": {
+      "S": "SSM39-1",
+      "M": "SSM39-2",
+      "L": "SSM39-3",
+      "XL": "SSM39-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SSM40",
+    "stockQty": 100,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 50,
+      "M": 32,
+      "L": 9,
+      "XL": 9
+    },
+    "variantSkuBySize": {
+      "S": "SSM40-1",
+      "M": "SSM40-2",
+      "L": "SSM40-3",
+      "XL": "SSM40-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "SSW01",
+    "stockQty": 237,
+    "sizes": ["S", "M", "L", "XL", "XXL", "XS"],
+    "stockBySize": {
+      "S": 6,
+      "M": 118,
+      "L": 76,
+      "XL": 7,
+      "XXL": 30,
+      "XS": 0
+    },
+    "variantSkuBySize": {
+      "S": "SSW01-1",
+      "M": "SSW01-2",
+      "L": "SSW01-3",
+      "XL": "SSW01-4",
+      "XXL": "SSW01-5",
+      "XS": "SSW01-0"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL",
+      "XXL": "women-XXL",
+      "XS": "women-XS"
+    }
+  },
+  {
+    "sku": "SSW02",
+    "stockQty": 90,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 26,
+      "M": 34,
+      "L": 9,
+      "XL": 21
+    },
+    "variantSkuBySize": {
+      "S": "SSW02-1",
+      "M": "SSW02-2",
+      "L": "SSW02-3",
+      "XL": "SSW02-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SSW03",
+    "stockQty": 278,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 63,
+      "M": 101,
+      "L": 96,
+      "XL": 18
+    },
+    "variantSkuBySize": {
+      "S": "SSW03-1",
+      "M": "SSW03-2",
+      "L": "SSW03-3",
+      "XL": "SSW03-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SSW04",
+    "stockQty": 203,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 15,
+      "M": 53,
+      "L": 82,
+      "XL": 53
+    },
+    "variantSkuBySize": {
+      "S": "SSW04-1",
+      "M": "SSW04-2",
+      "L": "SSW04-3",
+      "XL": "SSW04-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SSW05",
+    "stockQty": 405,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 60,
+      "M": 124,
+      "L": 142,
+      "XL": 79
+    },
+    "variantSkuBySize": {
+      "S": "SSW05-1",
+      "M": "SSW05-2",
+      "L": "SSW05-3",
+      "XL": "SSW05-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SSW06",
+    "stockQty": 222,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 46,
+      "M": 64,
+      "L": 71,
+      "XL": 41
+    },
+    "variantSkuBySize": {
+      "S": "SSW06-1",
+      "M": "SSW06-2",
+      "L": "SSW06-3",
+      "XL": "SSW06-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SSW07",
+    "stockQty": 408,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 107,
+      "M": 175,
+      "L": 119,
+      "XL": 7
+    },
+    "variantSkuBySize": {
+      "S": "SSW07-1",
+      "M": "SSW07-2",
+      "L": "SSW07-3",
+      "XL": "SSW07-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SSW08",
+    "stockQty": 424,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 66,
+      "M": 140,
+      "L": 175,
+      "XL": 43
+    },
+    "variantSkuBySize": {
+      "S": "SSW08-1",
+      "M": "SSW08-2",
+      "L": "SSW08-3",
+      "XL": "SSW08-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SSW09",
+    "stockQty": 71,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 46,
+      "M": 14,
+      "L": 11,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SSW09-1",
+      "M": "SSW09-2",
+      "L": "SSW09-3",
+      "XL": "SSW09-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SSW10",
+    "stockQty": 197,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 33,
+      "M": 47,
+      "L": 71,
+      "XL": 46
+    },
+    "variantSkuBySize": {
+      "S": "SSW10-1",
+      "M": "SSW10-2",
+      "L": "SSW10-3",
+      "XL": "SSW10-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SSW11",
+    "stockQty": 468,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 74,
+      "M": 156,
+      "L": 163,
+      "XL": 75
+    },
+    "variantSkuBySize": {
+      "S": "SSW11-1",
+      "M": "SSW11-2",
+      "L": "SSW11-3",
+      "XL": "SSW11-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SSW12",
+    "stockQty": 472,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 76,
+      "M": 156,
+      "L": 160,
+      "XL": 80
+    },
+    "variantSkuBySize": {
+      "S": "SSW12-1",
+      "M": "SSW12-2",
+      "L": "SSW12-3",
+      "XL": "SSW12-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SSW13",
+    "stockQty": 537,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 51,
+      "M": 123,
+      "L": 250,
+      "XL": 113
+    },
+    "variantSkuBySize": {
+      "S": "SSW13-1",
+      "M": "SSW13-2",
+      "L": "SSW13-3",
+      "XL": "SSW13-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SSW14",
+    "stockQty": 6,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 5,
+      "M": 0,
+      "L": 1
+    },
+    "variantSkuBySize": {
+      "S": "SSW14-1",
+      "M": "SSW14-2",
+      "L": "SSW14-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "SSW15",
+    "stockQty": 105,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 33,
+      "M": 32,
+      "L": 40
+    },
+    "variantSkuBySize": {
+      "S": "SSW15-1",
+      "M": "SSW15-2",
+      "L": "SSW15-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "SSW16",
+    "stockQty": 689,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 131,
+      "M": 197,
+      "L": 173,
+      "XL": 188
+    },
+    "variantSkuBySize": {
+      "S": "SSW16-1",
+      "M": "SSW16-2",
+      "L": "SSW16-3",
+      "XL": "SSW16-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SSW17",
+    "stockQty": 67,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 38,
+      "M": 7,
+      "L": 21,
+      "XL": 1
+    },
+    "variantSkuBySize": {
+      "S": "SSW17-1",
+      "M": "SSW17-2",
+      "L": "SSW17-3",
+      "XL": "SSW17-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SSW18",
+    "stockQty": 204,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 45,
+      "M": 85,
+      "L": 74
+    },
+    "variantSkuBySize": {
+      "S": "SSW18-1",
+      "M": "SSW18-2",
+      "L": "SSW18-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "SSW19",
+    "stockQty": 422,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 105,
+      "M": 156,
+      "L": 125,
+      "XL": 36
+    },
+    "variantSkuBySize": {
+      "S": "SSW19-1",
+      "M": "SSW19-2",
+      "L": "SSW19-3",
+      "XL": "SSW19-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "ST",
+    "stockQty": 0,
+    "sizes": ["Free size"],
+    "stockBySize": {
+      "Free size": 0
+    },
+    "variantSkuBySize": {
+      "Free size": "ST"
+    },
+    "sizeGuideKeyBySize": {
+      "Free size": null
+    }
+  },
+  {
+    "sku": "ST1",
+    "stockQty": 28,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 14,
+      "M": 7,
+      "L": 7,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "ST1-1",
+      "M": "ST1-2",
+      "L": "ST1-3",
+      "XL": "ST1-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "ST2",
+    "stockQty": 32,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 15,
+      "M": 9,
+      "L": 8,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "ST2-1",
+      "M": "ST2-2",
+      "L": "ST2-3",
+      "XL": "ST2-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "ST3",
+    "stockQty": 24,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 13,
+      "M": 3,
+      "L": 8,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "ST3-1",
+      "M": "ST3-2",
+      "L": "ST3-3",
+      "XL": "ST3-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "ST4",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "ST4-1",
+      "M": "ST4-2",
+      "L": "ST4-3",
+      "XL": "ST4-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "ST5",
+    "stockQty": 2,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 1,
+      "XL": 1
+    },
+    "variantSkuBySize": {
+      "S": "ST5-1",
+      "M": "ST5-2",
+      "L": "ST5-3",
+      "XL": "ST5-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "ST6",
+    "stockQty": 2,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 1,
+      "M": 0,
+      "L": 0,
+      "XL": 1
+    },
+    "variantSkuBySize": {
+      "S": "ST6-1",
+      "M": "ST6-2",
+      "L": "ST6-3",
+      "XL": "ST6-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "ST7",
+    "stockQty": 29,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 8,
+      "M": 10,
+      "L": 10,
+      "XL": 1
+    },
+    "variantSkuBySize": {
+      "S": "ST7-1",
+      "M": "ST7-2",
+      "L": "ST7-3",
+      "XL": "ST7-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "STN1",
+    "stockQty": 146,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 40,
+      "M": 31,
+      "L": 36,
+      "XL": 39
+    },
+    "variantSkuBySize": {
+      "S": "STN1-1",
+      "M": "STN1-2",
+      "L": "STN1-3",
+      "XL": "STN1-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "STN2",
+    "stockQty": 145,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 37,
+      "M": 37,
+      "L": 38,
+      "XL": 33
+    },
+    "variantSkuBySize": {
+      "S": "STN2-1",
+      "M": "STN2-2",
+      "L": "STN2-3",
+      "XL": "STN2-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "STN3",
+    "stockQty": 153,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 40,
+      "M": 36,
+      "L": 38,
+      "XL": 39
+    },
+    "variantSkuBySize": {
+      "S": "STN3-1",
+      "M": "STN3-2",
+      "L": "STN3-3",
+      "XL": "STN3-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "STN4",
+    "stockQty": 136,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 36,
+      "M": 33,
+      "L": 33,
+      "XL": 34
+    },
+    "variantSkuBySize": {
+      "S": "STN4-1",
+      "M": "STN4-2",
+      "L": "STN4-3",
+      "XL": "STN4-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "STN5",
+    "stockQty": 72,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 17,
+      "M": 19,
+      "L": 23,
+      "XL": 13
+    },
+    "variantSkuBySize": {
+      "S": "STN5-1",
+      "M": "STN5-2",
+      "L": "STN5-3",
+      "XL": "STN5-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "STN6",
+    "stockQty": 139,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 33,
+      "M": 34,
+      "L": 32,
+      "XL": 40
+    },
+    "variantSkuBySize": {
+      "S": "STN6-1",
+      "M": "STN6-2",
+      "L": "STN6-3",
+      "XL": "STN6-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "STN7",
+    "stockQty": 94,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 21,
+      "M": 26,
+      "L": 26,
+      "XL": 21
+    },
+    "variantSkuBySize": {
+      "S": "STN7-1",
+      "M": "STN7-2",
+      "L": "STN7-3",
+      "XL": "STN7-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "STSB",
+    "stockQty": 15,
+    "sizes": ["S", "M"],
+    "stockBySize": {
+      "S": 7,
+      "M": 8
+    },
+    "variantSkuBySize": {
+      "S": "STSB-1",
+      "M": "STSB-2"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M"
+    }
+  },
+  {
+    "sku": "STSI",
+    "stockQty": 39,
+    "sizes": ["S", "M"],
+    "stockBySize": {
+      "S": 24,
+      "M": 15
+    },
+    "variantSkuBySize": {
+      "S": "STSI-1",
+      "M": "STSI-2"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M"
+    }
+  },
+  {
+    "sku": "STSN",
+    "stockQty": 14,
+    "sizes": ["S", "M"],
+    "stockBySize": {
+      "S": 9,
+      "M": 5
+    },
+    "variantSkuBySize": {
+      "S": "STSN-1",
+      "M": "STSN-2"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M"
+    }
+  },
+  {
+    "sku": "SWBBT",
+    "stockQty": 1435,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 302,
+      "M": 521,
+      "L": 455,
+      "XL": 157
+    },
+    "variantSkuBySize": {
+      "S": "SWBBT-1",
+      "M": "SWBBT-2",
+      "L": "SWBBT-3",
+      "XL": "SWBBT-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWBSF",
+    "stockQty": 24,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 24,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SWBSF-1",
+      "M": "SWBSF-2",
+      "L": "SWBSF-3",
+      "XL": "SWBSF-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWDBM",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0
+    },
+    "variantSkuBySize": {
+      "S": "SWDBM-1",
+      "M": "SWDBM-2",
+      "L": "SWDBM-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "SWDCB",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SWDCB-1",
+      "M": "SWDCB-2",
+      "L": "SWDCB-3",
+      "XL": "SWDCB-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWDCC",
+    "stockQty": 15,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 2,
+      "M": 7,
+      "L": 5,
+      "XL": 1
+    },
+    "variantSkuBySize": {
+      "S": "SWDCC-1",
+      "M": "SWDCC-2",
+      "L": "SWDCC-3",
+      "XL": "SWDCC-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWDS",
+    "stockQty": 206,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 95,
+      "M": 45,
+      "L": 19,
+      "XL": 47
+    },
+    "variantSkuBySize": {
+      "S": "SWDS-1",
+      "M": "SWDS-2",
+      "L": "SWDS-3",
+      "XL": "SWDS-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWDSM",
+    "stockQty": 1,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 1
+    },
+    "variantSkuBySize": {
+      "S": "SWDSM-1",
+      "M": "SWDSM-2",
+      "L": "SWDSM-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "SWDSZ",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SWDSZ-1",
+      "M": "SWDSZ-2",
+      "L": "SWDSZ-3",
+      "XL": "SWDSZ-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWLFG1",
+    "stockQty": 1,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 1,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SWLFG1-1",
+      "M": "SWLFG1-2",
+      "L": "SWLFG1-3",
+      "XL": "SWLFG1-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWLFO1",
+    "stockQty": 16,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 8,
+      "M": 0,
+      "L": 0,
+      "XL": 8
+    },
+    "variantSkuBySize": {
+      "S": "SWLFO1-1",
+      "M": "SWLFO1-2",
+      "L": "SWLFO1-3",
+      "XL": "SWLFO1-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWLG1",
+    "stockQty": 15,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 14,
+      "M": 1,
+      "L": 0
+    },
+    "variantSkuBySize": {
+      "S": "SWLG1-1",
+      "M": "SWLG1-2",
+      "L": "SWLG1-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "SWLHG1",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SWLHG1-1",
+      "M": "SWLHG1-2",
+      "L": "SWLHG1-3",
+      "XL": "SWLHG1-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWLHO1",
+    "stockQty": 24,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 19,
+      "M": 0,
+      "L": 0,
+      "XL": 5
+    },
+    "variantSkuBySize": {
+      "S": "SWLHO1-1",
+      "M": "SWLHO1-2",
+      "L": "SWLHO1-3",
+      "XL": "SWLHO1-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWLL",
+    "stockQty": 5073,
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "stockBySize": {
+      "S": 720,
+      "M": 1513,
+      "L": 1428,
+      "XL": 966,
+      "XXL": 446
+    },
+    "variantSkuBySize": {
+      "S": "SWLL-1",
+      "M": "SWLL-2",
+      "L": "SWLL-3",
+      "XL": "SWLL-4",
+      "XXL": "SWLL-5"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL",
+      "XXL": "women-XXL"
+    }
+  },
+  {
+    "sku": "SWLM1",
+    "stockQty": 3,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 3,
+      "M": 0,
+      "L": 0
+    },
+    "variantSkuBySize": {
+      "S": "SWLM1-1",
+      "M": "SWLM1-2",
+      "L": "SWLM1-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "SWLP1",
+    "stockQty": 1,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 1,
+      "M": 0,
+      "L": 0
+    },
+    "variantSkuBySize": {
+      "S": "SWLP1-1",
+      "M": "SWLP1-2",
+      "L": "SWLP1-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "SWLSG1",
+    "stockQty": 37,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 16,
+      "M": 0,
+      "L": 0,
+      "XL": 21
+    },
+    "variantSkuBySize": {
+      "S": "SWLSG1-1",
+      "M": "SWLSG1-2",
+      "L": "SWLSG1-3",
+      "XL": "SWLSG1-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWLSO1",
+    "stockQty": 36,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 8,
+      "M": 0,
+      "L": 0,
+      "XL": 28
+    },
+    "variantSkuBySize": {
+      "S": "SWLSO1-1",
+      "M": "SWLSO1-2",
+      "L": "SWLSO1-3",
+      "XL": "SWLSO1-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWLXG1",
+    "stockQty": 57,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 32,
+      "M": 11,
+      "L": 14
+    },
+    "variantSkuBySize": {
+      "S": "SWLXG1-1",
+      "M": "SWLXG1-2",
+      "L": "SWLXG1-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "SWLXO1",
+    "stockQty": 17,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 15,
+      "M": 0,
+      "L": 2
+    },
+    "variantSkuBySize": {
+      "S": "SWLXO1-1",
+      "M": "SWLXO1-2",
+      "L": "SWLXO1-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "SWMCB",
+    "stockQty": 5,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 2,
+      "M": 0,
+      "L": 3
+    },
+    "variantSkuBySize": {
+      "S": "SWMCB-1",
+      "M": "SWMCB-2",
+      "L": "SWMCB-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "SWMCC",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0
+    },
+    "variantSkuBySize": {
+      "S": "SWMCC-1",
+      "M": "SWMCC-2",
+      "L": "SWMCC-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "SWMCD",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0
+    },
+    "variantSkuBySize": {
+      "S": "SWMCD-1",
+      "M": "SWMCD-2",
+      "L": "SWMCD-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "SWMCS",
+    "stockQty": 29,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 3,
+      "M": 18,
+      "L": 8
+    },
+    "variantSkuBySize": {
+      "S": "SWMCS-1",
+      "M": "SWMCS-2",
+      "L": "SWMCS-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "SWMMB",
+    "stockQty": 165,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 33,
+      "M": 67,
+      "L": 65
+    },
+    "variantSkuBySize": {
+      "S": "SWMMB-1",
+      "M": "SWMMB-2",
+      "L": "SWMMB-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "SWRMK",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SWRMK-1",
+      "M": "SWRMK-2",
+      "L": "SWRMK-3",
+      "XL": "SWRMK-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWRML",
+    "stockQty": 250,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 33,
+      "M": 94,
+      "L": 88,
+      "XL": 35
+    },
+    "variantSkuBySize": {
+      "S": "SWRML-1",
+      "M": "SWRML-2",
+      "L": "SWRML-3",
+      "XL": "SWRML-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWRMN",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SWRMN-1",
+      "M": "SWRMN-2",
+      "L": "SWRMN-3",
+      "XL": "SWRMN-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWRMT",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SWRMT-1",
+      "M": "SWRMT-2",
+      "L": "SWRMT-3",
+      "XL": "SWRMT-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWS2B",
+    "stockQty": 1904,
+    "sizes": ["S", "M", "L", "XL", "XXL", "XXXL"],
+    "stockBySize": {
+      "S": 220,
+      "M": 614,
+      "L": 399,
+      "XL": 336,
+      "XXL": 192,
+      "XXXL": 143
+    },
+    "variantSkuBySize": {
+      "S": "SWS2B-1",
+      "M": "SWS2B-2",
+      "L": "SWS2B-3",
+      "XL": "SWS2B-4",
+      "XXL": "SWS2B-5",
+      "XXXL": "SWS2B-6"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL",
+      "XXL": "women-XXL",
+      "XXXL": "women-XXXL"
+    }
+  },
+  {
+    "sku": "SWSMA",
+    "stockQty": 39,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 10,
+      "M": 20,
+      "L": 7,
+      "XL": 2
+    },
+    "variantSkuBySize": {
+      "S": "SWSMA-1",
+      "M": "SWSMA-2",
+      "L": "SWSMA-3",
+      "XL": "SWSMA-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWSML",
+    "stockQty": 102,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 102,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SWSML-1",
+      "M": "SWSML-2",
+      "L": "SWSML-3",
+      "XL": "SWSML-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWWBB",
+    "stockQty": 71,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 24,
+      "M": 4,
+      "L": 8,
+      "XL": 35
+    },
+    "variantSkuBySize": {
+      "S": "SWWBB-1",
+      "M": "SWWBB-2",
+      "L": "SWWBB-3",
+      "XL": "SWWBB-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWWBL",
+    "stockQty": 204,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 34,
+      "M": 70,
+      "L": 75,
+      "XL": 25
+    },
+    "variantSkuBySize": {
+      "S": "SWWBL-1",
+      "M": "SWWBL-2",
+      "L": "SWWBL-3",
+      "XL": "SWWBL-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWWBM",
+    "stockQty": 128,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 34,
+      "M": 24,
+      "L": 32,
+      "XL": 38
+    },
+    "variantSkuBySize": {
+      "S": "SWWBM-1",
+      "M": "SWWBM-2",
+      "L": "SWWBM-3",
+      "XL": "SWWBM-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWWBP",
+    "stockQty": 143,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 38,
+      "M": 31,
+      "L": 35,
+      "XL": 39
+    },
+    "variantSkuBySize": {
+      "S": "SWWBP-1",
+      "M": "SWWBP-2",
+      "L": "SWWBP-3",
+      "XL": "SWWBP-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWWGR",
+    "stockQty": 6,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 2,
+      "XL": 4
+    },
+    "variantSkuBySize": {
+      "S": "SWWGR-1",
+      "M": "SWWGR-2",
+      "L": "SWWGR-3",
+      "XL": "SWWGR-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWWNP",
+    "stockQty": 39,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 23,
+      "M": 0,
+      "L": 1,
+      "XL": 15
+    },
+    "variantSkuBySize": {
+      "S": "SWWNP-1",
+      "M": "SWWNP-2",
+      "L": "SWWNP-3",
+      "XL": "SWWNP-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWWPP",
+    "stockQty": 516,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 63,
+      "M": 138,
+      "L": 195,
+      "XL": 120
+    },
+    "variantSkuBySize": {
+      "S": "SWWPP-1",
+      "M": "SWWPP-2",
+      "L": "SWWPP-3",
+      "XL": "SWWPP-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWWPT",
+    "stockQty": 37,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 6,
+      "M": 0,
+      "L": 3,
+      "XL": 28
+    },
+    "variantSkuBySize": {
+      "S": "SWWPT-1",
+      "M": "SWWPT-2",
+      "L": "SWWPT-3",
+      "XL": "SWWPT-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWWRT",
+    "stockQty": 527,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 73,
+      "M": 233,
+      "L": 127,
+      "XL": 94
+    },
+    "variantSkuBySize": {
+      "S": "SWWRT-1",
+      "M": "SWWRT-2",
+      "L": "SWWRT-3",
+      "XL": "SWWRT-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWWTB",
+    "stockQty": 48,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 20,
+      "M": 0,
+      "L": 1,
+      "XL": 27
+    },
+    "variantSkuBySize": {
+      "S": "SWWTB-1",
+      "M": "SWWTB-2",
+      "L": "SWWTB-3",
+      "XL": "SWWTB-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWWTM",
+    "stockQty": 94,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 32,
+      "M": 12,
+      "L": 23,
+      "XL": 27
+    },
+    "variantSkuBySize": {
+      "S": "SWWTM-1",
+      "M": "SWWTM-2",
+      "L": "SWWTM-3",
+      "XL": "SWWTM-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWWTP",
+    "stockQty": 100,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 35,
+      "M": 13,
+      "L": 22,
+      "XL": 30
+    },
+    "variantSkuBySize": {
+      "S": "SWWTP-1",
+      "M": "SWWTP-2",
+      "L": "SWWTP-3",
+      "XL": "SWWTP-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWWTR",
+    "stockQty": 59,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 16,
+      "M": 0,
+      "L": 12,
+      "XL": 31
+    },
+    "variantSkuBySize": {
+      "S": "SWWTR-1",
+      "M": "SWWTR-2",
+      "L": "SWWTR-3",
+      "XL": "SWWTR-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "SWZHG",
+    "stockQty": 9,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 9,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "SWZHG-1",
+      "M": "SWZHG-2",
+      "L": "SWZHG-3",
+      "XL": "SWZHG-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WBM",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0
+    },
+    "variantSkuBySize": {
+      "S": "WBM-1",
+      "M": "WBM-2",
+      "L": "WBM-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "WCM",
+    "stockQty": 112,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 69,
+      "XL": 43
+    },
+    "variantSkuBySize": {
+      "S": "WCM-1",
+      "M": "WCM-2",
+      "L": "WCM-3",
+      "XL": "WCM-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WHN",
+    "stockQty": 63,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 37,
+      "M": 26,
+      "L": 0
+    },
+    "variantSkuBySize": {
+      "S": "WHN-1",
+      "M": "WHN-2",
+      "L": "WHN-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "WLMS",
+    "stockQty": 38,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 36,
+      "M": 0,
+      "L": 1,
+      "XL": 1
+    },
+    "variantSkuBySize": {
+      "S": "WLMS-1",
+      "M": "WLMS-2",
+      "L": "WLMS-3",
+      "XL": "WLMS-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WLS",
+    "stockQty": 96,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 50,
+      "M": 0,
+      "L": 0,
+      "XL": 46
+    },
+    "variantSkuBySize": {
+      "S": "WLS-1",
+      "M": "WLS-2",
+      "L": "WLS-3",
+      "XL": "WLS-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WMB",
+    "stockQty": 656,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 122,
+      "M": 205,
+      "L": 202,
+      "XL": 127
+    },
+    "variantSkuBySize": {
+      "S": "WMB-1",
+      "M": "WMB-2",
+      "L": "WMB-3",
+      "XL": "WMB-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WMC",
+    "stockQty": 54,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 54,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "WMC-1",
+      "M": "WMC-2",
+      "L": "WMC-3",
+      "XL": "WMC-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WMD",
+    "stockQty": 467,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 22,
+      "M": 137,
+      "L": 219,
+      "XL": 89
+    },
+    "variantSkuBySize": {
+      "S": "WMD-1",
+      "M": "WMD-2",
+      "L": "WMD-3",
+      "XL": "WMD-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WMI",
+    "stockQty": 190,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 23,
+      "M": 98,
+      "L": 66,
+      "XL": 3
+    },
+    "variantSkuBySize": {
+      "S": "WMI-1",
+      "M": "WMI-2",
+      "L": "WMI-3",
+      "XL": "WMI-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WMK",
+    "stockQty": 333,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 39,
+      "M": 144,
+      "L": 100,
+      "XL": 50
+    },
+    "variantSkuBySize": {
+      "S": "WMK-1",
+      "M": "WMK-2",
+      "L": "WMK-3",
+      "XL": "WMK-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WMM",
+    "stockQty": 39,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 39,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "WMM-1",
+      "M": "WMM-2",
+      "L": "WMM-3",
+      "XL": "WMM-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WMN",
+    "stockQty": 1,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 1
+    },
+    "variantSkuBySize": {
+      "S": "WMN-1",
+      "M": "WMN-2",
+      "L": "WMN-3",
+      "XL": "WMN-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WMNM",
+    "stockQty": 117,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 69,
+      "M": 0,
+      "L": 22,
+      "XL": 26
+    },
+    "variantSkuBySize": {
+      "S": "WMNM-1",
+      "M": "WMNM-2",
+      "L": "WMNM-3",
+      "XL": "WMNM-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WMO",
+    "stockQty": 167,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 33,
+      "M": 89,
+      "L": 45,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "WMO-1",
+      "M": "WMO-2",
+      "L": "WMO-3",
+      "XL": "WMO-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WMS",
+    "stockQty": 252,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 75,
+      "M": 44,
+      "L": 84,
+      "XL": 49
+    },
+    "variantSkuBySize": {
+      "S": "WMS-1",
+      "M": "WMS-2",
+      "L": "WMS-3",
+      "XL": "WMS-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WMSO",
+    "stockQty": 1022,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 258,
+      "M": 330,
+      "L": 299,
+      "XL": 135
+    },
+    "variantSkuBySize": {
+      "S": "WMSO-1",
+      "M": "WMSO-2",
+      "L": "WMSO-3",
+      "XL": "WMSO-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WPO",
+    "stockQty": 956,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 412,
+      "M": 140,
+      "L": 265,
+      "XL": 139
+    },
+    "variantSkuBySize": {
+      "S": "WPO-1",
+      "M": "WPO-2",
+      "L": "WPO-3",
+      "XL": "WPO-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WQW",
+    "stockQty": 9,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 3,
+      "M": 3,
+      "L": 2,
+      "XL": 1
+    },
+    "variantSkuBySize": {
+      "S": "WQW-1",
+      "M": "WQW-2",
+      "L": "WQW-3",
+      "XL": "WQW-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WSA1",
+    "stockQty": 165,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 42,
+      "M": 42,
+      "L": 40,
+      "XL": 41
+    },
+    "variantSkuBySize": {
+      "S": "WSA1-1",
+      "M": "WSA1-2",
+      "L": "WSA1-3",
+      "XL": "WSA1-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "WSA2",
+    "stockQty": 160,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 41,
+      "M": 37,
+      "L": 40,
+      "XL": 42
+    },
+    "variantSkuBySize": {
+      "S": "WSA2-1",
+      "M": "WSA2-2",
+      "L": "WSA2-3",
+      "XL": "WSA2-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "WSA3",
+    "stockQty": 152,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 41,
+      "M": 35,
+      "L": 39,
+      "XL": 37
+    },
+    "variantSkuBySize": {
+      "S": "WSA3-1",
+      "M": "WSA3-2",
+      "L": "WSA3-3",
+      "XL": "WSA3-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "men-S",
+      "M": "men-M",
+      "L": "men-L",
+      "XL": "men-XL"
+    }
+  },
+  {
+    "sku": "WSA4",
+    "stockQty": 149,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 37,
+      "M": 36,
+      "L": 37,
+      "XL": 39
+    },
+    "variantSkuBySize": {
+      "S": "WSA4-1",
+      "M": "WSA4-2",
+      "L": "WSA4-3",
+      "XL": "WSA4-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WSA5",
+    "stockQty": 155,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 40,
+      "M": 38,
+      "L": 36,
+      "XL": 41
+    },
+    "variantSkuBySize": {
+      "S": "WSA5-1",
+      "M": "WSA5-2",
+      "L": "WSA5-3",
+      "XL": "WSA5-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WSA6",
+    "stockQty": 126,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 37,
+      "M": 36,
+      "L": 37,
+      "XL": 16
+    },
+    "variantSkuBySize": {
+      "S": "WSA6-1",
+      "M": "WSA6-2",
+      "L": "WSA6-3",
+      "XL": "WSA6-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WSA7",
+    "stockQty": 138,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 42,
+      "M": 38,
+      "L": 42,
+      "XL": 16
+    },
+    "variantSkuBySize": {
+      "S": "WSA7-1",
+      "M": "WSA7-2",
+      "L": "WSA7-3",
+      "XL": "WSA7-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WSH01",
+    "stockQty": 329,
+    "sizes": ["36", "38", "40", "42", "44"],
+    "stockBySize": {
+      "36": 67,
+      "38": 49,
+      "40": 71,
+      "42": 58,
+      "44": 84
+    },
+    "variantSkuBySize": {
+      "36": "WSH01-1",
+      "38": "WSH01-2",
+      "40": "WSH01-3",
+      "42": "WSH01-4",
+      "44": "WSH01-5"
+    },
+    "sizeGuideKeyBySize": {
+      "36": null,
+      "38": null,
+      "40": null,
+      "42": null,
+      "44": null
+    }
+  },
+  {
+    "sku": "WSH02",
+    "stockQty": 299,
+    "sizes": ["36", "38", "40", "42", "44"],
+    "stockBySize": {
+      "36": 31,
+      "38": 16,
+      "40": 72,
+      "42": 88,
+      "44": 92
+    },
+    "variantSkuBySize": {
+      "36": "WSH02-1",
+      "38": "WSH02-2",
+      "40": "WSH02-3",
+      "42": "WSH02-4",
+      "44": "WSH02-5"
+    },
+    "sizeGuideKeyBySize": {
+      "36": null,
+      "38": null,
+      "40": null,
+      "42": null,
+      "44": null
+    }
+  },
+  {
+    "sku": "WSL",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "WSL-1",
+      "M": "WSL-2",
+      "L": "WSL-3",
+      "XL": "WSL-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WVS",
+    "stockQty": 31,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 31,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "WVS-1",
+      "M": "WVS-2",
+      "L": "WVS-3",
+      "XL": "WVS-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "WWQ",
+    "stockQty": 2,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 2,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "WWQ-1",
+      "M": "WWQ-2",
+      "L": "WWQ-3",
+      "XL": "WWQ-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "XSBP",
+    "stockQty": 0,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 0,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "XSBP-1",
+      "M": "XSBP-2",
+      "L": "XSBP-3",
+      "XL": "XSBP-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "XSNI",
+    "stockQty": 66,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 66,
+      "M": 0,
+      "L": 0,
+      "XL": 0
+    },
+    "variantSkuBySize": {
+      "S": "XSNI-1",
+      "M": "XSNI-2",
+      "L": "XSNI-3",
+      "XL": "XSNI-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  },
+  {
+    "sku": "YSBW",
+    "stockQty": 32,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 32,
+      "M": 0,
+      "L": 0
+    },
+    "variantSkuBySize": {
+      "S": "YSBW-1",
+      "M": "YSBW-2",
+      "L": "YSBW-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "YSGS",
+    "stockQty": 15,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 15,
+      "M": 0,
+      "L": 0
+    },
+    "variantSkuBySize": {
+      "S": "YSGS-1",
+      "M": "YSGS-2",
+      "L": "YSGS-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "YSRB",
+    "stockQty": 8,
+    "sizes": ["S", "M", "L"],
+    "stockBySize": {
+      "S": 8,
+      "M": 0,
+      "L": 0
+    },
+    "variantSkuBySize": {
+      "S": "YSRB-1",
+      "M": "YSRB-2",
+      "L": "YSRB-3"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L"
+    }
+  },
+  {
+    "sku": "ZSB",
+    "stockQty": 86,
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": {
+      "S": 25,
+      "M": 0,
+      "L": 0,
+      "XL": 61
+    },
+    "variantSkuBySize": {
+      "S": "ZSB-1",
+      "M": "ZSB-2",
+      "L": "ZSB-3",
+      "XL": "ZSB-4"
+    },
+    "sizeGuideKeyBySize": {
+      "S": "women-S",
+      "M": "women-M",
+      "L": "women-L",
+      "XL": "women-XL"
+    }
+  }
+]
