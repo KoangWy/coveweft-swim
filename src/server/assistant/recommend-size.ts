@@ -144,9 +144,10 @@ export async function recommendSize(
 
   return {
     status: "recommended",
-    reason: new Set(rowIndexes).size === 1
-      ? "all_measurements_agree"
-      : "larger_size_when_measurements_differ",
+    reason:
+      new Set(rowIndexes).size === 1
+        ? "all_measurements_agree"
+        : "larger_size_when_measurements_differ",
     size: {
       label: chosen.label,
       sizeGuideKey: chosen.sizeGuideKey,
