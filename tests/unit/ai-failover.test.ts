@@ -275,6 +275,57 @@ describe("withFailover", () => {
     });
     expect(fallbackFetch).toHaveBeenCalledOnce();
   });
+
+  it.each([
+    ["complete", "complete"],
+    ["complete", "stream"],
+    ["stream", "complete"],
+    ["stream", "stream"],
+  ] as const)(
+    "keeps after-output state from fallback text: first round %s, second round %s",
+    async (firstPath, secondPath) => {
+      const primaryFetch = vi.fn<typeof fetch>(async () => jsonResponse({}, 503));
+      let fallbackCalls = 0;
+      const fallbackFetch = vi.fn<typeof fetch>(async (_input, init) => {
+        fallbackCalls += 1;
+
+        if (fallbackCalls > 1) {
+          return jsonResponse({ message: "overloaded" }, 503);
+        }
+
+        return JSON.parse(String(init?.body)).stream
+          ? answer("From fallback.")
+          : jsonResponse(completionBody({ content: "From fallback." }));
+      });
+      const provider = withFailover(
+        createChatProvider(settings(), { fetch: primaryFetch }),
+        createChatProvider(settings({ model: "small-model", reasoningEffort: null }), {
+          fetch: fallbackFetch,
+        }),
+      );
+
+      if (firstPath === "complete") {
+        expect((await provider.complete(request)).text).toBe("From fallback.");
+      } else {
+        expect(await collect(provider.stream(request))).toContainEqual({
+          type: "text",
+          text: "From fallback.",
+        });
+      }
+
+      const second =
+        secondPath === "complete" ? provider.complete(request) : collect(provider.stream(request));
+      const error = await second.then(
+        () => undefined,
+        (caught: unknown) => caught,
+      );
+
+      expect(error).toBeInstanceOf(ProviderError);
+      expect(error).toMatchObject({ status: 503, afterOutput: true, canFailover: false });
+      expect(primaryFetch).toHaveBeenCalledOnce();
+      expect(fallbackFetch).toHaveBeenCalledTimes(2);
+    },
+  );
 });
 
 describe("withoutToolCalls", () => {

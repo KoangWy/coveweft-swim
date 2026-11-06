@@ -93,40 +93,41 @@ export function withFailover(
   }
 
   async function* stream(request: ChatRequest): AsyncGenerator<ProviderEvent> {
-    const provider = active;
-    let emitted = false;
+    // At most two attempts: the active provider, then the fallback once.
+    while (true) {
+      const provider = active;
+      let emitted = false;
 
-    try {
-      for await (const event of provider.stream(forActive(request))) {
-        if (event.type === "text") {
-          textEmitted = true;
+      try {
+        for await (const event of provider.stream(forActive(request))) {
+          if (event.type === "text") {
+            textEmitted = true;
+          }
+
+          if (event.type === "text" || event.type === "tool_call") {
+            emitted = true;
+          }
+
+          if (event.type === "tool_call" && provider === primary) {
+            primaryToolCallIds.add(event.id);
+          }
+
+          yield event;
         }
 
-        if (event.type === "text" || event.type === "tool_call") {
-          emitted = true;
+        return;
+      } catch (error) {
+        if (emitted && error instanceof ProviderError) {
+          throw error.markAfterOutput();
         }
 
-        if (event.type === "tool_call" && provider === primary) {
-          primaryToolCallIds.add(event.id);
+        if (!shouldFailover(error, request)) {
+          throw afterTurnOutput(error);
         }
 
-        yield event;
+        switchToFallback(error);
       }
-
-      return;
-    } catch (error) {
-      if (emitted && error instanceof ProviderError) {
-        throw error.markAfterOutput();
-      }
-
-      if (!shouldFailover(error, request)) {
-        throw afterTurnOutput(error);
-      }
-
-      switchToFallback(error);
     }
-
-    yield* active.stream(forActive(request));
   }
 
   async function complete(request: ChatRequest): Promise<ChatCompletion> {
