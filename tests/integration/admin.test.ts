@@ -33,7 +33,13 @@ import { getProductBySku, listProducts } from "@/server/catalog";
 import { placeOrder } from "@/server/checkout";
 import { imageUrl } from "@/server/media";
 
-import { createCustomer, createAdmin, createServiceClient, type TestUser } from "./support/clients";
+import {
+  createAnonClient,
+  createCustomer,
+  createAdmin,
+  createServiceClient,
+  type TestUser,
+} from "./support/clients";
 import {
   createServiceProduct,
   deleteServiceProducts,
@@ -193,6 +199,26 @@ describe("admin service", () => {
     if (storefront.ok) {
       expect(storefront.data.images).toHaveLength(2);
     }
+
+    const anon = createAnonClient();
+    const anonHidden = await anon.from("product_images").select("id").eq("id", product.imageIds[2]);
+    const customerHidden = await customer.client
+      .from("product_images")
+      .select("id")
+      .eq("id", product.imageIds[2]);
+    const adminHidden = await admin.client
+      .from("product_images")
+      .select("id")
+      .eq("id", product.imageIds[2]);
+    const anonVisible = await anon
+      .from("product_images")
+      .select("id")
+      .eq("id", product.imageIds[0]);
+
+    expect(anonHidden.data).toEqual([]);
+    expect(customerHidden.data).toEqual([]);
+    expect(adminHidden.data).toHaveLength(1);
+    expect(anonVisible.data).toHaveLength(1);
 
     await service.from("product_images").update({ is_visible: true }).eq("id", product.imageIds[2]);
   });

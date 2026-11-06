@@ -104,11 +104,19 @@ const SCALAR_ATTRIBUTE_KEYS = [
 ] as const;
 
 export function localizedDescription(row: CatalogRow, locale: Locale): string | null {
-  return (locale === "vi" ? row.description_vi : row.description_en) ?? row.description;
+  if (locale === "vi") {
+    return row.description_vi ?? row.description_en ?? row.description;
+  }
+
+  return row.description_en ?? row.description;
 }
 
 export function localizedCaption(row: CatalogRow, locale: Locale): string | null {
-  return (locale === "vi" ? row.caption_vi : row.caption_en) ?? row.caption;
+  if (locale === "vi") {
+    return row.caption_vi ?? row.caption_en ?? row.caption;
+  }
+
+  return row.caption_en ?? row.caption;
 }
 
 function mapImage(row: ProductImageRow): ProductImage {

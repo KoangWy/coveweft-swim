@@ -12,6 +12,25 @@ alter table public.product_images
 comment on column public.product_images.is_visible is
   'False hides an image from the storefront without deleting its metadata.';
 
+-- The original image policy only checked the parent product. Visibility is an
+-- authorization boundary, not just a service filter, so hidden rows must not
+-- be readable by anonymous or customer clients. Administrators still see them.
+drop policy if exists product_images_select_public on public.product_images;
+
+create policy product_images_select_public
+on public.product_images
+for select
+to anon, authenticated
+using (
+  (is_visible or public.is_admin())
+  and exists (
+    select 1
+    from public.products p
+    where p.id = product_id
+      and (p.is_active or public.is_admin())
+  )
+);
+
 create or replace view public.catalog_products
 with (security_invoker = true)
 as
@@ -47,8 +66,8 @@ select
   p.updated_at,
   coalesce(pt_en.description, p.description) as description_en,
   coalesce(pt_en.caption, p.caption) as caption_en,
-  coalesce(pt_vi.description, p.description) as description_vi,
-  coalesce(pt_vi.caption, p.caption) as caption_vi,
+  coalesce(pt_vi.description, pt_en.description, p.description) as description_vi,
+  coalesce(pt_vi.caption, pt_en.caption, p.caption) as caption_vi,
   public.immutable_unaccent(
     concat_ws(
       ' ',
