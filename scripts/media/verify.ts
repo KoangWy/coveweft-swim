@@ -4,10 +4,11 @@ import { readFile, stat } from "node:fs/promises";
 import sharp from "sharp";
 
 import { assertKnownOptions, optionalStringOption, parseCliArgs } from "./args.ts";
-import { fileSize, formatBytes, formatDuration, hashFile, isRecord, toPosixPath } from "./files.ts";
+import { fileSize, formatBytes, formatDuration, hashFile, toPosixPath } from "./files.ts";
 import { MEDIA_WIDTHS, parseInventoryCsv, selectStudioImages } from "./inventory.ts";
-import { MAX_REPORTED_ERRORS, validateManifest } from "./manifest.ts";
+import { MAX_REPORTED_ERRORS, validateManifest, type StudioManifest } from "./manifest.ts";
 import { runPool } from "./pool.ts";
+import { crossCheckReport, validateBuildReport, type BuildReport } from "./report.ts";
 
 const HELP = `Studio media verification
 
@@ -108,23 +109,26 @@ async function main(): Promise<void> {
     `[media] verifying ${manifest.imageCount} images against ${displayPath(outDir)}\n`,
   );
 
+  let inventoryStats: { images: number; skus: number } | undefined;
   if (inventoryOption) {
-    if (allowPartial) {
-      process.stderr.write("[media] inventory comparison skipped for a partial manifest\n");
-    } else {
-      const expected = selectStudioImages(
-        parseInventoryCsv(await readFile(path.resolve(inventoryOption), "utf8")),
-      );
-      compareWithInventory(
-        expected.map((image) => ({
-          sku: image.sku,
-          position: image.position,
-          driveFileId: image.driveFileId,
-        })),
-        manifest.entries,
-        recordError,
-      );
-    }
+    const expected = selectStudioImages(
+      parseInventoryCsv(await readFile(path.resolve(inventoryOption), "utf8")),
+    );
+    inventoryStats = {
+      images: expected.length,
+      skus: new Set(expected.map((image) => image.sku)).size,
+    };
+    const expectedImages = allowPartial ? expected.slice(0, manifest.imageCount) : expected;
+    compareWithInventory(
+      expectedImages.map((image) => ({
+        sku: image.sku,
+        position: image.position,
+        driveFileId: image.driveFileId,
+      })),
+      manifest.entries,
+      recordError,
+      allowPartial,
+    );
   }
 
   let checkedImages = 0;
@@ -193,6 +197,10 @@ async function main(): Promise<void> {
     archiveOption,
     requireArchive,
     recordError,
+    manifest,
+    observed: { files: counters.files, bytes: counters.bytes },
+    allowPartial,
+    inventory: inventoryStats,
   });
 
   const elapsed = Date.now() - startedAt;
@@ -221,8 +229,13 @@ function compareWithInventory(
   expected: { sku: string; position: number; driveFileId: string }[],
   actual: { sku: string; position: number; driveFileId: string }[],
   recordError: (message: string) => void,
+  allowPartial = false,
 ): void {
-  if (expected.length !== actual.length) {
+  if (allowPartial) {
+    if (actual.length > expected.length) {
+      recordError(`manifest has ${actual.length} images, inventory has ${expected.length}`);
+    }
+  } else if (expected.length !== actual.length) {
     recordError(`manifest has ${actual.length} images, inventory expects ${expected.length}`);
   }
 
@@ -249,39 +262,68 @@ async function verifyReportAndArchive(options: {
   archiveOption: string | undefined;
   requireArchive: boolean;
   recordError: (message: string) => void;
+  manifest: StudioManifest;
+  observed: { files: number; bytes: number };
+  allowPartial: boolean;
+  inventory: { images: number; skus: number } | undefined;
 }): Promise<void> {
   let reportValue: unknown = null;
+  let reportFound = false;
   try {
     reportValue = JSON.parse(await readFile(options.reportPath, "utf8")) as unknown;
+    reportFound = true;
   } catch (error) {
-    if ((error as NodeJS.ErrnoException).code !== "ENOENT") {
-      options.recordError(`cannot read report ${displayPath(options.reportPath)}`);
-    } else if (options.requireArchive) {
-      options.recordError(`report is missing: ${displayPath(options.reportPath)}`);
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+      if (options.requireArchive) {
+        options.recordError(`report is missing: ${displayPath(options.reportPath)}`);
+      } else {
+        process.stderr.write(
+          `[media] report not found (${displayPath(options.reportPath)}); report checks skipped\n`,
+        );
+      }
     } else {
-      process.stderr.write(
-        `[media] report not found (${displayPath(options.reportPath)}); archive check skipped\n`,
+      options.recordError(
+        `cannot read report ${displayPath(options.reportPath)}: ${describeError(error)}`,
       );
     }
   }
 
-  const report = isRecord(reportValue) ? reportValue : null;
-  if (report) {
-    if (report.status !== "complete") {
-      options.recordError(`report status is ${String(report.status)}, expected complete`);
-    }
-    if (isRecord(report.images) && report.images.failed !== 0) {
-      options.recordError(`report lists ${String(report.images.failed)} failed images`);
+  let report: BuildReport | null = null;
+  if (reportFound) {
+    const validation = validateBuildReport(reportValue);
+    if (!validation.report) {
+      for (const error of validation.errors) {
+        options.recordError(`report: ${error}`);
+      }
+      if (validation.errorCount > validation.errors.length) {
+        options.recordError(
+          `report: ${validation.errorCount - validation.errors.length} more structural error(s)`,
+        );
+      }
+    } else {
+      report = validation.report;
+      if (report.inventory.limit !== null && !options.allowPartial) {
+        options.recordError(
+          `report describes a preview build (limit ${report.inventory.limit}); ` +
+            "pass --allow-partial to verify it",
+        );
+      }
+      for (const error of crossCheckReport({
+        report,
+        manifest: options.manifest,
+        observed: options.observed,
+        inventory: options.inventory,
+      })) {
+        options.recordError(error);
+      }
     }
   }
 
-  const reportArchive = report && isRecord(report.archive) ? report.archive : null;
-  const reportArchiveFile =
-    reportArchive && typeof reportArchive.file === "string" ? reportArchive.file : null;
+  const reportArchive = report && report.archive ? report.archive : null;
   const archivePath = options.archiveOption
     ? path.resolve(options.archiveOption)
-    : reportArchiveFile
-      ? path.resolve(reportArchiveFile)
+    : reportArchive
+      ? path.resolve(reportArchive.file)
       : path.join(options.outDir, "coveweft-media-studio-v1.tar.gz");
 
   const archiveBytes = await fileSize(archivePath);
@@ -296,21 +338,15 @@ async function verifyReportAndArchive(options: {
     return;
   }
 
-  if (
-    reportArchive &&
-    typeof reportArchive.bytes === "number" &&
-    reportArchive.bytes !== archiveBytes
-  ) {
+  if (reportArchive && reportArchive.bytes !== archiveBytes) {
     options.recordError(
       `archive size is ${archiveBytes} bytes, report says ${reportArchive.bytes}`,
     );
   }
 
   const archiveDigest = await hashFile(archivePath);
-  if (reportArchive && typeof reportArchive.sha256 === "string") {
-    if (archiveDigest !== reportArchive.sha256) {
-      options.recordError("archive SHA-256 does not match the report");
-    }
+  if (reportArchive && archiveDigest !== reportArchive.sha256) {
+    options.recordError("archive SHA-256 does not match the report");
   }
 
   try {

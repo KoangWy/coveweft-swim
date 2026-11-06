@@ -134,10 +134,15 @@ the build output:
 - it decodes as WebP with the recorded width and height;
 - it has no EXIF, XMP, IPTC, or orientation metadata.
 
-It also checks manifest structure, unique SKU positions and Drive IDs,
-contiguous positions per SKU, the report status, the archive size/hash, and the
-archive `.sha256` sidecar. Pass `--inventory <csv>` to compare the manifest
-against the source inventory, or `--allow-partial` for a `--limit` preview.
+It also validates the build report structure and cross-checks the report's
+image count, file count, and per-size and overall byte totals against the
+manifest and the files actually checked. This means a truncated manifest fails
+even when `--inventory` is not supplied. The archive size and SHA-256 are
+checked against the report and the `.sha256` sidecar.
+
+Pass `--inventory <csv>` to compare the manifest against the source inventory,
+or `--allow-partial` for a `--limit` preview report. A preview report is
+rejected without that flag.
 
 `pnpm media:verify` needs the build output. On a fresh clone, first download and
 extract the release archive into `.media-build/`.

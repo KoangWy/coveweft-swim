@@ -6,7 +6,7 @@ export const DEFAULT_ATTEMPTS = 6;
 export const DEFAULT_BASE_DELAY_MS = 1_000;
 export const DEFAULT_TIMEOUT_MS = 60_000;
 export const MAX_RETRY_DELAY_MS = 30_000;
-const RETRYABLE_STATUS = new Set([403, 408, 425, 429, 500, 502, 503, 504]);
+const RETRYABLE_STATUS = new Set([403, 408, 425, 429]);
 const DRIVE_ID_PATTERN = /^[A-Za-z0-9_-]+$/;
 
 export interface DownloadResult {
@@ -100,7 +100,7 @@ export async function downloadDriveFile(
       });
 
       if (!response.ok) {
-        const retryable = RETRYABLE_STATUS.has(response.status);
+        const retryable = isRetryableStatus(response.status);
         failure = new DownloadError(`HTTP ${response.status} ${response.statusText}`.trim(), {
           driveFileId,
           attempts: attempt,
@@ -162,6 +162,11 @@ export async function downloadDriveFile(
   throw (
     lastFailure ?? new DownloadError("Download failed", { driveFileId, attempts, retryable: false })
   );
+}
+
+/** Retry the full 5xx range, plus throttling and transient 4xx statuses. */
+export function isRetryableStatus(status: number): boolean {
+  return (status >= 500 && status <= 599) || RETRYABLE_STATUS.has(status);
 }
 
 export function retryDelayMs(

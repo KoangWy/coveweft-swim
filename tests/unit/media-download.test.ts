@@ -4,6 +4,7 @@ import {
   DownloadError,
   downloadDriveFile,
   driveDownloadUrl,
+  isRetryableStatus,
   looksLikeImage,
   retryDelayMs,
 } from "../../scripts/media/download.ts";
@@ -114,6 +115,33 @@ describe("downloadDriveFile", () => {
     ).rejects.toMatchObject({ status: 404, retryable: false, attempts: 1 });
     expect(fetchImpl).toHaveBeenCalledTimes(1);
     expect(sleepImpl).not.toHaveBeenCalled();
+  });
+
+  it.each([500, 501, 507, 599])("retries HTTP %i from the 5xx range", async (status) => {
+    const fetchImpl = vi
+      .fn<() => Promise<Response>>()
+      .mockResolvedValueOnce(new Response("busy", { status }))
+      .mockResolvedValueOnce(imageResponse());
+    const sleepImpl = vi.fn(async () => undefined);
+
+    const result = await downloadDriveFile("abc", {
+      fetchImpl: fetchImpl as unknown as typeof fetch,
+      sleepImpl,
+      baseDelayMs: 1,
+    });
+
+    expect(fetchImpl).toHaveBeenCalledTimes(2);
+    expect(result.sha256).toBe(sha256(IMAGE));
+    expect(sleepImpl).toHaveBeenCalledTimes(1);
+  });
+
+  it("classifies the full 5xx range as retryable", () => {
+    for (const status of [500, 501, 502, 503, 504, 507, 599]) {
+      expect(isRetryableStatus(status)).toBe(true);
+    }
+    for (const status of [400, 401, 404, 418, 422]) {
+      expect(isRetryableStatus(status)).toBe(false);
+    }
   });
 
   it("gives up after the configured number of attempts", async () => {
