@@ -162,4 +162,69 @@ describe("administrator stock and catalog writes", () => {
 
     expect(stored.data?.name).toBe("Administrator name");
   });
+
+  it("starts new variants at zero stock and keeps stock changes audited", async () => {
+    const stamp = `${Date.now()}-${process.pid}`;
+
+    const withStock = await admin.client.from("product_variants").insert({
+      product_id: product.productId,
+      variant_sku: `ADMIN-STOCK-${stamp}-BAD`,
+      option_label: "M",
+      stock: 777,
+      position: 2,
+    });
+
+    expect(withStock.error).not.toBeNull();
+
+    const inserted = await admin.client
+      .from("product_variants")
+      .insert({
+        product_id: product.productId,
+        variant_sku: `ADMIN-STOCK-${stamp}-OK`,
+        option_label: "L",
+        position: 3,
+      })
+      .select("id, stock")
+      .single();
+
+    expect(inserted.error).toBeNull();
+    expect(inserted.data?.stock).toBe(0);
+
+    const adjusted = await admin.client.rpc("admin_adjust_stock", {
+      p_variant_id: inserted.data?.id,
+      p_stock: 4,
+      p_reason: "Initial stock",
+    });
+
+    expect(adjusted.error).toBeNull();
+    expect(adjusted.data?.stock).toBe(4);
+
+    const audit = await admin.client
+      .from("stock_adjustments")
+      .select("delta, stock_before, stock_after, reason")
+      .eq("variant_id", inserted.data?.id)
+      .single();
+
+    expect(audit.data).toMatchObject({
+      delta: 4,
+      stock_before: 0,
+      stock_after: 4,
+      reason: "Initial stock",
+    });
+
+    const directUpdate = await admin.client
+      .from("product_variants")
+      .update({ stock: 99 })
+      .eq("id", inserted.data?.id);
+
+    expect(directUpdate.error).not.toBeNull();
+
+    const customerInsert = await customer.client.from("product_variants").insert({
+      product_id: product.productId,
+      variant_sku: `ADMIN-STOCK-${stamp}-CUSTOMER`,
+      option_label: "XL",
+    });
+
+    expect(customerInsert.error).not.toBeNull();
+  });
 });

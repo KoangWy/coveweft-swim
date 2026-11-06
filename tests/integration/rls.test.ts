@@ -40,6 +40,29 @@ describe("row level security", () => {
     hiddenProduct = await createProductFixture(service, { stock: 10, isActive: false });
     products.push(activeProduct, hiddenProduct);
 
+    const hiddenTranslation = await service.from("product_translations").insert({
+      product_id: hiddenProduct.productId,
+      locale: "vi",
+      description: "Sản phẩm ẩn",
+      caption: "Ảnh sản phẩm ẩn",
+    });
+
+    if (hiddenTranslation.error) {
+      throw hiddenTranslation.error;
+    }
+
+    const hiddenImage = await service.from("product_images").insert({
+      product_id: hiddenProduct.productId,
+      kind: "studio",
+      source: "release",
+      path: `studio/${hiddenProduct.sku}/01`,
+      position: 1,
+    });
+
+    if (hiddenImage.error) {
+      throw hiddenImage.error;
+    }
+
     await addToCart(customerA, activeProduct.variantId);
     const placedA = await placeOrder(customerA.client, { idempotencyKey: uniqueKey("rls-a") });
 
@@ -50,13 +73,25 @@ describe("row level security", () => {
     orderA = placedA.data.id;
 
     await addToCart(customerB, activeProduct.variantId);
-    const placedB = await placeOrder(customerB.client, { idempotencyKey: uniqueKey("rls-b") });
+    const placedB = await placeOrder(customerB.client, {
+      idempotencyKey: uniqueKey("rls-b"),
+      paymentMethod: "bank_transfer",
+    });
 
     if (placedB.error) {
       throw placedB.error;
     }
 
     orderB = placedB.data.id;
+
+    const paymentAttempt = await customerB.client.rpc("record_payment_attempt", {
+      p_order_id: orderB,
+      p_outcome: "failed",
+    });
+
+    if (paymentAttempt.error) {
+      throw paymentAttempt.error;
+    }
   });
 
   afterAll(async () => {
@@ -129,10 +164,12 @@ describe("row level security", () => {
 
     const items = await customerA.client.from("order_items").select("id").eq("order_id", orderB);
 
+    expect(items.error).toBeNull();
     expect(items.data).toEqual([]);
 
     const events = await customerA.client.from("order_events").select("id").eq("order_id", orderB);
 
+    expect(events.error).toBeNull();
     expect(events.data).toEqual([]);
 
     const payments = await customerA.client
@@ -140,7 +177,16 @@ describe("row level security", () => {
       .select("id")
       .eq("order_id", orderB);
 
+    expect(payments.error).toBeNull();
     expect(payments.data).toEqual([]);
+
+    // The fixture has a real payment attempt, so the denial above is meaningful.
+    const storedAttempts = await service
+      .from("payment_attempts")
+      .select("outcome")
+      .eq("order_id", orderB);
+
+    expect(storedAttempts.data).toEqual([{ outcome: "failed" }]);
 
     const own = await customerA.client.from("orders").select("id").eq("id", orderA);
     expect(own.data).toHaveLength(1);
@@ -182,6 +228,62 @@ describe("row level security", () => {
       .eq("order_id", orderA);
 
     expect(updatePayment.error).not.toBeNull();
+
+    const deleteOrder = await customerA.client.from("orders").delete().eq("id", orderA);
+    expect(deleteOrder.error).not.toBeNull();
+
+    const deleteItems = await customerA.client.from("order_items").delete().eq("order_id", orderA);
+    expect(deleteItems.error).not.toBeNull();
+
+    const deleteEvents = await customerA.client
+      .from("order_events")
+      .delete()
+      .eq("order_id", orderA);
+    expect(deleteEvents.error).not.toBeNull();
+
+    const deletePayments = await customerA.client
+      .from("payment_attempts")
+      .delete()
+      .eq("order_id", orderB);
+    expect(deletePayments.error).not.toBeNull();
+
+    const deleteAdjustments = await customerA.client
+      .from("stock_adjustments")
+      .delete()
+      .eq("variant_id", activeProduct.variantId);
+    expect(deleteAdjustments.error).not.toBeNull();
+
+    const insertItem = await customerA.client.from("order_items").insert({
+      order_id: orderA,
+      variant_id: activeProduct.variantId,
+      product_id: activeProduct.productId,
+      sku: activeProduct.sku,
+      variant_sku: activeProduct.variantSku,
+      product_name: "Direct item",
+      option_label: "S",
+      unit_price_vnd: 100000,
+      quantity: 1,
+    });
+    expect(insertItem.error).not.toBeNull();
+
+    const updateItem = await customerA.client
+      .from("order_items")
+      .update({ quantity: 99 })
+      .eq("order_id", orderA);
+    expect(updateItem.error).not.toBeNull();
+
+    const insertEvent = await customerA.client.from("order_events").insert({
+      order_id: orderA,
+      to_status: "cancelled",
+      actor_role: "customer",
+    });
+    expect(insertEvent.error).not.toBeNull();
+
+    const updateEvent = await customerA.client
+      .from("order_events")
+      .update({ reason: "Direct" })
+      .eq("order_id", orderA);
+    expect(updateEvent.error).not.toBeNull();
 
     const order = await service.from("orders").select("status").eq("id", orderA).single();
     expect(order.data?.status).toBe("pending");
@@ -260,6 +362,18 @@ describe("row level security", () => {
       .eq("product_id", hiddenProduct.productId);
     expect(hiddenVariant.data).toEqual([]);
 
+    const hiddenTranslation = await anon
+      .from("product_translations")
+      .select("product_id")
+      .eq("product_id", hiddenProduct.productId);
+    expect(hiddenTranslation.data).toEqual([]);
+
+    const hiddenImage = await anon
+      .from("product_images")
+      .select("id")
+      .eq("product_id", hiddenProduct.productId);
+    expect(hiddenImage.data).toEqual([]);
+
     const settings = await anon.from("store_settings").select("id").single();
     expect(settings.error).toBeNull();
     expect(settings.data?.id).toBe(1);
@@ -269,5 +383,17 @@ describe("row level security", () => {
 
     const orders = await anon.from("orders").select("id").limit(1);
     expect(orders.error).not.toBeNull();
+
+    const cart = await anon.from("cart_items").select("variant_id").limit(1);
+    expect(cart.error).not.toBeNull();
+
+    const payments = await anon.from("payment_attempts").select("id").limit(1);
+    expect(payments.error).not.toBeNull();
+
+    const items = await anon.from("order_items").select("id").limit(1);
+    expect(items.error).not.toBeNull();
+
+    const events = await anon.from("order_events").select("id").limit(1);
+    expect(events.error).not.toBeNull();
   });
 });

@@ -104,4 +104,44 @@ describe("privacy consent at sign-up", () => {
 
     expect(profile.data?.privacy_policy_version).toBe(POLICY_VERSION);
   });
+
+  it("ignores a forged role in sign-up metadata", async () => {
+    const client = createAnonClient();
+    const email = uniqueEmail("forged-role");
+
+    const signUp = await client.auth.signUp({
+      email,
+      password: PASSWORD,
+      options: {
+        data: {
+          privacy_policy_version: POLICY_VERSION,
+          role: "admin",
+        },
+      },
+    });
+
+    expect(signUp.error).toBeNull();
+
+    const userId = signUp.data.user?.id;
+
+    if (!userId) {
+      throw new Error("Expected the sign-up to return a user.");
+    }
+
+    users.push({ id: userId, email, password: PASSWORD, client });
+
+    const profile = await service.from("profiles").select("role").eq("id", userId).single();
+    expect(profile.data?.role).toBe("customer");
+
+    const upsert = await client.from("profiles").upsert({
+      id: userId,
+      role: "admin",
+      full_name: "Forged",
+    });
+
+    expect(upsert.error).not.toBeNull();
+
+    const stored = await service.from("profiles").select("role").eq("id", userId).single();
+    expect(stored.data?.role).toBe("customer");
+  });
 });

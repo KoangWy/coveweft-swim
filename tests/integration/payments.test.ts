@@ -11,6 +11,14 @@ import {
   type TestUser,
 } from "./support/clients";
 import {
+  runSql,
+  sleep,
+  startSqlSession,
+  waitForActiveQuery,
+  waitForBlockedQuery,
+  waitForExit,
+} from "./support/database";
+import {
   addToCart,
   createProductFixture,
   deleteProductFixture,
@@ -134,6 +142,47 @@ describe("payments, expiry, and administrator transitions", () => {
     expect(expired.error).toBeNull();
   });
 
+  it("rejects a payment that waited on the order lock past the deadline", async () => {
+    const order = await newOrder("bank_transfer", "deadline-lock");
+
+    await runSql(
+      `update public.orders set payment_due_at = clock_timestamp() + interval '2 seconds' where id = '${order.id}'`,
+    );
+
+    // Hold the order row across the deadline. The payment request starts
+    // before the deadline and waits on this lock until after it.
+    const lock = await startSqlSession(
+      `begin; select 1 from public.orders where id = '${order.id}' for update; select pg_sleep(6); commit;`,
+    );
+
+    await waitForActiveQuery("pg_sleep");
+
+    const payment = Promise.resolve(
+      customer.client.rpc("record_payment_attempt", {
+        p_order_id: order.id,
+        p_outcome: "succeeded",
+      }),
+    );
+
+    await waitForBlockedQuery("record_payment_attempt");
+
+    await sleep(3000);
+    await waitForExit(lock);
+
+    const result = await payment;
+
+    expect(mapDatabaseError(result.error).code).toBe("PAYMENT_EXPIRED");
+    expect((await getOrder(service, order.id)).payment_status).toBe("unpaid");
+
+    const attempts = await service.from("payment_attempts").select("id").eq("order_id", order.id);
+
+    expect(attempts.data).toEqual([]);
+
+    // Clean up the expired order so later expiry counts stay deterministic.
+    const expired = await service.rpc("expire_unpaid_orders");
+    expect(expired.error).toBeNull();
+  });
+
   it("requires a paid bank transfer before confirmation and follows the state machine", async () => {
     const order = await newOrder("bank_transfer", "admin-transitions");
 
@@ -226,6 +275,23 @@ describe("payments, expiry, and administrator transitions", () => {
     expect(await getStock(service, product.variantId)).toBe(stockBefore + 1);
   });
 
+  it("refunds a paid order when the customer cancels it", async () => {
+    const order = await newOrder("bank_transfer", "customer-cancel-paid");
+
+    await customer.client.rpc("record_payment_attempt", {
+      p_order_id: order.id,
+      p_outcome: "succeeded",
+    });
+
+    const stockBefore = await getStock(service, product.variantId);
+
+    const cancelled = await customer.client.rpc("cancel_order", { p_order_id: order.id });
+
+    expect(cancelled.error).toBeNull();
+    expect(cancelled.data).toMatchObject({ status: "cancelled", payment_status: "refunded" });
+    expect(await getStock(service, product.variantId)).toBe(stockBefore + 1);
+  });
+
   it("expires an unpaid bank transfer exactly once and never expires COD", async () => {
     const order = await newOrder("bank_transfer", "expiry");
     const stockAfterOrder = await getStock(service, product.variantId);
@@ -266,9 +332,9 @@ describe("payments, expiry, and administrator transitions", () => {
       .update({ created_at: pastDate(60) })
       .eq("id", cod.id);
 
-    const codExpiry = await service.rpc("expire_unpaid_orders");
+    const codOrderExpiry = await service.rpc("expire_unpaid_orders");
 
-    expect(codExpiry.data).toBe(0);
+    expect(codOrderExpiry.data).toBe(0);
     expect((await getOrder(service, cod.id)).status).toBe("pending");
     expect(await getStock(service, product.variantId)).toBe(stockAfterCod);
   });
@@ -284,7 +350,11 @@ describe("payments, expiry, and administrator transitions", () => {
       service.rpc("expire_unpaid_orders"),
     ]);
 
-    expect(cancel.error === null || expire.error === null).toBe(true);
+    expect(expire.error).toBeNull();
+
+    if (cancel.error) {
+      expect(mapDatabaseError(cancel.error).code).toBe("ORDER_NOT_CANCELLABLE");
+    }
 
     const final = await getOrder(service, order.id);
 
@@ -296,13 +366,19 @@ describe("payments, expiry, and administrator transitions", () => {
     const order = await newOrder("bank_transfer", "race-payment-cancel");
     const stockAfterOrder = await getStock(service, product.variantId);
 
-    await Promise.all([
+    const [payment, cancellation] = await Promise.all([
       customer.client.rpc("record_payment_attempt", {
         p_order_id: order.id,
         p_outcome: "succeeded",
       }),
       customer.client.rpc("cancel_order", { p_order_id: order.id }),
     ]);
+
+    expect(cancellation.error).toBeNull();
+
+    if (payment.error) {
+      expect(mapDatabaseError(payment.error).code).toBe("PAYMENT_NOT_ALLOWED");
+    }
 
     const final = await getOrder(service, order.id);
 
@@ -324,7 +400,7 @@ describe("payments, expiry, and administrator transitions", () => {
 
     await service.from("orders").update({ payment_due_at: pastDate() }).eq("id", order.id);
 
-    await Promise.all([
+    const [payment, cancellation, expiry] = await Promise.all([
       customer.client.rpc("record_payment_attempt", {
         p_order_id: order.id,
         p_outcome: "succeeded",
@@ -332,6 +408,18 @@ describe("payments, expiry, and administrator transitions", () => {
       customer.client.rpc("cancel_order", { p_order_id: order.id }),
       service.rpc("expire_unpaid_orders"),
     ]);
+
+    expect(expiry.error).toBeNull();
+
+    if (payment.error) {
+      expect(["PAYMENT_EXPIRED", "PAYMENT_NOT_ALLOWED"]).toContain(
+        mapDatabaseError(payment.error).code,
+      );
+    }
+
+    if (cancellation.error) {
+      expect(mapDatabaseError(cancellation.error).code).toBe("ORDER_NOT_CANCELLABLE");
+    }
 
     const final = await getOrder(service, order.id);
 

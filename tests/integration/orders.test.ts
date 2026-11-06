@@ -262,6 +262,13 @@ describe("place order", () => {
       throw new Error("Expected the order id.");
     }
 
+    expect(placed.data).toMatchObject({
+      recipient_name: "Test Recipient",
+      recipient_phone: "0900000000",
+      shipping_address: "1 Test Street, District 1",
+      shipping_method: "standard",
+    });
+
     const items = await customer.client.from("order_items").select("*").eq("order_id", orderId);
 
     expect(items.data).toHaveLength(1);
@@ -318,5 +325,64 @@ describe("place order", () => {
     expect(mapDatabaseError(result.error).code).toBe("NOT_FOUND");
     expect(await getStock(service, product.variantId)).toBe(4);
     expect((await getOrder(service, placed.data?.id)).status).toBe("pending");
+  });
+
+  it("does not waive the standard fee when only the total would reach the threshold", async () => {
+    const product = await newProduct({ priceVnd: 499000, stock: 5 });
+    await addToCart(customer, product.variantId);
+
+    const placed = await placeOrder(customer.client, {
+      idempotencyKey: uniqueKey("threshold-edge"),
+    });
+
+    expect(placed.error).toBeNull();
+    expect(placed.data).toMatchObject({
+      items_subtotal_vnd: 499000,
+      shipping_fee_vnd: 30000,
+      total_vnd: 529000,
+    });
+  });
+
+  it("rolls back the whole order when one line is unavailable", async () => {
+    const available = await newProduct({ priceVnd: 100000, stock: 5 });
+    const unavailable = await newProduct({ priceVnd: 100000, stock: 0 });
+
+    await addToCart(customer, available.variantId);
+    await addToCart(customer, unavailable.variantId);
+
+    const result = await placeOrder(customer.client, {
+      idempotencyKey: uniqueKey("rollback"),
+    });
+
+    expect(mapDatabaseError(result.error).code).toBe("OUT_OF_STOCK");
+    expect(mapDatabaseError(result.error).details).toEqual({
+      variantIds: [unavailable.variantId],
+    });
+    expect(await getStock(service, available.variantId)).toBe(5);
+    expect(await getStock(service, unavailable.variantId)).toBe(0);
+
+    const cart = await customer.client
+      .from("cart_items")
+      .select("variant_id")
+      .eq("user_id", customer.id)
+      .order("variant_id");
+
+    expect(cart.data).toHaveLength(2);
+  });
+
+  it("keeps idempotency keys independent per customer", async () => {
+    const product = await newProduct({ priceVnd: 100000, stock: 5 });
+    const key = uniqueKey("shared-key");
+
+    await addToCart(customer, product.variantId);
+    const first = await placeOrder(customer.client, { idempotencyKey: key });
+
+    await addToCart(other, product.variantId);
+    const second = await placeOrder(other.client, { idempotencyKey: key });
+
+    expect(first.error).toBeNull();
+    expect(second.error).toBeNull();
+    expect(first.data?.id).not.toBe(second.data?.id);
+    expect(await getStock(service, product.variantId)).toBe(3);
   });
 });
