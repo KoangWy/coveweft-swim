@@ -92,13 +92,75 @@ test("the shipping page shows the fees from store settings", async ({ page }) =>
   );
 });
 
-test("unknown pages return a localized 404 inside the shell", async ({ page }) => {
-  const response = await page.goto("/vi/khong-co-trang-nay");
+test.describe("without JavaScript", () => {
+  test.use({ javaScriptEnabled: false });
 
-  expect(response?.status()).toBe(404);
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Không tìm thấy trang");
-  await expect(page.getByText("Dự án học tập")).toBeVisible();
+  test("the locale links keep repeated query parameters", async ({ page }) => {
+    const query = "ref=footer&q=blue+suit&size=s&size=m";
+    await page.goto(`/en/policies/shipping?${query}`);
+    const links = page.getByRole("group", { name: "Language" }).first().getByRole("link");
+
+    await expect(links.nth(0)).toHaveAttribute("href", `/en/policies/shipping?${query}`);
+    await expect(links.nth(1)).toHaveAttribute("href", `/vi/policies/shipping?${query}`);
+
+    await links.nth(1).click();
+    await expect(page).toHaveURL(
+      new RegExp(`/vi/policies/shipping\\?${query.replace(/\+/g, "\\+")}$`),
+    );
+    await expect(page.locator("html")).toHaveAttribute("lang", "vi");
+  });
+
+  for (const path of ["/vi/khong-co-trang-nay", "/vi/policies/unknown", "/vi/admin/unknown"]) {
+    test(`${path} returns a server-rendered Vietnamese 404`, async ({ page }) => {
+      const response = await page.goto(path);
+
+      expect(response?.status()).toBe(404);
+      await expect(page.locator("html")).toHaveAttribute("lang", "vi");
+      await expect(page.getByRole("heading", { level: 1 })).toHaveText("Không tìm thấy trang");
+      await expect(page.getByText("Dự án học tập")).toBeVisible();
+      await expect(page.getByRole("contentinfo")).toBeVisible();
+    });
+  }
+
+  test("an unknown English path returns an English 404", async ({ page }) => {
+    const response = await page.goto("/en/no-such-page");
+
+    expect(response?.status()).toBe(404);
+    await expect(page.locator("html")).toHaveAttribute("lang", "en");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Page not found");
+    await expect(page).toHaveTitle("Page not found | COVEWEFT Swim");
+  });
 });
+
+for (const viewport of [
+  { width: 360, height: 780 },
+  { width: 1280, height: 900 },
+]) {
+  test.describe(`admin tabs at ${viewport.width}px`, () => {
+    test.use({ viewport });
+
+    test("keep the whole focus outline inside the scroll area", async ({ page }) => {
+      await page.goto("/en/admin");
+      const nav = page.getByRole("navigation", { name: "Admin navigation" });
+      const list = nav.getByRole("list");
+
+      for (const name of ["Overview", "Products", "Orders"]) {
+        const link = nav.getByRole("link", { name });
+        await link.focus();
+        await expect(link).toBeFocused();
+
+        const [linkBox, listBox] = await Promise.all([link.boundingBox(), list.boundingBox()]);
+        // Outline width plus outline offset from the global focus style.
+        const reach = 4;
+        expect(linkBox!.x - reach).toBeGreaterThanOrEqual(listBox!.x);
+        expect(linkBox!.y - reach).toBeGreaterThanOrEqual(listBox!.y);
+        expect(linkBox!.y + linkBox!.height + reach).toBeLessThanOrEqual(
+          listBox!.y + listBox!.height,
+        );
+      }
+    });
+  });
+}
 
 test.describe("mobile navigation", () => {
   test.use({ viewport: { width: 360, height: 780 } });
