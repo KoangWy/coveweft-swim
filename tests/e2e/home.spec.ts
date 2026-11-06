@@ -21,14 +21,14 @@ test("renders the English home page", async ({ page }) => {
   await page.goto("/en");
 
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("COVEWEFT Swim");
-  await expect(page.getByText("Find your water.")).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Find your water.");
+  await expect(page.getByRole("link", { name: "Browse the shop" })).toBeVisible();
 });
 
 test("renders the Vietnamese home page", async ({ page }) => {
   await page.goto("/vi");
 
   await expect(page.locator("html")).toHaveAttribute("lang", "vi");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("COVEWEFT Swim");
-  await expect(page.getByText("Find your water.")).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Find your water.");
+  await expect(page.getByRole("link", { name: "Xem cửa hàng" })).toBeVisible();
 });
