@@ -48,9 +48,42 @@ the commands above.
 | `pnpm test`             | Run unit tests                                                                   |
 | `pnpm test:integration` | Run database integration tests against local Supabase (needs Docker)             |
 | `pnpm test:e2e`         | Run Playwright tests (install browsers once with `pnpm exec playwright install`) |
+| `pnpm catalog:export`   | Rebuild `data/catalog/` and `supabase/seed.sql` from the SOBIE source package    |
+| `pnpm db:seed`          | Load the catalog into a running database without overwriting existing rows       |
 | `pnpm media:build`      | Download studio photos and build the versioned WebP media set                    |
 | `pnpm media:verify`     | Re-check the media manifest, exported files, and archive                         |
 | `pnpm format`           | Format the repository with Prettier                                              |
+
+### Catalog import
+
+The catalog snapshot comes from the SOBIE Drive package, which stays outside
+this repository. Pass both CSV paths as arguments:
+
+```sh
+pnpm catalog:export \
+  --source /path/to/products.csv \
+  --inventory /path/to/sobie-drive-inventory.csv
+```
+
+The command validates the snapshot (475 products, 1,541 variants, 3,224 studio
+images, full Vietnamese translation coverage, and a size guide key for every
+garment variant), then writes `data/catalog/products.json`, `variants.json`,
+`images.json`, `import-report.json`, and `SOURCE.md`. It also regenerates
+`supabase/seed.sql`. The export is deterministic: running it again against the
+same inputs produces the same files.
+
+`SOURCE.md` records provenance, the columns used, and the normalization rules.
+`import-report.json` lists source anomalies without changing the raw data, such
+as duplicate product names, zero-stock variants, and the `S (Y)` label on
+`BB25HBX`.
+
+The seed is idempotent. `supabase db reset` reloads everything from the
+migrations and `supabase/seed.sql`; `pnpm db:seed` inserts only missing rows in
+an existing database. Both paths keep current stock and administrator edits, so
+use `db reset` when a full reload is intended. The initial variant stock is
+written directly by the seed because the client `INSERT` grant on
+`product_variants` excludes `stock`; later stock changes go through
+`admin_adjust_stock` and are audited.
 
 ### Media
 
@@ -79,7 +112,9 @@ Migrations live in `supabase/migrations` and seed data in `supabase/seed.sql`.
 The migrations create the catalog, profile, cart, order, payment, and stock
 tables; enable row level security; install the order and stock functions; and
 schedule the unpaid-order expiry job with `pg_cron`. `store_settings` is seeded
-with the local shipping fees, free-shipping threshold, and payment window.
+with the local shipping fees, free-shipping threshold, and payment window. The
+catalog seed loads products, variants, studio images, Vietnamese translations,
+and attribute labels from the committed `data/catalog/` snapshot.
 
 Run `pnpm test:integration` after `supabase start` to exercise the policies and
 functions. The runner reads the local URL and keys from `.env.local` or from
