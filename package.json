@@ -22,6 +22,7 @@
     "media:verify": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/media/verify.ts",
     "catalog:export": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/catalog/export.ts",
     "db:seed": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/catalog/seed.ts",
+    "provision:demo": "node scripts/provision-demo.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },

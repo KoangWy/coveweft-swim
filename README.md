@@ -52,6 +52,7 @@ the commands above.
 | `pnpm db:seed`          | Load the catalog into a running database without overwriting existing rows       |
 | `pnpm media:build`      | Download studio photos and build the versioned WebP media set                    |
 | `pnpm media:verify`     | Re-check the media manifest, exported files, and archive                         |
+| `pnpm provision:demo`   | Create the demo customer and administrator accounts through the Auth Admin API   |
 | `pnpm format`           | Format the repository with Prettier                                              |
 
 ### Catalog import
@@ -119,6 +120,13 @@ and attribute labels from the committed `data/catalog/` snapshot.
 Run `pnpm test:integration` after `supabase start` to exercise the policies and
 functions. The runner reads the local URL and keys from `.env.local` or from
 `supabase status`, so the keys copied during setup are enough.
+
+`pnpm provision:demo` creates one customer account and one administrator
+account through the Auth Admin API. It reads `DEMO_CUSTOMER_*` and `DEMO_ADMIN_*`
+from `.env.local` (see `.env.example` for the local defaults). Running it again
+keeps the existing passwords and does not duplicate accounts. Use the same
+command against a cloud project with that project's environment values; do not
+commit cloud passwords.
 
 ### Continuous integration
 
