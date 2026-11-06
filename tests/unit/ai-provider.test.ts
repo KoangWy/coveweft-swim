@@ -12,6 +12,7 @@ import {
   CONTENT_SHAPES,
   deltaChunk,
   hangingFetch,
+  stalledBodyFetch,
   jsonResponse,
   settings,
   sseResponse,
@@ -236,5 +237,35 @@ describe("createChatProvider", () => {
       kind: "server",
       detail: "overloaded",
     });
+  });
+
+  it.each([503, 400])("reports a timeout while an HTTP %i error body stalls", async (status) => {
+    const provider = createChatProvider(settings({ timeoutMs: 20 }), {
+      fetch: stalledBodyFetch(status),
+    });
+
+    await expect(provider.complete(request)).rejects.toMatchObject({
+      kind: "timeout",
+      status: null,
+    });
+    await expect(streamError(provider.stream(request))).resolves.toMatchObject({
+      kind: "timeout",
+    });
+  });
+
+  it("passes a caller abort through while an error body is read", async () => {
+    const provider = createChatProvider(settings(), { fetch: stalledBodyFetch(503) });
+
+    for (const run of [
+      (signal: AbortSignal) => provider.complete({ ...request, signal }),
+      (signal: AbortSignal) => collect(provider.stream({ ...request, signal })),
+    ]) {
+      const controller = new AbortController();
+      const pending = run(controller.signal);
+
+      setTimeout(() => controller.abort(new DOMException("Stopped", "AbortError")), 5);
+
+      await expect(pending).rejects.toMatchObject({ name: "AbortError" });
+    }
   });
 });

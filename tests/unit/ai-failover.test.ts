@@ -16,6 +16,7 @@ import {
   jsonResponse,
   settings,
   sseResponse,
+  stalledBodyFetch,
 } from "../support/ai";
 
 async function collect(events: AsyncIterable<ProviderEvent>): Promise<ProviderEvent[]> {
@@ -171,6 +172,108 @@ describe("withFailover", () => {
 
     const body = JSON.parse(String(fallbackFetch.mock.calls[0]![1]?.body));
     expect(body.messages).toEqual([{ role: "user", content: "Hi" }]);
+  });
+
+  it("does not fail over a request the caller cancelled during the error body", async () => {
+    const { primary, fallback, fallbackFetch } = providers(stalledBodyFetch(503));
+    const provider = withFailover(primary, fallback);
+    const controller = new AbortController();
+    const pending = provider.complete({ ...request, signal: controller.signal });
+
+    setTimeout(() => controller.abort(new DOMException("Stopped", "AbortError")), 5);
+
+    await expect(pending).rejects.toMatchObject({ name: "AbortError" });
+    expect(fallbackFetch).not.toHaveBeenCalled();
+    expect(provider.model).toBe("reasoning-model");
+  });
+
+  it("keeps the turn on the primary once text was emitted in an earlier round", async () => {
+    let calls = 0;
+    const primaryFetch: typeof fetch = async () => {
+      calls += 1;
+
+      return calls === 1
+        ? sseResponse([
+            deltaChunk({ content: "Let me look that up." }),
+            deltaChunk(
+              {
+                tool_calls: [
+                  {
+                    index: 0,
+                    id: "chatcmpl-tool-1",
+                    type: "function",
+                    function: { name: "searchProducts", arguments: "{}" },
+                  },
+                ],
+              },
+              "tool_calls",
+            ),
+            "data: [DONE]\n\n",
+          ])
+        : jsonResponse({ message: "overloaded" }, 503);
+    };
+    const { primary, fallback, fallbackFetch } = providers(primaryFetch);
+    const provider = withFailover(primary, fallback);
+
+    const first = await collect(provider.stream(request));
+    expect(first[0]).toEqual({ type: "text", text: "Let me look that up." });
+
+    const messages: ChatMessage[] = [
+      ...request.messages,
+      {
+        role: "assistant",
+        content: "Let me look that up.",
+        toolCalls: [{ id: "chatcmpl-tool-1", name: "searchProducts", arguments: "{}" }],
+      },
+      { role: "tool", toolCallId: "chatcmpl-tool-1", name: "searchProducts", content: "[]" },
+    ];
+    let caught: unknown;
+
+    try {
+      await collect(provider.stream({ messages }));
+    } catch (error) {
+      caught = error;
+    }
+
+    expect(caught).toBeInstanceOf(ProviderError);
+    expect(caught).toMatchObject({ status: 503, afterOutput: true, retryable: true });
+    await expect(provider.complete({ messages })).rejects.toMatchObject({ afterOutput: true });
+    expect(fallbackFetch).not.toHaveBeenCalled();
+  });
+
+  it("still fails over after rounds that only produced tool calls", async () => {
+    let calls = 0;
+    const primaryFetch: typeof fetch = async () => {
+      calls += 1;
+
+      return calls === 1
+        ? jsonResponse(
+            completionBody(
+              {
+                content: "",
+                tool_calls: [
+                  {
+                    id: "chatcmpl-tool-1",
+                    type: "function",
+                    function: { name: "searchProducts", arguments: "{}" },
+                  },
+                ],
+              },
+              "tool_calls",
+            ),
+          )
+        : jsonResponse({}, 503);
+    };
+    const { primary, fallback, fallbackFetch } = providers(primaryFetch);
+    const provider = withFailover(primary, fallback);
+
+    await provider.complete(request);
+
+    expect(await collect(provider.stream(request))).toContainEqual({
+      type: "text",
+      text: "From fallback.",
+    });
+    expect(fallbackFetch).toHaveBeenCalledOnce();
   });
 });
 

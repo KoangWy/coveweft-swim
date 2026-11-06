@@ -83,3 +83,19 @@ export function hangingFetch(): typeof fetch {
       init?.signal?.addEventListener("abort", () => reject(init.signal!.reason));
     });
 }
+
+/**
+ * A fetch stub that answers with `status` headers at once, then stalls the
+ * body until the request is aborted.
+ */
+export function stalledBodyFetch(status: number): typeof fetch {
+  return async (_input, init) => {
+    const body = new ReadableStream<Uint8Array>({
+      start(controller) {
+        init?.signal?.addEventListener("abort", () => controller.error(init.signal!.reason));
+      },
+    });
+
+    return new Response(body, { status, headers: { "Content-Type": "application/json" } });
+  };
+}
