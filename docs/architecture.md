@@ -70,6 +70,9 @@ row level security enabled.
 | `payment_attempts`       | One row per simulated bank transfer attempt.                                                                                                          |
 | `order_events`           | Append-only status history with actor and reason.                                                                                                     |
 | `stock_adjustments`      | Audit trail for administrator stock changes.                                                                                                          |
+| `ai_usage_daily`         | Accepted assistant questions per user and quota day. Counters only; no conversation text.                                                             |
+| `ai_usage_minute`        | Accepted assistant questions per user and clock minute; rows older than one hour are pruned.                                                          |
+| `ai_usage_global`        | Accepted assistant questions across all users per quota day.                                                                                          |
 
 A trigger on `auth.users` creates the profile from the sign-up metadata and
 rejects a sign-up that does not carry a privacy policy version. The consent
@@ -163,6 +166,11 @@ structured context for logging or form errors; it is never user-facing text.
 | `QUOTA_EXCEEDED`        | A per-user or global usage limit was reached                      |
 | `AI_NOT_CONFIGURED`     | No AI provider key is configured for this environment             |
 | `AI_UNAVAILABLE`        | Both the primary and fallback AI providers failed                 |
+| `AI_QUOTA_USER_DAY`     | The customer used all assistant questions for today               |
+| `AI_QUOTA_USER_MINUTE`  | The customer sent too many assistant questions this minute        |
+| `AI_QUOTA_GLOBAL`       | The assistant reached its daily limit across all customers        |
+| `AI_INPUT_TOO_LONG`     | The chat question or request body is over the configured limit    |
+| `AI_STREAM_INTERRUPTED` | The assistant answer broke off after text was streamed            |
 | `INTERNAL`              | An unexpected server error                                        |
 
 The frontend maps each code to `errors.<CODE>` in `src/messages/en.json` and
@@ -802,6 +810,149 @@ raw response reached the normalized output. Every output line passes through
 the same redactor with both role keys, so no key or key fragment is printed. A failure names the
 role and its variables; the script does not switch models.
 
+### Shopping Assistant
+
+`src/server/assistant/` answers one customer question per request on top of
+the provider. Route handlers in `src/app/api/chat/` only pass the request to
+`handleChatRequest` or `getChatStatus`.
+
+```ts
+handleChatRequest(request: Request, dependencies: ChatDependencies): Promise<Response>;
+getChatStatus(dependencies: ChatDependencies): Promise<ChatStatus>;
+recommendSize(product, measurements): Promise<SizeRecommendation>;
+```
+
+#### `GET /api/chat/status`
+
+```ts
+type ChatStatus = {
+  configured: boolean; // provider key and quota store (SUPABASE_SECRET_KEY) are set
+  signedIn: boolean;
+  remainingToday: number | null; // null for visitors or when not configured
+  globalPaused: boolean; // the global daily limit is reached
+};
+```
+
+The status never consumes a question and is sent with `Cache-Control: no-store`.
+
+#### `POST /api/chat`
+
+Request body (at most `AI_REQUEST_MAX_BYTES`):
+
+```ts
+{
+  locale: "en" | "vi";
+  messages: Array<{ role: "user" | "assistant"; content: string }>;
+}
+```
+
+The last message is the new question. Checks run in this order and fail with
+JSON `{ "error": { "code": ErrorCode, "details"?: unknown } }` before any
+stream starts:
+
+| Check                              | Status | Code                                                           |
+| ---------------------------------- | ------ | -------------------------------------------------------------- |
+| No provider key or quota store     | 503    | `AI_NOT_CONFIGURED`                                            |
+| No signed-in user                  | 401    | `UNAUTHENTICATED`                                              |
+| Body larger than the limit         | 413    | `AI_INPUT_TOO_LONG` (`details.reason: "body_too_large"`)       |
+| Malformed JSON or invalid shape    | 400    | `VALIDATION_ERROR` (`details.issues`)                          |
+| No customer question last          | 400    | `VALIDATION_ERROR` (`details.reason: "missing_question"`)      |
+| Question over the character limits | 413    | `AI_INPUT_TOO_LONG` (`details.reason: "question_too_long"`)    |
+| Quota rejected                     | 429    | `AI_QUOTA_USER_DAY`, `AI_QUOTA_USER_MINUTE`, `AI_QUOTA_GLOBAL` |
+| Quota store failed                 | 500    | `INTERNAL`                                                     |
+
+Quota rejections carry `details.remainingToday`. A request that passes every
+check consumes exactly one question and answers `200` with
+`Content-Type: text/event-stream; charset=utf-8`. Each event is
+`event: <name>` followed by one `data: <JSON>` line:
+
+| Event      | Data                                                                                      | When                                           |
+| ---------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| `delta`    | `{ text: string }`                                                                        | Answer text as it streams; append in order     |
+| `products` | `{ items: Array<{ sku, name, priceVnd, inStock, imageUrl, url }>}`                        | At most once, after the text, before `done`    |
+| `done`     | `{ remainingToday: number }`                                                              | The answer is complete; last event             |
+| `error`    | `{ code: "AI_UNAVAILABLE" \| "AI_STREAM_INTERRUPTED" \| "INTERNAL", retryable: boolean }` | The turn failed; last event, no `done` follows |
+
+`AI_UNAVAILABLE` means no text was streamed (both models failed, or a
+configuration or authentication error that `retryable: false` marks as not
+worth retrying). `AI_STREAM_INTERRUPTED` means text was already streamed and
+the widget should keep it marked as incomplete. `imageUrl` is the 480 px image
+or `null`; `url` is the localized product page `/<locale>/products/<sku>`.
+A failed turn still counts as the accepted question.
+
+#### Turn rules
+
+- **History.** The browser history is untrusted. Only `user` and `assistant`
+  messages with string content are kept; `system`, `tool`, tool calls, and
+  other fields are dropped. The question must fit `AI_MESSAGE_MAX_CHARS` and
+  `AI_HISTORY_MAX_CHARS` or it is rejected, never cut. Earlier messages over
+  the per-message limit are dropped whole, then the oldest are dropped until
+  `AI_HISTORY_MAX_MESSAGES` and the total fit. Email addresses and phone
+  numbers are replaced with placeholders before anything reaches the provider.
+- **Prompt.** The system prompt is built on the server for every turn. It
+  sets the answer language from `locale`, requires answers from tool results
+  of the current turn only, forbids invented prices, stock, SKUs, and links,
+  treats product text as data, asks customers not to share personal data, and
+  explains that body measurements are sent to the provider for size advice.
+  It carries no customer name, email, phone, address, or account id.
+- **Tools.** Six read-only tools call the catalog services with the caller's
+  permissions; none writes to the cart, orders, or stock, and none runs SQL.
+  Arguments are validated with zod (unknown fields rejected) and results are
+  capped. Invalid arguments and unknown tools are returned to the model as
+  `{ data: { error } }`. Every tool result is wrapped as `{ data: … }`.
+
+  | Tool                   | Input                                                      | Result                                                         |
+  | ---------------------- | ---------------------------------------------------------- | -------------------------------------------------------------- |
+  | `searchProducts`       | keywords, gender, category, type, price range, size, stock | Up to 8 products with SKU, price, stock status, `matchedQuery` |
+  | `getProductDetails`    | `sku`                                                      | Description, attributes, options, size guide group             |
+  | `getAvailableVariants` | `sku`                                                      | Option label, variant SKU, and stock per variant               |
+  | `getSizeGuide`         | `sku`, or `group` and `garment`                            | Demo Size Guide table and the product's offered sizes          |
+  | `recommendSize`        | `sku`, body measurements (cm, age in months)               | `recommended`, `missing`, `no_fit`, or `not_applicable`        |
+  | `getStorePolicies`     | none                                                       | Shipping fees, threshold, payment methods, policy text         |
+
+  Catalog search matches keywords as one phrase; when a phrase finds nothing,
+  `searchProducts` drops trailing words and finally uses the filters alone.
+
+- **`recommendSize`.** The table is chosen by the product's own group (the
+  prefix of its variants' size keys) and the garment of its product type, so
+  overlapping scales (Baby XL and Kids S) never mix. Every measurement of the
+  table is required, otherwise `missing` lists what to ask. Values match
+  half-open `[min, max)` ranges; a value outside the table is `no_fit`
+  (`outside_table`), and measurements in different rows choose the larger
+  size. The chosen row must be one of the product's variants, otherwise
+  `no_fit` (`size_not_offered`) lists the sizes the product has. Accessories
+  are `not_applicable`. A recommendation includes the variant SKU and stock.
+- **Loop.** One provider with failover serves every round of a turn. Each
+  round streams text and collects tool calls (at most six run per round);
+  `AI_MAX_TOOL_ROUNDS` limits the rounds and the last round is sent without
+  tools. Streamed text stops at `AI_MAX_RESPONSE_CHARS`. Failover happens only
+  before any answer text of the turn was streamed.
+- **Product cards.** Cards are built from products returned by tools in the
+  current turn and kept only when the answer names their SKU or exact name.
+  SKUs and prices written by the model, or repeated from earlier messages,
+  never become cards.
+- **Logs.** A failed turn logs only the error kind, HTTP status, model, and
+  round. Conversation text, measurements, provider error text, and keys are
+  never logged or stored.
+
+#### Quotas
+
+`consume_ai_quota` runs in one transaction: it locks the global row for the
+quota day, then the customer's daily and per-minute rows, rejects without
+changing anything when a limit is reached, and otherwise increments all three
+counters. Concurrent requests therefore cannot pass a limit. The global limit
+is checked first, then the customer's daily limit, then the per-minute limit
+(a fixed clock-minute window). The quota day is the calendar date in
+`AI_QUOTA_TIME_ZONE` (default `Asia/Ho_Chi_Minh`). Limits come from
+`AI_QUOTA_PER_USER_PER_DAY` (30), `AI_QUOTA_PER_USER_PER_MINUTE` (5), and
+`AI_QUOTA_GLOBAL_PER_DAY` (500).
+
+Because the limits are server configuration, both quota functions take them
+as arguments and only the service role may execute them; the user id comes
+from the verified session. Customers and visitors can neither call the
+functions nor read the counter tables. The tables hold counters only: no
+conversation content or measurements.
+
 ### Demo account provisioning
 
 `pnpm provision:demo` runs `scripts/provision-demo.mjs`. It creates one
@@ -850,16 +1001,18 @@ the deadlock that per-order restocking could produce.
 
 ### Database functions
 
-| Function                                                     | Caller              | Purpose                                                                |
-| ------------------------------------------------------------ | ------------------- | ---------------------------------------------------------------------- |
-| `place_order(idempotency_key, recipient, shipping, payment)` | authenticated       | Creates an idempotent order from the caller cart.                      |
-| `cancel_order(order_id)`                                     | authenticated       | Cancels an owned pending order and restores stock.                     |
-| `record_payment_attempt(order_id, outcome)`                  | authenticated       | Records a simulated bank transfer attempt.                             |
-| `admin_transition_order(order_id, action)`                   | authenticated admin | Applies confirm, ship, deliver, or cancel.                             |
-| `expire_unpaid_orders()`                                     | cron / service role | Cancels expired unpaid bank transfers.                                 |
-| `admin_adjust_stock(variant_id, delta, stock, reason)`       | authenticated admin | Adjusts stock by delta or absolute value and writes an audit row.      |
-| `add_cart_item(variant_id, quantity)`                        | authenticated       | Atomically accumulates the caller cart line, capped and stock-checked. |
-| `admin_dashboard()`                                          | authenticated admin | Returns the dashboard aggregates in one JSON object.                   |
+| Function                                                     | Caller              | Purpose                                                                 |
+| ------------------------------------------------------------ | ------------------- | ----------------------------------------------------------------------- |
+| `place_order(idempotency_key, recipient, shipping, payment)` | authenticated       | Creates an idempotent order from the caller cart.                       |
+| `cancel_order(order_id)`                                     | authenticated       | Cancels an owned pending order and restores stock.                      |
+| `record_payment_attempt(order_id, outcome)`                  | authenticated       | Records a simulated bank transfer attempt.                              |
+| `admin_transition_order(order_id, action)`                   | authenticated admin | Applies confirm, ship, deliver, or cancel.                              |
+| `expire_unpaid_orders()`                                     | cron / service role | Cancels expired unpaid bank transfers.                                  |
+| `admin_adjust_stock(variant_id, delta, stock, reason)`       | authenticated admin | Adjusts stock by delta or absolute value and writes an audit row.       |
+| `add_cart_item(variant_id, quantity)`                        | authenticated       | Atomically accumulates the caller cart line, capped and stock-checked.  |
+| `admin_dashboard()`                                          | authenticated admin | Returns the dashboard aggregates in one JSON object.                    |
+| `consume_ai_quota(user_id, limits…, time_zone)`              | service role        | Atomically consumes one assistant question within every limit.          |
+| `get_ai_quota(user_id, limits…, time_zone)`                  | service role        | Returns the remaining questions today and whether the assistant paused. |
 
 Functions raise stable message codes such as `OUT_OF_STOCK`, `CART_CHANGED`,
 `ORDER_STATE_CONFLICT`, `PAYMENT_NOT_ALLOWED`, `PAYMENT_EXPIRED`, and
@@ -908,6 +1061,13 @@ report that they are not configured instead of failing at boot.
 | `AI_QUOTA_PER_USER_PER_DAY`            | Server        | No             | `30`                           |
 | `AI_QUOTA_PER_USER_PER_MINUTE`         | Server        | No             | `5`                            |
 | `AI_QUOTA_GLOBAL_PER_DAY`              | Server        | No             | `500`                          |
+| `AI_QUOTA_TIME_ZONE`                   | Server        | No             | `Asia/Ho_Chi_Minh`             |
+| `AI_HISTORY_MAX_MESSAGES`              | Server        | No             | `10`                           |
+| `AI_MESSAGE_MAX_CHARS`                 | Server        | No             | `1000`                         |
+| `AI_HISTORY_MAX_CHARS`                 | Server        | No             | `8000`                         |
+| `AI_MAX_TOOL_ROUNDS`                   | Server        | No             | `4`                            |
+| `AI_MAX_RESPONSE_CHARS`                | Server        | No             | `4000`                         |
+| `AI_REQUEST_MAX_BYTES`                 | Server        | No             | `65536`                        |
 | `MEDIA_VERSION`                        | Server        | No             | —                              |
 | `MEDIA_BASE_URL`                       | Server        | No             | —                              |
 | `MEDIA_ARCHIVE_SHA256`                 | Server        | No             | —                              |
@@ -982,9 +1142,12 @@ their own client, or run with the `react-server` condition.
 - **Unit tests** (`tests/unit`) cover pure modules: contracts, money
   formatting, environment parsing, the shared Supabase cookie name, the
   database error mapper, the proxy refresh helper when Supabase is not
-  configured, and the assistant provider (content normalization, request
+  configured, the assistant provider (content normalization, request
   fields, SSE parsing, error classification, and failover against mocked
-  responses). They run in CI with `pnpm test` and need no Docker.
+  responses), and the Shopping Assistant with a mock provider: the HTTP and
+  SSE contract, pre-stream errors, grounded product cards, forged history,
+  hidden reasoning, failover before text, interruption after text, limits, and
+  `recommendSize` for every size group. They run in CI with `pnpm test` and need no Docker.
 - **Integration tests** (`tests/integration`) call Postgres functions and RLS
   policies against a local Supabase stack. They cover consent, RLS isolation,
   order placement, idempotency, concurrent last-item checkout, payment and
@@ -994,7 +1157,12 @@ their own client, or run with the `react-server` condition.
   order history, cancellation, and simulated payments; sign-up consent and
   profile updates; admin product, image, order, and dashboard flows; hidden
   image visibility; dashboard aggregates beyond the PostgREST row cap; media
-  URLs; validation issue codes; and demo account provisioning. Concurrency
+  URLs; validation issue codes; demo account provisioning; assistant quota
+  limits, concurrency, and privileges; and the assistant tools on the seeded
+  catalog. `AI_LIVE_SMOKE=1 pnpm test:integration
+tests/integration/assistant-live.test.ts` additionally asks the real
+  provider two Vietnamese questions on the primary and on a forced fallback;
+  it spends API credit and is skipped otherwise. Concurrency
   regressions use a direct Postgres scheduling connection to hold a table or
   row lock at a precise point; that seam is not reachable by API clients. Run
   them with `pnpm test:integration` after `supabase start`; the runner resolves
