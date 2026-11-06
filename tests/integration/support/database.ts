@@ -2,7 +2,8 @@ import { execFile, spawn, type ChildProcess } from "node:child_process";
 import { promisify } from "node:util";
 
 const execFileAsync = promisify(execFile);
-const PROJECT_LABEL = "com.supabase.cli.project=coveweft-swim";
+const PROJECT_ID = process.env.SUPABASE_PROJECT_ID ?? "coveweft-swim";
+const PROJECT_LABEL = `com.supabase.cli.project=${PROJECT_ID}`;
 
 let containerName: string | undefined;
 

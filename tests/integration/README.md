@@ -13,6 +13,11 @@ pnpm test:integration
 `vitest.integration.config.mts`. The files run one at a time because they share
 one database.
 
+To run against an isolated stack with a different project id and ports, export
+`SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`, and
+`SUPABASE_PROJECT_ID` for the run. The project id lets the direct Postgres
+helper find the isolated database container; it defaults to `coveweft-swim`.
+
 Coverage:
 
 - privacy consent at sign-up and the profile trigger;
