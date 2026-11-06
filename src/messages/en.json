@@ -341,9 +341,13 @@
   "errors": {
     "VALIDATION_ERROR": "Please check the information you entered.",
     "UNAUTHENTICATED": "Please sign in to continue.",
+    "INVALID_CREDENTIALS": "The email or password is incorrect.",
+    "EMAIL_TAKEN": "An account with this email already exists.",
+    "RATE_LIMITED": "Too many attempts. Please wait a moment and try again.",
     "FORBIDDEN": "You do not have permission to do that.",
     "NOT_FOUND": "We could not find what you were looking for.",
     "CONFLICT": "That action conflicts with the current state. Please refresh and try again.",
+    "PRODUCT_UNAVAILABLE": "This product is no longer available.",
     "OUT_OF_STOCK": "One or more items are no longer available in the requested quantity.",
     "CART_CHANGED": "Your cart changed while you were checking out. Please review it and try again.",
     "ORDER_NOT_CANCELLABLE": "This order can no longer be cancelled.",

@@ -341,9 +341,13 @@
   "errors": {
     "VALIDATION_ERROR": "Vui lòng kiểm tra lại thông tin đã nhập.",
     "UNAUTHENTICATED": "Vui lòng đăng nhập để tiếp tục.",
+    "INVALID_CREDENTIALS": "Email hoặc mật khẩu không đúng.",
+    "EMAIL_TAKEN": "Email này đã được dùng cho một tài khoản khác.",
+    "RATE_LIMITED": "Bạn đã thử quá nhiều lần. Vui lòng chờ một chút rồi thử lại.",
     "FORBIDDEN": "Bạn không có quyền thực hiện thao tác này.",
     "NOT_FOUND": "Không tìm thấy nội dung bạn cần.",
     "CONFLICT": "Thao tác không khớp với trạng thái hiện tại. Vui lòng tải lại và thử lại.",
+    "PRODUCT_UNAVAILABLE": "Sản phẩm này không còn được bán.",
     "OUT_OF_STOCK": "Một hoặc nhiều sản phẩm không còn đủ số lượng.",
     "CART_CHANGED": "Giỏ hàng đã thay đổi trong lúc thanh toán. Vui lòng kiểm tra và thử lại.",
     "ORDER_NOT_CANCELLABLE": "Đơn hàng này không thể hủy nữa.",
