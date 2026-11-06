@@ -6,6 +6,8 @@ import { cookies } from "next/headers";
 
 import { getSupabaseEnv } from "@/lib/config/env";
 
+import { SUPABASE_AUTH_COOKIE_NAME } from "./cookie";
+
 /**
  * Creates a Supabase client bound to the current request cookies. Use it in
  * server components, server actions, and route handlers so queries run with
@@ -16,6 +18,7 @@ export async function createSupabaseServerClient(): Promise<SupabaseClient> {
   const { url, publishableKey } = getSupabaseEnv();
 
   return createServerClient(url, publishableKey, {
+    cookieOptions: { name: SUPABASE_AUTH_COOKIE_NAME },
     cookies: {
       getAll() {
         return cookieStore.getAll();
