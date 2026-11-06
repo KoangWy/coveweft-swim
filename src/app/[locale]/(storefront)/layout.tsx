@@ -1,17 +1,5 @@
-import { SiteFooter } from "@/components/layout/site-footer";
-import { SiteHeader } from "@/components/layout/site-header";
-import { SkipLink } from "@/components/layout/skip-link";
+import { StorefrontFrame } from "@/components/layout/storefront-frame";
 
-/** Storefront frame: demo banner, header, page content, and footer. */
 export default function StorefrontLayout({ children }: LayoutProps<"/[locale]">) {
-  return (
-    <>
-      <SkipLink />
-      <SiteHeader />
-      <main id="main" className="flex flex-1 flex-col">
-        {children}
-      </main>
-      <SiteFooter />
-    </>
-  );
+  return <StorefrontFrame>{children}</StorefrontFrame>;
 }

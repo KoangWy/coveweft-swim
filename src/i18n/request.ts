@@ -5,9 +5,11 @@ import * as rootParams from "next/root-params";
 
 import { routing } from "./routing";
 
-export default getRequestConfig(async ({ locale }) => {
+export default getRequestConfig(async ({ locale, requestLocale }) => {
   if (!locale) {
-    const paramValue = await rootParams.locale();
+    // Pages under [locale] read the root param. The global 404 page renders
+    // outside that segment and sets the locale with setRequestLocale instead.
+    const paramValue = (await rootParams.locale()) ?? (await requestLocale);
 
     if (hasLocale(routing.locales, paramValue)) {
       locale = paramValue;
