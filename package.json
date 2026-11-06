@@ -16,7 +16,7 @@
     "lint": "eslint .",
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run tests/unit",
-    "test:integration": "vitest run tests/integration --passWithNoTests",
+    "test:integration": "node scripts/test-integration.mjs",
     "test:e2e": "playwright test",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
