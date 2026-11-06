@@ -31,7 +31,19 @@ Coverage:
 - simulated payments, expiry, cancellation, and the payment/cancel/expire
   races;
 - administrator order transitions, stock adjustments, and the variant INSERT
-  stock restriction.
+  stock restriction;
+- catalog search, filters, facets, product details, translations, and size
+  guides through the catalog service;
+- cart accumulation, stock and visibility issues, and customer isolation;
+- checkout quotes from `store_settings`, idempotent placement, and stock
+  failures;
+- order history, ownership, cancellation, and simulated payments through the
+  orders service;
+- sign-up consent, duplicate email, invalid credentials, profile updates, and
+  sign-out through the auth service;
+- admin product editing, image upload and ordering, order transitions, and the
+  dashboard through the admin service;
+- media URL construction and demo account provisioning.
 
 The concurrency tests use `tests/integration/support/database.ts` to open a
 direct Postgres connection through the local database container. That
@@ -40,4 +52,7 @@ which makes the interleaving deterministic. It is a test-only scheduling seam:
 API clients have no path to it.
 
 Tests create their own users, products, and variants, and clean them up in
-`afterAll`. They must not depend on seed data that other tests can change.
+`afterAll`. They must not depend on seed data that other tests can change. The
+service suites mock the request client through
+`tests/integration/support/service-context.ts`, so each call runs as the
+customer or administrator whose Supabase client the test selected.
