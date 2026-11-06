@@ -57,6 +57,17 @@ describe("assistant tools on the seeded catalog", () => {
     }
   });
 
+  it("shortens a keyword phrase that matches nothing", async () => {
+    const result = await call("searchProducts", {
+      query: "đồ bơi nữ",
+      gender: ["Women"],
+      maxPriceVnd: 400_000,
+    });
+
+    expect(result.matchedQuery).toBe("đồ bơi");
+    expect(result.items.length).toBeGreaterThan(0);
+  });
+
   it("returns variants with stock and a size table for a product", async () => {
     const variants = await call("getAvailableVariants", { sku: "AIMEE" });
 

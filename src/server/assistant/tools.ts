@@ -45,6 +45,8 @@ export type ToolContext = {
 };
 
 const MAX_SEARCH_RESULTS = 8;
+/** Keyword phrases tried before the filters are used alone. */
+const MAX_KEYWORD_ATTEMPTS = 3;
 const MAX_VARIANTS = 40;
 const MAX_ATTRIBUTES = 24;
 const SUMMARY_CHARS = 200;
@@ -62,7 +64,9 @@ const SearchProductsArgs = z
       .trim()
       .max(120)
       .optional()
-      .describe("Keywords in English or Vietnamese, for example 'rash guard' or 'đồ bơi'."),
+      .describe(
+        "One or two product keywords in English or Vietnamese, for example 'rash guard' or 'đồ bơi'. Put gender, price, and size in the filters instead.",
+      ),
     gender: z.array(z.enum(GENDERS)).min(1).max(6).optional(),
     category: z.enum(CATEGORIES).optional(),
     productType: z.string().trim().min(1).max(60).optional().describe("For example 'Swimsuit'."),
@@ -96,6 +100,22 @@ type ToolSpec = {
   args: z.ZodType;
   run: (args: never, context: ToolContext) => Promise<unknown>;
 };
+
+const FILTER_KEYS = [
+  "gender",
+  "category",
+  "productType",
+  "minPriceVnd",
+  "maxPriceVnd",
+  "material",
+  "features",
+  "size",
+  "inStock",
+] as const;
+
+function hasFilters(args: z.infer<typeof SearchProductsArgs>): boolean {
+  return FILTER_KEYS.some((key) => args[key] !== undefined);
+}
 
 function truncate(text: string | null, max: number): string | null {
   if (!text) {
@@ -172,21 +192,46 @@ const TOOLS: Record<string, ToolSpec> = {
       "Search the active catalog with keywords and filters. Returns at most 8 products with SKU, price in VND, and stock status.",
     args: SearchProductsArgs,
     async run(args: z.infer<typeof SearchProductsArgs>, context) {
-      const result = await context.catalog.listProducts({
-        locale: context.locale,
-        q: args.query,
-        gender: args.gender,
-        category: args.category,
-        productType: args.productType,
-        priceMin: args.minPriceVnd,
-        priceMax: args.maxPriceVnd,
-        material: args.material,
-        features: args.features,
-        size: args.size,
-        inStock: args.inStock,
-        sort: args.sort,
-        pageSize: args.limit ?? 6,
-      });
+      const search = (query: string | undefined) =>
+        context.catalog.listProducts({
+          locale: context.locale,
+          q: query,
+          gender: args.gender,
+          category: args.category,
+          productType: args.productType,
+          priceMin: args.minPriceVnd,
+          priceMax: args.maxPriceVnd,
+          material: args.material,
+          features: args.features,
+          size: args.size,
+          inStock: args.inStock,
+          sort: args.sort,
+          pageSize: args.limit ?? 6,
+        });
+
+      // Keywords match as one phrase. When a long phrase finds nothing, the
+      // last words are dropped one at a time, and the filters alone are used
+      // as a last resort; `matchedQuery` tells the model what was searched.
+      const words = args.query?.split(/\s+/).filter(Boolean) ?? [];
+      const attempts: Array<string | undefined> = words
+        .map((_, index) => words.slice(0, words.length - index).join(" "))
+        .slice(0, MAX_KEYWORD_ATTEMPTS);
+
+      if (attempts.length === 0 || hasFilters(args)) {
+        attempts.push(undefined);
+      }
+
+      let matchedQuery = attempts[0] ?? null;
+      let result = await search(attempts[0]);
+
+      for (const query of attempts.slice(1)) {
+        if (!result.ok || result.data.total > 0) {
+          break;
+        }
+
+        matchedQuery = query ?? null;
+        result = await search(query);
+      }
 
       if (!result.ok) {
         return {
@@ -197,6 +242,7 @@ const TOOLS: Record<string, ToolSpec> = {
       result.data.items.forEach((item) => remember(context, item));
 
       return {
+        matchedQuery,
         total: result.data.total,
         items: result.data.items.map((item) => ({
           sku: item.sku,
