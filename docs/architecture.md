@@ -90,13 +90,23 @@ sentences.
 Prices are integer VND amounts (`number`), stored and calculated without
 floating point. `formatVnd(amount, locale)` in `src/lib/money.ts` formats them
 for display and rejects fractional input. Shipping fees and the free-shipping
-threshold come from the server configuration, not from the browser.
+threshold come from the database `store_settings` row, not from the browser or
+from environment variables.
+
+### Store settings
+
+The single `store_settings` row in Postgres is the source of truth for
+shipping fees, the free-shipping threshold, and other storefront values. The
+UI, server services, Postgres functions, and the assistant all read that row.
+Environment variables do not carry pricing values.
 
 ### Locale and messages
 
 `src/lib/locale.ts` is the single source for `LOCALES`, `Locale`, and
 `DEFAULT_LOCALE`. Routing uses `localePrefix: "always"`, so every page lives
-under `/en` or `/vi`; `/` redirects to `/en` in `src/proxy.ts`. The locale is
+under `/en` or `/vi`; `/` redirects to `/en` in `src/proxy.ts`. Locale
+detection is disabled (`localeDetection: false`), so a request to `/` always
+goes to `/en` even when `Accept-Language` prefers Vietnamese. The locale is
 read from `next/root-params` in `src/i18n/request.ts`, which keeps pages
 statically renderable. Services that return localized content accept a
 `Locale` argument and fall back to English when a translation is missing.
@@ -124,9 +134,6 @@ report that they are not configured instead of failing at boot.
 | `AI_QUOTA_PER_USER_PER_DAY`            | Server        | No             | `30`                        |
 | `AI_QUOTA_PER_USER_PER_MINUTE`         | Server        | No             | `5`                         |
 | `AI_QUOTA_GLOBAL_PER_DAY`              | Server        | No             | `500`                       |
-| `SHIPPING_STANDARD_FEE_VND`            | Server        | No             | `30000`                     |
-| `SHIPPING_EXPRESS_FEE_VND`             | Server        | No             | `50000`                     |
-| `SHIPPING_FREE_THRESHOLD_VND`          | Server        | No             | `500000`                    |
 | `MEDIA_VERSION`                        | Server        | No             | —                           |
 | `MEDIA_BASE_URL`                       | Server        | No             | —                           |
 | `MEDIA_ARCHIVE_SHA256`                 | Server        | No             | —                           |
@@ -134,7 +141,8 @@ report that they are not configured instead of failing at boot.
 
 `.env.example` lists every variable with local defaults or an empty placeholder
 for values that come from `supabase status`. Never commit `.env.local` or a
-real key.
+real key. Shipping fees and the free-shipping threshold are not environment
+variables; they live in the database `store_settings` row.
 
 ## Supabase clients
 
@@ -148,6 +156,14 @@ The server and admin clients use `SUPABASE_URL_INTERNAL`; the browser client
 uses `NEXT_PUBLIC_SUPABASE_URL`. When the app runs in a container on the
 Supabase Docker network, the internal URL points at the network service (for
 example `http://kong:8000`) while the browser keeps using `localhost`.
+
+Because the two URLs have different hostnames, all clients set the same
+explicit auth cookie name from `src/lib/supabase/cookie.ts`
+(`sb-coveweft-auth-token`). This keeps one session across the browser and the
+server. `src/proxy.ts` refreshes the session with `getClaims()` before the
+locale middleware builds its response, writes refreshed cookies back to the
+request, and attaches the refreshed cookies and cache headers to the final
+response.
 
 The admin client bypasses RLS. It imports `server-only`, so a client component
 that imports it fails the build. Scripts that run outside the Next.js bundler
@@ -166,6 +182,9 @@ their own client, or run with the `react-server` condition.
 - **Media** comes from a versioned archive with a SHA-256 manifest. The local
   app serves the extracted archive; cloud uses Supabase Storage with the same
   object keys. Admin uploads live in Storage and are separate from the archive.
+  Committed media metadata lives in `data/media/` (manifest and build report).
+  `/.media-build/` holds build output and `/.media-cache/` holds the runtime
+  extraction cache; both are ignored by git.
 - **Configuration** differs per environment but names stay the same. Local
   values live in `.env.local`; cloud values live in the hosting provider's
   environment settings.
@@ -173,7 +192,9 @@ their own client, or run with the `react-server` condition.
 ## Testing
 
 - **Unit tests** (`tests/unit`) cover pure modules: contracts, money
-  formatting, and environment parsing. They run in CI with `pnpm test`.
+  formatting, environment parsing, the shared Supabase cookie name, and the
+  proxy refresh helper when Supabase is not configured. They run in CI with
+  `pnpm test`.
 - **Integration tests** (`tests/integration`) call Postgres functions and RLS
   policies against a local Supabase stack. They are not part of the CI quality
   job because they need Docker; run them with `pnpm test:integration`.
