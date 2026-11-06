@@ -1,68 +1,14 @@
-"use client";
+import { connection } from "next/server";
 
-import { useLocale, useTranslations } from "next-intl";
-import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
-
-import { cx } from "@/components/ui/cx";
-import { Link, usePathname } from "@/i18n/navigation";
-import { LOCALES, type Locale } from "@/lib/locale";
-
-function SwitcherLinks({ query, tone }: { query: string; tone: "light" | "dark" }) {
-  const t = useTranslations("nav");
-  const current = useLocale() as Locale;
-  const pathname = usePathname();
-  const href = query ? `${pathname}?${query}` : pathname;
-
-  return (
-    <div role="group" aria-label={t("language")}>
-      <ul className="flex items-center rounded-md border border-neutral-300 p-0.5">
-        {LOCALES.map((locale) => {
-          const active = locale === current;
-          return (
-            <li key={locale}>
-              <Link
-                href={href}
-                locale={locale}
-                hrefLang={locale}
-                lang={locale}
-                aria-current={active ? "true" : undefined}
-                title={t(`languages.${locale}`)}
-                className={cx(
-                  "inline-flex h-8 min-w-8 items-center justify-center rounded-md px-2 text-caption font-semibold uppercase transition-colors duration-150",
-                  active
-                    ? "bg-navy-900 text-white"
-                    : tone === "light"
-                      ? "text-navy-900 hover:bg-neutral-100"
-                      : "text-navy-900 hover:bg-white",
-                )}
-              >
-                <span aria-hidden>{locale}</span>
-                <span className="sr-only">{t(`languages.${locale}`)}</span>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
-}
-
-function SwitcherWithQuery({ tone }: { tone: "light" | "dark" }) {
-  const searchParams = useSearchParams();
-  return <SwitcherLinks query={searchParams.toString()} tone={tone} />;
-}
+import { LocaleSwitcherLinks } from "./locale-switcher-links";
 
 /**
- * Links to the current page in each locale, keeping the path and query. The
- * server renders the target page in that language; no cookie is involved.
+ * EN/VI switch for the current page. Its links carry the current query
+ * string, which only exists per request, so the switch opts the page into
+ * request-time rendering. Without that, prerendered HTML would link to the
+ * other locale without the query until JavaScript loads.
  */
-export function LocaleSwitcher({ tone = "light" }: { tone?: "light" | "dark" }) {
-  return (
-    // The query string is only known in the browser; until then, link to the
-    // same path without it.
-    <Suspense fallback={<SwitcherLinks query="" tone={tone} />}>
-      <SwitcherWithQuery tone={tone} />
-    </Suspense>
-  );
+export async function LocaleSwitcher({ tone = "light" }: { tone?: "light" | "dark" }) {
+  await connection();
+  return <LocaleSwitcherLinks tone={tone} />;
 }
