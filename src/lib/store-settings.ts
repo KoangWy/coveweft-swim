@@ -2,18 +2,10 @@ import "server-only";
 
 import { cache } from "react";
 
-/**
- * Storefront values owned by the database `store_settings` row. Amounts are
- * integer VND.
- */
-export type StoreSettings = {
-  standardShippingFeeVnd: number;
-  expressShippingFeeVnd: number;
-  /** Item subtotal (before shipping) at which Standard shipping becomes free. */
-  freeStandardShippingThresholdVnd: number;
-  /** Minutes a simulated bank transfer order stays payable after it is placed. */
-  paymentWindowMinutes: number;
-};
+import { getStoreSettings as readStoreSettings } from "@/server/catalog/settings";
+import type { StoreSettings } from "@/server/catalog/types";
+
+export type { StoreSettings };
 
 /** Anything that can load the current store settings for rendering. */
 export interface StoreSettingsSource {
@@ -21,9 +13,9 @@ export interface StoreSettingsSource {
 }
 
 /**
- * Fallback values used until the `store_settings` read service is available.
- * They match the documented demo defaults and must stay in sync with the
- * database seed. Do not read these values anywhere else.
+ * Documented demo defaults. They mirror the database seed and exist so tests
+ * and tooling can reason about the starting values. The storefront reads the
+ * database row through `databaseStoreSettingsSource`, not these constants.
  */
 export const FALLBACK_STORE_SETTINGS: Readonly<StoreSettings> = Object.freeze({
   standardShippingFeeVnd: 30_000,
@@ -38,9 +30,24 @@ export const fallbackStoreSettingsSource: StoreSettingsSource = {
   },
 };
 
-// Replace this binding with the database-backed source once the
-// `store_settings` service lands.
-const activeSource: StoreSettingsSource = fallbackStoreSettingsSource;
+/**
+ * Reads the single `store_settings` row. The UI keeps its plain
+ * `Promise<StoreSettings>` signature; a database failure surfaces as an error
+ * page instead of silently showing stale prices.
+ */
+export const databaseStoreSettingsSource: StoreSettingsSource = {
+  async getStoreSettings() {
+    const result = await readStoreSettings();
+
+    if (!result.ok) {
+      throw new Error(`Could not read store settings (${result.error.code}).`);
+    }
+
+    return result.data;
+  },
+};
+
+const activeSource: StoreSettingsSource = databaseStoreSettingsSource;
 
 /**
  * Returns the store settings for the current render. The result is memoized

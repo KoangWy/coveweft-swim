@@ -1,13 +1,29 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+
+const mocks = vi.hoisted(() => ({
+  readStoreSettings: vi.fn(),
+}));
+
+vi.mock("@/server/catalog/settings", () => ({
+  getStoreSettings: mocks.readStoreSettings,
+}));
 
 import {
   FALLBACK_STORE_SETTINGS,
+  databaseStoreSettingsSource,
   fallbackStoreSettingsSource,
   getStoreSettings,
 } from "@/lib/store-settings";
 
+const databaseSettings = {
+  standardShippingFeeVnd: 31_000,
+  expressShippingFeeVnd: 51_000,
+  freeStandardShippingThresholdVnd: 510_000,
+  paymentWindowMinutes: 31,
+};
+
 describe("store settings", () => {
-  it("falls back to the documented demo defaults", () => {
+  it("documents the demo defaults", () => {
     expect(FALLBACK_STORE_SETTINGS).toEqual({
       standardShippingFeeVnd: 30_000,
       expressShippingFeeVnd: 50_000,
@@ -29,7 +45,26 @@ describe("store settings", () => {
     expect(FALLBACK_STORE_SETTINGS.standardShippingFeeVnd).toBe(30_000);
   });
 
-  it("reads through the active source", async () => {
-    await expect(getStoreSettings()).resolves.toEqual(FALLBACK_STORE_SETTINGS);
+  it("reads the database source", async () => {
+    mocks.readStoreSettings.mockResolvedValue({ ok: true, data: databaseSettings });
+
+    await expect(databaseStoreSettingsSource.getStoreSettings()).resolves.toEqual(databaseSettings);
+  });
+
+  it("surfaces a database failure instead of stale prices", async () => {
+    mocks.readStoreSettings.mockResolvedValue({
+      ok: false,
+      error: { code: "INTERNAL" },
+    });
+
+    await expect(databaseStoreSettingsSource.getStoreSettings()).rejects.toThrow(
+      "Could not read store settings (INTERNAL).",
+    );
+  });
+
+  it("reads through the active database source", async () => {
+    mocks.readStoreSettings.mockResolvedValue({ ok: true, data: databaseSettings });
+
+    await expect(getStoreSettings()).resolves.toEqual(databaseSettings);
   });
 });
