@@ -241,7 +241,8 @@ normalizeSearchTerm(value: string): string;
 ```
 
 `ListProductsInput` accepts `locale` (`en` or `vi`, default `en`), `q`,
-`category`, `gender`, `productType`, `priceMin`, `priceMax`, `material`,
+`category`, `gender` (one value, or an array of up to 10 values that matches any),
+`productType`, `priceMin`, `priceMax`, `material`,
 `features` (array, matches any), `size`, `inStock`, `sort`
 (`newest`, `price-asc`, `price-desc`, `name-asc`), `page` (default 1), and
 `pageSize` (default 12, maximum 60). `GetProductBySkuInput` is

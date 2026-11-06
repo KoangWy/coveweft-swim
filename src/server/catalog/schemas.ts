@@ -17,7 +17,9 @@ export const ListProductsInput = z
     locale: LocaleInput.default("en"),
     q: z.string().trim().max(120).optional(),
     category: optionalFilter(120),
-    gender: optionalFilter(60),
+    gender: z
+      .union([optionalFilter(60), z.array(z.string().trim().min(1).max(60)).min(1).max(10)])
+      .optional(),
     productType: optionalFilter(120),
     priceMin: priceInput.optional(),
     priceMax: priceInput.optional(),

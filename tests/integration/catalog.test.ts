@@ -212,6 +212,7 @@ describe("catalog service", () => {
     selectServiceClient(customer.client);
 
     const byGender = await listProducts({ q: token, gender: "Men" });
+    const byGenders = await listProducts({ q: token, gender: ["Men", "Women"] });
     const byPrice = await listProducts({ q: token, priceMin: 400_000, priceMax: 460_000 });
     const byMaterial = await listProducts({ q: token, material: materialB });
     const byFeature = await listProducts({ q: token, features: [featureB] });
@@ -220,6 +221,7 @@ describe("catalog service", () => {
     const outOfStock = await listProducts({ q: token, inStock: false });
 
     expect(byGender.ok && byGender.data.items.map((item) => item.sku)).toEqual([productB.sku]);
+    expect(byGenders.ok && byGenders.data.total).toBe(2);
     expect(byPrice.ok && byPrice.data.items.map((item) => item.sku)).toEqual([productB.sku]);
     expect(byMaterial.ok && byMaterial.data.items.map((item) => item.sku)).toEqual([productB.sku]);
     expect(byFeature.ok && byFeature.data.total).toBe(2);

@@ -57,7 +57,9 @@ function applyFilters(query: CatalogQuery, input: ListProductsInput): CatalogQue
     next = next.eq("category", input.category);
   }
 
-  if (input.gender) {
+  if (Array.isArray(input.gender)) {
+    next = next.in("gender", input.gender);
+  } else if (input.gender) {
     next = next.eq("gender", input.gender);
   }
 

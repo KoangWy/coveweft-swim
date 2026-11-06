@@ -15,6 +15,17 @@ describe("service input schemas", () => {
     );
   });
 
+  it("accepts one gender or a bounded list of genders", () => {
+    expect(ListProductsInput.parse({ gender: "Kids" }).gender).toBe("Kids");
+    expect(ListProductsInput.parse({ gender: ["Kids", "Baby", "Teen"] }).gender).toEqual([
+      "Kids",
+      "Baby",
+      "Teen",
+    ]);
+    expect(ListProductsInput.safeParse({ gender: [] }).success).toBe(false);
+    expect(ListProductsInput.safeParse({ gender: Array(11).fill("Kids") }).success).toBe(false);
+  });
+
   it("requires exactly one of delta or stock", () => {
     const base = { variantId: "7f3d9e2a-1b2c-4d5e-8f90-123456789abc", reason: "restock" };
 
