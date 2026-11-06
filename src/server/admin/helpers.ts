@@ -1,8 +1,5 @@
 import "server-only";
 
-/** Rows at or below this stock level appear in the dashboard low-stock list. */
-export const ADMIN_LOW_STOCK_THRESHOLD = 5;
-
 export function normalizeNullable(value: string | null | undefined): string | null {
   if (value === undefined || value === null) {
     return null;
