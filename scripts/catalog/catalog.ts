@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-import { compareText } from "./csv.ts";
+import { compareText } from "./text.ts";
 import type {
   CatalogData,
   CatalogImage,

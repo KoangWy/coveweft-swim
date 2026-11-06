@@ -1,5 +1,6 @@
 import { parse } from "csv-parse/sync";
 
+import { compareText } from "./text.ts";
 import type { CatalogImage, SourceProduct } from "./types.ts";
 
 /** Positions use two digits, so a SKU folder can hold at most 99 photos. */
@@ -195,14 +196,6 @@ export function positionLabel(position: number): string {
     throw new Error(`Position must be an integer between 1 and ${MAX_POSITION}: ${position}`);
   }
   return String(position).padStart(2, "0");
-}
-
-/** Code-unit ordering keeps positions stable across locales and Node versions. */
-export function compareText(left: string, right: string): number {
-  if (left === right) {
-    return 0;
-  }
-  return left < right ? -1 : 1;
 }
 
 function assertColumns(

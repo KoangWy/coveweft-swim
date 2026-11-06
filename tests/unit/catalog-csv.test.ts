@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
 
 import {
-  compareText,
   parseCsvRecords,
   parseInventoryCsv,
   parseProductsCsv,
   positionLabel,
 } from "../../scripts/catalog/csv.ts";
+import { compareText } from "../../scripts/catalog/text.ts";
 
 const PRODUCT_HEADER = [
   "sku",

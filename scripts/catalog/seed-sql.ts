@@ -1,4 +1,4 @@
-import { compareText } from "./csv.ts";
+import { compareText } from "./text.ts";
 import type { CatalogData } from "./types.ts";
 
 type FlatVariant = {
