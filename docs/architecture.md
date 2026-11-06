@@ -93,6 +93,10 @@ or without diacritics.
 - `orders`, `order_items`, `payment_attempts`, `order_events`, and
   `product_variants.stock` have no client write grant. They change only through
   the `SECURITY DEFINER` functions.
+- The `product_variants` INSERT grant excludes `stock`, so a new variant starts
+  at the default zero. Initial stock goes through `admin_adjust_stock`, which
+  writes a `stock_adjustments` row. Trusted service-role seeding keeps its own
+  table privileges.
 - `profiles.role` and the consent columns are outside the authenticated update
   grant; a trigger also rejects a role change from a signed-in non-admin.
 
@@ -168,10 +172,21 @@ cancellation moves it to `cancelled`. Payment status is independent: `unpaid`,
 
 Every transition locks the order row (`FOR UPDATE`) and re-checks the current
 state. Stock is restored only on the single transition to `cancelled`.
-`place_order` locks cart rows, variants, and products in id order so two
-customers cannot buy the same last item and concurrent checkouts do not
-deadlock. A repeated `(user_id, idempotency_key)` returns the existing order
-without deducting stock again.
+
+`place_order` materializes the caller cart exactly once, locking the rows it
+reads. It then locks the variants and products in ascending id order and uses
+that immutable snapshot for the availability check, subtotal, order items,
+stock deduction, and cart cleanup. A cart row inserted after the snapshot is
+not charged or deducted and stays in the cart. A repeated
+`(user_id, idempotency_key)` returns the existing order without deducting stock
+again.
+
+Deadline checks read `clock_timestamp()` after the order row lock is acquired,
+so a request that waited on the lock cannot pass an expired deadline. The
+expiry job locks the whole eligible order batch first, collects the union of
+its variants, and locks that union in one ascending-id pass before restocking.
+This keeps expiry, cancellation, and checkout on the same lock order and avoids
+the deadlock that per-order restocking could produce.
 
 ### Database functions
 
@@ -291,9 +306,11 @@ their own client, or run with the `react-server` condition.
 - **Integration tests** (`tests/integration`) call Postgres functions and RLS
   policies against a local Supabase stack. They cover consent, RLS isolation,
   order placement, idempotency, concurrent last-item checkout, payment and
-  expiry races, administrator transitions, and stock adjustments. Run them with
-  `pnpm test:integration` after `supabase start`; the runner resolves the local
-  URL and keys from `.env.local` or from `supabase status`.
+  expiry races, administrator transitions, and stock adjustments. Concurrency
+  regressions use a direct Postgres scheduling connection to hold a table or
+  row lock at a precise point; that seam is not reachable by API clients. Run
+  them with `pnpm test:integration` after `supabase start`; the runner resolves
+  the local URL and keys from `.env.local` or from `supabase status`.
 - **End-to-end tests** (`tests/e2e`) drive the rendered app with Playwright.
   They start the development server automatically unless
   `PLAYWRIGHT_BASE_URL` points at a running instance.
