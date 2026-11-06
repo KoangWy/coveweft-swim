@@ -484,10 +484,15 @@ describe("admin service", () => {
       expect(result.data.revenueVnd).toBeGreaterThanOrEqual(900_000);
       expect(result.data.ordersByStatus.delivered).toBeGreaterThanOrEqual(1);
       expect(result.data.topProducts.some((item) => item.sku === product.sku)).toBe(true);
-      expect(
-        result.data.lowStockVariants.some((item) => item.variantId === product.variantIds[0]),
-      ).toBe(true);
       expect(result.data.lowStockThreshold).toBe(5);
+      // The seeded catalog already has many zero-stock variants, so assert the
+      // list contract (bounded, sorted, within the threshold) instead of
+      // expecting a specific fixture variant to appear.
+      const stocks = result.data.lowStockVariants.map((item) => item.stock);
+      expect(stocks.length).toBeGreaterThan(0);
+      expect(stocks.length).toBeLessThanOrEqual(10);
+      expect(stocks.every((stock) => stock <= result.data.lowStockThreshold)).toBe(true);
+      expect([...stocks].sort((a, b) => a - b)).toEqual(stocks);
     }
   });
 });
