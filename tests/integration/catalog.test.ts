@@ -28,6 +28,7 @@ import {
   uniqueToken,
   type ServiceProductFixture,
 } from "./support/service-fixtures";
+import { integrationEnv } from "./support/env";
 import { selectServiceClient } from "./support/service-context";
 
 type StoreSettingsRow = {
@@ -355,7 +356,7 @@ describe("catalog service", () => {
       `https://media.example.test/studio-v1/studio/${productA.sku}/01-480.webp`,
     );
     expect(imageUrl({ source: "upload", path: "product/image.webp" }, 960)).toBe(
-      "http://127.0.0.1:54321/storage/v1/object/public/product-uploads/product/image.webp",
+      `${integrationEnv.url}/storage/v1/object/public/product-uploads/product/image.webp`,
     );
   });
 });
