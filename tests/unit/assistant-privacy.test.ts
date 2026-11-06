@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { createPrivacyGate } from "@/server/assistant/privacy";
+import { runTool } from "@/server/assistant/tools";
 
 const gate = createPrivacyGate();
 
@@ -107,4 +108,17 @@ describe("privacy gate with the customer profile", () => {
       "Ngực 86 cm, eo 68 cm, hông 95 cm, size L",
     );
   });
+});
+
+describe("runTool dispatch", () => {
+  it.each(["constructor", "__proto__", "toString", "valueOf", "hasOwnProperty", "nope"])(
+    "treats %s as an unknown tool",
+    async (name) => {
+      const context = { locale: "en" as const, catalog: {} as never, cards: new Map() };
+
+      expect(JSON.parse(await runTool(name, "{}", context))).toEqual({
+        data: { error: "unknown_tool" },
+      });
+    },
+  );
 });

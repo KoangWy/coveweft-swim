@@ -230,6 +230,7 @@ export async function handleChatRequest(
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
       let failed = false;
+      let textSent = false;
 
       try {
         for await (const event of runAssistantTurn({
@@ -242,6 +243,7 @@ export async function handleChatRequest(
           signal,
         })) {
           if (event.type === "delta") {
+            textSent = true;
             controller.enqueue(sseEvent("delta", { text: event.text }));
           } else if (event.type === "products") {
             controller.enqueue(sseEvent("products", { items: event.items }));
@@ -255,8 +257,15 @@ export async function handleChatRequest(
           controller.enqueue(sseEvent("done", { remainingToday }));
         }
       } catch {
-        if (!signal.aborted) {
-          controller.enqueue(sseEvent("error", { code: "INTERNAL", retryable: true }));
+        // An unexpected failure after answer text is an interrupted answer,
+        // like a provider failure; before any text it is an internal error.
+        if (!signal.aborted && !failed) {
+          controller.enqueue(
+            sseEvent("error", {
+              code: textSent ? "AI_STREAM_INTERRUPTED" : "INTERNAL",
+              retryable: true,
+            }),
+          );
         }
       } finally {
         try {

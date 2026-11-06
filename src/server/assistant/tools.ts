@@ -186,7 +186,7 @@ function policySections(locale: Locale, settings: StoreSettings) {
   );
 }
 
-const TOOLS: Record<string, ToolSpec> = {
+const TOOL_SPECS: Record<string, ToolSpec> = {
   searchProducts: {
     description:
       "Search the active catalog with keywords and filters. Returns at most 8 products with SKU, price in VND, and stock status.",
@@ -411,7 +411,14 @@ const TOOLS: Record<string, ToolSpec> = {
   },
 };
 
-export const TOOL_NAMES = Object.keys(TOOLS);
+/**
+ * Registered tools by name. A `Map` holds only its own entries, so model
+ * supplied names such as `constructor` or `__proto__` never resolve to an
+ * inherited object property.
+ */
+const TOOLS: ReadonlyMap<string, ToolSpec> = new Map(Object.entries(TOOL_SPECS));
+
+export const TOOL_NAMES = [...TOOLS.keys()];
 
 function toParameters(schema: z.ZodType): Record<string, unknown> {
   const parameters: Record<string, unknown> = { ...z.toJSONSchema(schema, { io: "input" }) };
@@ -421,7 +428,7 @@ function toParameters(schema: z.ZodType): Record<string, unknown> {
 }
 
 /** Tool definitions sent to the model. Built once on the server. */
-export const TOOL_DEFINITIONS: ToolDefinition[] = Object.entries(TOOLS).map(([name, spec]) => ({
+export const TOOL_DEFINITIONS: ToolDefinition[] = [...TOOLS].map(([name, spec]) => ({
   name,
   description: spec.description,
   parameters: toParameters(spec.args),
@@ -437,39 +444,44 @@ export async function runTool(
   rawArguments: string,
   context: ToolContext,
 ): Promise<string> {
-  const spec = TOOLS[name];
   let result: unknown;
 
-  if (!spec) {
-    result = { error: "unknown_tool" };
-  } else {
-    let parsedJson: unknown;
-
-    try {
-      parsedJson = rawArguments.trim() === "" ? {} : JSON.parse(rawArguments);
-    } catch {
-      parsedJson = undefined;
-    }
-
-    const args = spec.args.safeParse(parsedJson);
-
-    if (!args.success) {
-      result = {
-        error: "invalid_arguments",
-        issues: args.error.issues.slice(0, 5).map((issue) => ({
-          path: issue.path.join("."),
-          code: issue.code,
-        })),
-      };
-    } else {
-      try {
-        result = await spec.run(args.data as never, context);
-      } catch {
-        result = { error: "unavailable" };
-      }
-    }
+  try {
+    result = await dispatch(name, rawArguments, context);
+  } catch {
+    result = { error: "unavailable" };
   }
 
   // Tool output is catalog data, never instructions.
   return JSON.stringify({ data: result });
+}
+
+async function dispatch(name: string, rawArguments: string, context: ToolContext) {
+  const spec = TOOLS.get(name);
+
+  if (!spec) {
+    return { error: "unknown_tool" };
+  }
+
+  let parsedJson: unknown;
+
+  try {
+    parsedJson = rawArguments.trim() === "" ? {} : JSON.parse(rawArguments);
+  } catch {
+    parsedJson = undefined;
+  }
+
+  const args = spec.args.safeParse(parsedJson);
+
+  if (!args.success) {
+    return {
+      error: "invalid_arguments",
+      issues: args.error.issues.slice(0, 5).map((issue) => ({
+        path: issue.path.join("."),
+        code: issue.code,
+      })),
+    };
+  }
+
+  return spec.run(args.data as never, context);
 }

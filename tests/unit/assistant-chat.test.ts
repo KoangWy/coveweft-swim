@@ -475,6 +475,64 @@ describe("POST /api/chat stream", () => {
     expect(primaryFetch).not.toHaveBeenCalled();
   });
 
+  it.each(["constructor", "__proto__", "toString", "hasOwnProperty"])(
+    "returns unknown_tool to the model for the inherited name %s after text",
+    async (name) => {
+      const { dependencies, primaryFetch } = setup({
+        primary: [
+          () =>
+            sseResponse([
+              deltaChunk({ content: "Let me check. " }),
+              deltaChunk({
+                tool_calls: [
+                  { index: 0, id: "call_1", type: "function", function: { name, arguments: "{}" } },
+                ],
+              }),
+              deltaChunk({}, "tool_calls"),
+              "data: [DONE]\n\n",
+            ]),
+          () => text("I could not run that."),
+        ],
+      });
+      const events = await readEvents(await handleChatRequest(ask("Hi"), dependencies));
+
+      expect(events.map((event) => event.event)).toEqual(["delta", "delta", "done"]);
+
+      const tool = sentBody(primaryFetch, 1).messages.find((message) => message.role === "tool");
+
+      expect(JSON.parse(String(tool!.content))).toEqual({ data: { error: "unknown_tool" } });
+    },
+  );
+
+  it("maps an unexpected failure after text to AI_STREAM_INTERRUPTED", async () => {
+    const catalog = fakeCatalog();
+    // Malformed catalog data: a product without a name breaks card selection
+    // after the answer text was streamed.
+    catalog.listProducts.mockResolvedValue(
+      ok({
+        items: [{ ...LAGOON, name: undefined as unknown as string }],
+        total: 1,
+        page: 1,
+        pageSize: 6,
+        pageCount: 1,
+        facets: {} as never,
+      }),
+    );
+    const { dependencies } = setup({
+      catalog,
+      primary: [
+        () => toolCall("searchProducts", { query: "swimsuit" }),
+        () => text("Lagoon (SW100) is available."),
+      ],
+    });
+    const events = await readEvents(await handleChatRequest(ask("Swimsuit?"), dependencies));
+
+    expect(events).toEqual([
+      { event: "delta", data: { text: "Lagoon (SW100) is available." } },
+      { event: "error", data: { code: "AI_STREAM_INTERRUPTED", retryable: true } },
+    ]);
+  });
+
   it("never streams thinking chunks", async () => {
     const { dependencies } = setup({
       primary: [
