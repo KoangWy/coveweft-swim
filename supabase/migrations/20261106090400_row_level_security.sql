@@ -376,7 +376,14 @@ grant insert, update, delete on table
   public.product_images
 to authenticated;
 
-grant insert, delete on table public.product_variants to authenticated;
+-- Stock is intentionally outside the INSERT grant. A new variant starts at
+-- the default zero and initial stock goes through admin_adjust_stock so it is
+-- audited. Trusted service-role seeding keeps its own table privileges.
+grant insert (product_id, variant_sku, option_label, size_guide_key, position)
+on table public.product_variants
+to authenticated;
+
+grant delete on table public.product_variants to authenticated;
 
 grant update (option_label, size_guide_key, position, updated_at)
 on table public.product_variants
