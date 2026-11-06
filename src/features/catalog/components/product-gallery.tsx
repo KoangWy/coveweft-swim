@@ -35,7 +35,12 @@ export function ProductGallery({ name, images }: { name: string; images: Gallery
   }
 
   return (
-    <section aria-label={t("label")} className="flex flex-col gap-3">
+    // Below lg the gallery is narrower so the option picker stays close to the
+    // top of the page; desktop gives the photos the full column.
+    <section
+      aria-label={t("label")}
+      className="mx-auto flex w-full max-w-[18rem] flex-col gap-3 sm:max-w-sm lg:max-w-none"
+    >
       <div className="relative">
         <ProductImage
           key={current?.id ?? "placeholder"}

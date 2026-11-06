@@ -125,6 +125,7 @@ export default async function HomePage() {
                       fallbackLabel=""
                       sizes="(min-width: 768px) 25vw, 50vw"
                       fill
+                      anchorTop
                       className="transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none"
                     />
                     <span className="relative m-3 inline-flex items-center gap-2 self-start rounded-md bg-white px-3 py-2 text-body font-semibold text-navy-900 shadow-raised">

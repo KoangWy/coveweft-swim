@@ -16,6 +16,8 @@ export type ProductImageProps = {
   priority?: boolean;
   /** Fill the positioned parent instead of keeping the 2:3 frame. */
   fill?: boolean;
+  /** Keep the top of the photo in view when a wide frame crops it. */
+  anchorTop?: boolean;
   className?: string;
 };
 
@@ -31,6 +33,7 @@ export function ProductImage({
   sizes = "(min-width: 1024px) 25vw, 50vw",
   priority = false,
   fill = false,
+  anchorTop = false,
   className,
 }: ProductImageProps) {
   const [failedSrc, setFailedSrc] = useState<string | null>(null);
@@ -54,7 +57,7 @@ export function ProductImage({
           priority={priority}
           loading={priority ? undefined : "lazy"}
           onError={() => setFailedSrc(src)}
-          className="object-cover"
+          className={cx("object-cover", anchorTop && "object-top")}
         />
       ) : (
         <div
