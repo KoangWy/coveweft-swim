@@ -1,12 +1,26 @@
 import { useTranslations } from "next-intl";
 
+import { buttonClasses } from "@/components/ui/button";
+import { EmptyState } from "@/components/ui/states";
+import { Link } from "@/i18n/navigation";
+
+// Fallback for not-found errors raised outside the storefront and admin
+// frames, for example from the locale layout itself.
 export default function LocaleNotFound() {
-  const t = useTranslations("NotFound");
+  const t = useTranslations("notFound");
 
   return (
-    <main className="flex min-h-dvh flex-col items-center justify-center gap-2 px-6 text-center">
-      <h1 className="text-3xl font-semibold">{t("title")}</h1>
-      <p className="text-slate-600">{t("description")}</p>
+    <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col justify-center px-4 py-16">
+      <EmptyState
+        headingLevel={1}
+        title={t("title")}
+        description={t("description")}
+        action={
+          <Link href="/" className={buttonClasses()}>
+            {t("action")}
+          </Link>
+        }
+      />
     </main>
   );
 }
