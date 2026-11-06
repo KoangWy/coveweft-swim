@@ -65,8 +65,10 @@ export function getAiStatus(): AiStatus {
 }
 
 /**
- * Builds the assistant provider for one conversation turn: the primary role
- * with failover to the fallback role when one is configured. Returns `null`
+ * Builds the assistant provider for one customer turn: the primary role
+ * with failover to the fallback role when one is configured. Reuse the
+ * returned provider for every request of the turn (each tool round) and
+ * create a new one for the next turn; see `withFailover`. Returns `null`
  * when the assistant is not configured.
  */
 export function createAiProvider(

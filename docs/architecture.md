@@ -772,20 +772,30 @@ type ProviderEvent =
   tokens, and every request sends `User-Agent: coveweft-swim/<version>`.
 - **Errors.** `ProviderError.kind` is `timeout`, `rate_limit`, `server`,
   `auth`, `config`, or `bad_request`, with the HTTP `status` when there is one.
-  `AI_TIMEOUT_MS` aborts a request that receives no data for that long. Error
-  `detail` is for logs only.
-- **Failover.** `withFailover(primary, fallback)` moves to the fallback at most
-  once, on `timeout`, `rate_limit`, or `server`, and only before any text or
-  tool call was emitted. Later requests of the same turn stay on the fallback,
+  `AI_TIMEOUT_MS` aborts a request that receives no data for that long,
+  including while an error body is read; a caller abort is rethrown as is.
+  Error `detail` is for logs only and is built by one redactor
+  (`src/server/ai/redact.ts`): reasoning fields and `thinking` chunks are
+  removed from error bodies, bearer tokens, configured keys, key fragments,
+  and long key-like tokens are masked, and only then is the text truncated.
+  Native errors are summarized into `detail` and never attached as `cause`.
+- **Failover.** `withFailover(primary, fallback)` returns a turn-scoped
+  provider; `createAiProvider()` builds one. Create one per customer turn and
+  reuse it for every request of that turn, including each tool round. It moves
+  to the fallback at most once, on `timeout`, `rate_limit`, or `server`, and
+  only while no request of the turn has emitted text and the failing request
+  has emitted no tool call. Later requests of the turn stay on the fallback,
   and the primary's tool calls and results are removed from the history first,
-  because tool call ids differ between models. An error after output ends the
-  stream with a retryable error instead of joining two answers; `auth`,
-  `config`, and `bad_request` errors are not retried.
+  because tool call ids differ between models. Once text was emitted, any later
+  error ends the turn with a retryable error (`afterOutput`) instead of joining
+  two answers. Cancelled requests and `auth`, `config`, and `bad_request`
+  errors are not retried.
 
 `pnpm ai:smoke` runs a plain chat, a two-round tool call with a stub
 `searchProducts` tool, and a streamed answer against each configured role. It
 prints the model, HTTP status, latency, and whether reasoning text from the
-raw response reached the normalized output, never the key. A failure names the
+raw response reached the normalized output. Every output line passes through
+the same redactor with both role keys, so no key or key fragment is printed. A failure names the
 role and its variables; the script does not switch models.
 
 ### Demo account provisioning

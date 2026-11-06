@@ -38,12 +38,19 @@ export function withoutToolCalls(messages: ChatMessage[], ids: ReadonlySet<strin
 }
 
 /**
- * Serves requests from `primary` and moves to `fallback` at most once, when
- * the primary fails with a timeout, a rate limit, or a server error before
- * any text or tool call was emitted. After the switch, every later request of
- * the same turn goes to the fallback. Errors after output are rethrown as
- * retryable instead of joining two answers; `auth`, `config`, and
- * `bad_request` errors are never retried. Create one instance per turn.
+ * Serves the requests of one customer turn from `primary` and moves to
+ * `fallback` at most once, when the primary fails with a timeout, a rate
+ * limit, or a server error. The returned provider is turn-scoped: create one
+ * per user turn and reuse it for every request of that turn, including each
+ * tool round; never reuse it for another turn.
+ *
+ * Failover happens only while the turn has emitted no text, in any request,
+ * and the failing request emitted no tool call. Rounds that only produced
+ * tool calls can still fail over; the primary's tool calls and results are
+ * then removed from the history. Once text was emitted, later errors are
+ * rethrown as retryable with `afterOutput` instead of joining two answers.
+ * A request the caller cancelled is never retried, and `auth`, `config`, and
+ * `bad_request` errors are never retried.
  */
 export function withFailover(
   primary: ChatProvider,
