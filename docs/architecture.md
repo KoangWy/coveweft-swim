@@ -62,7 +62,7 @@ row level security enabled.
 | `product_translations`   | Localized description and caption per product and locale.                                                                                             |
 | `attribute_translations` | Localized labels for catalog attribute values.                                                                                                        |
 | `product_variants`       | Sellable option per product with `variant_sku`, the source `option_label`, an optional `size_guide_key`, and non-negative stock.                      |
-| `product_images`         | Studio (`release`) and administrator (`upload`) images with `kind`, `source`, `path`, and `position`.                                                 |
+| `product_images`         | Studio (`release`) and administrator (`upload`) images with `kind`, `source`, `path`, `position`, and `is_visible`.                                   |
 | `store_settings`         | Single row that holds the Standard and Express fees, the free-shipping threshold, and the payment window.                                             |
 | `cart_items`             | One row per customer and variant. Adding to the cart does not reserve stock.                                                                          |
 | `orders`                 | Order header with status, payment state, delivery snapshot, price snapshot, idempotency key, and payment deadline.                                    |
@@ -82,6 +82,30 @@ into `auth.users`.
 indexes use `public.immutable_unaccent`, an immutable wrapper around the
 `unaccent` extension. Catalog search can therefore match Vietnamese text with
 or without diacritics.
+
+### Catalog search view
+
+`public.catalog_products` is a view over `products`, its English and Vietnamese
+translation rows, and the variant stock summary. It runs with
+`security_invoker = true`, so the catalog row level security policies still
+apply. The view exposes:
+
+- the product columns and `description_en`, `caption_en`, `description_vi`,
+  `caption_vi`, with the source English copy as the fallback;
+- `search_text_all`, the unaccented concatenation of the name, the source
+  description, and both translations;
+- `in_stock`, `variant_labels`, `available_variant_labels`, `total_stock`, and
+  `variant_count`.
+
+The catalog service filters and sorts this view directly, which keeps search,
+facets, and pagination in one query. `product_images.is_visible` hides an image
+from the storefront without deleting its metadata; the admin editor still sees
+it.
+
+The `product-uploads` Storage bucket is public for reads and limited to WebP,
+JPEG, and PNG files of at most 5 MiB. Administrator uploads write through the
+secret key after the service checks the caller role; the storefront reads the
+public object URL.
 
 ### Row level security
 
@@ -118,9 +142,13 @@ structured context for logging or form errors; it is never user-facing text.
 | ----------------------- | ----------------------------------------------------------------- |
 | `VALIDATION_ERROR`      | Input did not pass the service schema                             |
 | `UNAUTHENTICATED`       | The request has no signed-in user                                 |
+| `INVALID_CREDENTIALS`   | The email or password is wrong                                    |
+| `EMAIL_TAKEN`           | An account already uses the email address                         |
+| `RATE_LIMITED`          | The auth server or another limiter rejected the request           |
 | `FORBIDDEN`             | The signed-in user lacks the required role or ownership           |
 | `NOT_FOUND`             | The requested record does not exist or is not visible             |
 | `CONFLICT`              | The action conflicts with the current state or an idempotency key |
+| `PRODUCT_UNAVAILABLE`   | The product is hidden or no longer sellable                       |
 | `OUT_OF_STOCK`          | A variant does not have enough stock for the request              |
 | `CART_CHANGED`          | Cart lines changed while the customer was checking out            |
 | `ORDER_NOT_CANCELLABLE` | The order state does not allow cancellation                       |
@@ -138,6 +166,11 @@ The frontend maps each code to `errors.<CODE>` in `src/messages/en.json` and
 `src/messages/vi.json`. Services and route handlers must not return translated
 sentences.
 
+The issue tracker used a few alternate names before the database layer merged.
+The shared union keeps the existing codes: `AUTH_REQUIRED` is
+`UNAUTHENTICATED`, `VALIDATION_FAILED` is `VALIDATION_ERROR`, and
+`PAYMENT_WINDOW_EXPIRED` is `PAYMENT_EXPIRED`.
+
 ### Money
 
 Prices are integer VND amounts (`number`), stored and calculated without
@@ -152,6 +185,523 @@ The single `store_settings` row in Postgres is the source of truth for
 shipping fees, the free-shipping threshold, and other storefront values. The
 UI, server services, Postgres functions, and the assistant all read that row.
 Environment variables do not carry pricing values.
+
+## Application services
+
+Services live in `src/server/<domain>/` and are the only layer the UI calls.
+Every function is async, validates its input with the exported zod schema, and
+returns `Result<T>`. Import them from the domain index (`@/server/catalog`,
+`@/server/cart`, and so on). The schemas are exported next to the functions as
+`<Name>Input`.
+
+### Catalog
+
+```ts
+listProducts(input: unknown): Promise<Result<ProductList>>;
+getProductBySku(input: unknown): Promise<Result<ProductDetail>>;
+getStoreSettings(): Promise<Result<StoreSettings>>;
+getSizeGuide(input: unknown): Promise<Result<SizeGuide>>;
+garmentForProductType(productType: string): SizeGuideGarment | null;
+groupFromSizeGuideKey(key: string): string | null;
+normalizeSearchTerm(value: string): string;
+```
+
+`ListProductsInput` accepts `locale` (`en` or `vi`, default `en`), `q`,
+`category`, `gender`, `productType`, `priceMin`, `priceMax`, `material`,
+`features` (array, matches any), `size`, `inStock`, `sort`
+(`newest`, `price-asc`, `price-desc`, `name-asc`), `page` (default 1), and
+`pageSize` (default 12, maximum 60). `GetProductBySkuInput` is
+`{ locale, sku }`. `GetSizeGuideInput` is `{ locale, key?, group?, garment? }`
+and needs a key or a group.
+
+```ts
+type ProductList = {
+  items: ProductListItem[];
+  total: number;
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  facets: ProductFacets;
+};
+
+type ProductListItem = {
+  id: string;
+  sku: string;
+  name: string;
+  priceVnd: number;
+  category: string;
+  gender: string;
+  productType: string;
+  material: string | null;
+  color: string | null;
+  features: string[];
+  inStock: boolean;
+  description: string | null;
+  caption: string | null;
+  images: ProductImage[];
+};
+
+type ProductDetail = ProductListItem & {
+  articleId: string | null;
+  collection: string | null;
+  colorFamily: string | null;
+  pattern: string | null;
+  fabricDesc: string | null;
+  sleeve: string | null;
+  neckline: string | null;
+  fit: string | null;
+  length: string | null;
+  closure: string | null;
+  lining: string | null;
+  season: string | null;
+  brand: string | null;
+  isActive: boolean;
+  attributes: ProductAttribute[];
+  variants: ProductVariant[];
+  sizeGuide: SizeGuide | null;
+};
+
+type ProductImage = {
+  id: string;
+  kind: "studio" | "community";
+  source: "release" | "upload";
+  path: string;
+  position: number;
+  isVisible: boolean;
+};
+
+type ProductVariant = {
+  id: string;
+  variantSku: string;
+  optionLabel: string;
+  sizeGuideKey: string | null;
+  stock: number;
+  position: number;
+  inStock: boolean;
+};
+
+type ProductAttribute = { key: string; value: string; valueLabel: string };
+
+type ProductFacetValue = { value: string; label: string; count: number };
+
+type ProductFacets = {
+  categories: ProductFacetValue[];
+  genders: ProductFacetValue[];
+  productTypes: ProductFacetValue[];
+  materials: ProductFacetValue[];
+  features: ProductFacetValue[];
+  sizes: ProductFacetValue[];
+  price: { minVnd: number; maxVnd: number };
+};
+
+type SizeGuideGarment = "tops" | "bottoms" | "full-body";
+
+type SizeGuide = {
+  group: string;
+  garment: SizeGuideGarment;
+  unit: "cm";
+  ageUnit: "months";
+  notice: string;
+  measurements: string[];
+  rows: SizeGuideRow[];
+  highlightKey: string | null;
+};
+
+type SizeGuideRow = {
+  sizeGuideKey: string;
+  label: string;
+  ranges: Record<string, [number, number]>;
+};
+
+type StoreSettings = {
+  standardShippingFeeVnd: number;
+  expressShippingFeeVnd: number;
+  freeStandardShippingThresholdVnd: number;
+  paymentWindowMinutes: number;
+};
+```
+
+Search matches the name, the English description, and the Vietnamese
+translation with or without diacritics. Facet labels come from
+`attribute_translations` and fall back to the source value. The size facet uses
+variants that are in stock, so selecting a size returns buyable products. The
+size guide is read from `data/size-guides/demo-size-guide.json`; the product
+detail resolves the garment from the product type and the group from a variant
+`sizeGuideKey`.
+
+`src/lib/store-settings.ts` keeps its UI signature
+`getStoreSettings(): Promise<StoreSettings>` and now reads through
+`databaseStoreSettingsSource`, so the storefront uses the database row.
+
+### Cart
+
+```ts
+getCart(): Promise<Result<Cart>>;
+addToCart(input: unknown): Promise<Result<Cart>>;
+updateCartItem(input: unknown): Promise<Result<Cart>>;
+removeCartItem(input: unknown): Promise<Result<Cart>>;
+```
+
+`AddToCartInput` and `UpdateCartItemInput` are
+`{ variantId: string; quantity: number }` with a quantity from 1 to 99.
+`RemoveCartItemInput` is `{ variantId: string }`. Removing an absent line is
+not an error.
+
+```ts
+type Cart = {
+  items: CartLine[];
+  issues: CartIssue[];
+  itemCount: number;
+  subtotalVnd: number;
+};
+
+type CartLine = {
+  variantId: string;
+  quantity: number;
+  productId: string | null;
+  sku: string | null;
+  productName: string | null;
+  variantSku: string | null;
+  optionLabel: string | null;
+  sizeGuideKey: string | null;
+  unitPriceVnd: number | null;
+  lineTotalVnd: number;
+  stock: number | null;
+  image: ProductImage | null;
+  issues: CartIssueCode[];
+};
+
+type CartIssueCode = "PRODUCT_UNAVAILABLE" | "OUT_OF_STOCK";
+
+type CartIssue = {
+  variantId: string;
+  code: CartIssueCode;
+  availableStock?: number;
+};
+```
+
+Lines whose product or variant is hidden keep their `variantId` and quantity
+but have null product fields, so the UI can show the problem and offer removal.
+
+### Checkout
+
+```ts
+quoteCheckout(input: unknown): Promise<Result<CheckoutQuote>>;
+placeOrder(input: unknown): Promise<Result<OrderDetail>>;
+calculateShippingFee(
+  subtotalVnd: number,
+  shippingMethod: ShippingMethod,
+  settings: StoreSettings,
+): number;
+```
+
+`QuoteCheckoutInput` is `{ shippingMethod: "standard" | "express" }`.
+`PlaceOrderInput` is `{ idempotencyKey, recipientName, recipientPhone,
+shippingAddress, shippingMethod, paymentMethod }`.
+
+```ts
+type CheckoutQuote = {
+  items: CartLine[];
+  subtotalVnd: number;
+  shippingMethod: ShippingMethod;
+  shippingFeeVnd: number;
+  totalVnd: number;
+  freeShippingThresholdVnd: number;
+  paymentWindowMinutes: number;
+};
+```
+
+The quote reads prices from the catalog and fees from `store_settings`; the
+browser never sends a total. Standard shipping is free at or above the
+threshold and Express is never free. An empty cart returns `VALIDATION_ERROR`
+with `details.reason = "empty_cart"`; a cart with unavailable lines returns
+`PRODUCT_UNAVAILABLE` or `OUT_OF_STOCK` with `details.issues`. `placeOrder`
+calls `place_order`, which recalculates and re-checks everything in one
+transaction. A repeated `idempotencyKey` returns the same order.
+
+### Orders
+
+```ts
+listMyOrders(input?: unknown): Promise<Result<OrderList>>;
+getMyOrder(input: unknown): Promise<Result<OrderDetail>>;
+cancelMyOrder(input: unknown): Promise<Result<OrderDetail>>;
+simulatePayment(input: unknown): Promise<Result<OrderDetail>>;
+```
+
+`ListMyOrdersInput` is `{ status?, page?, pageSize? }`. `GetMyOrderInput` and
+`CancelMyOrderInput` are `{ id: string }`. `SimulatePaymentInput` is
+`{ orderId: string; outcome: "succeeded" | "failed" }`.
+
+```ts
+type OrderSummary = {
+  id: string;
+  status: OrderStatus;
+  paymentMethod: PaymentMethod;
+  paymentStatus: PaymentStatus;
+  recipientName: string;
+  recipientPhone: string;
+  shippingAddress: string;
+  shippingMethod: ShippingMethod;
+  shippingFeeVnd: number;
+  itemsSubtotalVnd: number;
+  totalVnd: number;
+  paymentDueAt: string | null;
+  cancelledAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+  itemCount: number;
+  items: OrderItem[];
+};
+
+type OrderDetail = OrderSummary & {
+  cancelledBy: string | null;
+  paymentAttempts: PaymentAttempt[];
+  events: OrderEvent[];
+};
+
+type OrderItem = {
+  id: string;
+  variantId: string | null;
+  productId: string | null;
+  sku: string;
+  variantSku: string;
+  productName: string;
+  optionLabel: string;
+  unitPriceVnd: number;
+  quantity: number;
+  lineTotalVnd: number;
+};
+
+type PaymentAttempt = {
+  id: string;
+  outcome: "succeeded" | "failed";
+  createdAt: string;
+};
+
+type OrderEvent = {
+  id: number;
+  fromStatus: OrderStatus | null;
+  toStatus: OrderStatus;
+  fromPaymentStatus: PaymentStatus | null;
+  toPaymentStatus: PaymentStatus;
+  actorRole: "customer" | "admin" | "system";
+  reason: string | null;
+  createdAt: string;
+};
+
+type OrderList = {
+  items: OrderSummary[];
+  total: number;
+  page: number;
+  pageSize: number;
+  pageCount: number;
+};
+```
+
+`OrderStatus`, `PaymentStatus`, `PaymentMethod`, and `ShippingMethod` are the
+unions in `src/server/commerce/types.ts`.
+
+### Auth
+
+```ts
+signUp(input: unknown): Promise<Result<AuthSession>>;
+signIn(input: unknown): Promise<Result<AuthSession>>;
+signOut(): Promise<Result<{ signedOut: true }>>;
+getCurrentUser(): Promise<Result<CurrentUser | null>>;
+updateProfile(input: unknown): Promise<Result<CurrentUser>>;
+```
+
+`SignUpInput` is `{ email, password, fullName, consent, policyVersion? }`.
+`SignInInput` is `{ email, password }`. `UpdateProfileInput` is
+`{ fullName?, phone?, defaultAddress? }` with nullable strings.
+
+```ts
+type AuthSession = {
+  user: { id: string; email: string | null };
+  signedIn: boolean;
+};
+
+type CurrentUser = {
+  id: string;
+  email: string | null;
+  role: "customer" | "admin";
+  fullName: string | null;
+  phone: string | null;
+  defaultAddress: string | null;
+  privacyConsentAt: string | null;
+  privacyPolicyVersion: string | null;
+};
+```
+
+`signUp` checks `consent === true` and a non-empty `policyVersion` before it
+calls the auth server and returns `CONSENT_REQUIRED` otherwise. The policy
+version is passed in the user metadata for the profile trigger. Auth errors map
+to `EMAIL_TAKEN`, `INVALID_CREDENTIALS`, `RATE_LIMITED`, `VALIDATION_ERROR`, or
+`UNAUTHENTICATED`.
+
+### Admin
+
+```ts
+adminListProducts(input: unknown): Promise<Result<AdminProductList>>;
+adminGetProduct(input: unknown): Promise<Result<AdminProductDetail>>;
+adminUpsertProduct(input: unknown): Promise<Result<AdminProductDetail>>;
+adminSetProductActive(input: unknown): Promise<Result<AdminProductDetail>>;
+adminAdjustStock(input: unknown): Promise<Result<AdminStockAdjustment>>;
+adminUploadImage(input: unknown): Promise<Result<ProductImage>>;
+adminDeleteImage(input: unknown): Promise<Result<AdminImageDeleteResult>>;
+adminReorderImages(input: unknown): Promise<Result<ProductImage[]>>;
+adminListOrders(input: unknown): Promise<Result<AdminOrderList>>;
+adminGetOrder(input: unknown): Promise<Result<AdminOrderDetail>>;
+adminTransitionOrder(input: unknown): Promise<Result<AdminOrderDetail>>;
+adminDashboard(): Promise<Result<AdminDashboard>>;
+```
+
+Inputs:
+
+- `AdminListProductsInput`: `{ q?, category?, productType?, isActive?,
+stockState?: "all" | "in" | "low" | "out", page?, pageSize? }`.
+- `AdminGetProductInput`: `{ id }`.
+- `AdminUpsertProductInput`: `{ id?, sku?, name?, productType?, category?,
+gender?, priceVnd?, description?, caption?, articleId?, collection?, color?,
+colorFamily?, pattern?, material?, fabricDesc?, sleeve?, neckline?, fit?,
+length?, closure?, lining?, features?, season?, brand?, isActive?,
+translations?: { locale, description?, caption? }[] }`. A new product needs
+  `sku`, `name`, `productType`, `category`, `gender`, and `priceVnd`.
+- `AdminSetProductActiveInput`: `{ id, isActive }`.
+- `AdminAdjustStockInput`: `{ variantId, delta?, stock?, reason }` with exactly
+  one of `delta` or `stock`.
+- `AdminUploadImageInput`: `{ productId, file: File, position? }`.
+- `AdminDeleteImageInput`: `{ imageId }`.
+- `AdminReorderImagesInput`: `{ productId, imageIds: string[] }`.
+- `AdminListOrdersInput`: `{ status?, paymentStatus?, paymentMethod?, q?, page?,
+pageSize? }`.
+- `AdminGetOrderInput`: `{ id }`.
+- `AdminTransitionOrderInput`: `{ orderId, action: "confirm" | "ship" |
+"deliver" | "cancel" }`.
+
+```ts
+type AdminProductList = {
+  items: AdminProductListItem[];
+  total: number;
+  page: number;
+  pageSize: number;
+  pageCount: number;
+};
+
+type AdminProductListItem = {
+  id: string;
+  sku: string;
+  name: string;
+  category: string;
+  gender: string;
+  productType: string;
+  priceVnd: number;
+  isActive: boolean;
+  totalStock: number;
+  variantCount: number;
+  updatedAt: string;
+  image: ProductImage | null;
+};
+
+type AdminProductDetail = ProductDetail & {
+  translations: { locale: Locale; description: string | null; caption: string | null }[];
+};
+
+type AdminStockAdjustment = {
+  variantId: string;
+  variantSku: string;
+  productId: string;
+  stock: number;
+};
+
+type AdminImageDeleteResult = {
+  id: string;
+  source: "release" | "upload";
+  deleted: boolean;
+  isVisible: boolean;
+};
+
+type AdminOrderSummary = OrderSummary & { customer: CustomerSummary | null };
+type AdminOrderDetail = OrderDetail & { customer: CustomerSummary | null };
+
+type CustomerSummary = {
+  id: string;
+  fullName: string | null;
+  phone: string | null;
+  defaultAddress: string | null;
+};
+
+type AdminOrderList = {
+  items: AdminOrderSummary[];
+  total: number;
+  page: number;
+  pageSize: number;
+  pageCount: number;
+};
+
+type AdminDashboard = {
+  demoData: true;
+  revenueVnd: number;
+  orderCount: number;
+  ordersByStatus: Record<OrderStatus, number>;
+  ordersByPaymentStatus: Record<PaymentStatus, number>;
+  topProducts: {
+    productId: string | null;
+    sku: string;
+    name: string;
+    quantity: number;
+    revenueVnd: number;
+  }[];
+  lowStockVariants: {
+    variantId: string;
+    variantSku: string;
+    productName: string;
+    productSku: string;
+    optionLabel: string;
+    stock: number;
+  }[];
+  lowStockThreshold: number;
+};
+```
+
+Every admin function checks the caller role first and returns `FORBIDDEN` for a
+customer. `adminSetProductActive` hides a product without deleting it.
+`adminDeleteImage` deletes an uploaded object and its row; a release image is
+only hidden (`isVisible: false`). `adminDashboard` counts revenue from orders
+that are `delivered` and `paid`, excludes cancelled and refunded orders, and
+uses a low-stock threshold of 5. The UI shows the demo-data label from
+`demoData`.
+
+### Media URLs
+
+```ts
+const IMAGE_SIZES = [480, 960, 1600] as const;
+type ImageSize = (typeof IMAGE_SIZES)[number];
+type MediaImage = { source: "release" | "upload"; path: string };
+
+imageUrl(image: MediaImage, size: ImageSize): string | null;
+buildReleaseImageUrl(baseUrl: string, path: string, size: ImageSize): string;
+buildUploadImageUrl(supabaseUrl: string, bucket: string, path: string): string;
+```
+
+Release images use `getMediaConfig().baseUrl`, the base path stored in
+`product_images.path` (`studio/<SKU>/<NN>`), and the size suffix:
+`<base>/studio/<SKU>/<NN>-<size>.webp`. The size suffixes match
+`data/media/manifest-studio-v1.json`. Without media configuration the function
+returns `null` so the UI can render a neutral placeholder. Upload images use
+the public `product-uploads` Storage URL. `imageUrl` is server-only because it
+reads the media configuration; pass the returned string to client components.
+
+### Demo account provisioning
+
+`pnpm provision:demo` runs `scripts/provision-demo.mjs`. It creates one
+customer and one administrator through the Auth Admin API, includes
+`privacy_policy_version` in the user metadata for the profile trigger, and
+ensures the administrator role. Re-running keeps the existing passwords and
+does not duplicate accounts. The local defaults live in `.env.example`
+(`DEMO_CUSTOMER_*`, `DEMO_ADMIN_*`, `DEMO_POLICY_VERSION`); a cloud project
+overrides them with its own environment values and never commits cloud
+passwords.
 
 ## Order lifecycle
 
@@ -226,26 +776,33 @@ It imports `server-only`, so importing it from a client component fails the
 build. The app starts without optional AI or media values; those features
 report that they are not configured instead of failing at boot.
 
-| Variable                               | Scope         | Required       | Default                     |
-| -------------------------------------- | ------------- | -------------- | --------------------------- |
-| `NEXT_PUBLIC_APP_URL`                  | Public        | No             | `http://localhost:3000`     |
-| `NEXT_PUBLIC_SUPABASE_URL`             | Public        | Yes            | —                           |
-| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Public        | Yes            | —                           |
-| `SUPABASE_URL_INTERNAL`                | Server        | Yes            | —                           |
-| `SUPABASE_SECRET_KEY`                  | Server        | For admin work | —                           |
-| `AI_PRIMARY_BASE_URL`                  | Server        | No             | `https://api.mistral.ai/v1` |
-| `AI_PRIMARY_MODEL`                     | Server        | No             | `deepseek-v4-1-flash-1017`  |
-| `AI_PRIMARY_API_KEY`                   | Server        | No             | —                           |
-| `AI_FALLBACK_BASE_URL`                 | Server        | No             | `https://api.mistral.ai/v1` |
-| `AI_FALLBACK_MODEL`                    | Server        | No             | `mistral-small-2603`        |
-| `AI_FALLBACK_API_KEY`                  | Server        | No             | —                           |
-| `AI_QUOTA_PER_USER_PER_DAY`            | Server        | No             | `30`                        |
-| `AI_QUOTA_PER_USER_PER_MINUTE`         | Server        | No             | `5`                         |
-| `AI_QUOTA_GLOBAL_PER_DAY`              | Server        | No             | `500`                       |
-| `MEDIA_VERSION`                        | Server        | No             | —                           |
-| `MEDIA_BASE_URL`                       | Server        | No             | —                           |
-| `MEDIA_ARCHIVE_SHA256`                 | Server        | No             | —                           |
-| `GITHUB_TOKEN`                         | Server script | No             | —                           |
+| Variable                               | Scope         | Required       | Default                        |
+| -------------------------------------- | ------------- | -------------- | ------------------------------ |
+| `NEXT_PUBLIC_APP_URL`                  | Public        | No             | `http://localhost:3000`        |
+| `NEXT_PUBLIC_SUPABASE_URL`             | Public        | Yes            | —                              |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Public        | Yes            | —                              |
+| `SUPABASE_URL_INTERNAL`                | Server        | Yes            | —                              |
+| `SUPABASE_SECRET_KEY`                  | Server        | For admin work | —                              |
+| `AI_PRIMARY_BASE_URL`                  | Server        | No             | `https://api.mistral.ai/v1`    |
+| `AI_PRIMARY_MODEL`                     | Server        | No             | `deepseek-v4-1-flash-1017`     |
+| `AI_PRIMARY_API_KEY`                   | Server        | No             | —                              |
+| `AI_FALLBACK_BASE_URL`                 | Server        | No             | `https://api.mistral.ai/v1`    |
+| `AI_FALLBACK_MODEL`                    | Server        | No             | `mistral-small-2603`           |
+| `AI_FALLBACK_API_KEY`                  | Server        | No             | —                              |
+| `AI_QUOTA_PER_USER_PER_DAY`            | Server        | No             | `30`                           |
+| `AI_QUOTA_PER_USER_PER_MINUTE`         | Server        | No             | `5`                            |
+| `AI_QUOTA_GLOBAL_PER_DAY`              | Server        | No             | `500`                          |
+| `MEDIA_VERSION`                        | Server        | No             | —                              |
+| `MEDIA_BASE_URL`                       | Server        | No             | —                              |
+| `MEDIA_ARCHIVE_SHA256`                 | Server        | No             | —                              |
+| `DEMO_CUSTOMER_EMAIL`                  | Provisioning  | No             | `customer@demo.coveweft.local` |
+| `DEMO_CUSTOMER_PASSWORD`               | Provisioning  | No             | `demo-customer-123`            |
+| `DEMO_CUSTOMER_NAME`                   | Provisioning  | No             | `Demo Customer`                |
+| `DEMO_ADMIN_EMAIL`                     | Provisioning  | No             | `admin@demo.coveweft.local`    |
+| `DEMO_ADMIN_PASSWORD`                  | Provisioning  | No             | `demo-admin-123`               |
+| `DEMO_ADMIN_NAME`                      | Provisioning  | No             | `Demo Admin`                   |
+| `DEMO_POLICY_VERSION`                  | Provisioning  | No             | `2026-11-06`                   |
+| `GITHUB_TOKEN`                         | Server script | No             | —                              |
 
 `.env.example` lists every variable with local defaults or an empty placeholder
 for values that come from `supabase status`. Never commit `.env.local` or a
@@ -310,7 +867,11 @@ their own client, or run with the `react-server` condition.
 - **Integration tests** (`tests/integration`) call Postgres functions and RLS
   policies against a local Supabase stack. They cover consent, RLS isolation,
   order placement, idempotency, concurrent last-item checkout, payment and
-  expiry races, administrator transitions, and stock adjustments. Concurrency
+  expiry races, administrator transitions, and stock adjustments. The service
+  suites add catalog search, facets, and size guides; cart issues; checkout
+  quotes and idempotent placement; order history, cancellation, and simulated
+  payments; sign-up consent and profile updates; admin product, image, order,
+  and dashboard flows; media URLs; and demo account provisioning. Concurrency
   regressions use a direct Postgres scheduling connection to hold a table or
   row lock at a precise point; that seam is not reachable by API clients. Run
   them with `pnpm test:integration` after `supabase start`; the runner resolves
