@@ -23,11 +23,13 @@ declare
   v_order public.orders;
   v_existing public.orders;
   v_settings public.store_settings;
-  v_now timestamptz := now();
+  v_now timestamptz;
   v_subtotal integer := 0;
   v_shipping_fee integer := 0;
   v_total integer := 0;
-  v_cart_count integer := 0;
+  v_variant_ids uuid[] := array[]::uuid[];
+  v_quantities integer[] := array[]::integer[];
+  v_line_count integer := 0;
   v_unavailable uuid[] := array[]::uuid[];
   v_line record;
 begin
@@ -89,38 +91,23 @@ begin
     return v_existing;
   end if;
 
-  -- Lock cart rows, then variants, then products in stable id order. This
-  -- serialises concurrent checkouts for one customer and avoids deadlocks when
-  -- two customers compete for the last item.
-  perform 1
-  from public.cart_items
-  where user_id = v_user_id
-  order by variant_id
-  for update;
-
-  perform 1
-  from public.product_variants
-  where id in (
-    select variant_id
+  -- Materialize the cart exactly once. This SELECT takes one snapshot and
+  -- locks every row it returns. Rows inserted after this point are not part of
+  -- the checkout and stay in the cart.
+  for v_line in
+    select variant_id, quantity
     from public.cart_items
     where user_id = v_user_id
-  )
-  order by id
-  for update;
+    order by variant_id
+    for update
+  loop
+    v_variant_ids := array_append(v_variant_ids, v_line.variant_id);
+    v_quantities := array_append(v_quantities, v_line.quantity);
+    v_line_count := v_line_count + 1;
+  end loop;
 
-  perform 1
-  from public.products
-  where id in (
-    select v.product_id
-    from public.product_variants v
-    join public.cart_items c on c.variant_id = v.id
-    where c.user_id = v_user_id
-  )
-  order by id
-  for update;
-
-  -- Re-check after the locks: a concurrent request with the same key may have
-  -- committed while this one waited.
+  -- Re-check after the cart lock: a concurrent request with the same key may
+  -- have committed while this one waited.
   select * into v_existing
   from public.orders
   where user_id = v_user_id
@@ -130,38 +117,53 @@ begin
     return v_existing;
   end if;
 
+  if v_line_count = 0 then
+    raise exception 'CART_CHANGED'
+      using errcode = 'P0001',
+            detail = '{"reason":"empty"}';
+  end if;
+
+  -- Lock the variants and products referenced by the snapshot in ascending id
+  -- order. The snapshot itself never changes after the materialization above.
+  perform 1
+  from public.product_variants
+  where id = any(v_variant_ids)
+  order by id
+  for update;
+
+  perform 1
+  from public.products
+  where id in (
+    select v.product_id
+    from public.product_variants v
+    where v.id = any(v_variant_ids)
+  )
+  order by id
+  for update;
+
   for v_line in
     select
-      c.variant_id,
-      c.quantity,
+      cart.variant_id,
+      cart.quantity,
       v.stock,
-      v.product_id,
       v.variant_sku,
       v.option_label,
+      p.id as product_id,
       p.sku,
       p.name,
       p.price_vnd,
       p.is_active
-    from public.cart_items c
-    join public.product_variants v on v.id = c.variant_id
+    from unnest(v_variant_ids, v_quantities) as cart(variant_id, quantity)
+    join public.product_variants v on v.id = cart.variant_id
     join public.products p on p.id = v.product_id
-    where c.user_id = v_user_id
     order by v.id
   loop
-    v_cart_count := v_cart_count + 1;
-
     if not v_line.is_active or v_line.stock < v_line.quantity then
       v_unavailable := array_append(v_unavailable, v_line.variant_id);
     else
       v_subtotal := v_subtotal + (v_line.price_vnd * v_line.quantity);
     end if;
   end loop;
-
-  if v_cart_count = 0 then
-    raise exception 'CART_CHANGED'
-      using errcode = 'P0001',
-            detail = '{"reason":"empty"}';
-  end if;
 
   if array_length(v_unavailable, 1) is not null then
     raise exception 'OUT_OF_STOCK'
@@ -187,6 +189,7 @@ begin
     v_shipping_fee := v_settings.express_shipping_fee_vnd;
   end if;
 
+  v_now := clock_timestamp();
   v_total := v_subtotal + v_shipping_fee;
 
   insert into public.orders (
@@ -266,21 +269,21 @@ begin
     p.name,
     v.option_label,
     p.price_vnd,
-    c.quantity,
+    cart.quantity,
     v_now
-  from public.cart_items c
-  join public.product_variants v on v.id = c.variant_id
-  join public.products p on p.id = v.product_id
-  where c.user_id = v_user_id;
+  from unnest(v_variant_ids, v_quantities) as cart(variant_id, quantity)
+  join public.product_variants v on v.id = cart.variant_id
+  join public.products p on p.id = v.product_id;
 
   update public.product_variants v
-  set stock = v.stock - c.quantity,
+  set stock = v.stock - cart.quantity,
       updated_at = v_now
-  from public.cart_items c
-  where c.user_id = v_user_id
-    and v.id = c.variant_id;
+  from unnest(v_variant_ids, v_quantities) as cart(variant_id, quantity)
+  where v.id = cart.variant_id;
 
-  delete from public.cart_items where user_id = v_user_id;
+  delete from public.cart_items
+  where user_id = v_user_id
+    and variant_id = any(v_variant_ids);
 
   insert into public.order_events (
     order_id,
@@ -344,7 +347,7 @@ begin
 
   update public.orders
   set status = 'cancelled',
-      cancelled_at = now(),
+      cancelled_at = clock_timestamp(),
       cancelled_by = v_user_id,
       payment_status = case
         when v_order.payment_status = 'paid' then 'refunded'
@@ -403,6 +406,7 @@ declare
   v_user_id uuid := auth.uid();
   v_order public.orders;
   v_old_payment_status text;
+  v_now timestamptz;
 begin
   if v_user_id is null then
     raise exception 'UNAUTHENTICATED' using errcode = 'P0001';
@@ -424,13 +428,15 @@ begin
     raise exception 'NOT_FOUND' using errcode = 'P0001';
   end if;
 
+  v_now := clock_timestamp();
+
   if v_order.payment_method <> 'bank_transfer' then
     raise exception 'PAYMENT_NOT_ALLOWED'
       using errcode = 'P0001',
             detail = 'Only bank transfer orders accept simulated payments';
   end if;
 
-  if v_order.payment_due_at is null or v_order.payment_due_at <= now() then
+  if v_order.payment_due_at is null or v_order.payment_due_at <= v_now then
     raise exception 'PAYMENT_EXPIRED' using errcode = 'P0001';
   end if;
 
@@ -572,7 +578,7 @@ begin
 
     update public.orders
     set status = 'cancelled',
-        cancelled_at = now(),
+        cancelled_at = clock_timestamp(),
         cancelled_by = v_user_id,
         payment_status = case
           when v_order.payment_status = 'paid' then 'refunded'
@@ -630,32 +636,69 @@ set search_path = ''
 as $$
 declare
   v_order public.orders;
+  v_order_id uuid;
+  v_order_ids uuid[] := array[]::uuid[];
+  v_variant_ids uuid[];
   v_item record;
   v_expired integer := 0;
+  v_now timestamptz;
 begin
-  for v_order in
-    select *
+  -- Lock the whole eligible batch first. SKIP LOCKED keeps a concurrent
+  -- cancellation or payment from blocking this run; the locked rows are held
+  -- until the transaction commits.
+  for v_order_id in
+    select id
     from public.orders
     where payment_method = 'bank_transfer'
       and status = 'pending'
       and payment_status = 'unpaid'
       and payment_due_at is not null
-      and payment_due_at <= now()
+      and payment_due_at <= clock_timestamp()
     order by id
     for update skip locked
   loop
+    v_order_ids := array_append(v_order_ids, v_order_id);
+  end loop;
+
+  if array_length(v_order_ids, 1) is null then
+    return 0;
+  end if;
+
+  -- Collect every variant touched by the batch and lock the union in one
+  -- ascending-id pass. Restocking order by order would acquire variants in a
+  -- different global order and deadlock with cancel or checkout.
+  select array_agg(distinct oi.variant_id order by oi.variant_id)
+  into v_variant_ids
+  from public.order_items oi
+  where oi.order_id = any(v_order_ids)
+    and oi.variant_id is not null;
+
+  if v_variant_ids is not null then
+    perform 1
+    from public.product_variants
+    where id = any(v_variant_ids)
+    order by id
+    for update;
+  end if;
+
+  foreach v_order_id in array v_order_ids
+  loop
+    select * into v_order from public.orders where id = v_order_id;
+
+    v_now := clock_timestamp();
+
     if v_order.status <> 'pending'
        or v_order.payment_status <> 'unpaid'
        or v_order.payment_due_at is null
-       or v_order.payment_due_at > now() then
+       or v_order.payment_due_at > v_now then
       continue;
     end if;
 
     update public.orders
     set status = 'cancelled',
-        cancelled_at = now(),
+        cancelled_at = v_now,
         cancelled_by = null,
-        updated_at = now()
+        updated_at = v_now
     where id = v_order.id
     returning * into v_order;
 
@@ -668,7 +711,7 @@ begin
     loop
       update public.product_variants
       set stock = stock + v_item.quantity,
-          updated_at = now()
+          updated_at = v_now
       where id = v_item.variant_id;
     end loop;
 
