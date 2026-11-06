@@ -40,41 +40,58 @@ const UI = 3;
 
 type Pair = { fg: string; bg: string; min: number; use: string };
 
-// Every foreground/background pairing the components actually render.
+// Foreground/background pairings rendered by the components, audited per
+// state: default, hover, active (pressed or current), and focus. Disabled
+// controls are exempt under WCAG 1.4.3 and are not listed.
 const PAIRS: Pair[] = [
-  // Body text and icons
+  // Body text and icons, default state
   { fg: "navy-900", bg: "white", min: TEXT, use: "body text and icons" },
-  { fg: "navy-900", bg: "neutral-50", min: TEXT, use: "footer and panel text" },
-  { fg: "navy-900", bg: "neutral-100", min: TEXT, use: "hovered and current nav items" },
-  { fg: "navy-900", bg: "neutral-200", min: TEXT, use: "pressed ghost buttons" },
+  { fg: "navy-900", bg: "neutral-50", min: TEXT, use: "footer, panel, and admin text" },
   { fg: "neutral-700", bg: "white", min: TEXT, use: "secondary body text" },
-  { fg: "neutral-700", bg: "neutral-50", min: TEXT, use: "footer links" },
-  { fg: "neutral-700", bg: "neutral-100", min: TEXT, use: "hovered policy nav items" },
+  { fg: "neutral-700", bg: "neutral-50", min: TEXT, use: "footer links and contact card" },
   { fg: "neutral-600", bg: "white", min: TEXT, use: "hints, captions, breadcrumb" },
-  { fg: "neutral-600", bg: "neutral-50", min: TEXT, use: "footer captions" },
+  { fg: "neutral-600", bg: "neutral-50", min: TEXT, use: "footer captions, admin breadcrumb" },
   { fg: "neutral-600", bg: "neutral-100", min: TEXT, use: "disabled input text" },
   { fg: "neutral-500", bg: "white", min: TEXT, use: "placeholders and disabled pagination" },
+  { fg: "navy-900", bg: "neutral-100", min: TEXT, use: "neutral badge" },
+  // Hover and pressed states
+  { fg: "navy-900", bg: "neutral-100", min: TEXT, use: "hovered ghost, icon, and nav items" },
+  { fg: "navy-900", bg: "neutral-200", min: TEXT, use: "pressed ghost and icon buttons" },
+  { fg: "navy-900", bg: "white", min: TEXT, use: "hovered locale option in the footer" },
+  { fg: "neutral-700", bg: "neutral-100", min: TEXT, use: "hovered policy nav items" },
+  { fg: "navy-950", bg: "lime-500", min: TEXT, use: "hovered primary button" },
+  { fg: "error-700", bg: "error-50", min: TEXT, use: "hovered danger button, error badge" },
+  { fg: "lime-300", bg: "navy-900", min: TEXT, use: "hovered demo banner link" },
+  // Current and selected states
+  { fg: "white", bg: "navy-900", min: TEXT, use: "current locale and current page number" },
+  { fg: "navy-900", bg: "neutral-100", min: TEXT, use: "current nav, admin, and policy items" },
   // Lime is only a fill under navy text
-  { fg: "navy-950", bg: "lime-400", min: TEXT, use: "primary button and accent badge" },
-  { fg: "navy-950", bg: "lime-500", min: TEXT, use: "primary button hover" },
+  { fg: "navy-950", bg: "lime-400", min: TEXT, use: "primary button, accent badge, skip link" },
   { fg: "navy-950", bg: "lime-300", min: TEXT, use: "text selection" },
   // Inverted surfaces
-  { fg: "white", bg: "navy-900", min: TEXT, use: "demo banner and current page markers" },
-  { fg: "lime-300", bg: "navy-900", min: TEXT, use: "demo banner link hover" },
+  { fg: "white", bg: "navy-900", min: TEXT, use: "demo banner text" },
   // Status colors with their tinted backgrounds
   { fg: "error-700", bg: "white", min: TEXT, use: "field errors" },
-  { fg: "error-700", bg: "error-50", min: TEXT, use: "error badge and danger hover" },
-  { fg: "success-700", bg: "white", min: TEXT, use: "success text" },
+  { fg: "success-700", bg: "white", min: TEXT, use: "success text and toast icon" },
   { fg: "success-700", bg: "success-50", min: TEXT, use: "success badge" },
   { fg: "warning-700", bg: "white", min: TEXT, use: "warning text" },
   { fg: "warning-700", bg: "warning-50", min: TEXT, use: "warning badge" },
   { fg: "soldout-700", bg: "white", min: TEXT, use: "out of stock text" },
   { fg: "soldout-700", bg: "soldout-50", min: TEXT, use: "out of stock badge" },
-  // UI components: borders and focus indicators
-  { fg: "neutral-500", bg: "white", min: UI, use: "input and stepper borders" },
-  { fg: "navy-900", bg: "white", min: UI, use: "focus ring and secondary button border" },
-  { fg: "white", bg: "navy-900", min: UI, use: "focus ring on the demo banner" },
+  // Icons that carry meaning (UI threshold), including hover backgrounds
+  { fg: "neutral-500", bg: "white", min: UI, use: "breadcrumb and policy nav carets" },
+  { fg: "neutral-500", bg: "neutral-100", min: UI, use: "policy nav caret on a hovered row" },
+  { fg: "neutral-500", bg: "neutral-50", min: UI, use: "breadcrumb caret on the admin background" },
+  { fg: "navy-900", bg: "neutral-100", min: UI, use: "current policy nav caret" },
+  // UI components: borders
+  { fg: "neutral-500", bg: "white", min: UI, use: "input, select, search, and stepper borders" },
+  { fg: "navy-900", bg: "white", min: UI, use: "hovered input and secondary button border" },
   { fg: "error-700", bg: "white", min: UI, use: "invalid input border" },
+  // Focus indicators against every surface they are drawn on
+  { fg: "navy-900", bg: "white", min: UI, use: "focus ring on white" },
+  { fg: "navy-900", bg: "neutral-50", min: UI, use: "focus ring in the footer and admin" },
+  { fg: "navy-900", bg: "neutral-100", min: UI, use: "inset focus ring on a hovered control" },
+  { fg: "white", bg: "navy-900", min: UI, use: "focus ring on the demo banner" },
 ];
 
 describe("design token contrast", () => {
@@ -82,7 +99,7 @@ describe("design token contrast", () => {
     expect(Object.keys(tokens).length).toBeGreaterThan(20);
   });
 
-  it.each(PAIRS)("$fg on $bg meets $min:1 ($use)", ({ fg, bg, min }) => {
+  it.each(PAIRS)("$fg on $bg meets $min:1 for $use", ({ fg, bg, min }) => {
     expect(tokens[fg], `missing token ${fg}`).toBeDefined();
     expect(tokens[bg], `missing token ${bg}`).toBeDefined();
     expect(contrastRatio(tokens[fg], tokens[bg])).toBeGreaterThanOrEqual(min);
