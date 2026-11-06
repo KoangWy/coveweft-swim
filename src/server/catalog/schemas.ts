@@ -29,13 +29,19 @@ export const ListProductsInput = z
     page: z.number().int().min(1).max(10_000).default(1),
     pageSize: z.number().int().min(1).max(60).default(12),
   })
-  .refine(
-    (value) =>
-      value.priceMin === undefined ||
-      value.priceMax === undefined ||
-      value.priceMin <= value.priceMax,
-    { path: ["priceMax"], message: "priceMax must be greater than or equal to priceMin" },
-  );
+  .superRefine((value, context) => {
+    if (
+      value.priceMin !== undefined &&
+      value.priceMax !== undefined &&
+      value.priceMin > value.priceMax
+    ) {
+      context.addIssue({
+        code: "custom",
+        path: ["priceMax"],
+        params: { issue: "invalid_range" },
+      });
+    }
+  });
 
 export type ListProductsInput = z.infer<typeof ListProductsInput>;
 
@@ -53,8 +59,14 @@ export const GetSizeGuideInput = z
     group: z.string().trim().min(1).max(30).optional(),
     garment: SizeGuideGarmentInput.optional(),
   })
-  .refine((value) => Boolean(value.key ?? value.group), {
-    message: "Provide a size guide key or group",
+  .superRefine((value, context) => {
+    if (!value.key && !value.group) {
+      context.addIssue({
+        code: "custom",
+        path: [],
+        params: { issue: "require_one_of" },
+      });
+    }
   });
 
 export type GetSizeGuideInput = z.infer<typeof GetSizeGuideInput>;

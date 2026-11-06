@@ -75,21 +75,25 @@ export const AdminUpsertProductInput = z
     id: z.uuid().optional(),
     ...AdminProductFields,
   })
-  .refine(
-    (value) =>
-      value.id !== undefined ||
-      Boolean(
+  .superRefine((value, context) => {
+    if (
+      value.id === undefined &&
+      !(
         value.sku &&
         value.name &&
         value.productType &&
         value.category &&
         value.gender &&
-        value.priceVnd !== undefined,
-      ),
-    {
-      message: "A new product needs sku, name, productType, category, gender, and priceVnd",
-    },
-  );
+        value.priceVnd !== undefined
+      )
+    ) {
+      context.addIssue({
+        code: "custom",
+        path: [],
+        params: { issue: "missing_create_fields" },
+      });
+    }
+  });
 
 export type AdminUpsertProductInput = z.infer<typeof AdminUpsertProductInput>;
 
@@ -107,8 +111,14 @@ export const AdminAdjustStockInput = z
     stock: z.number().int().min(0).max(1_000_000).optional(),
     reason: z.string().trim().min(1).max(500),
   })
-  .refine((value) => (value.delta === undefined) !== (value.stock === undefined), {
-    message: "Provide exactly one of delta or stock",
+  .superRefine((value, context) => {
+    if ((value.delta === undefined) === (value.stock === undefined)) {
+      context.addIssue({
+        code: "custom",
+        path: [],
+        params: { issue: "require_one_of" },
+      });
+    }
   });
 
 export type AdminAdjustStockInput = z.infer<typeof AdminAdjustStockInput>;
@@ -116,10 +126,7 @@ export type AdminAdjustStockInput = z.infer<typeof AdminAdjustStockInput>;
 export const AdminUploadImageInput = z.object({
   productId: z.uuid(),
   position: z.number().int().min(0).max(1000).optional(),
-  file: z.custom<File>(
-    (value) => typeof File !== "undefined" && value instanceof File,
-    "Expected an image file",
-  ),
+  file: z.custom<File>((value) => typeof File !== "undefined" && value instanceof File),
 });
 
 export type AdminUploadImageInput = z.infer<typeof AdminUploadImageInput>;

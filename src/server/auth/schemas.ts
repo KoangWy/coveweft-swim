@@ -25,12 +25,18 @@ export const UpdateProfileInput = z
     phone: z.string().trim().max(30).nullable().optional(),
     defaultAddress: z.string().trim().max(500).nullable().optional(),
   })
-  .refine(
-    (value) =>
-      value.fullName !== undefined ||
-      value.phone !== undefined ||
-      value.defaultAddress !== undefined,
-    { message: "Provide at least one profile field" },
-  );
+  .superRefine((value, context) => {
+    if (
+      value.fullName === undefined &&
+      value.phone === undefined &&
+      value.defaultAddress === undefined
+    ) {
+      context.addIssue({
+        code: "custom",
+        path: [],
+        params: { issue: "at_least_one_field" },
+      });
+    }
+  });
 
 export type UpdateProfileInput = z.infer<typeof UpdateProfileInput>;
