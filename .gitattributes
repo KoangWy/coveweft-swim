@@ -1,0 +1,14 @@
+# Keep line endings stable across macOS, Linux, and Windows checkouts.
+* text=auto
+
+# Shell scripts run on macOS and Linux, including from a Windows checkout.
+*.sh text eol=lf
+
+# Windows scripts use the usual CRLF convention. Windows PowerShell 5.1 and
+# PowerShell 7 read either ending, so this is a convention rather than a
+# requirement.
+*.ps1 text eol=crlf
+
+# The image build and the database scripts expect LF.
+Dockerfile text eol=lf
+*.sql text eol=lf
