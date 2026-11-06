@@ -84,12 +84,9 @@ export function sanitizeHistory(entries: unknown[], limits: AssistantLimits): Sa
 }
 
 /**
- * Maps history to model messages, passing every text through the privacy
- * gate. This is the only way history reaches a provider request.
+ * Maps history to model messages. Personal data is removed by the privacy
+ * gate that wraps the turn's provider, on every request it sends.
  */
-export function toChatMessages(
-  history: HistoryMessage[],
-  gate: (text: string) => string,
-): ChatMessage[] {
-  return history.map((message) => ({ role: message.role, content: gate(message.content) }));
+export function toChatMessages(history: HistoryMessage[]): ChatMessage[] {
+  return history.map((message) => ({ role: message.role, content: message.content }));
 }

@@ -3,7 +3,7 @@ import type { AssistantLimits } from "@/lib/config/env";
 import { ProviderError, type ChatMessage, type ChatProvider, type ToolCall } from "@/server/ai";
 
 import { toChatMessages, type HistoryMessage } from "./history";
-import { createPrivacyGate, type PrivacyProfile } from "./privacy";
+import { createPrivacyGate, withPrivacyGate, type PrivacyProfile } from "./privacy";
 import { buildSystemPrompt } from "./prompt";
 import {
   runTool,
@@ -29,7 +29,7 @@ export type AssistantTurnInput = {
   history: HistoryMessage[];
   /**
    * The signed-in customer's profile, used only to redact those values from
-   * the history. It is never sent to the provider.
+   * every request. It is never sent to the provider.
    */
   privacyProfile?: PrivacyProfile | null;
   locale: Locale;
@@ -86,11 +86,14 @@ function logFailure(error: unknown, model: string, round: number): void {
  * `AI_STREAM_INTERRUPTED` instead of joining two answers.
  */
 export async function* runAssistantTurn(input: AssistantTurnInput): AsyncGenerator<AssistantEvent> {
-  const { provider, limits, signal } = input;
+  const { limits, signal } = input;
+  // Every request of the turn goes through the gate: history, the model's
+  // earlier text, tool arguments, and tool results, on primary and fallback.
+  const provider = withPrivacyGate(input.provider, createPrivacyGate(input.privacyProfile ?? null));
   const context: ToolContext = { locale: input.locale, catalog: input.catalog, cards: new Map() };
   const messages: ChatMessage[] = [
     { role: "system", content: buildSystemPrompt(input.locale) },
-    ...toChatMessages(input.history, createPrivacyGate(input.privacyProfile ?? null)),
+    ...toChatMessages(input.history),
   ];
   let answer = "";
 

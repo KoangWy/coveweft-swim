@@ -890,35 +890,52 @@ A failed turn still counts as the accepted question.
   `AI_HISTORY_MAX_CHARS` or it is rejected, never cut. Earlier messages over
   the per-message limit are dropped whole, then the oldest are dropped until
   `AI_HISTORY_MAX_MESSAGES` and the total fit.
-- **Privacy gate.** Every user and assistant message passes through
-  `createPrivacyGate` (`src/server/assistant/privacy.ts`) right before the
-  first provider request; history reaches the model no other way. It replaces
-  with `[name removed]`, `[email removed]`, `[phone removed]`, or
-  `[address removed]`:
-  - the signed-in customer's own full name, email, phone, default address,
-    and each comma-separated part of that address, matched case- and
-    diacritic-insensitively (`NGUYEN THI LAN` matches `Nguyễn Thị Lan`); the
-    profile is read with the customer's session only for this matching and
-    is never sent to the provider, and a profile read failure stops the
-    request with `INTERNAL` before any quota is used;
+- **Privacy gate.** `withPrivacyGate` (`src/server/assistant/privacy.ts`)
+  wraps the turn's provider, so every outgoing request is gated, in every
+  round and on the fallback: browser history, the model's own text from
+  earlier rounds, tool call arguments, and tool results. The server-built
+  system prompt passes unchanged. Tool call ids and names are kept; tool
+  arguments and results stay valid JSON because only their string values are
+  redacted. Tools still run with the model's original arguments, which never
+  leave the server. Recognizers all read the original text and their spans are
+  merged before replacement, so one replacement never hides the context
+  another needs. Matches become `[name removed]`, `[email removed]`,
+  `[phone removed]`, or `[address removed]`:
+  - the signed-in customer's own full name, email, phone (in any notation),
+    default address, and each comma-separated part of that address, matched
+    case- and diacritic-insensitively (`NGUYEN THI LAN` matches
+    `Nguyễn Thị Lan`). The profile is read with the customer's session only
+    for this matching and is never sent to the provider; a profile read
+    failure stops the request with `INTERNAL` before any quota is used;
   - email addresses;
-  - phone numbers starting with `0`, `84`, or `+`, written with spaces, dots,
-    dashes, or parentheses (`(091) 234 5678`, `+84 (912) 345 678`,
-    `84912345678`);
+  - phone numbers starting with `0`, `84`, `+`, or the `00` international
+    prefix, written with spaces, dots, dashes, or parentheses
+    (`(091) 234 5678`, `+84 (912) 345 678`, `0084 912 345 678`,
+    `84912345678`). A digit run that continues a word (`SW0912345678`) is an
+    identifier and is kept. Catalog SKUs always contain a letter or have at
+    most four digits, so an all-digit phone-shaped token is treated as a
+    phone even after `SKU` or `mã`;
   - street addresses: a house number (`12`, `12A`, `45/7`, `số 12`) followed
     within a few words by a street word (`đường`, `phố`, `hẻm`, `ngõ`,
     `street`, `st.`, `road`, `avenue`, `lane`) or an area word (`phường`,
     `quận`, `huyện`, or `ward`/`district` before a number), up to the end of
     the sentence;
-  - names after a first-person phrase such as `my name is`, `tên mình là`,
-    or `họ và tên:`.
+  - names after a self-introduction, with or without diacritics. After
+    explicit cues (`my name is`, `name:`, `họ và tên:`, `tên tôi là`,
+    `mình tên`, `em tên là`) the name may be lower case. After cues that also
+    start ordinary sentences (`tôi là`, `mình là`, `em là`, `I'm`, `I am`,
+    `this is`, `call me`) only capitalized words count, so `mình là nữ` and
+    `I'm looking for` are kept.
 
-  Numbers followed by a unit or a currency (`86 cm`, `3 tuổi`, `400.000 VND`)
-  and sizes are never treated as addresses or phone numbers, so measurements
-  reach `recommendSize`. Free-text redaction is best-effort: no pattern can
-  recognise every way a person writes a name or an address. The system prompt
-  and the chat widget therefore also warn customers not to type personal
-  data.
+  Numbers followed by a unit or a currency (`86 cm`, `3 tuổi`, `400.000 VND`),
+  sizes, and SKUs are not treated as addresses or phone numbers, so
+  measurements reach `recommendSize`. Free-text redaction is best-effort: no
+  pattern can recognise every way a person writes a name or an address.
+  Deliberately obfuscated input, such as digits split by words
+  (`0912 abc 345 def 678`) or a name typed without any cue, is a known
+  limitation that this demo does not try to detect; only the customer's own
+  profile values are matched without a cue. The system prompt and the chat
+  widget therefore also warn customers not to type personal data.
 
 - **Prompt.** The system prompt is built on the server for every turn. It
   sets the answer language from `locale`, requires answers from tool results

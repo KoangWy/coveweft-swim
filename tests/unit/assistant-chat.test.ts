@@ -465,6 +465,92 @@ describe("POST /api/chat stream", () => {
     }
   });
 
+  it("gates later rounds: model text, tool arguments, and tool results, on primary and fallback", async () => {
+    const profile: PrivacyProfile = { fullName: "Nguyễn Thị Lan", email: "lan+shop@example.com" };
+    const catalog = fakeCatalog();
+    catalog.listProducts.mockResolvedValue(
+      ok({
+        items: [{ ...LAGOON, description: "Contact lan+shop@example.com or 0084 912 345 678" }],
+        total: 1,
+        page: 1,
+        pageSize: 6,
+        pageCount: 1,
+        facets: {} as never,
+      }),
+    );
+    const roundOne = () =>
+      sseResponse([
+        deltaChunk({ content: "Mình sẽ tìm cho Nguyen Thi Lan qua lan+shop@example.com. " }),
+        deltaChunk({
+          tool_calls: [
+            {
+              index: 0,
+              id: "call_1",
+              type: "function",
+              function: {
+                name: "searchProducts",
+                arguments: JSON.stringify({ query: "lan+shop@example.com", limit: 2 }),
+              },
+            },
+          ],
+        }),
+        deltaChunk({}, "tool_calls"),
+        "data: [DONE]\n\n",
+      ]);
+
+    for (const mode of ["primary", "fallback"] as const) {
+      const { dependencies, primaryFetch, fallbackFetch } = setup({
+        profile,
+        catalog,
+        primary:
+          mode === "primary"
+            ? [roundOne, () => text("Lagoon swimsuit (SW100).")]
+            : [() => jsonResponse({ message: "overloaded" }, 503)],
+        fallback: mode === "fallback" ? [roundOne, () => text("Lagoon swimsuit (SW100).")] : [],
+      });
+      const events = await readEvents(
+        await handleChatRequest(
+          ask("tôi là Trần Văn Nam, số 0084912345678, tìm đồ bơi"),
+          dependencies,
+        ),
+      );
+
+      expect(events.at(-1)!.event).toBe("done");
+
+      const served = mode === "primary" ? primaryFetch : fallbackFetch;
+      const requests = served.mock.calls.map((_, call) => sentBody(served, call));
+
+      expect(requests).toHaveLength(2);
+
+      for (const body of requests) {
+        expect(JSON.stringify(body.messages)).not.toMatch(
+          /lan\+shop|Nguyen Thi Lan|Trần Văn Nam|0084|912 345 678|912345678/i,
+        );
+      }
+
+      const second = requests[1]!.messages;
+      const assistant = second.find((message) => message.role === "assistant")!;
+      const tool = second.find((message) => message.role === "tool")!;
+      const toolCall = (
+        assistant.tool_calls as Array<{ id: string; function: { name: string; arguments: string } }>
+      )[0]!;
+
+      expect(second.find((message) => message.role === "user")!.content).toBe(
+        "tôi là [name removed], số [phone removed], tìm đồ bơi",
+      );
+      expect(assistant.content).toBe("Mình sẽ tìm cho [name removed] qua [email removed]. ");
+      expect(toolCall).toMatchObject({ id: "call_1", function: { name: "searchProducts" } });
+      expect(JSON.parse(toolCall.function.arguments)).toEqual({
+        query: "[email removed]",
+        limit: 2,
+      });
+      expect(tool).toMatchObject({ tool_call_id: "call_1", name: "searchProducts" });
+      expect(JSON.parse(String(tool.content)).data.items[0].summary).toBe(
+        "Contact [email removed] or [phone removed]",
+      );
+    }
+  });
+
   it("does not start a turn when the profile for the privacy gate cannot be read", async () => {
     const { dependencies, quota, primaryFetch } = setup({ profile: new Error("db down") });
     const response = await handleChatRequest(ask("Xin chào"), dependencies);
