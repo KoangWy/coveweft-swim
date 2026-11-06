@@ -40,8 +40,8 @@ export function AdminShell({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-dvh flex-col bg-neutral-50 lg:flex-row">
       <SkipLink />
-      <aside className="border-b border-neutral-200 bg-white lg:sticky lg:top-0 lg:flex lg:h-dvh lg:w-64 lg:shrink-0 lg:flex-col lg:border-r lg:border-b-0">
-        <div className="flex h-16 items-center justify-between gap-3 px-4 lg:px-5">
+      <aside className="border-b border-neutral-200 bg-white lg:sticky lg:top-0 lg:flex lg:h-dvh lg:w-72 lg:shrink-0 lg:flex-col lg:border-r lg:border-b-0">
+        <div className="flex h-16 items-center justify-between gap-3 px-4">
           <Wordmark href="/admin" />
           <Badge tone="accent">{t("badge")}</Badge>
         </div>
