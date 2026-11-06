@@ -91,7 +91,8 @@ translation rows, and the variant stock summary. It runs with
 apply. The view exposes:
 
 - the product columns and `description_en`, `caption_en`, `description_vi`,
-  `caption_vi`, with the source English copy as the fallback;
+  `caption_vi`, with the Vietnamese copy falling back to the English
+  translation and then to the source copy;
 - `search_text_all`, the unaccented concatenation of the name, the source
   description, and both translations;
 - `in_stock`, `variant_labels`, `available_variant_labels`, `total_stock`, and
@@ -99,8 +100,9 @@ apply. The view exposes:
 
 The catalog service filters and sorts this view directly, which keeps search,
 facets, and pagination in one query. `product_images.is_visible` hides an image
-from the storefront without deleting its metadata; the admin editor still sees
-it.
+from the storefront without deleting its metadata. The image SELECT policy
+enforces visibility for anonymous and customer clients, not only the service
+filter; administrators can still read hidden rows in the editor.
 
 The `product-uploads` Storage bucket is public for reads and limited to WebP,
 JPEG, and PNG files of at most 5 MiB. Administrator uploads write through the
@@ -111,6 +113,7 @@ public object URL.
 
 - Catalog tables and `store_settings` are readable by `anon` and
   `authenticated`. Inactive products are visible only to administrators.
+  Hidden product images are readable only by administrators.
 - `profiles`, `cart_items`, `orders`, `order_items`, `payment_attempts`, and
   `order_events` are scoped to their owner. Administrators can read all of them.
 - Customers write only `cart_items` and the editable profile columns.
@@ -170,6 +173,37 @@ The issue tracker used a few alternate names before the database layer merged.
 The shared union keeps the existing codes: `AUTH_REQUIRED` is
 `UNAUTHENTICATED`, `VALIDATION_FAILED` is `VALIDATION_ERROR`, and
 `PAYMENT_WINDOW_EXPIRED` is `PAYMENT_EXPIRED`.
+
+### Validation details
+
+`VALIDATION_ERROR` carries `details.issues`, an array of stable field codes:
+
+```ts
+type ValidationIssue = {
+  field: string; // dotted input path, or "" for a form-level issue
+  code:
+    | "required"
+    | "invalid_type"
+    | "invalid_format"
+    | "invalid_value"
+    | "too_small"
+    | "too_large"
+    | "unknown_field"
+    | "invalid_range"
+    | "require_one_of"
+    | "at_least_one_field"
+    | "missing_create_fields"
+    | "unknown";
+  params?: Record<string, unknown>;
+};
+```
+
+The server never returns validation prose. `params` carries structured
+constraint data such as `minimum`, `maximum`, `inclusive`, `type`, `format`,
+`values`, or `keys`. The frontend owns the English and Vietnamese wording for
+each code and field. Cross-field rules use `invalid_range` (for example an
+inverted price range), `require_one_of` (exactly one of two fields), and
+`at_least_one_field` (a profile patch with no fields).
 
 ### Money
 
@@ -346,6 +380,13 @@ removeCartItem(input: unknown): Promise<Result<Cart>>;
 `{ variantId: string; quantity: number }` with a quantity from 1 to 99.
 `RemoveCartItemInput` is `{ variantId: string }`. Removing an absent line is
 not an error.
+
+`addToCart` calls `add_cart_item`, which accumulates with `ON CONFLICT DO
+UPDATE` and then locks the variant row, in the same lock order as `place_order`
+(cart row, then variant). The combined line is capped at 99 and checked against
+the locked stock, so concurrent additions from several tabs cannot lose an
+increment and cannot deadlock with a checkout. The service still reloads the
+full cart after the function returns.
 
 ```ts
 type Cart = {
@@ -667,10 +708,12 @@ type AdminDashboard = {
 Every admin function checks the caller role first and returns `FORBIDDEN` for a
 customer. `adminSetProductActive` hides a product without deleting it.
 `adminDeleteImage` deletes an uploaded object and its row; a release image is
-only hidden (`isVisible: false`). `adminDashboard` counts revenue from orders
-that are `delivered` and `paid`, excludes cancelled and refunded orders, and
-uses a low-stock threshold of 5. The UI shows the demo-data label from
-`demoData`.
+only hidden (`isVisible: false`). `adminDashboard` calls the `admin_dashboard`
+database function, which checks the administrator role and computes every
+metric with database aggregates, so the PostgREST 1000-row cap cannot truncate
+the totals. Revenue counts orders that are `delivered` and `paid`, excludes
+cancelled and refunded orders, and uses a low-stock threshold of 5. The UI
+shows the demo-data label from `demoData`.
 
 ### Media URLs
 
@@ -740,14 +783,16 @@ the deadlock that per-order restocking could produce.
 
 ### Database functions
 
-| Function                                                     | Caller              | Purpose                                                           |
-| ------------------------------------------------------------ | ------------------- | ----------------------------------------------------------------- |
-| `place_order(idempotency_key, recipient, shipping, payment)` | authenticated       | Creates an idempotent order from the caller cart.                 |
-| `cancel_order(order_id)`                                     | authenticated       | Cancels an owned pending order and restores stock.                |
-| `record_payment_attempt(order_id, outcome)`                  | authenticated       | Records a simulated bank transfer attempt.                        |
-| `admin_transition_order(order_id, action)`                   | authenticated admin | Applies confirm, ship, deliver, or cancel.                        |
-| `expire_unpaid_orders()`                                     | cron / service role | Cancels expired unpaid bank transfers.                            |
-| `admin_adjust_stock(variant_id, delta, stock, reason)`       | authenticated admin | Adjusts stock by delta or absolute value and writes an audit row. |
+| Function                                                     | Caller              | Purpose                                                                |
+| ------------------------------------------------------------ | ------------------- | ---------------------------------------------------------------------- |
+| `place_order(idempotency_key, recipient, shipping, payment)` | authenticated       | Creates an idempotent order from the caller cart.                      |
+| `cancel_order(order_id)`                                     | authenticated       | Cancels an owned pending order and restores stock.                     |
+| `record_payment_attempt(order_id, outcome)`                  | authenticated       | Records a simulated bank transfer attempt.                             |
+| `admin_transition_order(order_id, action)`                   | authenticated admin | Applies confirm, ship, deliver, or cancel.                             |
+| `expire_unpaid_orders()`                                     | cron / service role | Cancels expired unpaid bank transfers.                                 |
+| `admin_adjust_stock(variant_id, delta, stock, reason)`       | authenticated admin | Adjusts stock by delta or absolute value and writes an audit row.      |
+| `add_cart_item(variant_id, quantity)`                        | authenticated       | Atomically accumulates the caller cart line, capped and stock-checked. |
+| `admin_dashboard()`                                          | authenticated admin | Returns the dashboard aggregates in one JSON object.                   |
 
 Functions raise stable message codes such as `OUT_OF_STOCK`, `CART_CHANGED`,
 `ORDER_STATE_CONFLICT`, `PAYMENT_NOT_ALLOWED`, `PAYMENT_EXPIRED`, and
@@ -868,10 +913,12 @@ their own client, or run with the `react-server` condition.
   policies against a local Supabase stack. They cover consent, RLS isolation,
   order placement, idempotency, concurrent last-item checkout, payment and
   expiry races, administrator transitions, and stock adjustments. The service
-  suites add catalog search, facets, and size guides; cart issues; checkout
-  quotes and idempotent placement; order history, cancellation, and simulated
-  payments; sign-up consent and profile updates; admin product, image, order,
-  and dashboard flows; media URLs; and demo account provisioning. Concurrency
+  suites add catalog search, facets, size guides, and locale fallback; cart
+  issues and concurrent accumulation; checkout quotes and idempotent placement;
+  order history, cancellation, and simulated payments; sign-up consent and
+  profile updates; admin product, image, order, and dashboard flows; hidden
+  image visibility; dashboard aggregates beyond the PostgREST row cap; media
+  URLs; validation issue codes; and demo account provisioning. Concurrency
   regressions use a direct Postgres scheduling connection to hold a table or
   row lock at a precise point; that seam is not reachable by API clients. Run
   them with `pnpm test:integration` after `supabase start`; the runner resolves

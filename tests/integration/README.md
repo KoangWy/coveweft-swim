@@ -32,17 +32,20 @@ Coverage:
   races;
 - administrator order transitions, stock adjustments, and the variant INSERT
   stock restriction;
-- catalog search, filters, facets, product details, translations, and size
-  guides through the catalog service;
-- cart accumulation, stock and visibility issues, and customer isolation;
+- catalog search, filters, facets, product details, translations, size guides,
+  and the English fallback when Vietnamese copy is missing;
+- cart accumulation, concurrent accumulation, stock and visibility issues, and
+  customer isolation;
 - checkout quotes from `store_settings`, idempotent placement, and stock
   failures;
 - order history, ownership, cancellation, and simulated payments through the
   orders service;
 - sign-up consent, duplicate email, invalid credentials, profile updates, and
   sign-out through the auth service;
-- admin product editing, image upload and ordering, order transitions, and the
-  dashboard through the admin service;
+- admin product editing, hidden image visibility for anonymous and customer
+  clients, image upload and ordering, order transitions, and the dashboard
+  through the admin service;
+- dashboard aggregates beyond the PostgREST 1000-row cap;
 - media URL construction and demo account provisioning.
 
 The concurrency tests use `tests/integration/support/database.ts` to open a
