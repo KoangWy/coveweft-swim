@@ -22,10 +22,6 @@ export const POLICY_SLUGS = [
 
 export type PolicySlug = (typeof POLICY_SLUGS)[number];
 
-export function isPolicySlug(value: string): value is PolicySlug {
-  return (POLICY_SLUGS as readonly string[]).includes(value);
-}
-
 /** Main storefront categories shown in the header navigation. */
 export const SHOP_CATEGORIES = ["women", "men", "kids", "accessories"] as const;
 

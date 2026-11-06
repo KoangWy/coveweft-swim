@@ -2,14 +2,9 @@ import { describe, expect, it } from "vitest";
 
 import { paginationItems } from "@/components/ui/pagination";
 import en from "@/messages/en.json";
-import { isPolicySlug, POLICY_SLUGS } from "@/lib/site";
+import { POLICY_SLUGS } from "@/lib/site";
 
 describe("policy pages", () => {
-  it("recognizes only known slugs", () => {
-    expect(isPolicySlug("privacy")).toBe(true);
-    expect(isPolicySlug("refunds")).toBe(false);
-  });
-
   it("has a title, description, lead, and sections for every page", () => {
     for (const page of ["about", ...POLICY_SLUGS] as const) {
       const content = en.policies[page];
