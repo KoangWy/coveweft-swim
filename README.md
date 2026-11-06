@@ -46,7 +46,7 @@ the commands above.
 | `pnpm lint`             | Run ESLint                                                                       |
 | `pnpm typecheck`        | Generate route types and run `tsc --noEmit`                                      |
 | `pnpm test`             | Run unit tests                                                                   |
-| `pnpm test:integration` | Run integration tests against local Supabase                                     |
+| `pnpm test:integration` | Run database integration tests against local Supabase (needs Docker)             |
 | `pnpm test:e2e`         | Run Playwright tests (install browsers once with `pnpm exec playwright install`) |
 | `pnpm format`           | Format the repository with Prettier                                              |
 
@@ -57,11 +57,22 @@ Migrations live in `supabase/migrations` and seed data in `supabase/seed.sql`.
 `pnpm dlx supabase stop` shuts the stack down without deleting data, and
 `pnpm dlx supabase db reset` recreates it from the migrations and seed.
 
+The migrations create the catalog, profile, cart, order, payment, and stock
+tables; enable row level security; install the order and stock functions; and
+schedule the unpaid-order expiry job with `pg_cron`. `store_settings` is seeded
+with the local shipping fees, free-shipping threshold, and payment window.
+
+Run `pnpm test:integration` after `supabase start` to exercise the policies and
+functions. The runner reads the local URL and keys from `.env.local` or from
+`supabase status`, so the keys copied during setup are enough.
+
 ### Continuous integration
 
 `.github/workflows/ci.yml` runs lint, typecheck, and unit tests on every push to
-`main` and every pull request. Integration tests need a local Supabase stack and
-run on developer machines.
+`main` and every pull request. Database integration tests are not part of that
+job because they need Docker and a running Supabase stack; run
+`pnpm test:integration` locally before merging a migration. The unit suite stays
+Docker-free.
 
 See [`docs/architecture.md`](docs/architecture.md) for module boundaries, shared
 contracts, and environment configuration.

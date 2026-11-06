@@ -13,6 +13,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Database integration tests need Docker and a local Supabase stack, so they
+  # run with `pnpm test:integration` on a developer machine before a migration
+  # is merged. This job stays Docker-free.
   quality:
     name: Lint, typecheck, unit tests
     runs-on: ubuntu-latest

@@ -50,6 +50,52 @@ Boundaries:
 - **Row Level Security** protects reads and user-owned rows. Tables for orders,
   stock, and payments do not grant direct write access to clients.
 
+## Database model
+
+Migrations in `supabase/migrations` are the source of truth. Every table has
+row level security enabled.
+
+| Table                    | Purpose                                                                                                                                               |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `profiles`               | One row per auth user: `role` (`customer` or `admin`), contact fields, and privacy consent evidence (`privacy_consent_at`, `privacy_policy_version`). |
+| `products`               | Normalised catalog row: SKU, attributes, integer VND price, `is_active`, and an unaccented `search_text` generated column.                            |
+| `product_translations`   | Localized description and caption per product and locale.                                                                                             |
+| `attribute_translations` | Localized labels for catalog attribute values.                                                                                                        |
+| `product_variants`       | Sellable option per product with `variant_sku`, the source `option_label`, an optional `size_guide_key`, and non-negative stock.                      |
+| `product_images`         | Studio (`release`) and administrator (`upload`) images with `kind`, `source`, `path`, and `position`.                                                 |
+| `store_settings`         | Single row that holds the Standard and Express fees, the free-shipping threshold, and the payment window.                                             |
+| `cart_items`             | One row per customer and variant. Adding to the cart does not reserve stock.                                                                          |
+| `orders`                 | Order header with status, payment state, delivery snapshot, price snapshot, idempotency key, and payment deadline.                                    |
+| `order_items`            | Immutable product, variant, price, and quantity snapshot.                                                                                             |
+| `payment_attempts`       | One row per simulated bank transfer attempt.                                                                                                          |
+| `order_events`           | Append-only status history with actor and reason.                                                                                                     |
+| `stock_adjustments`      | Audit trail for administrator stock changes.                                                                                                          |
+
+A trigger on `auth.users` creates the profile from the sign-up metadata and
+rejects a sign-up that does not carry a privacy policy version. The consent
+timestamp is written by the server, not supplied by the browser. Provisioning
+scripts that create users through the Auth Admin API must include
+`privacy_policy_version` in `user_metadata`; the trigger applies to every insert
+into `auth.users`.
+
+`products.search_text`, `product_translations.search_text`, and their trigram
+indexes use `public.immutable_unaccent`, an immutable wrapper around the
+`unaccent` extension. Catalog search can therefore match Vietnamese text with
+or without diacritics.
+
+### Row level security
+
+- Catalog tables and `store_settings` are readable by `anon` and
+  `authenticated`. Inactive products are visible only to administrators.
+- `profiles`, `cart_items`, `orders`, `order_items`, `payment_attempts`, and
+  `order_events` are scoped to their owner. Administrators can read all of them.
+- Customers write only `cart_items` and the editable profile columns.
+- `orders`, `order_items`, `payment_attempts`, `order_events`, and
+  `product_variants.stock` have no client write grant. They change only through
+  the `SECURITY DEFINER` functions.
+- `profiles.role` and the consent columns are outside the authenticated update
+  grant; a trigger also rejects a role change from a signed-in non-admin.
+
 ## Shared contracts
 
 ### `Result<T>` and `ErrorCode`
@@ -74,8 +120,11 @@ structured context for logging or form errors; it is never user-facing text.
 | `OUT_OF_STOCK`          | A variant does not have enough stock for the request              |
 | `CART_CHANGED`          | Cart lines changed while the customer was checking out            |
 | `ORDER_NOT_CANCELLABLE` | The order state does not allow cancellation                       |
+| `ORDER_STATE_CONFLICT`  | The order is not in the state required by the action              |
 | `PAYMENT_FAILED`        | A simulated payment attempt failed                                |
+| `PAYMENT_NOT_ALLOWED`   | The order cannot be paid with its method or in its current state  |
 | `PAYMENT_EXPIRED`       | The payment window for the order has passed                       |
+| `CONSENT_REQUIRED`      | The privacy policy must be accepted before creating an account    |
 | `QUOTA_EXCEEDED`        | A per-user or global usage limit was reached                      |
 | `AI_NOT_CONFIGURED`     | No AI provider key is configured for this environment             |
 | `AI_UNAVAILABLE`        | Both the primary and fallback AI providers failed                 |
@@ -99,6 +148,50 @@ The single `store_settings` row in Postgres is the source of truth for
 shipping fees, the free-shipping threshold, and other storefront values. The
 UI, server services, Postgres functions, and the assistant all read that row.
 Environment variables do not carry pricing values.
+
+## Order lifecycle
+
+Order status moves `pending -> confirmed -> shipping -> delivered`; an allowed
+cancellation moves it to `cancelled`. Payment status is independent: `unpaid`,
+`paid`, or `refunded`.
+
+| Action          | Actor    | Preconditions                                                   | Result                                                                                    |
+| --------------- | -------- | --------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Place order     | Customer | Cart has lines; every variant is active and has enough stock    | `pending`, `unpaid`; stock deducted; cart cleared; `payment_due_at` set for bank transfer |
+| Pay (simulated) | Customer | Bank transfer, `pending`, `unpaid`, before `payment_due_at`     | Success -> `paid`; failure records an attempt and leaves the order unchanged              |
+| Expire          | Cron     | Bank transfer, `pending`, `unpaid`, past `payment_due_at`       | `cancelled`; stock restored                                                               |
+| Cancel          | Customer | Own order, `pending`                                            | `cancelled`; stock restored; `paid` -> `refunded`                                         |
+| Confirm         | Admin    | `pending`; a bank transfer must be `paid`; COD needs no payment | `confirmed`                                                                               |
+| Ship            | Admin    | `confirmed`                                                     | `shipping`                                                                                |
+| Deliver         | Admin    | `shipping`                                                      | `delivered`; COD -> `paid`                                                                |
+| Cancel          | Admin    | `pending` or `confirmed`                                        | `cancelled`; stock restored; `paid` -> `refunded`                                         |
+
+Every transition locks the order row (`FOR UPDATE`) and re-checks the current
+state. Stock is restored only on the single transition to `cancelled`.
+`place_order` locks cart rows, variants, and products in id order so two
+customers cannot buy the same last item and concurrent checkouts do not
+deadlock. A repeated `(user_id, idempotency_key)` returns the existing order
+without deducting stock again.
+
+### Database functions
+
+| Function                                                     | Caller              | Purpose                                                           |
+| ------------------------------------------------------------ | ------------------- | ----------------------------------------------------------------- |
+| `place_order(idempotency_key, recipient, shipping, payment)` | authenticated       | Creates an idempotent order from the caller cart.                 |
+| `cancel_order(order_id)`                                     | authenticated       | Cancels an owned pending order and restores stock.                |
+| `record_payment_attempt(order_id, outcome)`                  | authenticated       | Records a simulated bank transfer attempt.                        |
+| `admin_transition_order(order_id, action)`                   | authenticated admin | Applies confirm, ship, deliver, or cancel.                        |
+| `expire_unpaid_orders()`                                     | cron / service role | Cancels expired unpaid bank transfers.                            |
+| `admin_adjust_stock(variant_id, delta, stock, reason)`       | authenticated admin | Adjusts stock by delta or absolute value and writes an audit row. |
+
+Functions raise stable message codes such as `OUT_OF_STOCK`, `CART_CHANGED`,
+`ORDER_STATE_CONFLICT`, `PAYMENT_NOT_ALLOWED`, `PAYMENT_EXPIRED`, and
+`CONSENT_REQUIRED`. `src/server/db/errors.ts` maps those codes, Postgres
+privilege errors, and unique violations to the shared `ErrorCode` union.
+
+`pg_cron` runs `expire_unpaid_orders()` every minute. The job is scheduled by
+name, so replaying the migration updates the existing job instead of creating a
+duplicate.
 
 ### Locale and messages
 
@@ -192,18 +285,23 @@ their own client, or run with the `react-server` condition.
 ## Testing
 
 - **Unit tests** (`tests/unit`) cover pure modules: contracts, money
-  formatting, environment parsing, the shared Supabase cookie name, and the
-  proxy refresh helper when Supabase is not configured. They run in CI with
-  `pnpm test`.
+  formatting, environment parsing, the shared Supabase cookie name, the
+  database error mapper, and the proxy refresh helper when Supabase is not
+  configured. They run in CI with `pnpm test` and need no Docker.
 - **Integration tests** (`tests/integration`) call Postgres functions and RLS
-  policies against a local Supabase stack. They are not part of the CI quality
-  job because they need Docker; run them with `pnpm test:integration`.
+  policies against a local Supabase stack. They cover consent, RLS isolation,
+  order placement, idempotency, concurrent last-item checkout, payment and
+  expiry races, administrator transitions, and stock adjustments. Run them with
+  `pnpm test:integration` after `supabase start`; the runner resolves the local
+  URL and keys from `.env.local` or from `supabase status`.
 - **End-to-end tests** (`tests/e2e`) drive the rendered app with Playwright.
   They start the development server automatically unless
   `PLAYWRIGHT_BASE_URL` points at a running instance.
 
 `.github/workflows/ci.yml` runs lint, typecheck, and unit tests on every push
-to `main` and every pull request.
+to `main` and every pull request. Database integration tests are intentionally
+not part of that job: they need Docker and a Supabase stack, so they run on a
+developer machine (or a dedicated database job) before a migration is merged.
 
 ## Deployment
 
