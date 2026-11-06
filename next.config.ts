@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
   output: "standalone",
   reactStrictMode: true,
   poweredByHeader: false,
+  // Keep generated instruction files out of this repository.
+  agentRules: false,
 };
 
 export default withNextIntl(nextConfig);
