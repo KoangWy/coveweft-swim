@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import { loadCartCount, loadCurrentUser } from "@/features/account/components/session";
+import { AssistantWidget } from "@/features/assistant/components/assistant-widget";
 
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
@@ -18,6 +19,7 @@ export async function StorefrontFrame({ children }: { children: ReactNode }) {
         {children}
       </main>
       <SiteFooter />
+      <AssistantWidget key={user?.id ?? "visitor"} userId={user?.id ?? null} />
     </>
   );
 }

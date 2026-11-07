@@ -14,7 +14,7 @@ export type ModalSurfaceProps = {
   closeLabel: string;
   children: ReactNode;
   footer?: ReactNode;
-  variant: "dialog" | "drawer-left" | "drawer-right";
+  variant: "dialog" | "drawer-left" | "drawer-right" | "sheet";
   className?: string;
 };
 
@@ -22,12 +22,14 @@ const panelMotion = {
   dialog: { initial: { opacity: 0, y: 12, scale: 0.98 }, animate: { opacity: 1, y: 0, scale: 1 } },
   "drawer-left": { initial: { x: "-100%" }, animate: { x: 0 } },
   "drawer-right": { initial: { x: "100%" }, animate: { x: 0 } },
+  sheet: { initial: { y: "100%" }, animate: { y: 0 } },
 } as const;
 
 const panelLayout = {
   dialog: "m-auto max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-lg rounded-md",
   "drawer-left": "mr-auto h-dvh w-[min(22rem,calc(100%-3rem))]",
   "drawer-right": "ml-auto h-dvh w-[min(22rem,calc(100%-3rem))]",
+  sheet: "mt-auto max-h-[90dvh] min-h-[60dvh] w-full rounded-t-md",
 } as const;
 
 /**
@@ -63,6 +65,26 @@ export function ModalSurface({
       onCancel={(event) => {
         event.preventDefault();
         onClose();
+      }}
+      onKeyDown={(event) => {
+        if (event.key !== "Tab" || !ref.current) {
+          return;
+        }
+        const focusable = ref.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        );
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (!first || !last) {
+          return;
+        }
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }}
       onClick={(event) => {
         // A click on the dialog element itself is a click on the backdrop area.
