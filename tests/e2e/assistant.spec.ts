@@ -185,6 +185,167 @@ test("deltas render progressively and product cards link to the product", async 
   await expect(dialog.getByText("8 questions left today")).toBeVisible();
 });
 
+test("closing during a stream aborts it, keeps the partial answer, and a new turn is unaffected", async ({
+  page,
+}) => {
+  await mockStatus(page);
+  await page.addInitScript(() => {
+    const originalFetch = window.fetch.bind(window);
+    const probe = { calls: 0, aborted: false };
+    (window as unknown as { __assistantProbe: typeof probe }).__assistantProbe = probe;
+    window.fetch = (input: RequestInfo | URL, init?: RequestInit) => {
+      const raw =
+        typeof input === "string" ? input : input instanceof Request ? input.url : String(input);
+      if (new URL(raw, window.location.href).pathname !== "/api/chat") {
+        return originalFetch(input, init);
+      }
+
+      probe.calls += 1;
+      const encoder = new TextEncoder();
+
+      if (probe.calls === 1) {
+        const body = new ReadableStream<Uint8Array>({
+          start(controller) {
+            controller.enqueue(encoder.encode('event: delta\ndata: {"text":"Partial answer"}\n\n'));
+            init?.signal?.addEventListener("abort", () => {
+              probe.aborted = true;
+              try {
+                controller.error(new DOMException("Aborted", "AbortError"));
+              } catch {
+                // The stream may already be closed.
+              }
+            });
+          },
+        });
+        return Promise.resolve(
+          new Response(body, {
+            status: 200,
+            headers: { "Content-Type": "text/event-stream" },
+          }),
+        );
+      }
+
+      const second =
+        'event: delta\ndata: {"text":"Second answer"}\n\n' +
+        'event: done\ndata: {"remainingToday":7}\n\n';
+      return Promise.resolve(
+        new Response(second, {
+          status: 200,
+          headers: { "Content-Type": "text/event-stream" },
+        }),
+      );
+    };
+  });
+
+  await signIn(page);
+  const dialog = await openAssistant(page);
+  await send(dialog, "First question");
+  await expect(dialog.getByText("Partial answer")).toBeVisible();
+
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          (window as unknown as { __assistantProbe: { aborted: boolean } }).__assistantProbe
+            .aborted,
+      ),
+    )
+    .toBe(true);
+
+  const reopened = await openAssistant(page);
+  await expect(reopened.getByText("Partial answer")).toBeVisible();
+  await expect(reopened.getByText("Answer incomplete")).toBeVisible();
+  await expect(reopened.getByLabel("Your question")).toBeVisible();
+
+  await send(reopened, "Second question");
+  await expect(reopened.getByText("Second answer")).toBeVisible();
+  await expect(reopened.getByText("7 questions left today")).toBeVisible();
+  expect(
+    await page.evaluate(
+      () => (window as unknown as { __assistantProbe: { calls: number } }).__assistantProbe.calls,
+    ),
+  ).toBe(2);
+});
+
+test("a fresh ready status clears an obsolete daily-quota block", async ({ page }) => {
+  await mockStatus(page);
+  await mockChatJson(page, 429, {
+    code: "AI_QUOTA_USER_DAY",
+    details: { remainingToday: 0 },
+  });
+  await signIn(page);
+
+  let dialog = await openAssistant(page);
+  await send(dialog, "One more question");
+  await expect(dialog.getByText("You have used all of today's questions")).toBeVisible();
+  await expect(dialog.getByLabel("Your question")).toHaveCount(0);
+
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+
+  // The mock status is healthy again, as it is after a quota day resets.
+  dialog = await openAssistant(page);
+  await expect(dialog.getByLabel("Your question")).toBeVisible();
+  await expect(dialog.getByText("You have used all of today's questions")).toHaveCount(0);
+});
+
+test("an accepted failed turn reconciles the remaining count", async ({ page }) => {
+  let statusCalls = 0;
+  await page.route("**/api/chat/status", (route) => {
+    statusCalls += 1;
+    return route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        ...STATUS_READY,
+        remainingToday: statusCalls === 1 ? 9 : 8,
+      }),
+    });
+  });
+  await mockChatSse(
+    page,
+    sseBody([{ event: "error", data: { code: "AI_UNAVAILABLE", retryable: true } }]),
+  );
+  await signIn(page);
+
+  const dialog = await openAssistant(page);
+  await expect(dialog.getByText("9 questions left today")).toBeVisible();
+  await send(dialog, "A failed question");
+
+  await expect(dialog.getByText("The assistant could not answer")).toBeVisible();
+  await expect(dialog.getByText("8 questions left today")).toBeVisible({ timeout: 10_000 });
+});
+
+test("a delayed status response does not overwrite newer quota info", async ({ page }) => {
+  await page.route("**/api/chat/status", async (route) => {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    return route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ ...STATUS_READY, remainingToday: 9 }),
+    });
+  });
+  await mockChatSse(
+    page,
+    sseBody([
+      { event: "delta", data: { text: "Fresh answer" } },
+      { event: "done", data: { remainingToday: 7 } },
+    ]),
+  );
+  await signIn(page);
+
+  const dialog = await openAssistant(page);
+  await send(dialog, "Question while status is slow");
+  await expect(dialog.getByText("Fresh answer")).toBeVisible();
+  await expect(dialog.getByText("7 questions left today")).toBeVisible();
+
+  await page.waitForTimeout(2200);
+  await expect(dialog.getByText("7 questions left today")).toBeVisible();
+  await expect(dialog.getByText("9 questions left today")).toHaveCount(0);
+});
+
 test("answer text is rendered as plain text, never HTML", async ({ page }) => {
   await mockStatus(page);
   await mockChatSse(
@@ -326,6 +487,7 @@ test("a transient failure offers a retry that can succeed", async ({ page }) => 
   await send(dialog, "Can you retry?");
 
   await expect(dialog.getByText("The assistant could not answer")).toBeVisible();
+  await expect(dialog.getByText("9 questions left today")).toBeVisible();
   await dialog.getByRole("button", { name: "Try again" }).click();
   await expect(dialog.getByText("Here is the answer.")).toBeVisible();
   await expect(calls).toBe(2);

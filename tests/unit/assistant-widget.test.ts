@@ -11,6 +11,7 @@ import {
   MAX_STORED_TURNS,
   parseProductCards,
   readAssistantHistory,
+  reconcileIssueWithStatus,
   SseParser,
   toRequestTurns,
   writeAssistantHistory,
@@ -203,6 +204,46 @@ describe("assistant error states", () => {
       retryable: false,
     });
     expect(issueForError("INTERNAL").kind).toBe("error");
+  });
+
+  it("clears blocking issues when a fresh status allows sending", () => {
+    const ready = {
+      configured: true,
+      signedIn: true,
+      remainingToday: 9,
+      globalPaused: false,
+    };
+
+    for (const kind of ["not_configured", "quota_day", "paused", "unauthenticated"] as const) {
+      expect(reconcileIssueWithStatus({ kind, retryable: false }, ready)).toBeNull();
+    }
+    expect(reconcileIssueWithStatus({ kind: "error", retryable: true }, ready)).toMatchObject({
+      kind: "error",
+    });
+    expect(reconcileIssueWithStatus({ kind: "interrupted", retryable: true }, ready)).toMatchObject(
+      { kind: "interrupted" },
+    );
+  });
+
+  it("replaces stale issues with the blocking state the status reports", () => {
+    const base = {
+      configured: true,
+      signedIn: true,
+      remainingToday: 9,
+      globalPaused: false,
+    };
+
+    expect(reconcileIssueWithStatus(null, { ...base, signedIn: false })?.kind).toBe(
+      "unauthenticated",
+    );
+    expect(reconcileIssueWithStatus(null, { ...base, configured: false })?.kind).toBe(
+      "not_configured",
+    );
+    expect(reconcileIssueWithStatus(null, { ...base, globalPaused: true })?.kind).toBe("paused");
+    expect(reconcileIssueWithStatus(null, { ...base, remainingToday: 0 })?.kind).toBe("quota_day");
+    expect(
+      reconcileIssueWithStatus({ kind: "quota_minute", retryable: false }, base),
+    ).toMatchObject({ kind: "quota_minute" });
   });
 
   it("keeps the composer open for retryable and per-minute errors", () => {
