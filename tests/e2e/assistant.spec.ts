@@ -360,6 +360,167 @@ test("a delayed status response does not overwrite newer quota info", async ({ p
   await expect(dialog.getByText("9 questions left today")).toHaveCount(0);
 });
 
+test("closing while a rejection body is loading does not resurrect cleared history", async ({
+  page,
+}) => {
+  await mockStatus(page);
+  await page.addInitScript(() => {
+    const originalFetch = window.fetch.bind(window);
+    const probe = { jsonStarted: false, aborted: false };
+    (window as unknown as { __assistantProbe: typeof probe }).__assistantProbe = probe;
+
+    window.fetch = (input: RequestInfo | URL, init?: RequestInit) => {
+      const raw =
+        typeof input === "string" ? input : input instanceof Request ? input.url : String(input);
+      if (new URL(raw, window.location.href).pathname !== "/api/chat") {
+        return originalFetch(input, init);
+      }
+
+      const body = new ReadableStream<Uint8Array>({
+        start(controller) {
+          init?.signal?.addEventListener("abort", () => {
+            probe.aborted = true;
+            try {
+              controller.error(new DOMException("Aborted", "AbortError"));
+            } catch {
+              // The stream may already be closed.
+            }
+          });
+        },
+      });
+      const response = new Response(body, {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      });
+      const json = response.json.bind(response);
+      response.json = () => {
+        probe.jsonStarted = true;
+        return json();
+      };
+      return Promise.resolve(response);
+    };
+  });
+
+  await signIn(page);
+  const dialog = await openAssistant(page);
+  await send(dialog, "Private old question");
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          (window as unknown as { __assistantProbe: { jsonStarted: boolean } }).__assistantProbe
+            .jsonStarted,
+      ),
+    )
+    .toBe(true);
+
+  await page.keyboard.press("Escape");
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          (window as unknown as { __assistantProbe: { aborted: boolean } }).__assistantProbe
+            .aborted,
+      ),
+    )
+    .toBe(true);
+  await page.evaluate(() => window.sessionStorage.clear());
+  await page.waitForTimeout(600);
+
+  expect(
+    await page.evaluate(() =>
+      Object.keys(window.sessionStorage).filter((key) => key.includes("assistant")),
+    ),
+  ).toEqual([]);
+});
+
+test("unmounting while a rejection body is loading does not resurrect cleared history", async ({
+  page,
+}) => {
+  await mockStatus(page);
+  await page.addInitScript(() => {
+    const originalFetch = window.fetch.bind(window);
+    const probe = { jsonStarted: false, aborted: false };
+    (window as unknown as { __assistantProbe: typeof probe }).__assistantProbe = probe;
+
+    window.fetch = (input: RequestInfo | URL, init?: RequestInit) => {
+      const raw =
+        typeof input === "string" ? input : input instanceof Request ? input.url : String(input);
+      if (new URL(raw, window.location.href).pathname !== "/api/chat") {
+        return originalFetch(input, init);
+      }
+
+      const body = new ReadableStream<Uint8Array>({
+        start(controller) {
+          init?.signal?.addEventListener("abort", () => {
+            probe.aborted = true;
+            try {
+              controller.error(new DOMException("Aborted", "AbortError"));
+            } catch {
+              // The stream may already be closed.
+            }
+          });
+        },
+      });
+      const response = new Response(body, {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      });
+      const json = response.json.bind(response);
+      response.json = () => {
+        probe.jsonStarted = true;
+        return json();
+      };
+      return Promise.resolve(response);
+    };
+  });
+
+  await signIn(page);
+  const dialog = await openAssistant(page);
+  await send(dialog, "Private old question");
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          (window as unknown as { __assistantProbe: { jsonStarted: boolean } }).__assistantProbe
+            .jsonStarted,
+      ),
+    )
+    .toBe(true);
+
+  // Logout clears the tab before the client-side navigation unmounts the
+  // widget and aborts the still-loading error body.
+  await page.evaluate(() => window.sessionStorage.clear());
+  await page.evaluate(() => {
+    const link = document.querySelector<HTMLAnchorElement>('header a[href="/vi/shop"]');
+    link?.click();
+  });
+  await expect(page).toHaveURL(/\/vi\/shop$/);
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          (window as unknown as { __assistantProbe: { aborted: boolean } }).__assistantProbe
+            .aborted,
+      ),
+    )
+    .toBe(true);
+  await page.waitForTimeout(600);
+
+  expect(
+    await page.evaluate(() =>
+      Object.keys(window.sessionStorage).filter((key) => key.includes("assistant")),
+    ),
+  ).toEqual([]);
+
+  await page.getByRole("button", { name: "Hỏi trợ lý mua sắm" }).click();
+  const vietnameseDialog = page.getByRole("dialog");
+  await expect(vietnameseDialog.getByText("Private old question")).toHaveCount(0);
+  await expect(
+    vietnameseDialog.getByText("Hãy hỏi về sản phẩm, size, tồn kho hoặc chính sách của cửa hàng."),
+  ).toBeVisible();
+});
+
 test("answer text is rendered as plain text, never HTML", async ({ page }) => {
   await mockStatus(page);
   await mockChatSse(

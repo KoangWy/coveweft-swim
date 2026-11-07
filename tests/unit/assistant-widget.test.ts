@@ -5,6 +5,7 @@ import {
   clearOtherAssistantHistories,
   createMessageId,
   issueBlocksComposer,
+  isAbortError,
   issueForError,
   MAX_QUESTION_CHARS,
   MAX_REQUEST_TURNS,
@@ -204,6 +205,15 @@ describe("assistant transcript", () => {
 
     expect(storage.getItem(assistantHistoryKey("a"))).toBeNull();
     expect(storage.getItem(assistantHistoryKey("b"))).toBeNull();
+  });
+});
+
+describe("abort errors", () => {
+  it("recognises fetch and body cancellation without treating it as malformed JSON", () => {
+    expect(isAbortError(new DOMException("The operation was aborted.", "AbortError"))).toBe(true);
+    expect(isAbortError(new Error("Unexpected end of JSON input"))).toBe(false);
+    expect(isAbortError(null)).toBe(false);
+    expect(isAbortError(undefined)).toBe(false);
   });
 });
 
