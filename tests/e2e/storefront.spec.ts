@@ -184,6 +184,22 @@ test("submitting the same checkout again returns the same order", async ({ page 
   await expect(page.getByRole("link", { name: /^Order [0-9A-F]{8}/ })).toHaveCount(1);
 });
 
+test("a rejected checkout moves focus to the first invalid field", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await signUp(page);
+  await buyOne(page);
+  await fillCheckout(page, "Cash on delivery");
+  // Spaces pass the browser's required check but not the server's.
+  await page.getByLabel("Delivery address").fill("   ");
+  await page.getByRole("button", { name: "Place order" }).click();
+
+  const address = page.getByLabel("Delivery address");
+  await expect(address).toBeFocused();
+  await expect(address).toHaveAttribute("aria-invalid", "true");
+  await expect(address).toBeInViewport();
+  await expect(page).toHaveURL(/\/en\/checkout$/);
+});
+
 test("sign-in returns to the product in the same language", async ({ page }) => {
   await page.goto(`/vi/products/${PRODUCT_SKU}`);
   await chooseOption(page);
@@ -226,6 +242,55 @@ test("the mobile listing opens filters in a drawer", async ({ page }) => {
   await expect(drawer).toBeVisible();
   await drawer.getByRole("radio", { name: /^Accessories/ }).check();
   await expect(page).toHaveURL(/category=Accessories/);
+});
+
+test("choosing a drawer filter from the keyboard keeps focus on that option", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/en/shop");
+  await page.getByRole("button", { name: "Filters" }).click();
+  const drawer = page.getByRole("dialog", { name: "Filters" });
+  const all = drawer.getByRole("group", { name: "Category" }).getByRole("radio").first();
+  await all.focus();
+  // Arrow keys move through the radio group and select the next option.
+  let tops = drawer.getByRole("radio", { name: /^Tops/ });
+  for (let i = 0; i < 20 && !(await tops.isChecked()); i += 1) {
+    await page.keyboard.press("ArrowDown");
+  }
+  await expect(page).toHaveURL(/category=Tops/);
+  await expect(drawer).toBeVisible();
+  tops = drawer.getByRole("radio", { name: /^Tops/ });
+  await expect(tops).toBeFocused();
+  await expect(tops).toBeChecked();
+});
+
+test("filters and sort follow the URL on Back and Forward", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto("/en/shop");
+  const filters = page.getByRole("form", { name: "Filters" }).first();
+  const sort = page.getByRole("combobox", { name: "Sort by" });
+
+  await filters.getByRole("radio", { name: /^Tops/ }).check();
+  await expect(page).toHaveURL(/category=Tops/);
+  await sort.selectOption("price-asc");
+  await expect(page).toHaveURL(/sort=price-asc/);
+
+  await page.goBack();
+  await expect(page).not.toHaveURL(/sort=/);
+  await expect(sort).toHaveValue("newest");
+  await expect(filters.getByRole("radio", { name: /^Tops/ })).toBeChecked();
+
+  await page.goBack();
+  await expect(page).not.toHaveURL(/category=/);
+  await expect(filters.getByRole("radio", { name: /^Tops/ })).not.toBeChecked();
+  await expect(
+    filters.getByRole("group", { name: "Category" }).getByRole("radio").first(),
+  ).toBeChecked();
+
+  await page.goForward();
+  await page.goForward();
+  await expect(page).toHaveURL(/sort=price-asc/);
+  await expect(sort).toHaveValue("price-asc");
+  await expect(filters.getByRole("radio", { name: /^Tops/ })).toBeChecked();
 });
 
 test("a search with no results shows the empty state", async ({ page }) => {
