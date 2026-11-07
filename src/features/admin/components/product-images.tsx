@@ -8,7 +8,7 @@ import {
   Trash,
   UploadSimple,
 } from "@phosphor-icons/react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useRef, useState, useTransition, type ChangeEvent, type FormEvent } from "react";
 
 import { Badge } from "@/components/ui/badge";
@@ -51,7 +51,6 @@ export function AdminProductImages({ productId, images, fallbackLabel }: AdminPr
   const te = useTranslations("errors");
   const toast = useToast();
   const router = useRouter();
-  const locale = useLocale();
   const inputRef = useRef<HTMLInputElement>(null);
   const [items, setItems] = useState(images);
   const [file, setFile] = useState<File | null>(null);
@@ -100,7 +99,7 @@ export function AdminProductImages({ productId, images, fallbackLabel }: AdminPr
     data.set("file", file);
 
     try {
-      const response = await fetch(`/${locale}/admin/products/${productId}/images`, {
+      const response = await fetch(`/api/admin/products/${productId}/images`, {
         method: "POST",
         body: data,
       });

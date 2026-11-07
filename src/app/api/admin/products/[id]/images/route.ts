@@ -11,12 +11,13 @@ const STATUS: Partial<Record<ErrorCode, number>> = {
   INTERNAL: 500,
 };
 
-type Context = { params: Promise<{ locale: string; id: string }> };
+type Context = { params: Promise<{ id: string }> };
 
 /**
- * Image upload entry point. Server Actions cap request bodies at 1 MB, while
- * the media service accepts files up to 5 MB, so the upload travels through
- * this small handler instead. The service still checks the administrator role.
+ * Image upload entry point in the API layer. Server Actions cap request bodies
+ * at 1 MB, while the media service accepts files up to 5 MB, so the upload
+ * travels through this small boundary. The service still checks the
+ * administrator role and all upload rules.
  */
 export async function POST(request: Request, context: Context) {
   const origin = request.headers.get("origin");
