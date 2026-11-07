@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { useTransition } from "react";
+import { useOptimistic, useTransition } from "react";
 
 import { Select } from "@/components/ui/select";
 import { useRouter } from "@/i18n/navigation";
@@ -14,6 +14,9 @@ export function SortSelect({ query }: { query: ShopQuery }) {
   const locale = useLocale();
   const router = useRouter();
   const [, startTransition] = useTransition();
+  // The URL owns the selection, so Back and Forward update it. While a new
+  // sort loads, the optimistic value keeps the chosen option selected.
+  const [sort, setSort] = useOptimistic(query.sort);
 
   return (
     <form method="get" action={`/${locale}/shop`} className="flex items-end gap-2">
@@ -26,13 +29,16 @@ export function SortSelect({ query }: { query: ShopQuery }) {
         id="shop-sort"
         name="sort"
         label={t("label")}
-        defaultValue={query.sort}
+        value={sort}
         options={SHOP_SORTS.map((sort) => ({ value: sort, label: t(sort) }))}
         containerClassName="w-48"
         className="h-10 text-small"
         onChange={(event) => {
-          const sort = event.currentTarget.value as ShopQuery["sort"];
-          startTransition(() => router.push(shopHref(query, { sort }), { scroll: false }));
+          const next = event.currentTarget.value as ShopQuery["sort"];
+          startTransition(() => {
+            setSort(next);
+            router.push(shopHref(query, { sort: next }), { scroll: false });
+          });
         }}
       />
       <noscript>
