@@ -135,6 +135,11 @@ export function reconcileIssueWithStatus(
   return issue;
 }
 
+/** True for the cancellation error thrown by fetch or a response body. */
+export function isAbortError(error: unknown): boolean {
+  return (error as { name?: unknown } | null)?.name === "AbortError";
+}
+
 export const ASSISTANT_HISTORY_PREFIX = "coveweft.assistant.history.";
 
 /** The session-storage key that keeps one account's transcript. */

@@ -7,6 +7,7 @@ import type { Locale } from "@/lib/locale";
 import {
   clearOtherAssistantHistories,
   createMessageId,
+  isAbortError,
   issueForError,
   MAX_QUESTION_CHARS,
   parseProductCards,
@@ -93,11 +94,15 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
   };
 
   const persist = () => {
-    if (typeof window === "undefined") {
+    if (!mountedRef.current || typeof window === "undefined") {
       return;
     }
     writeAssistantHistory(window.sessionStorage, userId, messagesRef.current);
   };
+
+  function isCurrentRequest(requestId: number, controller: AbortController): boolean {
+    return mountedRef.current && requestIdRef.current === requestId && !controller.signal.aborted;
+  }
 
   const setRemainingValue = useCallback((value: number | null) => {
     quotaVersionRef.current += 1;
@@ -115,7 +120,7 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
         headers: { Accept: "application/json" },
       });
 
-      if (!response.ok) {
+      if (!response.ok || !mountedRef.current || requestId !== statusRequestIdRef.current) {
         return;
       }
 
@@ -224,12 +229,31 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
         signal: controller.signal,
       });
 
+      if (!isCurrentRequest(requestId, controller)) {
+        return;
+      }
+
       if (!response.ok) {
-        const payload = (await response.json().catch(() => null)) as {
-          error?: { code?: unknown; details?: unknown };
-        } | null;
-        const code = typeof payload?.error?.code === "string" ? payload.error.code : "INTERNAL";
-        showIssue(code, { details: payload?.error?.details, count: content.length });
+        let payload: unknown = null;
+
+        try {
+          payload = await response.json();
+        } catch (error) {
+          // A body read that was cancelled by close/unmount is not a malformed
+          // response; the request is already invalid and must not touch state
+          // or session storage.
+          if (isAbortError(error) || !isCurrentRequest(requestId, controller)) {
+            return;
+          }
+        }
+
+        if (!isCurrentRequest(requestId, controller)) {
+          return;
+        }
+
+        const error = (payload as { error?: { code?: unknown; details?: unknown } } | null)?.error;
+        const code = typeof error?.code === "string" ? error.code : "INTERNAL";
+        showIssue(code, { details: error?.details, count: content.length });
         persist();
         return;
       }
@@ -268,7 +292,7 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
         failure: null as { code: string; retryable: boolean } | null,
       };
       const parser = new SseParser((event) => {
-        if (requestIdRef.current !== requestId) {
+        if (!mountedRef.current || requestIdRef.current !== requestId) {
           return;
         }
 
@@ -316,7 +340,7 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
       parser.push(decoder.decode());
       parser.end();
 
-      if (requestIdRef.current !== requestId) {
+      if (!mountedRef.current || requestIdRef.current !== requestId) {
         return;
       }
 
@@ -349,10 +373,10 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
         void refreshStatus();
       }
     } catch (error) {
-      if (requestIdRef.current !== requestId) {
+      if (!mountedRef.current || requestIdRef.current !== requestId) {
         return;
       }
-      if ((error as { name?: string } | null)?.name === "AbortError") {
+      if (isAbortError(error)) {
         return;
       }
 
@@ -374,7 +398,7 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
         void refreshStatus();
       }
     } finally {
-      if (requestIdRef.current === requestId) {
+      if (mountedRef.current && requestIdRef.current === requestId) {
         abortRef.current = null;
         activeTurnRef.current = null;
         busyRef.current = false;
