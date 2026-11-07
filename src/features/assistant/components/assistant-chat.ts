@@ -72,10 +72,6 @@ export function issueBlocksComposer(kind: AssistantIssueKind): boolean {
   );
 }
 
-export function issueIsError(kind: AssistantIssueKind): boolean {
-  return kind === "error" || kind === "interrupted";
-}
-
 /**
  * Maps an API error code (a pre-stream JSON error or an SSE `error` event) to
  * the panel state. Unknown codes fall back to the retryable transient error.
@@ -107,6 +103,33 @@ export function issueForError(
     default:
       return { kind: "error", retryable: false };
   }
+}
+
+/**
+ * Reconciles a blocking issue with a fresh status response. The server is the
+ * source of truth for configuration, session, pause, and quota, so a healthy
+ * response clears stale blocking states. Transient issues stay visible.
+ */
+export function reconcileIssueWithStatus(
+  issue: AssistantIssue | null,
+  status: ChatStatus,
+): AssistantIssue | null {
+  if (!status.signedIn) {
+    return issueForError("UNAUTHENTICATED");
+  }
+  if (!status.configured) {
+    return issueForError("AI_NOT_CONFIGURED");
+  }
+  if (status.globalPaused) {
+    return issueForError("AI_QUOTA_GLOBAL");
+  }
+  if (status.remainingToday === 0) {
+    return issueForError("AI_QUOTA_USER_DAY");
+  }
+  if (issue && issueBlocksComposer(issue.kind)) {
+    return null;
+  }
+  return issue;
 }
 
 export const ASSISTANT_HISTORY_PREFIX = "coveweft.assistant.history.";
@@ -177,17 +200,6 @@ export function writeAssistantHistory(
     storage.setItem(assistantHistoryKey(userId), JSON.stringify(turns));
   } catch {
     // A full or unavailable session storage must not break the chat.
-  }
-}
-
-export function clearAssistantHistory(storage: SessionStorageLike, userId: string | null): void {
-  if (!userId) {
-    return;
-  }
-  try {
-    storage.removeItem(assistantHistoryKey(userId));
-  } catch {
-    // Ignore storage failures.
   }
 }
 
