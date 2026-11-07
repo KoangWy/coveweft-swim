@@ -525,6 +525,11 @@ test("an interrupted stream keeps the partial answer and marks it incomplete", a
   await expect(dialog.getByText("Answer incomplete")).toBeVisible();
   await expect(dialog.getByText("The answer was interrupted")).toBeVisible();
   await expect(dialog.getByRole("button", { name: "Try again" })).toBeVisible();
+
+  await page.reload();
+  const reloaded = await openAssistant(page);
+  await expect(reloaded.getByText("The first half of the answer")).toBeVisible();
+  await expect(reloaded.getByText("Answer incomplete")).toBeVisible();
 });
 
 test("a question over the limit never reaches the API", async ({ page }) => {

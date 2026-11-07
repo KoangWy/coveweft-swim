@@ -131,6 +131,35 @@ describe("assistant transcript", () => {
     expect(readAssistantHistory(storage, "user-2")).toEqual([]);
   });
 
+  it("keeps the incomplete marker across a stored partial answer", () => {
+    const storage = new MemoryStorage();
+    const messages: AssistantMessage[] = [
+      message("user", "A long question"),
+      { ...message("assistant", "Half an answer"), interrupted: true },
+    ];
+
+    writeAssistantHistory(storage, "user-1", messages);
+
+    expect(readAssistantHistory(storage, "user-1")).toEqual([
+      { role: "user", content: "A long question" },
+      { role: "assistant", content: "Half an answer", interrupted: true },
+    ]);
+    expect(
+      toRequestTurns(
+        readAssistantHistory(storage, "user-1").map((turn) => ({
+          id: createMessageId(),
+          role: turn.role,
+          content: turn.content,
+          cards: [],
+          interrupted: turn.interrupted === true,
+        })),
+      ),
+    ).toEqual([
+      { role: "user", content: "A long question" },
+      { role: "assistant", content: "Half an answer" },
+    ]);
+  });
+
   it("drops malformed stored entries and caps the stored transcript", () => {
     const storage = new MemoryStorage();
     const key = assistantHistoryKey("user-1");

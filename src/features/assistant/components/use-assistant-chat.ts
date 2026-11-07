@@ -456,7 +456,7 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
       role: turn.role,
       content: turn.content,
       cards: [],
-      interrupted: false,
+      interrupted: turn.interrupted === true,
     }));
     messagesRef.current = loaded;
     // Session storage is an external store; the transcript is read once per

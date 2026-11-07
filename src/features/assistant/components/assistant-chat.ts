@@ -16,6 +16,9 @@ export type ChatRole = "user" | "assistant";
 /** A text turn as sent to `POST /api/chat`. */
 export type ChatTurn = { role: ChatRole; content: string };
 
+/** A stored turn; only assistant turns may carry the incomplete marker. */
+export type StoredChatTurn = ChatTurn & { interrupted?: boolean };
+
 /** A product card from a `products` event. */
 export type AssistantProductCard = {
   sku: string;
@@ -148,15 +151,16 @@ export type SessionStorageLike = {
   removeItem(key: string): void;
 };
 
-function isTurn(value: unknown): value is ChatTurn {
+function isTurn(value: unknown): value is StoredChatTurn {
   if (!value || typeof value !== "object") {
     return false;
   }
-  const turn = value as { role?: unknown; content?: unknown };
+  const turn = value as { role?: unknown; content?: unknown; interrupted?: unknown };
   return (
     (turn.role === "user" || turn.role === "assistant") &&
     typeof turn.content === "string" &&
-    turn.content.trim() !== ""
+    turn.content.trim() !== "" &&
+    (turn.interrupted === undefined || typeof turn.interrupted === "boolean")
   );
 }
 
@@ -164,7 +168,7 @@ function isTurn(value: unknown): value is ChatTurn {
 export function readAssistantHistory(
   storage: SessionStorageLike,
   userId: string | null,
-): ChatTurn[] {
+): StoredChatTurn[] {
   if (!userId) {
     return [];
   }
@@ -195,7 +199,9 @@ export function writeAssistantHistory(
   try {
     const turns = messages
       .filter((message) => message.content.trim() !== "")
-      .map(({ role, content }) => ({ role, content }))
+      .map(({ role, content, interrupted }) =>
+        interrupted ? { role, content, interrupted: true } : { role, content },
+      )
       .slice(-MAX_STORED_TURNS);
     storage.setItem(assistantHistoryKey(userId), JSON.stringify(turns));
   } catch {
