@@ -20,7 +20,7 @@ export function FormAlert({
       role="alert"
       tabIndex={ref ? -1 : undefined}
       className={cx(
-        "flex items-start gap-3 rounded-md scroll-mt-40 border border-error-200 bg-error-50 p-4 text-small text-error-700",
+        "flex scroll-mt-40 items-start gap-3 rounded-md border border-error-200 bg-error-50 p-4 text-small text-error-700",
         className,
       )}
     >
