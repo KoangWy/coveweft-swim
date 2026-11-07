@@ -1,4 +1,17 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
+
+const ADMIN = {
+  email: process.env.DEMO_ADMIN_EMAIL ?? "admin@demo.coveweft.local",
+  password: process.env.DEMO_ADMIN_PASSWORD ?? "demo-admin-123",
+};
+
+async function signInAdmin(page: Page) {
+  await page.goto("/en/sign-in?next=%2Fadmin");
+  await page.getByLabel("Email").fill(ADMIN.email);
+  await page.getByLabel("Password").fill(ADMIN.password);
+  await page.getByRole("button", { name: "Sign in" }).click();
+  await expect(page).toHaveURL(/\/en\/admin$/);
+}
 
 const VIEWPORTS = [
   { name: "mobile", width: 360, height: 780 },
@@ -140,7 +153,7 @@ for (const viewport of [
     test.use({ viewport });
 
     test("keep the whole focus outline inside the scroll area", async ({ page }) => {
-      await page.goto("/en/admin");
+      await signInAdmin(page);
       const nav = page.getByRole("navigation", { name: "Admin navigation" });
       const list = nav.getByRole("list");
 
@@ -192,7 +205,7 @@ test("the skip link moves focus to the main content", async ({ page }) => {
 });
 
 test("the admin area uses its own frame without the storefront header", async ({ page }) => {
-  await page.goto("/en/admin");
+  await signInAdmin(page);
 
   await expect(page.getByRole("navigation", { name: "Admin navigation" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Overview" })).toHaveAttribute(
