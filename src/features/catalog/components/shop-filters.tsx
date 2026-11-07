@@ -2,7 +2,7 @@
 
 import { CaretDown } from "@phosphor-icons/react";
 import { useLocale, useTranslations } from "next-intl";
-import { useTransition, type FormEvent, type ReactNode } from "react";
+import { useEffect, useRef, useTransition, type FormEvent, type ReactNode } from "react";
 
 import { buttonClasses } from "@/components/ui/button";
 import { controlBorder, controlClasses } from "@/components/ui/field";
@@ -68,6 +68,32 @@ export function ShopFilters({ facets, query, idPrefix, onApplied, className }: S
   const locale = useLocale();
   const router = useRouter();
   const [pending, startTransition] = useTransition();
+  const formRef = useRef<HTMLFormElement>(null);
+  const { category, gender, type, size, material, priceMin, priceMax, inStock } = query;
+  const featureKey = query.features.join("\n");
+
+  // The inputs are uncontrolled, so they keep focus and typed text while the
+  // listing reloads. When the URL changes, for example on Back, copy its
+  // filters into the same inputs instead of remounting the form.
+  useEffect(() => {
+    const form = formRef.current;
+    if (!form) return;
+    const single: Record<string, string | undefined> = { category, gender, type, size, material };
+    const features = featureKey ? featureKey.split("\n") : [];
+    const prices: Record<string, number | undefined> = { min: priceMin, max: priceMax };
+    for (const element of form.elements) {
+      if (!(element instanceof HTMLInputElement)) continue;
+      if (element.type === "radio" && element.name in single) {
+        element.checked = element.value === (single[element.name] ?? "");
+      } else if (element.name === "inStock") {
+        element.checked = inStock;
+      } else if (element.name === "feature") {
+        element.checked = features.includes(element.value);
+      } else if (element.name in prices && element !== document.activeElement) {
+        element.value = prices[element.name]?.toString() ?? "";
+      }
+    }
+  }, [category, gender, type, size, material, priceMin, priceMax, inStock, featureKey]);
 
   function apply(form: HTMLFormElement) {
     const params = new URLSearchParams();
@@ -140,8 +166,7 @@ export function ShopFilters({ facets, query, idPrefix, onApplied, className }: S
 
   return (
     <form
-      // Keyed by the query so default values follow back and forward navigation.
-      key={JSON.stringify(query)}
+      ref={formRef}
       method="get"
       action={`/${locale}/shop`}
       onChange={onChange}
