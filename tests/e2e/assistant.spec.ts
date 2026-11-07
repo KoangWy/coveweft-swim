@@ -270,7 +270,14 @@ test("closing during a stream aborts it, keeps the partial answer, and a new tur
 });
 
 test("a fresh ready status clears an obsolete daily-quota block", async ({ page }) => {
-  await mockStatus(page);
+  let statusRemaining = 9;
+  await page.route("**/api/chat/status", (route) =>
+    route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ ...STATUS_READY, remainingToday: statusRemaining }),
+    }),
+  );
   await mockChatJson(page, 429, {
     code: "AI_QUOTA_USER_DAY",
     details: { remainingToday: 0 },
@@ -282,10 +289,17 @@ test("a fresh ready status clears an obsolete daily-quota block", async ({ page 
   await expect(dialog.getByText("You have used all of today's questions")).toBeVisible();
   await expect(dialog.getByLabel("Your question")).toHaveCount(0);
 
+  statusRemaining = 0;
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog")).toHaveCount(0);
+  dialog = await openAssistant(page);
+  await expect(dialog.getByText("You have used all of today's questions")).toBeVisible();
+  await expect(dialog.getByLabel("Your question")).toHaveCount(0);
 
-  // The mock status is healthy again, as it is after a quota day resets.
+  // The next quota day starts with a fresh allowance.
+  statusRemaining = 9;
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("dialog")).toHaveCount(0);
   dialog = await openAssistant(page);
   await expect(dialog.getByLabel("Your question")).toBeVisible();
   await expect(dialog.getByText("You have used all of today's questions")).toHaveCount(0);
