@@ -111,11 +111,25 @@ export function CheckoutForm({
     (state.values?.paymentMethod as PaymentMethod) || "cod",
   );
   const submitting = useRef(false);
+  const formRef = useRef<HTMLFormElement>(null);
+  const alertRef = useRef<HTMLDivElement>(null);
   const values = state.values ?? defaults;
 
   useEffect(() => {
     if (!pending) submitting.current = false;
   }, [pending]);
+
+  // After a failed submission, take the customer to the first invalid field,
+  // or to the error summary when the problem is not tied to a field.
+  useEffect(() => {
+    if (!state.code) return;
+    const target =
+      formRef.current?.querySelector<HTMLElement>('[aria-invalid="true"]') ?? alertRef.current;
+    if (!target) return;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    target.focus({ preventScroll: true });
+    target.scrollIntoView({ block: "center", behavior: reduceMotion ? "auto" : "smooth" });
+  }, [state]);
   const current = totals[shipping];
   const fieldError = (name: string) =>
     state.fieldErrors?.[name] ? t(`validation.${state.fieldErrors[name]}`) : undefined;
@@ -123,6 +137,7 @@ export function CheckoutForm({
 
   return (
     <form
+      ref={formRef}
       action={action}
       onSubmit={(event) => {
         // A second click before the first submission settles is ignored here;
@@ -135,7 +150,7 @@ export function CheckoutForm({
       <input type="hidden" name="locale" value={locale} />
       <input type="hidden" name="idempotencyKey" value={idempotencyKey} />
       <div className="flex flex-col gap-10 lg:col-span-7">
-        {state.code ? <FormAlert>{t(`errors.${state.code}`)}</FormAlert> : null}
+        {state.code ? <FormAlert ref={alertRef}>{t(`errors.${state.code}`)}</FormAlert> : null}
 
         <section aria-labelledby="delivery-heading" className="flex flex-col gap-5">
           <h2 id="delivery-heading" className="text-heading font-semibold text-navy-900">
