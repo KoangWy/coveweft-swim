@@ -277,7 +277,7 @@ test.describe("admin", () => {
     await expect(page.getByText(recipientName).first()).toBeVisible();
   });
 
-  test("saves product details and translations", async ({ page, browser }) => {
+  test("saves details without reversing the persisted visibility", async ({ page, browser }) => {
     await signIn(page, ADMIN.email, ADMIN.password);
     await expect(page).toHaveURL(/\/en\/admin$/);
 
@@ -285,16 +285,48 @@ test.describe("admin", () => {
     await page.getByRole("link", { name: "Edit" }).first().click();
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("Navy rash guard");
 
-    const description = `Demo editor description ${Date.now()}`;
-    await page.getByLabel("Description (English)").fill(description);
+    // Start from a hidden, freshly mounted editor so the sale checkbox is
+    // initialized from the persisted false value.
+    const showButton = page.getByRole("button", { name: "Show", exact: true });
+    if ((await showButton.count()) === 0) {
+      await page.getByRole("button", { name: "Hide", exact: true }).first().click();
+      await expect(page.getByText(/is hidden from the storefront/)).toBeVisible({ timeout: 15000 });
+    }
+    await page.reload();
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Navy rash guard");
+    await expect(page.getByRole("checkbox")).not.toBeChecked();
+
+    // Show, then save an unrelated description change: the product must stay visible.
+    await page.getByRole("button", { name: "Show", exact: true }).first().click();
+    await expect(page.getByText(/is back on the storefront/)).toBeVisible({ timeout: 15000 });
+    await expect(page.getByRole("checkbox")).toBeChecked();
+
+    const visibleDescription = `Visible editor description ${Date.now()}`;
+    await page.getByLabel("Description (English)").fill(visibleDescription);
     await page.getByRole("button", { name: "Save changes" }).click();
     await expect(page.getByText("Product saved.").first()).toBeVisible({ timeout: 15000 });
 
     const anon = await anonymousContext(browser);
     const anonPage = await anon.newPage();
-    await anonPage.goto("/en/products/MNV");
-    await expect(anonPage.getByText(description)).toBeVisible();
+    const visibleResponse = await anonPage.goto("/en/products/MNV");
+    expect(visibleResponse?.status()).toBe(200);
+    await expect(anonPage.getByText(visibleDescription)).toBeVisible();
     await anon.close();
+
+    // Hide, then save another description change: the product must stay hidden.
+    await page.getByRole("button", { name: "Hide", exact: true }).first().click();
+    await expect(page.getByText(/is hidden from the storefront/)).toBeVisible({ timeout: 15000 });
+    await expect(page.getByRole("checkbox")).not.toBeChecked();
+
+    await page.getByLabel("Description (English)").fill(`Hidden editor description ${Date.now()}`);
+    await page.getByRole("button", { name: "Save changes" }).click();
+    await expect(page.getByText("Product saved.").first()).toBeVisible({ timeout: 15000 });
+
+    const hidden = await anonymousContext(browser);
+    const hiddenPage = await hidden.newPage();
+    const hiddenResponse = await hiddenPage.goto("/en/products/MNV");
+    expect(hiddenResponse?.status()).toBe(404);
+    await hidden.close();
   });
 
   test("asks before cancelling an order", async ({ page }) => {

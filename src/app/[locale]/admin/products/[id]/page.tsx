@@ -98,7 +98,11 @@ export default async function AdminProductEditorPage({ params }: Props) {
         </h2>
         <p className="mt-1 text-small text-neutral-600">{t("admin.editorPage.intro")}</p>
         <div className="mt-5">
+          {/* The form remounts when persisted visibility changes, so the
+              uncontrolled sale checkbox always matches the server state after
+              the header Hide or Show action refreshes the page. */}
           <AdminProductEditor
+            key={product.isActive ? "active" : "hidden"}
             product={{
               id: product.id,
               sku: product.sku,
