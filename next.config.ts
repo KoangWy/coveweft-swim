@@ -8,6 +8,12 @@ const nextConfig: NextConfig = {
   output: "standalone",
   reactStrictMode: true,
   poweredByHeader: false,
+  images: {
+    // Product and brand photos are published at these widths and served
+    // through sized loaders, so srcset entries map to real files.
+    deviceSizes: [480, 960, 1600, 2400],
+    imageSizes: [],
+  },
   // Keep generated instruction files out of this repository.
   agentRules: false,
   experimental: {

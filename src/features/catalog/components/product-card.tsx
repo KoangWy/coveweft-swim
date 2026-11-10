@@ -7,6 +7,7 @@ import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/lib/locale";
 import type { ProductListItem } from "@/server/catalog";
 
+import { HoverImage } from "./hover-image";
 import { imageSources } from "./image-sources";
 
 export type ProductCardProps = {
@@ -22,7 +23,7 @@ export type ProductCardProps = {
 
 /**
  * Listing card: studio image, type, model name, and VND price. The whole card
- * is one link; on hover a second studio angle fades in when it exists.
+ * is one link; on mouse hover a second studio angle fades in when it exists.
  */
 export function ProductCard({
   product,
@@ -39,26 +40,17 @@ export function ProductCard({
 
   return (
     <article className="group relative flex flex-col gap-3">
-      <div className="relative overflow-hidden rounded-md">
+      <div className="relative overflow-hidden rounded-lg">
         <ProductImage
           src={primary.medium}
           alt={product.name}
           fallbackLabel={t("imageUnavailable")}
           priority={priority}
           sizes={sizes}
+          imageClassName="transition-transform duration-700 ease-out-expo group-hover:scale-[1.03] motion-reduce:transition-none"
         />
         {secondary?.medium ? (
-          <div
-            aria-hidden
-            className="absolute inset-0 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 motion-reduce:transition-none"
-          >
-            <ProductImage
-              src={secondary.medium}
-              alt=""
-              fallbackLabel={t("imageUnavailable")}
-              sizes={sizes}
-            />
-          </div>
+          <HoverImage src={secondary.medium} sizes={sizes} fallbackLabel={t("imageUnavailable")} />
         ) : null}
       </div>
       <div className="flex flex-col gap-1">
@@ -66,7 +58,7 @@ export function ProductCard({
         <Heading className="text-small font-semibold text-navy-900">
           <Link
             href={`/products/${encodeURIComponent(product.sku)}`}
-            className="rounded-md after:absolute after:inset-0 after:rounded-md hover:underline"
+            className="rounded-md after:absolute after:inset-0 after:rounded-lg hover:underline"
           >
             {product.name}
           </Link>

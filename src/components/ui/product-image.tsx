@@ -5,6 +5,9 @@ import Image from "next/image";
 import { useState } from "react";
 
 import { cx } from "./cx";
+import { isSizedImage, RELEASE_IMAGE_WIDTHS, sizedImageLoader } from "./image-loader";
+
+const releaseLoader = sizedImageLoader(RELEASE_IMAGE_WIDTHS);
 
 export type ProductImageProps = {
   /** Public image URL, or null when media is not configured. */
@@ -19,12 +22,15 @@ export type ProductImageProps = {
   /** Keep the top of the photo in view when a wide frame crops it. */
   anchorTop?: boolean;
   className?: string;
+  /** Classes for the `<img>` element itself, for example a hover zoom. */
+  imageClassName?: string;
 };
 
 /**
  * Studio image in a fixed 2:3 frame, so the layout does not move while it
- * loads. Images are served as published (no on-the-fly optimization). A
- * missing or broken image shows a neutral placeholder with a text label.
+ * loads. Release images are published at fixed widths, so the image gets a
+ * `srcset` over those files; admin uploads are served as they are. A missing
+ * or broken image shows a neutral placeholder with a text label.
  */
 export function ProductImage({
   src,
@@ -35,9 +41,11 @@ export function ProductImage({
   fill = false,
   anchorTop = false,
   className,
+  imageClassName,
 }: ProductImageProps) {
   const [failedSrc, setFailedSrc] = useState<string | null>(null);
   const showImage = src !== null && failedSrc !== src;
+  const sized = src !== null && isSizedImage(src);
 
   return (
     <div
@@ -52,12 +60,13 @@ export function ProductImage({
           src={src}
           alt={alt}
           fill
-          unoptimized
+          loader={sized ? releaseLoader : undefined}
+          unoptimized={!sized}
           sizes={sizes}
           priority={priority}
           loading={priority ? undefined : "lazy"}
           onError={() => setFailedSrc(src)}
-          className={cx("object-cover", anchorTop && "object-top")}
+          className={cx("object-cover", anchorTop && "object-top", imageClassName)}
         />
       ) : (
         <div
