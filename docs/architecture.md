@@ -1003,6 +1003,28 @@ from the verified session. Customers and visitors can neither call the
 functions nor read the counter tables. The tables hold counters only: no
 conversation content or measurements.
 
+#### Chat widget
+
+`src/features/assistant/components/` renders the conversation in the browser.
+
+- **Answer text.** Answers are parsed into a small Markdown subset
+  (paragraphs, headings, bullet and numbered lists, simple tables, bold,
+  italic, inline code, and links) and rendered as React elements, never as
+  HTML. Links accept site paths and `http(s)` URLs only. A bold marker without
+  its partner, as seen while an answer streams, is dropped instead of shown.
+- **Quota.** The panel stays quiet about the daily allowance until
+  `LOW_QUOTA_THRESHOLD` (5) or fewer questions remain; the blocking states
+  (`quota_day`, `paused`, `not_configured`, `unauthenticated`) still replace
+  the composer.
+- **Stable layout.** The status is prefetched when the pointer enters or focus
+  reaches the launcher, and counts as current for 30 seconds, so the panel
+  usually opens with its final content. The panel itself has a fixed height
+  (a bottom sheet on phones, a floating window from `lg` up) and its transcript
+  scrolls inside it.
+- **Other entry points.** Any button can open the panel through
+  `requestAssistantOpen()`, which dispatches a window event the widget listens
+  for.
+
 ### Demo account provisioning
 
 `pnpm provision:demo` runs `scripts/provision-demo.mjs`. It creates one
@@ -1232,3 +1254,16 @@ developer machine (or a dedicated database job) before a migration is merged.
 generated server bundle. Vercel builds the same app from the repository; the
 only difference is the environment values. Auth redirect URLs must match the
 public app URL of each environment.
+
+`vercel.json` pins the server functions to `hnd1` (Tokyo), the region next to
+the cloud Supabase project (`ap-northeast-1`). A page makes several sequential
+Supabase requests (session, profile, cart, catalog), so running the functions
+in another region adds a cross-ocean round trip to each of them. Move both
+settings together if the database moves.
+
+Storefront pages stream: the header's account and cart links and the
+assistant load inside their own Suspense boundaries, so the session lookup
+does not hold back the page. Loading screens exist only for routes that never
+answer with a 404 (home, shop, cart, policies); product and order pages have
+none, so `notFound()` still sets the HTTP status before the response starts.
+A thin progress bar gives feedback on every client-side navigation.

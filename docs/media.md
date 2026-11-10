@@ -161,3 +161,20 @@ The checkpoint is tied to the inventory snapshot and the source file IDs. After
 changing the inventory or renaming a source file, rebuild the affected outputs.
 For a clean build, remove the checkpoint and the exported `studio/` directory in
 the output folder, then run the command again.
+
+## Brand photography
+
+The storefront also uses four photos that are not part of the catalog. They
+appear in the hero, the shop banners, the activity panels, the sign-in panel,
+and the status pages. They live in `public/brand/` as `<name>-<width>.webp`
+(480, 960, and 1600 px, plus 2400 px for the hero), re-encoded and stripped of
+metadata, and are listed in `src/lib/brand-images.ts`. All four are published under the
+[Unsplash License](https://unsplash.com/license), which allows free use
+without attribution; the photographers are credited here anyway.
+
+| File prefix       | Photo                                                                                      | Photographer      | Edit                        |
+| ----------------- | ------------------------------------------------------------------------------------------ | ----------------- | --------------------------- |
+| `ocean-shore`     | [Turquoise sea wave on a white sand beach](https://unsplash.com/photos/QP6XWJ9q6GY)        | Shifaaz Shamoon   | Rotated 90° to landscape    |
+| `pool-lanes`      | [Blue and white striped swimming lanes](https://unsplash.com/photos/OAg9u5E1ju0)           | Markus Spiske     | None                        |
+| `surf-lines`      | [Aerial view of waves on a sandy beach](https://unsplash.com/photos/zWFa7mlQAYk)           | Hameen Reynolds   | Light blur to cut file size |
+| `underwater-swim` | [Underwater photo of a person swimming in a pool](https://unsplash.com/photos/eCNz5PiiUCc) | Jan Antonin Kolar | None                        |
