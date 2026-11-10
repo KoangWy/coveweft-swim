@@ -1,7 +1,7 @@
 "use client";
 
 import { X } from "@phosphor-icons/react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, m } from "motion/react";
 import { useEffect, useId, useRef, type ReactNode } from "react";
 
 import { cx } from "./cx";
@@ -14,8 +14,14 @@ export type ModalSurfaceProps = {
   closeLabel: string;
   children: ReactNode;
   footer?: ReactNode;
-  variant: "dialog" | "drawer-left" | "drawer-right" | "sheet";
+  variant: "dialog" | "drawer-left" | "drawer-right" | "sheet" | "popover";
   className?: string;
+  /** Rendered before the title, for example an avatar. */
+  headerStart?: ReactNode;
+  /** Extra header buttons, rendered before the close button. */
+  headerActions?: ReactNode;
+  /** Replaces the padded, scrolling body, for content that scrolls itself. */
+  bodyClassName?: string;
 };
 
 const panelMotion = {
@@ -23,13 +29,26 @@ const panelMotion = {
   "drawer-left": { initial: { x: "-100%" }, animate: { x: 0 } },
   "drawer-right": { initial: { x: "100%" }, animate: { x: 0 } },
   sheet: { initial: { y: "100%" }, animate: { y: 0 } },
+  popover: { initial: { opacity: 0, y: 24, scale: 0.96 }, animate: { opacity: 1, y: 0, scale: 1 } },
 } as const;
 
 const panelLayout = {
-  dialog: "m-auto max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-lg rounded-md",
+  dialog: "m-auto max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-lg rounded-lg",
   "drawer-left": "mr-auto h-dvh w-[min(22rem,calc(100%-3rem))]",
   "drawer-right": "ml-auto h-dvh w-[min(22rem,calc(100%-3rem))]",
-  sheet: "mt-auto max-h-[90dvh] min-h-[60dvh] w-full rounded-t-md",
+  sheet: "mt-auto max-h-[90dvh] min-h-[60dvh] w-full rounded-t-xl",
+  // A floating window anchored to the bottom-right corner, like a chat window.
+  popover:
+    "mt-auto mr-6 mb-6 ml-auto h-[min(44rem,calc(100dvh-3rem))] w-[min(26rem,calc(100%-3rem))] origin-bottom-right rounded-xl",
+} as const;
+
+/** Popovers keep the page readable behind them; other modals dim it more. */
+const scrimClasses = {
+  dialog: "bg-navy-950/45",
+  "drawer-left": "bg-navy-950/45",
+  "drawer-right": "bg-navy-950/45",
+  sheet: "bg-navy-950/45",
+  popover: "bg-navy-950/15",
 } as const;
 
 /**
@@ -47,6 +66,9 @@ export function ModalSurface({
   footer,
   variant,
   className,
+  headerStart,
+  headerActions,
+  bodyClassName,
 }: ModalSurfaceProps) {
   const ref = useRef<HTMLDialogElement>(null);
   const titleId = useId();
@@ -95,44 +117,59 @@ export function ModalSurface({
       className="m-0 h-dvh max-h-none w-full max-w-none bg-transparent p-0 backdrop:bg-transparent"
     >
       <div
-        className="flex h-full w-full"
+        className="relative flex h-full w-full"
         onClick={(event) => {
           if (event.target === event.currentTarget) {
             onClose();
           }
         }}
       >
+        <AnimatePresence>
+          {open ? (
+            <m.div
+              key="scrim"
+              aria-hidden
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className={cx("pointer-events-none absolute inset-0", scrimClasses[variant])}
+            />
+          ) : null}
+        </AnimatePresence>
         <AnimatePresence onExitComplete={() => ref.current?.close()}>
           {open ? (
-            <motion.div
+            <m.div
               key="panel"
               initial={panelMotion[variant].initial}
               animate={panelMotion[variant].animate}
               exit={panelMotion[variant].initial}
               transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
               className={cx(
-                "flex flex-col overflow-hidden bg-white text-navy-900 shadow-overlay",
+                "relative flex flex-col overflow-hidden bg-white text-navy-900 shadow-overlay",
                 panelLayout[variant],
                 className,
               )}
             >
-              <div className="flex items-center justify-between gap-4 border-b border-neutral-200 py-2 pr-2 pl-5">
-                <h2 id={titleId} className="text-heading-sm font-semibold">
+              <div className="flex items-center gap-3 border-b border-neutral-200 py-2 pr-2 pl-5">
+                {headerStart}
+                <h2 id={titleId} className="min-w-0 flex-1 text-heading-sm font-semibold">
                   {title}
                 </h2>
+                {headerActions}
                 <IconButton
                   label={closeLabel}
                   icon={<X aria-hidden size={20} />}
                   onClick={onClose}
                 />
               </div>
-              <div className="flex-1 overflow-y-auto px-5 py-5">{children}</div>
+              <div className={bodyClassName ?? "flex-1 overflow-y-auto px-5 py-5"}>{children}</div>
               {footer ? (
                 <div className="flex flex-wrap justify-end gap-3 border-t border-neutral-200 px-5 py-4">
                   {footer}
                 </div>
               ) : null}
-            </motion.div>
+            </m.div>
           ) : null}
         </AnimatePresence>
       </div>

@@ -1,12 +1,19 @@
 "use client";
 
-import { MotionConfig } from "motion/react";
+import { LazyMotion, MotionConfig } from "motion/react";
 import type { ReactNode } from "react";
 
+const loadFeatures = () => import("./motion-features").then((module) => module.default);
+
 /**
- * Applies the user's reduced-motion preference to every Motion animation:
- * transforms are skipped and only opacity changes remain.
+ * Loads the animation features after the first render and applies the user's
+ * reduced-motion preference to every Motion animation: transforms are skipped
+ * and only opacity changes remain. Components use the light `m` element.
  */
 export function MotionProvider({ children }: { children: ReactNode }) {
-  return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
+  return (
+    <LazyMotion features={loadFeatures} strict>
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
+    </LazyMotion>
+  );
 }

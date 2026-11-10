@@ -1,7 +1,7 @@
 "use client";
 
 import { CheckCircle, Info, WarningCircle, X } from "@phosphor-icons/react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, m } from "motion/react";
 import {
   createContext,
   useCallback,
@@ -75,7 +75,7 @@ function ToastCard({
   }, [duration]);
 
   return (
-    <motion.li
+    <m.li
       layout
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
@@ -101,7 +101,7 @@ function ToastCard({
       >
         <X aria-hidden size={16} />
       </button>
-    </motion.li>
+    </m.li>
   );
 }
 
