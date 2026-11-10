@@ -1,6 +1,6 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
-import { Be_Vietnam_Pro } from "next/font/google";
+import { Mona_Sans } from "next/font/google";
 import type { ReactNode } from "react";
 
 import { MotionProvider } from "@/components/ui/motion-provider";
@@ -8,12 +8,13 @@ import { ToastProvider } from "@/components/ui/toast";
 import type { Locale } from "@/lib/locale";
 
 // Self-hosted at build time by next/font; the Vietnamese subset covers the
-// full set of diacritics.
-const beVietnamPro = Be_Vietnam_Pro({
+// full set of diacritics. One variable file carries every weight and the
+// width axis used by the wide display cut.
+const monaSans = Mona_Sans({
   subsets: ["latin", "vietnamese"],
-  weight: ["400", "500", "600", "700"],
+  axes: ["wdth"],
   display: "swap",
-  variable: "--font-be-vietnam-pro",
+  variable: "--font-mona-sans",
 });
 
 /**
@@ -24,7 +25,7 @@ export async function AppDocument({ locale, children }: { locale: Locale; childr
   const t = await getTranslations("common");
 
   return (
-    <html lang={locale} className={beVietnamPro.variable}>
+    <html lang={locale} className={monaSans.variable}>
       <body className="flex min-h-dvh flex-col">
         <NextIntlClientProvider>
           <MotionProvider>

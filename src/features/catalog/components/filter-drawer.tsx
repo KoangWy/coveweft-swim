@@ -29,7 +29,7 @@ export function FilterDrawer({
         <Faders aria-hidden size={18} />
         {t("catalog.filters.title")}
         {activeCount > 0 ? (
-          <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-md bg-lime-400 px-1 text-caption font-bold text-navy-950 tabular-nums">
+          <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-md bg-lime-400 px-1 text-caption font-bold text-navy-950">
             {activeCount}
           </span>
         ) : null}

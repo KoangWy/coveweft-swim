@@ -27,7 +27,7 @@ export function AccountShell({
     <Container className="py-8 lg:py-10">
       <Breadcrumb items={crumbs} />
       <div className="mt-6 flex flex-wrap items-end justify-between gap-4">
-        <h1 className="text-title font-bold text-navy-900">{title}</h1>
+        <h1 className="text-title font-display text-navy-900">{title}</h1>
         {actions}
       </div>
       <nav aria-label={t("nav")} className="mt-6 border-b border-neutral-200">

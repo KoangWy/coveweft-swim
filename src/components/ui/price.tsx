@@ -20,7 +20,7 @@ const sizes = {
   lg: "text-heading",
 };
 
-/** Integer VND price with tabular figures so price columns line up. */
+/** Integer VND price, with the original price struck through when it is higher. */
 export function Price({
   amount,
   locale,
@@ -32,7 +32,7 @@ export function Price({
   const showCompare = compareAt !== undefined && compareAt > amount;
 
   return (
-    <span className={cx("inline-flex items-baseline gap-2 tabular-nums", className)}>
+    <span className={cx("inline-flex items-baseline gap-2", className)}>
       <span className={cx("font-semibold text-navy-900", sizes[size])}>
         {formatVnd(amount, locale)}
       </span>

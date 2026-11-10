@@ -5,10 +5,16 @@
  * are cleared so every component draws from this fixed set.
  *
  * Color rules:
- * - Text and icons are navy on white.
+ * - Text and icons are navy on white. Neutrals carry a faint water tint.
  * - Lime is the only accent. It is used as a fill (primary buttons, badges,
- *   accent lines) with navy text on top, never as text on white.
+ *   accent lines) with navy text on top, or as text on navy. Never as text on
+ *   white.
  * - Status colors always appear next to a text label or an icon.
+ *
+ * Shape rules:
+ * - Buttons, chips, and badges are full pills (`rounded-full`).
+ * - Inputs, selects, and small controls use `rounded-md`.
+ * - Cards, photos, and panels use `rounded-lg`; large hero media `rounded-xl`.
  *
  * tests/unit/contrast.test.ts parses this block and checks every text and UI
  * pairing used by the components against WCAG AA.
@@ -26,13 +32,13 @@
   --color-lime-400: #c8f03c;
   --color-lime-500: #b2dc1e;
 
-  --color-neutral-50: #f5f7fa;
-  --color-neutral-100: #edf1f6;
-  --color-neutral-200: #dce3ec;
-  --color-neutral-300: #c2ccd9;
-  --color-neutral-500: #5b6880;
-  --color-neutral-600: #46536b;
-  --color-neutral-700: #333f55;
+  --color-neutral-50: #f2f7f9;
+  --color-neutral-100: #e6eef2;
+  --color-neutral-200: #d3dfe6;
+  --color-neutral-300: #b7c6d1;
+  --color-neutral-500: #526479;
+  --color-neutral-600: #405065;
+  --color-neutral-700: #2e3c50;
 
   --color-error-50: #fef3f2;
   --color-error-200: #fecdca;
@@ -52,6 +58,8 @@
 
   /* Fixed type scale. Headings, body, and captions only use these sizes. */
   --text-*: initial;
+  --text-micro: 0.625rem;
+  --text-micro--line-height: 0.75rem;
   --text-caption: 0.75rem;
   --text-caption--line-height: 1rem;
   --text-small: 0.875rem;
@@ -65,38 +73,136 @@
   --text-heading: 1.5rem;
   --text-heading--line-height: 2rem;
   --text-title: 2rem;
-  --text-title--line-height: 2.5rem;
+  --text-title--line-height: 2.375rem;
   --text-display: 2.75rem;
-  --text-display--line-height: 3.125rem;
+  --text-display--line-height: 3rem;
+  --text-hero: 4.5rem;
+  --text-hero--line-height: 4.5rem;
 
-  /* One corner radius for controls, panels, and badges. */
   --radius-*: initial;
-  --radius-md: 0.375rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 2rem;
 
   /* Shadows are tinted with navy instead of black. */
   --shadow-*: initial;
-  --shadow-raised: 0 1px 2px 0 rgb(11 37 69 / 0.08), 0 2px 8px -2px rgb(11 37 69 / 0.08);
-  --shadow-overlay: 0 16px 40px -12px rgb(11 37 69 / 0.28);
+  --shadow-raised: 0 1px 2px 0 rgb(11 37 69 / 0.06), 0 6px 16px -6px rgb(11 37 69 / 0.12);
+  --shadow-overlay: 0 24px 56px -16px rgb(11 37 69 / 0.32);
+  --shadow-float: 0 32px 64px -24px rgb(6 21 43 / 0.6);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-rise: rise 0.9s var(--ease-out-expo) both;
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-drift: drift 14s linear infinite;
+  --animate-settle: settle 2.4s var(--ease-out-expo) both;
+  --animate-shimmer: shimmer 1.6s ease-in-out infinite;
+  --animate-wave-flow: wave-flow 1.6s ease-in-out infinite;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 1.75rem, 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @keyframes drift {
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  /* The hero photo starts slightly zoomed in and settles into place. */
+  @keyframes settle {
+    from {
+      transform: scale(1.08);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes shimmer {
+    from {
+      background-position: 150% 0;
+    }
+    to {
+      background-position: -50% 0;
+    }
+  }
+
+  /* Draws and then clears a path that sets pathLength="1". */
+  @keyframes wave-flow {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: -1;
+    }
+  }
 }
 
 @theme inline {
   --font-sans:
-    var(--font-be-vietnam-pro), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    var(--font-mona-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Wide, heavy cut of the brand typeface for headings and the wordmark. */
+@utility font-display {
+  font-stretch: 118%;
+  font-weight: 760;
+  letter-spacing: -0.025em;
+}
+
+/*
+ * Fades content up as it scrolls into view, driven by the scroll position
+ * instead of JavaScript. Browsers without scroll-driven animations, and users
+ * who prefer reduced motion, see the content without the effect.
+ */
+@utility scroll-reveal {
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 22%;
+    }
+  }
 }
 
 @layer base {
   :root {
     /* Layer scale. Dialogs and drawers use the browser top layer instead. */
+    --z-launcher: 20;
     --z-header: 30;
+    --z-progress: 40;
     --z-toast: 50;
   }
 
   html {
-    scroll-padding-top: 8rem;
+    scroll-padding-top: 6rem;
+    /* Keep the layout from shifting when a dialog locks page scrolling. */
+    scrollbar-gutter: stable;
   }
 
   body {
     @apply bg-white font-sans text-body text-navy-900 antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
   }
 
   ::placeholder {
@@ -113,7 +219,7 @@
   }
 
   dialog::backdrop {
-    background: rgb(6 21 43 / 0.45);
+    background: rgb(6 21 43 / 0.5);
   }
 
   :focus-visible {

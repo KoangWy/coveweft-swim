@@ -61,15 +61,19 @@ const PAIRS: Pair[] = [
   { fg: "neutral-700", bg: "neutral-100", min: TEXT, use: "hovered policy nav items" },
   { fg: "navy-950", bg: "lime-500", min: TEXT, use: "hovered primary button" },
   { fg: "error-700", bg: "error-50", min: TEXT, use: "hovered danger button, error badge" },
-  { fg: "lime-300", bg: "navy-900", min: TEXT, use: "hovered demo banner link" },
+  { fg: "lime-300", bg: "navy-950", min: TEXT, use: "hovered footer link, footer headings" },
+  { fg: "white", bg: "navy-800", min: TEXT, use: "hovered current nav item" },
   // Current and selected states
   { fg: "white", bg: "navy-900", min: TEXT, use: "current locale and current page number" },
   { fg: "navy-900", bg: "neutral-100", min: TEXT, use: "current nav, admin, and policy items" },
   // Lime is only a fill under navy text
   { fg: "navy-950", bg: "lime-400", min: TEXT, use: "primary button, accent badge, skip link" },
   { fg: "navy-950", bg: "lime-300", min: TEXT, use: "text selection" },
-  // Inverted surfaces
-  { fg: "white", bg: "navy-900", min: TEXT, use: "demo banner text" },
+  // Inverted surfaces: demo notice, footer, hero, assistant user bubble
+  { fg: "white", bg: "navy-900", min: TEXT, use: "user chat bubble, assistant promo panel" },
+  { fg: "white", bg: "navy-950", min: TEXT, use: "demo notice, footer, and hero text" },
+  { fg: "neutral-300", bg: "navy-950", min: TEXT, use: "footer links and notice" },
+  { fg: "lime-400", bg: "navy-950", min: TEXT, use: "hero accent word and status codes" },
   // Status colors with their tinted backgrounds
   { fg: "error-700", bg: "white", min: TEXT, use: "field errors" },
   { fg: "success-700", bg: "white", min: TEXT, use: "success text and toast icon" },
@@ -91,7 +95,7 @@ const PAIRS: Pair[] = [
   { fg: "navy-900", bg: "white", min: UI, use: "focus ring on white" },
   { fg: "navy-900", bg: "neutral-50", min: UI, use: "focus ring in the footer and admin" },
   { fg: "navy-900", bg: "neutral-100", min: UI, use: "inset focus ring on a hovered control" },
-  { fg: "white", bg: "navy-900", min: UI, use: "focus ring on the demo banner" },
+  { fg: "white", bg: "navy-950", min: UI, use: "focus ring in the footer and on photos" },
 ];
 
 describe("design token contrast", () => {

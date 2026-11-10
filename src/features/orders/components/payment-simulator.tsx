@@ -131,7 +131,7 @@ export function PaymentSimulator({
           <span
             role="timer"
             aria-label={t("payment.timeLeft")}
-            className="text-heading font-semibold text-navy-900 tabular-nums"
+            className="text-heading font-semibold text-navy-900"
           >
             {remaining === null ? "--:--" : formatRemaining(remaining)}
           </span>

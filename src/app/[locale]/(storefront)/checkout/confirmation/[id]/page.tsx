@@ -37,7 +37,7 @@ export default async function ConfirmationPage({ params }: Props) {
         <span className="inline-flex size-12 items-center justify-center rounded-md bg-lime-400 text-navy-950">
           <CheckCircle aria-hidden size={28} weight="bold" />
         </span>
-        <h1 className="text-title font-bold text-navy-900">{t("confirmation.title")}</h1>
+        <h1 className="text-title font-display text-navy-900">{t("confirmation.title")}</h1>
         <p className="text-lead text-neutral-700">
           {t(order.paymentStatus === "paid" ? "confirmation.paidBody" : "confirmation.codBody", {
             reference,

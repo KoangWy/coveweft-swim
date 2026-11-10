@@ -60,7 +60,7 @@ export async function OrderSummary({ order }: { order: Order }) {
             <dt className="text-neutral-700">
               {t("shippingFee", { method: t(`shippingMethod.${order.shippingMethod}`) })}
             </dt>
-            <dd className="font-semibold text-navy-900 tabular-nums">
+            <dd className="font-semibold text-navy-900">
               {order.shippingFeeVnd === 0 ? t("free") : formatVnd(order.shippingFeeVnd, locale)}
             </dd>
           </div>

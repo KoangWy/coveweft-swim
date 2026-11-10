@@ -57,9 +57,7 @@ export async function PolicyArticle({
       <div className="mt-8 grid gap-12 lg:grid-cols-12 lg:gap-16">
         <article className="min-w-0 lg:col-span-8">
           <header className="flex flex-col gap-4 border-b border-neutral-200 pb-8">
-            <h1 className="text-title font-bold tracking-tight text-navy-900 md:text-display">
-              {t("title")}
-            </h1>
+            <h1 className="text-title font-display text-navy-900 md:text-display">{t("title")}</h1>
             <p className="max-w-[62ch] text-lead text-neutral-700">{t("lead")}</p>
             <p className="text-small text-neutral-600">
               {page === "privacy"

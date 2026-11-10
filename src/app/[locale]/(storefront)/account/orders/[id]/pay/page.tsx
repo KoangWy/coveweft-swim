@@ -57,7 +57,7 @@ export default async function PaymentPage({ params }: Props) {
             <Badge tone="accent" className="self-start">
               {t("payment.badge")}
             </Badge>
-            <h1 className="text-title font-bold text-navy-900">{t("payment.title")}</h1>
+            <h1 className="text-title font-display text-navy-900">{t("payment.title")}</h1>
             <p className="max-w-[60ch] text-body text-neutral-700">{t("payment.intro")}</p>
           </div>
 
@@ -115,7 +115,7 @@ export default async function PaymentPage({ params }: Props) {
               </div>
               <div className="flex justify-between gap-4">
                 <dt className="text-neutral-700">{t("payment.transferNote")}</dt>
-                <dd className="font-semibold text-navy-900 tabular-nums">{reference}</dd>
+                <dd className="font-semibold text-navy-900">{reference}</dd>
               </div>
             </dl>
             <p className="flex items-start gap-2 text-small text-neutral-700">

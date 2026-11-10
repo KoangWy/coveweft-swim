@@ -156,7 +156,7 @@ export function ShopFilters({ facets, query, idPrefix, onApplied, className }: S
                 className={boxClasses}
               />
               <span className="flex-1">{label(value)}</span>
-              <span className="text-caption text-neutral-600 tabular-nums">{value.count}</span>
+              <span className="text-caption text-neutral-600">{value.count}</span>
             </label>
           ))}
         </div>
@@ -266,7 +266,7 @@ export function ShopFilters({ facets, query, idPrefix, onApplied, className }: S
                   className={boxClasses}
                 />
                 <span className="flex-1">{value.label}</span>
-                <span className="text-caption text-neutral-600 tabular-nums">{value.count}</span>
+                <span className="text-caption text-neutral-600">{value.count}</span>
               </label>
             ))}
           </div>

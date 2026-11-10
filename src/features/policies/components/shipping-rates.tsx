@@ -64,7 +64,7 @@ export async function ShippingRates({
                   {row.note}
                 </span>
               </th>
-              <td className="px-4 py-4 text-right font-semibold whitespace-nowrap text-navy-900 tabular-nums">
+              <td className="px-4 py-4 text-right font-semibold whitespace-nowrap text-navy-900">
                 {row.fee}
               </td>
               <td className="hidden px-4 py-4 text-small text-neutral-700 sm:table-cell">

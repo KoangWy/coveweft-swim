@@ -276,9 +276,7 @@ export function CheckoutForm({
               <dt className="text-neutral-700">
                 {t("checkout.shippingFee", { method: t(`checkout.${shipping}`) })}
               </dt>
-              <dd className="font-semibold text-navy-900 tabular-nums">
-                {feeLabel(current.shippingFeeVnd)}
-              </dd>
+              <dd className="font-semibold text-navy-900">{feeLabel(current.shippingFeeVnd)}</dd>
             </div>
             <div className="flex items-baseline justify-between gap-4 border-t border-neutral-200 pt-3">
               <dt className="text-body font-semibold text-navy-900">{t("checkout.total")}</dt>

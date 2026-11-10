@@ -46,7 +46,7 @@ export default async function OrderDetailPage({ params }: Props) {
       />
       <div className="mt-6 flex flex-wrap items-start justify-between gap-4">
         <div className="flex flex-col gap-3">
-          <h1 className="text-title font-bold text-navy-900">
+          <h1 className="text-title font-display text-navy-900">
             {t("orders.reference", { reference })}
           </h1>
           <OrderBadges status={order.status} paymentStatus={order.paymentStatus} />

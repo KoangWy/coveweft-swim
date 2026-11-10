@@ -52,7 +52,7 @@ export function SizeGuideTable({ guide }: { guide: SizeGuide }) {
                 {guide.measurements.map((measurement) => {
                   const range = row.ranges[measurement];
                   return (
-                    <td key={measurement} className="px-4 py-3 text-navy-900 tabular-nums">
+                    <td key={measurement} className="px-4 py-3 text-navy-900">
                       {range ? t("range", { from: range[0], to: range[1] }) : t("notAvailable")}
                     </td>
                   );

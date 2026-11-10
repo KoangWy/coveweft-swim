@@ -38,7 +38,7 @@ export function paginationItems(page: number, pageCount: number): Array<number |
 }
 
 const itemClasses =
-  "inline-flex h-11 min-w-11 items-center justify-center rounded-md px-3 text-small font-medium tabular-nums transition-colors duration-150";
+  "inline-flex h-11 min-w-11 items-center justify-center rounded-md px-3 text-small font-medium transition-colors duration-150";
 
 export function Pagination({
   page,

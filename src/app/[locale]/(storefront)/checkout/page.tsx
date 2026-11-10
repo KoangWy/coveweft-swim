@@ -44,7 +44,7 @@ export default async function CheckoutPage() {
     return (
       <Container className="py-8 lg:py-10">
         <Breadcrumb items={crumbs} />
-        <h1 className="mt-6 text-title font-bold text-navy-900">{t("checkout.title")}</h1>
+        <h1 className="mt-6 text-title font-display text-navy-900">{t("checkout.title")}</h1>
         <ErrorState
           className="mt-8"
           title={t("checkout.quoteError")}
@@ -65,7 +65,7 @@ export default async function CheckoutPage() {
   return (
     <Container className="py-8 lg:py-10">
       <Breadcrumb items={crumbs} />
-      <h1 className="mt-6 mb-8 text-title font-bold text-navy-900">{t("checkout.title")}</h1>
+      <h1 className="mt-6 mb-8 text-title font-display text-navy-900">{t("checkout.title")}</h1>
       <CheckoutForm
         idempotencyKey={idempotencyKey}
         lines={standard.data.items.map((line) => ({

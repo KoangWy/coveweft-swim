@@ -83,7 +83,7 @@ export function QuantityStepper({
           value={current}
           disabled={disabled}
           onChange={(event) => update(event.currentTarget.valueAsNumber)}
-          className="h-11 w-14 [appearance:textfield] border-x border-neutral-300 bg-white text-center text-body font-semibold text-navy-900 tabular-nums focus-visible:-outline-offset-2 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+          className="h-11 w-14 [appearance:textfield] border-x border-neutral-300 bg-white text-center text-body font-semibold text-navy-900 focus-visible:-outline-offset-2 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
         />
         <button
           type="button"

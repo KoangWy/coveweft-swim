@@ -6,6 +6,7 @@
   "common": {
     "brand": "COVEWEFT",
     "brandFull": "COVEWEFT Swim",
+    "brandSuffix": "Swim",
     "tagline": "Find your water.",
     "skipToContent": "Skip to content",
     "required": "(required)",

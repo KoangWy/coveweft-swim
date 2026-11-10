@@ -34,7 +34,7 @@ export default async function CartPage({ searchParams }: PageProps<"/[locale]/ca
     return (
       <Container className="py-8 lg:py-10">
         <Breadcrumb items={crumbs} />
-        <h1 className="mt-6 text-title font-bold text-navy-900">{t("cart.title")}</h1>
+        <h1 className="mt-6 text-title font-display text-navy-900">{t("cart.title")}</h1>
         <ErrorState
           className="mt-8"
           title={t("cart.loadError")}
@@ -61,7 +61,7 @@ export default async function CartPage({ searchParams }: PageProps<"/[locale]/ca
   return (
     <Container className="py-8 lg:py-10">
       <Breadcrumb items={crumbs} />
-      <h1 className="mt-6 text-title font-bold text-navy-900">
+      <h1 className="mt-6 text-title font-display text-navy-900">
         {t("cart.title")}
         {cart.itemCount > 0 ? (
           <span className="ml-3 text-heading-sm font-normal text-neutral-600">
