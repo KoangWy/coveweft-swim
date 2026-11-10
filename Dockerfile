@@ -64,7 +64,9 @@ COPY --from=provision-deps --chown=node:node /app/node_modules/@supabase ./scrip
 COPY --from=provision-deps --chown=node:node /app/node_modules/tslib ./scripts/node_modules/tslib
 COPY --from=provision-deps --chown=node:node /app/node_modules/iceberg-js ./scripts/node_modules/iceberg-js
 RUN cd scripts && node --input-type=module -e "await import('@supabase/supabase-js')"
-# Extracted release media is mounted here at runtime and served at /media.
+# Static files (brand photography and icons). Extracted release media is
+# mounted at public/media at runtime and served at /media.
+COPY --from=build --chown=node:node /app/public ./public
 RUN mkdir -p public/media && chown -R node:node public
 USER node
 EXPOSE 3000

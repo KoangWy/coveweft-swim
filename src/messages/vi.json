@@ -62,16 +62,60 @@
     "language": "Ngôn ngữ"
   },
   "home": {
-    "title": "Find your water.",
+    "title": "Find your <accent>water.</accent>",
     "description": "Đồ bơi cho những vòng bơi, buổi lướt sóng và ngày thong thả bên biển.",
     "shopCta": "Xem cửa hàng",
-    "aboutCta": "Giới thiệu bản demo",
-    "heroAlt": "Ảnh studio của một bộ đồ bơi",
+    "newInCta": "Xem hàng mới về",
+    "showcaseLabel": "Đồ bơi nổi bật",
     "categoriesTitle": "Mua theo nhóm",
+    "marquee": {
+      "tagline": "Find your water",
+      "laps": "Bơi sải",
+      "surf": "Lướt sóng",
+      "beach": "Ngày biển",
+      "shipping": "Miễn phí giao Standard từ {threshold}"
+    },
     "featuredTitle": "Mới về cửa hàng",
-    "viewAll": "Xem tất cả sản phẩm",
+    "viewAll": "Xem tất cả",
+    "railPrevious": "Sản phẩm trước",
+    "railNext": "Sản phẩm tiếp theo",
+    "waterEyebrow": "Sinh ra cho mặt nước",
+    "waterTitle": "Chọn mặt nước của bạn",
+    "water": {
+      "pool": {
+        "title": "Hồ bơi",
+        "body": "Đồ bơi cho những vòng bơi, buổi học bơi và các buổi tập dài."
+      },
+      "surf": {
+        "title": "Lướt sóng",
+        "body": "Áo rash guard chắn nắng và cát."
+      },
+      "gear": {
+        "title": "Dụng cụ",
+        "body": "Kính bơi, mũ bơi và chân vịt cho ngày tập luyện."
+      }
+    },
+    "waterShop": "Mua ngay",
+    "assistantTitle": "Chưa chắc chọn size nào?",
+    "assistantBody": "Hỏi trợ lý mua sắm về form dáng, size và tồn kho. Trợ lý kiểm tra catalog thực tế trước khi trả lời.",
+    "assistantCta": "Hỏi trợ lý",
+    "servicesTitle": "Mua sắm cùng COVEWEFT",
     "shippingTitle": "Miễn phí giao Standard từ {threshold}",
     "shippingBody": "Dưới mức đó, giao Standard có phí cố định. Giao Express là {express} cho mọi đơn.",
+    "services": {
+      "payment": {
+        "title": "COD hoặc chuyển khoản",
+        "body": "Cả hai phương thức đều được mô phỏng trong bản demo, không có tiền thật được chuyển."
+      },
+      "sizes": {
+        "title": "Demo Size Guide",
+        "body": "Bảng số đo cơ thể theo cm cho mọi sản phẩm đồ bơi."
+      },
+      "cancel": {
+        "title": "Hủy khi đơn còn Pending",
+        "body": "Tự hủy đơn của bạn bất cứ lúc nào trước khi cửa hàng xác nhận."
+      }
+    },
     "shippingLink": "Chính sách giao hàng"
   },
   "notFound": {

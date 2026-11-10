@@ -62,16 +62,60 @@
     "language": "Language"
   },
   "home": {
-    "title": "Find your water.",
+    "title": "Find your <accent>water.</accent>",
     "description": "Swimwear for laps, surf, and slow days at the beach.",
     "shopCta": "Browse the shop",
-    "aboutCta": "About this demo",
-    "heroAlt": "Studio photo of a swimsuit",
+    "newInCta": "See what's new",
+    "showcaseLabel": "Featured swimwear",
     "categoriesTitle": "Shop by category",
+    "marquee": {
+      "tagline": "Find your water",
+      "laps": "Laps",
+      "surf": "Surf",
+      "beach": "Beach days",
+      "shipping": "Free Standard shipping from {threshold}"
+    },
     "featuredTitle": "New in the shop",
-    "viewAll": "View all products",
+    "viewAll": "View all",
+    "railPrevious": "Previous products",
+    "railNext": "Next products",
+    "waterEyebrow": "Made for the water",
+    "waterTitle": "Pick your water",
+    "water": {
+      "pool": {
+        "title": "Pool",
+        "body": "Swimsuits built for laps, lessons, and long sessions."
+      },
+      "surf": {
+        "title": "Surf",
+        "body": "Rash guards that keep off the sun and the sand."
+      },
+      "gear": {
+        "title": "Gear",
+        "body": "Goggles, caps, and fins for training days."
+      }
+    },
+    "waterShop": "Shop now",
+    "assistantTitle": "Not sure about your size?",
+    "assistantBody": "Ask the shopping assistant about fit, sizes, and stock. It checks the live catalog before it answers.",
+    "assistantCta": "Ask the assistant",
+    "servicesTitle": "Shopping with COVEWEFT",
     "shippingTitle": "Free Standard shipping from {threshold}",
     "shippingBody": "Below that, Standard shipping has a flat fee. Express costs {express} on any order.",
+    "services": {
+      "payment": {
+        "title": "Cash on delivery or bank transfer",
+        "body": "Both payment methods are simulated in this demo, so no money moves."
+      },
+      "sizes": {
+        "title": "Demo Size Guide",
+        "body": "Body measurements in centimetres on every swimwear product."
+      },
+      "cancel": {
+        "title": "Cancel while Pending",
+        "body": "Cancel your own order any time before the store confirms it."
+      }
+    },
     "shippingLink": "Shipping policy"
   },
   "notFound": {
