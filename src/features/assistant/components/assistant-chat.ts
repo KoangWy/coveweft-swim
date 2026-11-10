@@ -10,6 +10,8 @@ export const MAX_QUESTION_CHARS = 1000;
 export const MAX_REQUEST_TURNS = 10;
 /** Browser history kept per account, so session storage stays small. */
 export const MAX_STORED_TURNS = 20;
+/** The panel mentions the daily allowance only once this few questions remain. */
+export const LOW_QUOTA_THRESHOLD = 5;
 
 export type ChatRole = "user" | "assistant";
 

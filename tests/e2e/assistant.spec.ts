@@ -15,7 +15,7 @@ const PRODUCT_OPTION = "M (3Y)";
 const STATUS_READY = {
   configured: true,
   signedIn: true,
-  remainingToday: 9,
+  remainingToday: 5,
   globalPaused: false,
 };
 
@@ -159,7 +159,7 @@ test("deltas render progressively and product cards link to the product", async 
             },
           },
         ]),
-        sseBody([{ event: "done", data: { remainingToday: 8 } }]),
+        sseBody([{ event: "done", data: { remainingToday: 4 } }]),
       ],
     },
   );
@@ -182,7 +182,7 @@ test("deltas render progressively and product cards link to the product", async 
   const card = dialog.getByRole("link", { name: PRODUCT_NAME });
   await expect(card).toHaveAttribute("href", `/en/products/${PRODUCT_SKU}`);
   await expect(dialog.getByText("In stock")).toBeVisible();
-  await expect(dialog.getByText("8 questions left today")).toBeVisible();
+  await expect(dialog.getByText("4 questions left today")).toBeVisible();
 });
 
 test("closing during a stream aborts it, keeps the partial answer, and a new turn is unaffected", async ({
@@ -227,7 +227,7 @@ test("closing during a stream aborts it, keeps the partial answer, and a new tur
 
       const second =
         'event: delta\ndata: {"text":"Second answer"}\n\n' +
-        'event: done\ndata: {"remainingToday":7}\n\n';
+        'event: done\ndata: {"remainingToday":3}\n\n';
       return Promise.resolve(
         new Response(second, {
           status: 200,
@@ -261,7 +261,7 @@ test("closing during a stream aborts it, keeps the partial answer, and a new tur
 
   await send(reopened, "Second question");
   await expect(reopened.getByText("Second answer")).toBeVisible();
-  await expect(reopened.getByText("7 questions left today")).toBeVisible();
+  await expect(reopened.getByText("3 questions left today")).toBeVisible();
   expect(
     await page.evaluate(
       () => (window as unknown as { __assistantProbe: { calls: number } }).__assistantProbe.calls,
@@ -270,7 +270,7 @@ test("closing during a stream aborts it, keeps the partial answer, and a new tur
 });
 
 test("a fresh ready status clears an obsolete daily-quota block", async ({ page }) => {
-  let statusRemaining = 9;
+  let statusRemaining = 5;
   await page.route("**/api/chat/status", (route) =>
     route.fulfill({
       status: 200,
@@ -297,7 +297,7 @@ test("a fresh ready status clears an obsolete daily-quota block", async ({ page 
   await expect(dialog.getByLabel("Your question")).toHaveCount(0);
 
   // The next quota day starts with a fresh allowance.
-  statusRemaining = 9;
+  statusRemaining = 5;
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog")).toHaveCount(0);
   dialog = await openAssistant(page);
@@ -314,7 +314,7 @@ test("an accepted failed turn reconciles the remaining count", async ({ page }) 
       contentType: "application/json",
       body: JSON.stringify({
         ...STATUS_READY,
-        remainingToday: statusCalls === 1 ? 9 : 8,
+        remainingToday: statusCalls === 1 ? 5 : 4,
       }),
     });
   });
@@ -325,11 +325,11 @@ test("an accepted failed turn reconciles the remaining count", async ({ page }) 
   await signIn(page);
 
   const dialog = await openAssistant(page);
-  await expect(dialog.getByText("9 questions left today")).toBeVisible();
+  await expect(dialog.getByText("5 questions left today")).toBeVisible();
   await send(dialog, "A failed question");
 
   await expect(dialog.getByText("The assistant could not answer")).toBeVisible();
-  await expect(dialog.getByText("8 questions left today")).toBeVisible({ timeout: 10_000 });
+  await expect(dialog.getByText("4 questions left today")).toBeVisible({ timeout: 10_000 });
 });
 
 test("a delayed status response does not overwrite newer quota info", async ({ page }) => {
@@ -338,14 +338,14 @@ test("a delayed status response does not overwrite newer quota info", async ({ p
     return route.fulfill({
       status: 200,
       contentType: "application/json",
-      body: JSON.stringify({ ...STATUS_READY, remainingToday: 9 }),
+      body: JSON.stringify({ ...STATUS_READY, remainingToday: 5 }),
     });
   });
   await mockChatSse(
     page,
     sseBody([
       { event: "delta", data: { text: "Fresh answer" } },
-      { event: "done", data: { remainingToday: 7 } },
+      { event: "done", data: { remainingToday: 3 } },
     ]),
   );
   await signIn(page);
@@ -353,11 +353,11 @@ test("a delayed status response does not overwrite newer quota info", async ({ p
   const dialog = await openAssistant(page);
   await send(dialog, "Question while status is slow");
   await expect(dialog.getByText("Fresh answer")).toBeVisible();
-  await expect(dialog.getByText("7 questions left today")).toBeVisible();
+  await expect(dialog.getByText("3 questions left today")).toBeVisible();
 
   await page.waitForTimeout(2200);
-  await expect(dialog.getByText("7 questions left today")).toBeVisible();
-  await expect(dialog.getByText("9 questions left today")).toHaveCount(0);
+  await expect(dialog.getByText("3 questions left today")).toBeVisible();
+  await expect(dialog.getByText("5 questions left today")).toHaveCount(0);
 });
 
 test("closing while a rejection body is loading does not resurrect cleared history", async ({
@@ -530,7 +530,7 @@ test("answer text is rendered as plain text, never HTML", async ({ page }) => {
         event: "delta",
         data: { text: "<b>bold</b> <img src=x onerror=alert(1)>" },
       },
-      { event: "done", data: { remainingToday: 7 } },
+      { event: "done", data: { remainingToday: 3 } },
     ]),
   );
 
@@ -542,6 +542,39 @@ test("answer text is rendered as plain text, never HTML", async ({ page }) => {
   await expect(log.getByText("<b>bold</b> <img src=x onerror=alert(1)>")).toBeVisible();
   await expect(log.locator("b")).toHaveCount(0);
   await expect(log.locator("img")).toHaveCount(0);
+});
+
+test("Markdown in an answer renders as formatting, without the markers", async ({ page }) => {
+  await mockStatus(page);
+  await mockChatSse(
+    page,
+    sseBody([
+      {
+        event: "delta",
+        data: { text: "Try the **Cherry swimsuit** for:\n\n- laps\n- lessons" },
+      },
+      { event: "done", data: { remainingToday: 3 } },
+    ]),
+  );
+
+  await signIn(page);
+  const dialog = await openAssistant(page);
+  await send(dialog, "What should I wear?");
+
+  const log = dialog.getByRole("log");
+  await expect(log.locator("strong", { hasText: "Cherry swimsuit" })).toBeVisible();
+  await expect(log.getByRole("listitem")).toHaveText(["laps", "lessons"]);
+  await expect(log).not.toContainText("**");
+});
+
+test("the daily allowance stays hidden until few questions are left", async ({ page }) => {
+  await mockStatus(page, { ...STATUS_READY, remainingToday: 12 });
+  await signIn(page);
+
+  const dialog = await openAssistant(page);
+
+  await expect(dialog.getByLabel("Your question")).toBeVisible();
+  await expect(dialog.getByText(/questions? left today/)).toHaveCount(0);
 });
 
 test("a not-configured environment shows its own state", async ({ page }) => {
@@ -652,7 +685,7 @@ test("a transient failure offers a retry that can succeed", async ({ page }) => 
       contentType: "text/event-stream; charset=utf-8",
       body: sseBody([
         { event: "delta", data: { text: "Here is the answer." } },
-        { event: "done", data: { remainingToday: 6 } },
+        { event: "done", data: { remainingToday: 2 } },
       ]),
     });
   });
@@ -662,7 +695,7 @@ test("a transient failure offers a retry that can succeed", async ({ page }) => 
   await send(dialog, "Can you retry?");
 
   await expect(dialog.getByText("The assistant could not answer")).toBeVisible();
-  await expect(dialog.getByText("9 questions left today")).toBeVisible();
+  await expect(dialog.getByText("5 questions left today")).toBeVisible();
   await dialog.getByRole("button", { name: "Try again" }).click();
   await expect(dialog.getByText("Here is the answer.")).toBeVisible();
   await expect(calls).toBe(2);
@@ -739,7 +772,7 @@ test("signing out clears the stored conversation", async ({ page }) => {
     page,
     sseBody([
       { event: "delta", data: { text: "A stored answer." } },
-      { event: "done", data: { remainingToday: 5 } },
+      { event: "done", data: { remainingToday: 1 } },
     ]),
   );
   await signIn(page);

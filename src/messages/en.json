@@ -632,10 +632,17 @@
   "assistant": {
     "open": "Ask the shopping assistant",
     "title": "Shopping assistant",
-    "intro": "Ask about fit, sizes, prices, and stock. Answers can be wrong, so check the product page before you buy.",
-    "privacyTitle": "Your privacy",
-    "privacyBody": "Do not enter personal data such as your name, phone number, or address. Body measurements you type are sent to the AI provider to suggest a size.",
-    "remaining": "{count, plural, =1 {1 question left today} other {# questions left today}}",
+    "intro": "Answers can be wrong, so check the product page before you buy.",
+    "greeting": "Hi, I'm the COVEWEFT shopping assistant.",
+    "suggestionsLabel": "Try asking",
+    "suggestions": {
+      "laps": "Which swimsuit is good for lap swimming?",
+      "size": "I'm 160 cm and 52 kg. Which size should I pick?",
+      "kids": "Show me rash guards for kids under 400,000 VND."
+    },
+    "lowQuota": "{count, plural, =1 {Almost out: 1 question left today.} other {Almost out: # questions left today.}}",
+    "privacyNote": "Do not share personal data. Measurements you type are sent to the AI provider to suggest a size.",
+    "clear": "Clear conversation",
     "empty": "Ask about a product, size, stock, or store policy.",
     "you": "You",
     "assistant": "Assistant",

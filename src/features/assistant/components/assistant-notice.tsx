@@ -90,7 +90,7 @@ export function AssistantNotice({
     <div
       role={copy.tone === "error" ? "alert" : "status"}
       className={cx(
-        "flex items-start gap-3 rounded-md border p-3 text-small",
+        "flex items-start gap-3 rounded-lg border p-3 text-small",
         toneClasses[copy.tone],
       )}
     >

@@ -632,10 +632,17 @@
   "assistant": {
     "open": "Hỏi trợ lý mua sắm",
     "title": "Trợ lý mua sắm",
-    "intro": "Hỏi về form dáng, size, giá và tồn kho. Câu trả lời có thể chưa chính xác, hãy kiểm tra trang sản phẩm trước khi mua.",
-    "privacyTitle": "Quyền riêng tư của bạn",
-    "privacyBody": "Không nhập thông tin cá nhân như họ tên, số điện thoại hay địa chỉ. Số đo cơ thể bạn nhập sẽ được gửi tới nhà cung cấp AI để tư vấn size.",
-    "remaining": "{count, plural, other {Còn # lượt hỏi hôm nay}}",
+    "intro": "Câu trả lời có thể chưa chính xác, hãy kiểm tra trang sản phẩm trước khi mua.",
+    "greeting": "Xin chào, mình là trợ lý mua sắm của COVEWEFT.",
+    "suggestionsLabel": "Thử hỏi",
+    "suggestions": {
+      "laps": "Đồ bơi nào phù hợp để bơi sải?",
+      "size": "Mình cao 160 cm, nặng 52 kg. Nên chọn size nào?",
+      "kids": "Gợi ý áo rash guard cho trẻ em dưới 400.000 VND."
+    },
+    "lowQuota": "{count, plural, other {Sắp hết lượt: hôm nay còn # câu hỏi.}}",
+    "privacyNote": "Không chia sẻ thông tin cá nhân. Số đo bạn nhập sẽ được gửi tới nhà cung cấp AI để tư vấn size.",
+    "clear": "Xóa cuộc trò chuyện",
     "empty": "Hãy hỏi về sản phẩm, size, tồn kho hoặc chính sách của cửa hàng.",
     "you": "Bạn",
     "assistant": "Trợ lý",

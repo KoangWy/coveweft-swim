@@ -8,6 +8,7 @@ import {
   clearOtherAssistantHistories,
   createMessageId,
   isAbortError,
+  issueBlocksComposer,
   issueForError,
   MAX_QUESTION_CHARS,
   parseProductCards,
@@ -41,8 +42,15 @@ export type AssistantChat = {
   retry: () => void;
   /** Aborts the active turn and settles any partial answer. */
   abort: () => void;
+  /** Aborts the active turn and empties the transcript for this account. */
+  clear: () => void;
+  /** Loads quota and configuration ahead of opening, so the panel opens settled. */
+  prefetchStatus: () => void;
   dismissTooLong: () => void;
 };
+
+/** How long a status response counts as current when the panel opens. */
+const STATUS_FRESH_MS = 30_000;
 
 type ActiveTurn = {
   requestId: number;
@@ -76,6 +84,7 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
   const quotaVersionRef = useRef(0);
   const statusRequestIdRef = useRef(0);
   const mountedRef = useRef(true);
+  const statusFetchedAtRef = useRef(0);
 
   const updateMessages = (updater: (current: AssistantMessage[]) => AssistantMessage[]) => {
     const next = updater(messagesRef.current);
@@ -464,6 +473,21 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
     controller?.abort();
   }
 
+  function clear() {
+    abort();
+    updateMessages(() => []);
+    setIssue((current) => (current && issueBlocksComposer(current.kind) ? current : null));
+    setFailedQuestion(null);
+    persist();
+  }
+
+  const prefetchStatus = useCallback(() => {
+    if (signedIn && Date.now() - statusFetchedAtRef.current > STATUS_FRESH_MS) {
+      statusFetchedAtRef.current = Date.now();
+      void refreshStatus();
+    }
+  }, [signedIn, refreshStatus]);
+
   function dismissTooLong() {
     setIssue((current) => (current?.kind === "too_long" ? null : current));
   }
@@ -489,15 +513,16 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
     setMessages(loaded);
   }, [userId]);
 
-  // Ask for the quota and configuration whenever the panel opens.
+  // Ask for the quota and configuration when the panel opens. A status loaded
+  // by a recent prefetch counts; closing forgets it, so the next opening asks
+  // again.
   useEffect(() => {
-    if (open && signedIn) {
-      // The status endpoint is an external system; its response updates quota
-      // and configuration state rather than deriving them from props.
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      void refreshStatus();
+    if (open) {
+      prefetchStatus();
+    } else {
+      statusFetchedAtRef.current = 0;
     }
-  }, [open, signedIn, refreshStatus]);
+  }, [open, prefetchStatus]);
 
   useEffect(() => {
     mountedRef.current = true;
@@ -518,6 +543,8 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
     send,
     retry,
     abort,
+    clear,
+    prefetchStatus,
     dismissTooLong,
   };
 }
