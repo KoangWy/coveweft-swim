@@ -738,20 +738,21 @@
     "adding": "Đang thêm…",
     "added": "Đã thêm {name} vào giỏ hàng.",
     "viewCart": "Xem giỏ hàng",
+    "assistantHint": "Chưa chắc size nào vừa? Trợ lý có thể đối chiếu số đo của bạn với Demo Size Guide.",
+    "assistantCta": "Hỏi trợ lý",
     "notEnoughStock": "{count, plural, =0 {Tùy chọn này vừa hết hàng.} other {Chỉ còn #. Số lượng trong giỏ của bạn đã được tính vào đó.}}",
     "policyNote": "Giao hàng và đổi trả theo <shipping>chính sách giao hàng</shipping> và <returns>chính sách đổi trả</returns>.",
     "sizeGuideLink": "Bảng size",
     "descriptionTitle": "Mô tả",
     "specsTitle": "Thông số",
+    "relatedTitle": "Có thể bạn cũng thích",
     "gallery": {
       "label": "Ảnh sản phẩm",
       "imageAlt": "{name}, ảnh {index}/{total}",
       "position": "Ảnh {index}/{total}",
       "show": "Xem ảnh {index}/{total}",
       "previous": "Ảnh trước",
-      "next": "Ảnh sau",
-      "previousThumbs": "Ảnh thu nhỏ trước",
-      "nextThumbs": "Thêm ảnh thu nhỏ"
+      "next": "Ảnh sau"
     },
     "attributes": {
       "product_type": "Loại",

@@ -738,20 +738,21 @@
     "adding": "Adding…",
     "added": "{name} was added to your cart.",
     "viewCart": "View cart",
+    "assistantHint": "Not sure which size fits? The assistant can compare your measurements with the Demo Size Guide.",
+    "assistantCta": "Ask the assistant",
     "notEnoughStock": "{count, plural, =0 {This option just sold out.} other {Only # left. Your cart already counts toward that total.}}",
     "policyNote": "Delivery and returns follow our <shipping>shipping policy</shipping> and <returns>returns policy</returns>.",
     "sizeGuideLink": "Size guide",
     "descriptionTitle": "Description",
     "specsTitle": "Specifications",
+    "relatedTitle": "You may also like",
     "gallery": {
       "label": "Product images",
       "imageAlt": "{name}, image {index} of {total}",
       "position": "Image {index} of {total}",
       "show": "Show image {index} of {total}",
       "previous": "Previous image",
-      "next": "Next image",
-      "previousThumbs": "Earlier thumbnails",
-      "nextThumbs": "More thumbnails"
+      "next": "Next image"
     },
     "attributes": {
       "product_type": "Type",
