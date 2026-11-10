@@ -7,7 +7,9 @@ import { cx } from "@/components/ui/cx";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LOCALES, type Locale } from "@/lib/locale";
 
-function SwitcherLinks({ query, tone }: { query: string; tone: "light" | "dark" }) {
+export type LocaleSwitcherTone = "default" | "inverse";
+
+function SwitcherLinks({ query, tone }: { query: string; tone: LocaleSwitcherTone }) {
   const t = useTranslations("nav");
   const current = useLocale() as Locale;
   const pathname = usePathname();
@@ -15,7 +17,12 @@ function SwitcherLinks({ query, tone }: { query: string; tone: "light" | "dark" 
 
   return (
     <div role="group" aria-label={t("language")}>
-      <ul className="flex items-center rounded-md border border-neutral-300 p-0.5">
+      <ul
+        className={cx(
+          "flex items-center rounded-full border p-0.5",
+          tone === "inverse" ? "border-navy-700" : "border-neutral-300",
+        )}
+      >
         {LOCALES.map((locale) => {
           const active = locale === current;
           return (
@@ -28,12 +35,14 @@ function SwitcherLinks({ query, tone }: { query: string; tone: "light" | "dark" 
                 aria-current={active ? "true" : undefined}
                 title={t(`languages.${locale}`)}
                 className={cx(
-                  "inline-flex h-8 min-w-8 items-center justify-center rounded-md px-2 text-caption font-semibold uppercase transition-colors duration-150",
-                  active
-                    ? "bg-navy-900 text-white"
-                    : tone === "light"
-                      ? "text-navy-900 hover:bg-neutral-100"
-                      : "text-navy-900 hover:bg-white",
+                  "inline-flex h-8 min-w-9 items-center justify-center rounded-full px-2.5 text-caption font-semibold uppercase transition-colors duration-150",
+                  tone === "inverse"
+                    ? active
+                      ? "bg-lime-400 text-navy-950"
+                      : "text-white hover:bg-navy-800 focus-visible:outline-white"
+                    : active
+                      ? "bg-navy-900 text-white"
+                      : "text-navy-900 hover:bg-neutral-100",
                 )}
               >
                 <span aria-hidden>{locale}</span>
@@ -51,7 +60,7 @@ function SwitcherLinks({ query, tone }: { query: string; tone: "light" | "dark" 
  * Links to the current page in each locale, keeping the path and query. The
  * server renders the target page in that language; no cookie is involved.
  */
-export function LocaleSwitcherLinks({ tone = "light" }: { tone?: "light" | "dark" }) {
+export function LocaleSwitcherLinks({ tone = "default" }: { tone?: LocaleSwitcherTone }) {
   // The page renders per request (see LocaleSwitcher), so the search params
   // are known during server rendering and the links work before hydration.
   const searchParams = useSearchParams();

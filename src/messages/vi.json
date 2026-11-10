@@ -49,14 +49,15 @@
   },
   "demoBanner": {
     "label": "Demo",
-    "message": "Dự án học tập. Không bán hàng, không thu tiền và không giao hàng thật.",
-    "link": "Giới thiệu bản demo"
+    "message": "Dự án học tập. Không bán hàng, không thu tiền, không giao hàng thật."
   },
   "footer": {
     "shopHeading": "Mua sắm",
     "helpHeading": "Hỗ trợ",
     "legalHeading": "Pháp lý",
+    "aboutTitle": "Về bản demo này",
     "about": "COVEWEFT Swim là thương hiệu giả tưởng do một nhóm sinh viên môn CO3027, Trường Đại học Bách khoa TP.HCM xây dựng. Dữ liệu và hình ảnh sản phẩm lấy từ SOBIE, chỉ dùng cho mục đích học tập.",
+    "aboutLink": "Đọc thêm về bản demo",
     "notice": "Website này là bản demo. Không bán sản phẩm, không thu tiền và không giao đơn hàng.",
     "language": "Ngôn ngữ"
   },

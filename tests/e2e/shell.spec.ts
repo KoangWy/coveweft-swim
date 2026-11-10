@@ -34,7 +34,9 @@ for (const viewport of VIEWPORTS) {
     test.use({ viewport: { width: viewport.width, height: viewport.height } });
 
     for (const path of ["/en", "/vi/policies/privacy"]) {
-      test(`${path} fits the viewport and keeps the demo banner visible`, async ({ page }) => {
+      test(`${path} fits the viewport, opens with the demo notice, and keeps the header`, async ({
+        page,
+      }) => {
         await page.goto(path);
 
         const overflow = await page.evaluate(
@@ -42,11 +44,17 @@ for (const viewport of VIEWPORTS) {
         );
         expect(overflow).toBeLessThanOrEqual(0);
 
-        const banner = page.getByText(/Study project|Dự án học tập/);
-        await expect(banner).toBeInViewport();
+        await expect(page.getByText(/Study project|Dự án học tập/)).toBeInViewport();
+        await expect(
+          page
+            .getByRole("contentinfo")
+            .getByText(/This website is a demo|bản demo/)
+            .first(),
+        ).toBeAttached();
 
+        const header = page.getByRole("banner");
         await page.mouse.wheel(0, 2000);
-        await expect(banner).toBeInViewport();
+        await expect(header).toBeInViewport();
       });
     }
   });

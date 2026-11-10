@@ -1,6 +1,6 @@
 import { connection } from "next/server";
 
-import { LocaleSwitcherLinks } from "./locale-switcher-links";
+import { LocaleSwitcherLinks, type LocaleSwitcherTone } from "./locale-switcher-links";
 
 /**
  * EN/VI switch for the current page. Its links carry the current query
@@ -8,7 +8,7 @@ import { LocaleSwitcherLinks } from "./locale-switcher-links";
  * request-time rendering. Without that, prerendered HTML would link to the
  * other locale without the query until JavaScript loads.
  */
-export async function LocaleSwitcher({ tone = "light" }: { tone?: "light" | "dark" }) {
+export async function LocaleSwitcher({ tone = "default" }: { tone?: LocaleSwitcherTone }) {
   await connection();
   return <LocaleSwitcherLinks tone={tone} />;
 }

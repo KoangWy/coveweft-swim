@@ -1,25 +1,47 @@
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 
 import { loadCartCount, loadCurrentUser } from "@/features/account/components/session";
 import { AssistantWidget } from "@/features/assistant/components/assistant-widget";
 
+import { NavigationProgress } from "./navigation-progress";
 import { SiteFooter } from "./site-footer";
-import { SiteHeader } from "./site-header";
+import { HeaderActions, SiteHeader } from "./site-header";
 import { SkipLink } from "./skip-link";
 
-/** Storefront frame: demo banner, header, page content, and footer. */
-export async function StorefrontFrame({ children }: { children: ReactNode }) {
+async function HeaderSession() {
   const [user, cartCount] = await Promise.all([loadCurrentUser(), loadCartCount()]);
+  return <HeaderActions cartCount={cartCount} signedIn={user !== null} />;
+}
 
+async function SessionAssistant() {
+  const user = await loadCurrentUser();
+  return <AssistantWidget key={user?.id ?? "visitor"} userId={user?.id ?? null} />;
+}
+
+/**
+ * Storefront frame: demo notice, header, page content, and footer. The
+ * session-dependent parts (account and cart links, assistant) stream in, so
+ * the frame and the page do not wait for the session lookup.
+ */
+export function StorefrontFrame({ children }: { children: ReactNode }) {
   return (
     <>
       <SkipLink />
-      <SiteHeader cartCount={cartCount} signedIn={user !== null} />
+      <NavigationProgress />
+      <SiteHeader
+        actions={
+          <Suspense fallback={<HeaderActions />}>
+            <HeaderSession />
+          </Suspense>
+        }
+      />
       <main id="main" className="flex flex-1 flex-col">
         {children}
       </main>
       <SiteFooter />
-      <AssistantWidget key={user?.id ?? "visitor"} userId={user?.id ?? null} />
+      <Suspense fallback={null}>
+        <SessionAssistant />
+      </Suspense>
     </>
   );
 }

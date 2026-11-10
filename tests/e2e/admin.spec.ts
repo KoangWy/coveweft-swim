@@ -100,7 +100,11 @@ async function placeCodOrder(page: Page, recipientName: string) {
 
 async function dashboardRevenue(page: Page) {
   await page.goto("/en/admin");
-  const card = page.locator("li").filter({ has: page.getByText("Demo revenue", { exact: true }) });
+  // Streaming can briefly keep a hidden copy of the page next to the visible
+  // one, so only the visible card counts.
+  const card = page
+    .locator("li")
+    .filter({ has: page.getByText("Demo revenue", { exact: true }), visible: true });
   const text = await card.innerText();
 
   return Number(text.replace(/[^\d]/g, ""));

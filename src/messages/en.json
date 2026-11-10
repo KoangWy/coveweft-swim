@@ -49,14 +49,15 @@
   },
   "demoBanner": {
     "label": "Demo",
-    "message": "Study project. Nothing is sold, no payment is taken, and no order is shipped.",
-    "link": "About this demo"
+    "message": "Study project. Nothing is sold, charged, or shipped."
   },
   "footer": {
     "shopHeading": "Shop",
     "helpHeading": "Help",
     "legalHeading": "Legal",
+    "aboutTitle": "About this demo",
     "about": "COVEWEFT Swim is a fictional brand created by a CO3027 student team at Ho Chi Minh City University of Technology. Product data and images come from SOBIE and are used for study purposes.",
+    "aboutLink": "Read more about the demo",
     "notice": "This website is a demo. It does not sell products, take payments, or ship orders.",
     "language": "Language"
   },

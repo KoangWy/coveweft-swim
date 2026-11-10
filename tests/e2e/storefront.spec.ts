@@ -64,7 +64,7 @@ for (const viewport of VIEWPORTS) {
       await page.goto("/en/shop?group=kids");
       await expect(page.getByRole("heading", { level: 1 })).toHaveText("Kids");
       await page.goto(`/en/shop?q=${encodeURIComponent("cherry")}&type=Swimsuit`);
-      await expect(page.getByText("Search: cherry")).toBeVisible();
+      await expect(page.getByRole("link", { name: /^Search: cherry/ })).toBeVisible();
       await page.getByRole("link", { name: PRODUCT_NAME }).first().click();
       await expect(page.getByRole("heading", { level: 1 })).toHaveText(PRODUCT_NAME);
       await expect(page.getByRole("heading", { name: "Demo Size Guide" })).toBeVisible();

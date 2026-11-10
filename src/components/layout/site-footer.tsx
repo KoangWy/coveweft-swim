@@ -8,7 +8,7 @@ import { LocaleSwitcher } from "./locale-switcher";
 import { Wordmark } from "./wordmark";
 
 const linkClasses =
-  "rounded-md text-small text-neutral-700 underline-offset-2 hover:text-navy-900 hover:underline";
+  "rounded-md text-small text-neutral-300 underline-offset-4 transition-colors duration-150 hover:text-white hover:underline focus-visible:outline-white";
 
 function FooterColumn({
   heading,
@@ -18,9 +18,9 @@ function FooterColumn({
   links: Array<{ href: string; label: string }>;
 }) {
   return (
-    <div className="flex flex-col gap-3">
-      <h2 className="text-small font-semibold text-navy-900">{heading}</h2>
-      <ul className="flex flex-col gap-2">
+    <div className="flex flex-col gap-4">
+      <h2 className="text-small font-semibold text-white">{heading}</h2>
+      <ul className="flex flex-col gap-2.5">
         {links.map((link) => (
           <li key={link.href}>
             <Link href={link.href} className={linkClasses}>
@@ -35,16 +35,29 @@ function FooterColumn({
 
 const HELP_SLUGS = POLICY_SLUGS.filter((slug) => slug !== "privacy" && slug !== "terms");
 
+/**
+ * Dark footer: brand, link columns, the study-project explanation with a link
+ * to the About this demo page, and the language switch.
+ */
 export function SiteFooter() {
   const t = useTranslations();
 
   return (
-    <footer className="mt-auto border-t border-neutral-200 bg-neutral-50">
-      <Container className="grid gap-10 py-12 md:grid-cols-12 md:gap-8">
-        <div className="flex flex-col gap-4 md:col-span-5">
-          <Wordmark />
-          <p className="text-small font-medium text-navy-900">{t("common.tagline")}</p>
-          <p className="max-w-[46ch] text-small text-neutral-600">{t("footer.about")}</p>
+    <footer className="relative mt-auto overflow-hidden bg-navy-950 text-white">
+      <Container className="grid gap-12 pt-16 pb-12 md:grid-cols-12 md:gap-8">
+        <div className="flex flex-col gap-5 md:col-span-5">
+          <Wordmark tone="light" />
+          <p className="text-heading font-display text-white">{t("common.tagline")}</p>
+          <div className="max-w-[46ch] rounded-lg border border-navy-700 p-4">
+            <h2 className="text-small font-semibold text-lime-300">{t("footer.aboutTitle")}</h2>
+            <p className="mt-1.5 text-small text-neutral-300">{t("footer.about")}</p>
+            <Link
+              href="/about"
+              className="mt-3 inline-flex rounded-md text-small font-semibold text-white underline underline-offset-4 hover:text-lime-300 focus-visible:outline-white"
+            >
+              {t("footer.aboutLink")}
+            </Link>
+          </div>
         </div>
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-7">
           <FooterColumn
@@ -69,20 +82,25 @@ export function SiteFooter() {
             links={[
               { href: "/policies/privacy", label: t("policies.names.privacy") },
               { href: "/policies/terms", label: t("policies.names.terms") },
-              { href: "/about", label: t("policies.names.about") },
             ]}
           />
         </div>
       </Container>
-      <div className="border-t border-neutral-200">
+      <div className="border-t border-navy-800">
         <Container className="flex flex-col gap-4 py-5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-caption text-neutral-600">{t("footer.notice")}</p>
+          <p className="text-caption text-neutral-300">{t("footer.notice")}</p>
           <div className="flex items-center gap-3">
-            <span className="text-caption text-neutral-600">{t("footer.language")}</span>
-            <LocaleSwitcher tone="dark" />
+            <span className="text-caption text-neutral-300">{t("footer.language")}</span>
+            <LocaleSwitcher tone="inverse" />
           </div>
         </Container>
       </div>
+      <p
+        aria-hidden
+        className="pointer-events-none -mb-[0.18em] text-center text-[clamp(4rem,17vw,15rem)] leading-[0.8] font-display text-navy-900 select-none"
+      >
+        {t("common.brand")}
+      </p>
     </footer>
   );
 }
