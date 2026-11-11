@@ -5,10 +5,10 @@ import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useRef, useTransition, type FormEvent, type ReactNode } from "react";
 
 import { buttonClasses } from "@/components/ui/button";
-import { controlBorder, controlClasses } from "@/components/ui/field";
 import { Link, useRouter } from "@/i18n/navigation";
 import type { ProductFacets, ProductFacetValue } from "@/server/catalog";
 
+import { PriceRange, priceCeiling } from "./price-range";
 import type { ShopQuery } from "./shop-query";
 
 export type ShopFiltersProps = {
@@ -69,7 +69,7 @@ export function ShopFilters({ facets, query, idPrefix, onApplied, className }: S
   const router = useRouter();
   const [pending, startTransition] = useTransition();
   const formRef = useRef<HTMLFormElement>(null);
-  const { category, gender, type, size, material, priceMin, priceMax, inStock } = query;
+  const { category, gender, type, size, material, inStock } = query;
   const featureKey = query.features.join("\n");
 
   // The inputs are uncontrolled, so they keep focus and typed text while the
@@ -80,7 +80,6 @@ export function ShopFilters({ facets, query, idPrefix, onApplied, className }: S
     if (!form) return;
     const single: Record<string, string | undefined> = { category, gender, type, size, material };
     const features = featureKey ? featureKey.split("\n") : [];
-    const prices: Record<string, number | undefined> = { min: priceMin, max: priceMax };
     for (const element of form.elements) {
       if (!(element instanceof HTMLInputElement)) continue;
       if (element.type === "radio" && element.name in single) {
@@ -89,16 +88,16 @@ export function ShopFilters({ facets, query, idPrefix, onApplied, className }: S
         element.checked = inStock;
       } else if (element.name === "feature") {
         element.checked = features.includes(element.value);
-      } else if (element.name in prices && element !== document.activeElement) {
-        element.value = prices[element.name]?.toString() ?? "";
       }
     }
-  }, [category, gender, type, size, material, priceMin, priceMax, inStock, featureKey]);
+  }, [category, gender, type, size, material, inStock, featureKey]);
 
   function apply(form: HTMLFormElement) {
     const params = new URLSearchParams();
     for (const [key, value] of new FormData(form)) {
       if (typeof value === "string" && value.trim() !== "") {
+        if (key === "min" && Number(value) === 0) continue;
+        if (key === "max" && Number(value) === priceCeiling(facets.price.maxVnd)) continue;
         params.append(key, value.trim());
       }
     }
@@ -205,44 +204,15 @@ export function ShopFilters({ facets, query, idPrefix, onApplied, className }: S
         {single("size", facets.sizes, query.size)}
       </FacetGroup>
       <FacetGroup title={t("filters.price")} open>
-        <fieldset className="flex flex-col gap-2">
-          <legend className="sr-only">{t("filters.price")}</legend>
-          <div className="grid grid-cols-2 gap-2">
-            <div className="flex flex-col gap-1">
-              <label htmlFor={`${idPrefix}-min`} className="text-caption text-navy-900">
-                {t("filters.priceMin")}
-              </label>
-              <input
-                id={`${idPrefix}-min`}
-                name="min"
-                type="number"
-                inputMode="numeric"
-                min={0}
-                step={1000}
-                defaultValue={query.priceMin}
-                placeholder={String(facets.price.minVnd)}
-                className={`${controlClasses} ${controlBorder(false)} h-10 text-small`}
-              />
-            </div>
-            <div className="flex flex-col gap-1">
-              <label htmlFor={`${idPrefix}-max`} className="text-caption text-navy-900">
-                {t("filters.priceMax")}
-              </label>
-              <input
-                id={`${idPrefix}-max`}
-                name="max"
-                type="number"
-                inputMode="numeric"
-                min={0}
-                step={1000}
-                defaultValue={query.priceMax}
-                placeholder={String(facets.price.maxVnd)}
-                className={`${controlClasses} ${controlBorder(false)} h-10 text-small`}
-              />
-            </div>
-          </div>
-          <p className="text-caption text-neutral-600">{t("filters.priceHint")}</p>
-        </fieldset>
+        <PriceRange
+          idPrefix={idPrefix}
+          maxVnd={facets.price.maxVnd}
+          min={query.priceMin}
+          max={query.priceMax}
+          onCommit={() => {
+            if (formRef.current) apply(formRef.current);
+          }}
+        />
       </FacetGroup>
       <FacetGroup title={t("filters.material")} open={Boolean(query.material)}>
         {single("material", facets.materials, query.material)}

@@ -64,6 +64,7 @@ export function ProductImage({
           unoptimized={!sized}
           sizes={sizes}
           priority={priority}
+          fetchPriority={priority ? "high" : undefined}
           loading={priority ? undefined : "lazy"}
           onError={() => setFailedSrc(src)}
           className={cx("object-cover", anchorTop && "object-top", imageClassName)}

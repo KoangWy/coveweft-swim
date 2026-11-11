@@ -7,21 +7,21 @@ Postgres functions so each change runs in a single transaction.
 
 ## Source layout
 
-| Path                | Purpose                                                                  |
-| ------------------- | ------------------------------------------------------------------------ |
-| `src/app/[locale]/` | Storefront, account, and admin routes, one tree per locale               |
-| `src/app/api/`      | HTTP route handlers (chat stream, internal callbacks)                    |
-| `src/components/`   | Shared UI, layout, and form controls                                     |
-| `src/features/`     | Feature modules: catalog, auth, cart, checkout, orders, admin, assistant |
-| `src/server/`       | Services, repositories, provider adapters, and shared error contracts    |
-| `src/lib/`          | Supabase clients, i18n helpers, money and configuration helpers          |
-| `src/messages/`     | English and Vietnamese UI dictionaries                                   |
-| `src/i18n/`         | Routing, navigation, and request configuration for `next-intl`           |
-| `supabase/`         | Local stack configuration, migrations, RPCs, and seed data               |
-| `data/`             | Catalog export, translations, size guides, and import reports            |
-| `scripts/`          | Demo, reset, import, and media tooling                                   |
-| `tests/`            | Unit, integration, and end-to-end tests                                  |
-| `docs/`             | Architecture and setup documentation                                     |
+| Path                | Purpose                                                                             |
+| ------------------- | ----------------------------------------------------------------------------------- |
+| `src/app/[locale]/` | Storefront, account, and admin routes, one tree per locale                          |
+| `src/app/api/`      | HTTP route handlers (chat stream, internal callbacks)                               |
+| `src/components/`   | Shared UI, layout, and form controls                                                |
+| `src/features/`     | Feature modules: catalog, auth, favorites, cart, checkout, orders, admin, assistant |
+| `src/server/`       | Services, repositories, provider adapters, and shared error contracts               |
+| `src/lib/`          | Supabase clients, i18n helpers, money and configuration helpers                     |
+| `src/messages/`     | English and Vietnamese UI dictionaries                                              |
+| `src/i18n/`         | Routing, navigation, and request configuration for `next-intl`                      |
+| `supabase/`         | Local stack configuration, migrations, RPCs, and seed data                          |
+| `data/`             | Catalog export, translations, size guides, and import reports                       |
+| `scripts/`          | Demo, reset, import, and media tooling                                              |
+| `tests/`            | Unit, integration, and end-to-end tests                                             |
+| `docs/`             | Architecture and setup documentation                                                |
 
 ## Request flow
 
@@ -111,6 +111,22 @@ The `product-uploads` Storage bucket is public for reads and limited to WebP,
 JPEG, and PNG files of at most 5 MiB. Administrator uploads write through the
 secret key after the service checks the caller role; the storefront reads the
 public object URL.
+
+### Storefront favorites and price range
+
+Favorites store up to 500 product IDs in this browser's local storage. Visitors
+can save products without an account; the list is shared by tabs on the same
+origin and does not sync between devices. If storage is unavailable, selections
+remain in memory for the current visit. The public favorites endpoint validates
+the IDs and reads current catalog data with the same service and product cards
+as the shop. Hidden products are omitted from the displayed list.
+
+The price filter uses two native range inputs. Its domain starts at zero and
+ends at the highest visible catalog price rounded up to a 100,000 VND boundary
+(with a 100,000 VND minimum domain for an empty catalog). This upper bound is
+independent of active filters. Dragging updates the displayed amounts;
+releasing a handle or a navigation key applies the selection to the shop URL.
+Browser history restores both handles.
 
 ### Row level security
 

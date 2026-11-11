@@ -66,7 +66,6 @@
     "title": "Find your <accent>water.</accent>",
     "description": "Đồ bơi cho những vòng bơi, buổi lướt sóng và ngày thong thả bên biển.",
     "shopCta": "Xem cửa hàng",
-    "newInCta": "Xem hàng mới về",
     "showcaseLabel": "Đồ bơi nổi bật",
     "categoriesTitle": "Mua theo nhóm",
     "marquee": {
@@ -709,7 +708,7 @@
       "price": "Giá (VND)",
       "priceMin": "Từ",
       "priceMax": "Đến",
-      "priceHint": "Nhấn Áp dụng sau khi nhập giá.",
+      "priceHint": "Kéo hai đầu để chọn khoảng giá.",
       "material": "Chất liệu",
       "features": "Tính năng",
       "apply": "Áp dụng",
@@ -1017,5 +1016,25 @@
     "amount": "Số tiền",
     "transferNote": "Nội dung chuyển khoản",
     "noMoney": "Trang này chỉ ghi nhận kết quả thử nghiệm. Không có tiền nào được chuyển."
+  },
+  "favorites": {
+    "title": "Yêu thích",
+    "withCount": "{count, plural, =0 {Yêu thích, trống} other {Yêu thích, # sản phẩm}}",
+    "description": "Giữ những món bạn thích ở một nơi. Danh sách được lưu trên trình duyệt này.",
+    "add": "Thêm {name} vào yêu thích",
+    "remove": "Bỏ {name} khỏi yêu thích",
+    "emptyTitle": "Lưu những món bạn thích",
+    "emptyBody": "Nhấn trái tim trên thẻ sản phẩm để lưu lại và xem sau.",
+    "browse": "Xem cửa hàng",
+    "errorTitle": "Chưa tải được sản phẩm yêu thích",
+    "errorBody": "Danh sách đã lưu vẫn còn. Hãy thử tải lại sản phẩm.",
+    "unavailableTitle": "Các sản phẩm này không còn hiển thị",
+    "unavailableBody": "Sản phẩm bạn đã lưu hiện đang ẩn khỏi cửa hàng. Hãy khám phá những món khác.",
+    "count": "{count, plural, other {# sản phẩm đã lưu}}",
+    "pages": "Các trang yêu thích",
+    "previous": "Trước",
+    "next": "Tiếp",
+    "page": "Trang {page} / {pages}",
+    "clear": "Xóa danh sách yêu thích"
   }
 }

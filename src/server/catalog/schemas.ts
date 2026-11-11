@@ -15,6 +15,7 @@ const priceInput = z.number().int().nonnegative().max(2_147_483_647);
 export const ListProductsInput = z
   .object({
     locale: LocaleInput.default("en"),
+    ids: z.array(z.uuid()).max(500).optional(),
     q: z.string().trim().max(120).optional(),
     category: optionalFilter(120),
     gender: z

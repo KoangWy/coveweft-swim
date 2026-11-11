@@ -36,6 +36,7 @@ export function BrandImage({
       loader={loaders[name]}
       sizes={sizes}
       priority={priority}
+      fetchPriority={priority ? "high" : undefined}
       className={cx("object-cover", className)}
     />
   );

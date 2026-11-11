@@ -47,6 +47,7 @@ function createCatalogQuery(supabase: SupabaseClient, columns: string) {
 
 function applyFilters(query: CatalogQuery, input: ListProductsInput): CatalogQuery {
   let next = query;
+  if (input.ids) next = next.in("id", input.ids);
   const term = input.q ? normalizeSearchTerm(input.q) : "";
 
   if (term) {
@@ -260,10 +261,15 @@ export async function listProducts(input: unknown): Promise<Result<ProductList>>
       filters,
     ).limit(1000);
 
-    const [itemsResult, facetsResult, translations] = await Promise.all([
+    const [itemsResult, facetsResult, translations, ceilingResult] = await Promise.all([
       itemsQuery,
       facetsQuery,
       loadFacetTranslations(supabase, filters.locale),
+      supabase
+        .from("catalog_products")
+        .select("price_vnd")
+        .order("price_vnd", { ascending: false })
+        .limit(1),
     ]);
 
     if (itemsResult.error) {
@@ -276,8 +282,15 @@ export async function listProducts(input: unknown): Promise<Result<ProductList>>
       return fail(mapped.code, mapped.details);
     }
 
+    if (ceilingResult.error) {
+      const mapped = mapDatabaseError(ceilingResult.error);
+      return fail(mapped.code, mapped.details);
+    }
+    const facets = buildFacets((facetsResult.data ?? []) as unknown as FacetRow[], translations);
+    // The slider domain stays stable when search, category, or price filters change.
+    facets.price.maxVnd = ceilingResult.data?.[0]?.price_vnd ?? 0;
+
     const rows = (itemsResult.data ?? []) as unknown as CatalogRow[];
-    const facetRows = (facetsResult.data ?? []) as unknown as FacetRow[];
     const images = await loadProductImages(
       supabase,
       rows.map((row) => row.id),
@@ -291,7 +304,7 @@ export async function listProducts(input: unknown): Promise<Result<ProductList>>
       page: filters.page,
       pageSize: filters.pageSize,
       pageCount: total === 0 ? 0 : Math.ceil(total / filters.pageSize),
-      facets: buildFacets(facetRows, translations),
+      facets,
     });
   });
 }

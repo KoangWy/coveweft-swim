@@ -5,7 +5,6 @@ import type { ReactNode } from "react";
 import { Container } from "@/components/layout/container";
 import { LogoMark } from "@/components/layout/logo-mark";
 import { BrandImage } from "@/components/ui/brand-image";
-import { buttonClasses } from "@/components/ui/button";
 import { cx } from "@/components/ui/cx";
 import { ProductImage } from "@/components/ui/product-image";
 import { ErrorState } from "@/components/ui/states";
@@ -13,6 +12,7 @@ import { AssistantOpenButton } from "@/features/assistant/components/assistant-o
 import { imageSources } from "@/features/catalog/components/image-sources";
 import { ProductCard } from "@/features/catalog/components/product-card";
 import { toListProductsInput, parseShopQuery } from "@/features/catalog/components/shop-query";
+import { HeroIntro } from "@/features/home/components/hero-intro";
 import { HeroBackdrop } from "@/features/home/components/hero-backdrop";
 import { HeroShowcase } from "@/features/home/components/hero-showcase";
 import { MarqueeBand } from "@/features/home/components/marquee-band";
@@ -69,7 +69,7 @@ export default async function HomePage() {
   const byGroup = new Map<ShopCategory, ProductListItem[]>(
     SHOP_CATEGORIES.map((group, index) => [group, groups[index]]),
   );
-  const showcase = [byGroup.get("women")?.[1] ?? byGroup.get("women")?.[0], byGroup.get("men")?.[0]]
+  const showcase = [byGroup.get("women")?.[0], byGroup.get("men")?.[0]]
     .filter((product): product is ProductListItem => product !== undefined)
     .map((product) => ({
       id: product.id,
@@ -98,35 +98,16 @@ export default async function HomePage() {
     <>
       <section
         aria-labelledby="hero-heading"
-        className="relative isolate overflow-hidden bg-navy-950 text-white"
+        className="hero-scene relative isolate overflow-hidden bg-navy-950 text-white"
       >
         <div className="absolute inset-0 -z-10">
           <HeroBackdrop />
           <div className="absolute inset-0 bg-gradient-to-r from-navy-950/90 via-navy-950/55 to-navy-950/5" />
           <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-navy-950/50 to-transparent" />
         </div>
-        <Container className="grid min-h-[clamp(32rem,calc(100dvh-6.5rem),50rem)] items-center gap-10 pt-14 pb-24 lg:grid-cols-12 lg:pt-16 lg:pb-28">
-          <div className="flex flex-col items-start gap-7 lg:col-span-6">
-            <h1
-              id="hero-heading"
-              className="animate-rise text-[3.25rem] leading-[0.95] font-display text-white sm:text-hero"
-            >
-              {t.rich("home.title", {
-                accent: (chunks) => <span className="text-lime-400">{chunks}</span>,
-              })}
-            </h1>
-            <p className="max-w-[38ch] animate-rise text-lead text-white/85 [animation-delay:120ms]">
-              {t("home.description")}
-            </p>
-            <div className="flex animate-rise flex-wrap gap-3 [animation-delay:220ms]">
-              <Link href="/shop" className={buttonClasses({ size: "lg" })}>
-                {t("home.shopCta")}
-                <ArrowRight aria-hidden size={20} />
-              </Link>
-              <a href="#new-in" className={buttonClasses({ variant: "outlineLight", size: "lg" })}>
-                {t("home.newInCta")}
-              </a>
-            </div>
+        <Container className="grid min-h-[clamp(30rem,calc(100dvh-10rem),50rem)] items-center gap-6 pt-10 pb-16 lg:grid-cols-12 lg:pt-8 lg:pb-16">
+          <div className="lg:col-span-6">
+            <HeroIntro description={t("home.description")} cta={t("home.shopCta")} />
           </div>
           {showcase.length > 0 ? (
             <div className="hidden lg:col-span-6 lg:block">

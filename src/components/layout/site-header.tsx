@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 
 import { iconButtonClasses } from "@/components/ui/icon-button";
 import { Link } from "@/i18n/navigation";
+import { FavoritesLink } from "@/features/favorites/components/favorites-link";
 import { SHOP_CATEGORIES } from "@/lib/site";
 
 import { Container } from "./container";
@@ -68,6 +69,7 @@ export function HeaderActions({ cartCount = 0, signedIn }: HeaderActionsProps) {
 
   return (
     <>
+      <FavoritesLink />
       <Link
         href={signedIn === false ? "/sign-in" : "/account"}
         aria-label={accountLabel}
@@ -115,10 +117,10 @@ export function SiteHeader({ actions }: SiteHeaderProps) {
     <>
       <DemoBanner />
       <header className="sticky top-0 z-(--z-header) border-b border-neutral-200/80 bg-white/85 backdrop-blur-lg">
-        <Container className="flex h-16 items-center gap-2 lg:h-[4.5rem] lg:gap-6">
-          <MobileNav links={links} footer={<LocaleSwitcher />} className="-ml-2 lg:hidden" />
+        <Container className="flex h-16 items-center gap-2 lg:h-[4.5rem] xl:gap-5">
+          <MobileNav links={links} footer={<LocaleSwitcher />} className="-ml-2 xl:hidden" />
           <Wordmark />
-          <nav aria-label={t("primary")} className="hidden lg:block">
+          <nav aria-label={t("primary")} className="hidden xl:block">
             <ul className="flex items-center gap-0.5">
               {links.map((link) => (
                 <li key={link.href}>
@@ -134,7 +136,7 @@ export function SiteHeader({ actions }: SiteHeaderProps) {
             </ul>
           </nav>
           <div className="ml-auto flex items-center gap-1 sm:gap-2">
-            <SearchForm id="header-search" className="hidden w-64 lg:block xl:w-80" />
+            <SearchForm id="header-search" className="hidden w-64 xl:block 2xl:w-72" />
             <div className="hidden sm:block">
               <LocaleSwitcher />
             </div>
@@ -142,7 +144,7 @@ export function SiteHeader({ actions }: SiteHeaderProps) {
           </div>
         </Container>
       </header>
-      <div className="border-b border-neutral-200 bg-white lg:hidden">
+      <div className="border-b border-neutral-200 bg-white xl:hidden">
         <Container className="py-2.5">
           <SearchForm id="header-search-mobile" />
         </Container>
