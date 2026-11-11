@@ -112,6 +112,13 @@ JPEG, and PNG files of at most 5 MiB. Administrator uploads write through the
 secret key after the service checks the caller role; the storefront reads the
 public object URL.
 
+### Home page rendering
+
+The home page streams its ocean image, headline, and shop action before catalog
+and shipping reads finish. The product showcase and the lower sections share
+one data promise behind separate Suspense boundaries. The showcase reserves its
+image area while loading so product arrival does not move the hero layout.
+
 ### Storefront favorites and price range
 
 Favorites store up to 500 product IDs in this browser's local storage. Visitors

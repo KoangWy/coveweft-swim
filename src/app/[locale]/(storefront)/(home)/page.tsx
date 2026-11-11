@@ -1,12 +1,13 @@
 import { ArrowRight, ArrowUpRight, Package, Ruler, Truck, Wallet } from "@phosphor-icons/react/ssr";
 import { getLocale, getTranslations } from "next-intl/server";
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 
 import { Container } from "@/components/layout/container";
 import { LogoMark } from "@/components/layout/logo-mark";
 import { BrandImage } from "@/components/ui/brand-image";
 import { cx } from "@/components/ui/cx";
 import { ProductImage } from "@/components/ui/product-image";
+import { Skeleton } from "@/components/ui/skeleton";
 import { ErrorState } from "@/components/ui/states";
 import { AssistantOpenButton } from "@/features/assistant/components/assistant-open-button";
 import { imageSources } from "@/features/catalog/components/image-sources";
@@ -58,9 +59,8 @@ function SectionHeading({ id, children }: { id: string; children: ReactNode }) {
   );
 }
 
-export default async function HomePage() {
-  const locale = (await getLocale()) as Locale;
-  const t = await getTranslations();
+/** One request shares these reads across independently streamed sections. */
+async function loadHomeData(locale: Locale) {
   const [featured, settings, ...groups] = await Promise.all([
     listProducts({ locale, inStock: true, sort: "newest", pageSize: 8 }),
     getStoreSettings(),
@@ -69,6 +69,14 @@ export default async function HomePage() {
   const byGroup = new Map<ShopCategory, ProductListItem[]>(
     SHOP_CATEGORIES.map((group, index) => [group, groups[index]]),
   );
+  return { featured, settings, byGroup };
+}
+
+type HomeData = ReturnType<typeof loadHomeData>;
+
+async function HomeShowcase({ data, locale }: { data: HomeData; locale: Locale }) {
+  const t = await getTranslations();
+  const { byGroup } = await data;
   const showcase = [byGroup.get("women")?.[0], byGroup.get("men")?.[0]]
     .filter((product): product is ProductListItem => product !== undefined)
     .map((product) => ({
@@ -78,6 +86,72 @@ export default async function HomePage() {
       price: formatVnd(product.priceVnd, locale),
       image: imageSources(product.images[0]).medium,
     }));
+  return showcase.length > 0 ? (
+    <HeroShowcase
+      items={showcase}
+      label={t("home.showcaseLabel")}
+      fallbackLabel={t("catalog.imageUnavailable")}
+    />
+  ) : null;
+}
+
+function HomeContentLoading({ label }: { label: string }) {
+  return (
+    <div role="status" aria-label={label}>
+      <Container className="py-16 lg:py-24">
+        <Skeleton className="h-12 w-64" />
+        <div className="mt-10 grid auto-rows-[11rem] grid-cols-2 gap-3 sm:auto-rows-[14rem] md:auto-rows-[16rem] md:grid-cols-4 md:gap-4">
+          {SHOP_CATEGORIES.map((group) => (
+            <Skeleton key={group} className={cx("h-full rounded-lg", TILE_LAYOUT[group])} />
+          ))}
+        </div>
+      </Container>
+    </div>
+  );
+}
+
+/** The ocean image and shop action never wait for catalog or shipping reads. */
+export default async function HomePage() {
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations();
+  const data = loadHomeData(locale);
+
+  return (
+    <>
+      <section
+        aria-labelledby="hero-heading"
+        className="hero-scene relative isolate overflow-hidden bg-navy-950 text-white"
+      >
+        <div className="absolute inset-0 -z-10">
+          <HeroBackdrop />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy-950/90 via-navy-950/55 to-navy-950/5" />
+          <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-navy-950/50 to-transparent" />
+        </div>
+        <Container className="grid min-h-[clamp(30rem,calc(100dvh-10rem),50rem)] items-center gap-6 pt-10 pb-16 lg:grid-cols-12 lg:pt-8 lg:pb-16">
+          <div className="lg:col-span-6">
+            <HeroIntro description={t("home.description")} cta={t("home.shopCta")} />
+          </div>
+          <div className="hidden lg:col-span-6 lg:block">
+            <div className="relative mx-auto aspect-[5/6] w-full max-w-[34rem]">
+              <Suspense fallback={null}>
+                <HomeShowcase data={data} locale={locale} />
+              </Suspense>
+            </div>
+          </div>
+        </Container>
+        <WaveEdge />
+      </section>
+
+      <Suspense fallback={<HomeContentLoading label={t("common.loading")} />}>
+        <HomeContent data={data} locale={locale} />
+      </Suspense>
+    </>
+  );
+}
+
+async function HomeContent({ data, locale }: { data: HomeData; locale: Locale }) {
+  const t = await getTranslations();
+  const { featured, settings, byGroup } = await data;
   const threshold = formatVnd(settings.freeStandardShippingThresholdVnd, locale);
   const services = [
     {
@@ -96,32 +170,6 @@ export default async function HomePage() {
 
   return (
     <>
-      <section
-        aria-labelledby="hero-heading"
-        className="hero-scene relative isolate overflow-hidden bg-navy-950 text-white"
-      >
-        <div className="absolute inset-0 -z-10">
-          <HeroBackdrop />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy-950/90 via-navy-950/55 to-navy-950/5" />
-          <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-navy-950/50 to-transparent" />
-        </div>
-        <Container className="grid min-h-[clamp(30rem,calc(100dvh-10rem),50rem)] items-center gap-6 pt-10 pb-16 lg:grid-cols-12 lg:pt-8 lg:pb-16">
-          <div className="lg:col-span-6">
-            <HeroIntro description={t("home.description")} cta={t("home.shopCta")} />
-          </div>
-          {showcase.length > 0 ? (
-            <div className="hidden lg:col-span-6 lg:block">
-              <HeroShowcase
-                items={showcase}
-                label={t("home.showcaseLabel")}
-                fallbackLabel={t("catalog.imageUnavailable")}
-              />
-            </div>
-          ) : null}
-        </Container>
-        <WaveEdge />
-      </section>
-
       <section aria-labelledby="categories-heading">
         <Container className="py-16 lg:py-24">
           <SectionHeading id="categories-heading">{t("home.categoriesTitle")}</SectionHeading>
