@@ -104,6 +104,21 @@ export type ProductList = {
 
 export type ProductSort = "newest" | "price-asc" | "price-desc" | "name-asc";
 
+export type ProductSuggestion = {
+  id: string;
+  sku: string;
+  name: string;
+  priceVnd: number;
+  inStock: boolean;
+  /** Public URL of the thumbnail, or null when media is not configured. */
+  imageUrl: string | null;
+};
+
+export type ProductSuggestionList = {
+  items: ProductSuggestion[];
+  total: number;
+};
+
 export type SizeGuideGarment = "tops" | "bottoms" | "full-body";
 
 export type SizeGuideRow = {

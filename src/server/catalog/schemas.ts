@@ -55,6 +55,13 @@ export const GetProductBySkuInput = z.object({
 
 export type GetProductBySkuInput = z.infer<typeof GetProductBySkuInput>;
 
+export const SuggestProductsInput = z.object({
+  q: z.string().trim().min(2).max(120),
+  limit: z.number().int().min(1).max(8).default(6),
+});
+
+export type SuggestProductsInput = z.infer<typeof SuggestProductsInput>;
+
 export const GetSizeGuideInput = z
   .object({
     locale: LocaleInput.default("en"),

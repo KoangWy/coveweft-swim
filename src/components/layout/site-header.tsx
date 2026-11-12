@@ -1,5 +1,5 @@
-import { MagnifyingGlass, ShoppingBag, User } from "@phosphor-icons/react/ssr";
-import { useLocale, useTranslations } from "next-intl";
+import { ShoppingBag, User } from "@phosphor-icons/react/ssr";
+import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 
 import { iconButtonClasses } from "@/components/ui/icon-button";
@@ -12,45 +12,13 @@ import { DemoBanner } from "./demo-banner";
 import { LocaleSwitcher } from "./locale-switcher";
 import { MobileNav } from "./mobile-nav";
 import { NavLink } from "./nav-link";
+import { SearchForm } from "./search-form";
 import { Wordmark } from "./wordmark";
 
 const navLinkClasses =
   "inline-flex h-10 items-center rounded-full px-4 text-small font-medium text-navy-900 transition-colors duration-150 hover:bg-neutral-100";
 // The current page is exposed through aria-current as well as the fill.
 const navLinkActiveClasses = "bg-navy-900 font-semibold text-white hover:bg-navy-800";
-
-function SearchForm({ id, className }: { id: string; className?: string }) {
-  const t = useTranslations("nav");
-  const locale = useLocale();
-
-  return (
-    <form action={`/${locale}/shop`} method="get" role="search" className={className}>
-      <label htmlFor={id} className="sr-only">
-        {t("search")}
-      </label>
-      <div className="relative">
-        <MagnifyingGlass
-          aria-hidden
-          size={18}
-          className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-neutral-600"
-        />
-        <input
-          id={id}
-          name="q"
-          type="search"
-          placeholder={t("searchPlaceholder")}
-          className="h-10 w-full rounded-full border border-neutral-500 bg-white pr-24 pl-10 text-small text-navy-900 transition-colors duration-150 hover:border-navy-900"
-        />
-        <button
-          type="submit"
-          className="absolute top-1 right-1 inline-flex h-8 items-center rounded-full bg-navy-900 px-3.5 text-caption font-semibold text-white transition-colors duration-150 hover:bg-navy-800"
-        >
-          {t("searchSubmit")}
-        </button>
-      </div>
-    </form>
-  );
-}
 
 export type HeaderActionsProps = {
   /** Number of items in the signed-in customer's cart. */

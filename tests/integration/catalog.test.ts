@@ -14,7 +14,13 @@ vi.mock("@/lib/supabase/server", async () => {
   };
 });
 
-import { getProductBySku, getSizeGuide, getStoreSettings, listProducts } from "@/server/catalog";
+import {
+  getProductBySku,
+  getSizeGuide,
+  getStoreSettings,
+  listProducts,
+  suggestProducts,
+} from "@/server/catalog";
 import { imageUrl } from "@/server/media";
 import { getStoreSettings as getUiStoreSettings } from "@/lib/store-settings";
 
@@ -206,6 +212,22 @@ describe("catalog service", () => {
     if (result.ok) {
       expect(result.data.total).toBe(1);
       expect(result.data.items[0]?.sku).toBe(productA.sku);
+    }
+  });
+
+  it("suggests matching active products from a partial term", async () => {
+    selectServiceClient(customer.client);
+
+    const result = await suggestProducts({ q: token, limit: 2 });
+
+    expect(result.ok).toBe(true);
+
+    if (result.ok) {
+      expect(result.data.total).toBe(2);
+      expect(result.data.items.map((item) => item.sku).sort()).toEqual(
+        [productA.sku, productB.sku].sort(),
+      );
+      expect(result.data.items.every((item) => item.imageUrl !== null)).toBe(true);
     }
   });
 

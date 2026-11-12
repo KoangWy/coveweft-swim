@@ -1,5 +1,6 @@
 export { getProductBySku, listProducts } from "./service";
 export { getStoreSettings } from "./settings";
+export { suggestProducts } from "./suggest";
 export {
   garmentForProductType,
   getSizeGuide,
@@ -14,6 +15,7 @@ export {
   LocaleInput,
   ProductSortInput,
   SizeGuideGarmentInput,
+  SuggestProductsInput,
 } from "./schemas";
 export type {
   ProductAttribute,
@@ -24,6 +26,8 @@ export type {
   ProductListItem,
   ProductList,
   ProductSort,
+  ProductSuggestion,
+  ProductSuggestionList,
   ProductVariant,
   SizeGuide,
   SizeGuideGarment,
