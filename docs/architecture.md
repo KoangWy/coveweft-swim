@@ -55,24 +55,26 @@ Boundaries:
 Migrations in `supabase/migrations` are the source of truth. Every table has
 row level security enabled.
 
-| Table                    | Purpose                                                                                                                                               |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `profiles`               | One row per auth user: `role` (`customer` or `admin`), contact fields, and privacy consent evidence (`privacy_consent_at`, `privacy_policy_version`). |
-| `products`               | Normalised catalog row: SKU, attributes, integer VND price, `is_active`, and an unaccented `search_text` generated column.                            |
-| `product_translations`   | Localized description and caption per product and locale.                                                                                             |
-| `attribute_translations` | Localized labels for catalog attribute values.                                                                                                        |
-| `product_variants`       | Sellable option per product with `variant_sku`, the source `option_label`, an optional `size_guide_key`, and non-negative stock.                      |
-| `product_images`         | Studio (`release`) and administrator (`upload`) images with `kind`, `source`, `path`, `position`, and `is_visible`.                                   |
-| `store_settings`         | Single row that holds the Standard and Express fees, the free-shipping threshold, and the payment window.                                             |
-| `cart_items`             | One row per customer and variant. Adding to the cart does not reserve stock.                                                                          |
-| `orders`                 | Order header with status, payment state, delivery snapshot, price snapshot, idempotency key, and payment deadline.                                    |
-| `order_items`            | Immutable product, variant, price, and quantity snapshot.                                                                                             |
-| `payment_attempts`       | One row per simulated bank transfer attempt.                                                                                                          |
-| `order_events`           | Append-only status history with actor and reason.                                                                                                     |
-| `stock_adjustments`      | Audit trail for administrator stock changes.                                                                                                          |
-| `ai_usage_daily`         | Accepted assistant questions per user and quota day. Counters only; no conversation text.                                                             |
-| `ai_usage_minute`        | Accepted assistant questions per user and clock minute; rows older than one hour are pruned.                                                          |
-| `ai_usage_global`        | Accepted assistant questions across all users per quota day.                                                                                          |
+| Table                     | Purpose                                                                                                                                               |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `profiles`                | One row per auth user: `role` (`customer` or `admin`), contact fields, and privacy consent evidence (`privacy_consent_at`, `privacy_policy_version`). |
+| `products`                | Normalised catalog row: SKU, attributes, integer VND price, `is_active`, and an unaccented `search_text` generated column.                            |
+| `product_translations`    | Localized description and caption per product and locale.                                                                                             |
+| `attribute_translations`  | Localized labels for catalog attribute values.                                                                                                        |
+| `product_variants`        | Sellable option per product with `variant_sku`, the source `option_label`, an optional `size_guide_key`, and non-negative stock.                      |
+| `product_images`          | Studio (`release`) and administrator (`upload`) images with `kind`, `source`, `path`, `position`, and `is_visible`.                                   |
+| `store_settings`          | Single row that holds the Standard and Express fees, the free-shipping threshold, and the payment window.                                             |
+| `cart_items`              | One row per customer and variant. Adding to the cart does not reserve stock.                                                                          |
+| `orders`                  | Order header with status, payment state, delivery snapshot, price snapshot, idempotency key, and payment deadline.                                    |
+| `order_items`             | Immutable product, variant, price, and quantity snapshot.                                                                                             |
+| `payment_attempts`        | One row per simulated bank transfer attempt.                                                                                                          |
+| `order_events`            | Append-only status history with actor and reason.                                                                                                     |
+| `stock_adjustments`       | Audit trail for administrator stock changes.                                                                                                          |
+| `ai_usage_daily`          | Accepted assistant questions per user and quota day. Counters only; no conversation text.                                                             |
+| `ai_usage_minute`         | Accepted assistant questions per user and clock minute; rows older than one hour are pruned.                                                          |
+| `ai_usage_global`         | Accepted assistant questions across all users per quota day.                                                                                          |
+| `assistant_conversations` | One Shopping Assistant conversation per customer: owner, title, and its last-activity time.                                                           |
+| `assistant_messages`      | Verbatim turns of a conversation: role, content, status, and the SKUs of the product cards. `ai_usage_*` remain counters only.                        |
 
 A trigger on `auth.users` creates the profile from the sign-up metadata and
 rejects a sign-up that does not carry a privacy policy version. The consent
@@ -865,35 +867,42 @@ Request body (at most `AI_REQUEST_MAX_BYTES`):
 ```ts
 {
   locale: "en" | "vi";
-  messages: Array<{ role: "user" | "assistant"; content: string }>;
+  conversationId: string | null; // null starts a new conversation
+  message: string;
 }
 ```
 
-The last message is the new question. Checks run in this order and fail with
-JSON `{ "error": { "code": ErrorCode, "details"?: unknown } }` before any
-stream starts:
+The database is the source of truth for history: the server reads the latest
+turns of the conversation and never trusts a transcript sent by the browser.
+Checks run in this order and fail with JSON
+`{ "error": { "code": ErrorCode, "details"?: unknown } }` before any stream
+starts:
 
 | Check                              | Status | Code                                                           |
 | ---------------------------------- | ------ | -------------------------------------------------------------- |
-| No provider key or quota store     | 503    | `AI_NOT_CONFIGURED`                                            |
+| No provider key, quota, or store   | 503    | `AI_NOT_CONFIGURED`                                            |
 | No signed-in user                  | 401    | `UNAUTHENTICATED`                                              |
 | Body larger than the limit         | 413    | `AI_INPUT_TOO_LONG` (`details.reason: "body_too_large"`)       |
 | Malformed JSON or invalid shape    | 400    | `VALIDATION_ERROR` (`details.issues`)                          |
-| No customer question last          | 400    | `VALIDATION_ERROR` (`details.reason: "missing_question"`)      |
 | Question over the character limits | 413    | `AI_INPUT_TOO_LONG` (`details.reason: "question_too_long"`)    |
+| Conversation not owned by caller   | 404    | `NOT_FOUND`                                                    |
 | Quota rejected                     | 429    | `AI_QUOTA_USER_DAY`, `AI_QUOTA_USER_MINUTE`, `AI_QUOTA_GLOBAL` |
-| Quota store failed                 | 500    | `INTERNAL`                                                     |
+| Quota store or history failed      | 500    | `INTERNAL`                                                     |
 
-Quota rejections carry `details.remainingToday`. A request that passes every
-check consumes exactly one question and answers `200` with
-`Content-Type: text/event-stream; charset=utf-8`. Each event is
-`event: <name>` followed by one `data: <JSON>` line:
+A missing conversation, another customer's conversation, and a malformed id
+all return the same `404`, so the endpoint never reveals that a conversation
+exists. Quota rejections carry `details.remainingToday`. A request that passes
+every check consumes exactly one question and answers `200` with
+`Content-Type: text/event-stream; charset=utf-8` and
+`X-Conversation-Id: <uuid>`, so the client can open the conversation URL
+before the first answer finishes. Each event is `event: <name>` followed by
+one `data: <JSON>` line:
 
 | Event      | Data                                                                                      | When                                           |
 | ---------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | `delta`    | `{ text: string }`                                                                        | Answer text as it streams; append in order     |
 | `products` | `{ items: Array<{ sku, name, priceVnd, inStock, imageUrl, url }>}`                        | At most once, after the text, before `done`    |
-| `done`     | `{ remainingToday: number }`                                                              | The answer is complete; last event             |
+| `done`     | `{ remainingToday: number, conversationId: string }`                                      | The answer is complete; last event             |
 | `error`    | `{ code: "AI_UNAVAILABLE" \| "AI_STREAM_INTERRUPTED" \| "INTERNAL", retryable: boolean }` | The turn failed; last event, no `done` follows |
 
 `AI_UNAVAILABLE` means no text was streamed (both models failed, or a
@@ -907,12 +916,16 @@ A failed turn still counts as the accepted question.
 
 #### Turn rules
 
-- **History.** The browser history is untrusted. Only `user` and `assistant`
-  messages with string content are kept; `system`, `tool`, tool calls, and
-  other fields are dropped. The question must fit `AI_MESSAGE_MAX_CHARS` and
+- **History.** The database transcript is the only history. The server reads
+  the newest `AI_HISTORY_MAX_MESSAGES` rows of the conversation, keeps only
+  `user` and `assistant` text, and drops empty rows (a failed turn records no
+  answer). The question must fit `AI_MESSAGE_MAX_CHARS` and
   `AI_HISTORY_MAX_CHARS` or it is rejected, never cut. Earlier messages over
   the per-message limit are dropped whole, then the oldest are dropped until
-  `AI_HISTORY_MAX_MESSAGES` and the total fit.
+  the total fits. A customer question is stored before the model runs and the
+  assistant answer is stored once, when the stream ends, with status
+  `complete`, `interrupted` (some text was streamed), or `failed` (no text).
+  Retrying an unanswered question reuses its row instead of duplicating it.
 - **Privacy gate.** `withPrivacyGate` (`src/server/assistant/privacy.ts`)
   wraps the turn's provider, so every outgoing request is gated, in every
   round and on the fallback: browser history, the model's own text from
@@ -1003,7 +1016,9 @@ A failed turn still counts as the accepted question.
 - **Product cards.** Cards are built from products returned by tools in the
   current turn and kept only when the answer names their SKU or exact name.
   SKUs and prices written by the model, or repeated from earlier messages,
-  never become cards.
+  never become cards. The assistant row stores only the SKUs; prices, stock,
+  names, and images are rebuilt from the current catalog when the conversation
+  is opened, so a hidden product loses its card instead of showing old data.
 - **Logs.** A failed turn logs only the error kind, HTTP status, model, and
   round. Conversation text, measurements, provider error text, and keys are
   never logged or stored.
@@ -1023,8 +1038,50 @@ is checked first, then the customer's daily limit, then the per-minute limit
 Because the limits are server configuration, both quota functions take them
 as arguments and only the service role may execute them; the user id comes
 from the verified session. Customers and visitors can neither call the
-functions nor read the counter tables. The tables hold counters only: no
-conversation content or measurements.
+functions nor read the counter tables. The quota tables hold counters only;
+conversation content lives in `assistant_conversations` and
+`assistant_messages`.
+
+#### Conversations
+
+Each Shopping Assistant conversation belongs to one customer and is stored in
+Postgres. The server creates it on the first accepted question, with a title
+taken from the first 60 characters of that question cut at a word boundary.
+`assistant_conversations` and `assistant_messages` are the only tables that
+store conversation text. RLS gives `authenticated` a read policy scoped to the
+owner and gives `anon` no table privilege at all; there are no insert, update,
+or delete policies, so every write goes through the server with the service
+role. Deleting a conversation cascades to its messages, and deleting an
+account cascades to both tables.
+
+`src/server/assistant/conversations.ts` holds the repository and the store the
+chat route uses; `management.ts` holds the session-scoped services for the
+page (`listMyConversations`, `loadMyConversation`, `deleteMyConversation`,
+`deleteAllMyConversations`). The rail reads 20 conversations per page with an
+opaque keyset cursor on `(updated_at, id)`; the transcript is read in
+insertion order. Every write filters by the verified user id, so a
+client-supplied id never grants access.
+
+`/{locale}/assistant` starts a new conversation and
+`/{locale}/assistant/{conversationId}` reopens one. An id that does not belong
+to the customer is a `404`. Visitors see the same sign-in gate as the panel,
+with no rail. Both routes send `robots: { index: false, follow: true }`.
+Deleting one conversation and deleting all of them require confirmation.
+
+`AssistantProvider` lives in the storefront frame and owns the open
+conversation, messages, stream state, draft, and status. The floating panel
+and the Assistant page read the same state, so expanding the panel, closing
+it, or changing the URL keeps a running answer alive. The panel's New chat
+button starts a fresh conversation without deleting the old one; deletion is
+only on the Assistant page. Only account changes and the page's own delete
+actions abort a stream. The launcher is hidden on the Assistant, sign-in, and
+sign-up routes. The header navigation has one Assistant item, shared by the
+desktop nav and the mobile drawer.
+
+The privacy notice states that conversations are stored until the customer
+deletes them, and the policy version was bumped so new sign-ups record the
+current version. Existing accounts keep their old version and see one notice
+line on the Assistant page; they are not asked to consent again.
 
 #### Chat widget
 
@@ -1043,10 +1100,13 @@ conversation content or measurements.
   reaches the launcher, and counts as current for 30 seconds, so the panel
   usually opens with its final content. The panel itself has a fixed height
   (a bottom sheet on phones, a floating window from `lg` up) and its transcript
-  scrolls inside it.
+  scrolls inside it. Closing the panel no longer aborts the answer; the shared
+  provider keeps streaming and the answer remains when the panel reopens.
 - **Other entry points.** Any button can open the panel through
   `requestAssistantOpen()`, which dispatches a window event the widget listens
-  for.
+  for. The panel header has New chat and an Expand button that navigates to the
+  full page, using `X-Conversation-Id` or the `done` event to keep the answer
+  running.
 
 ### Demo account provisioning
 
@@ -1264,7 +1324,11 @@ tests/integration/assistant-live.test.ts` additionally asks the real
   the local URL and keys from `.env.local` or from `supabase status`.
 - **End-to-end tests** (`tests/e2e`) drive the rendered app with Playwright.
   They start the development server automatically unless
-  `PLAYWRIGHT_BASE_URL` points at a running instance.
+  `PLAYWRIGHT_BASE_URL` points at a running instance. The assistant suites
+  mock the chat stream and seed conversations through the local service role;
+  they cover Expand during a running answer, the Assistant nav and rail,
+  reopening a saved or interrupted answer, deleting one and all, the visitor
+  gate, and the hidden launcher on the Assistant page.
 
 `.github/workflows/ci.yml` runs lint, typecheck, and unit tests on every push
 to `main` and every pull request. Database integration tests are intentionally

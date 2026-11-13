@@ -372,6 +372,15 @@ keeps the existing passwords and does not duplicate accounts. Use the same
 command against a cloud project with that project's environment values; do not
 commit cloud passwords.
 
+### Shopping Assistant
+
+Conversations belong to the signed-in account and are stored in Postgres, so
+they survive a reload and another device. The floating panel is the quick
+entry; `/{locale}/assistant` starts a new conversation and
+`/{locale}/assistant/{id}` opens a saved one with the conversation rail.
+Customers can delete one conversation or all of them from that page. A
+visitor sees the sign-in gate and no rail.
+
 ### Shopping Assistant provider
 
 The assistant calls Mistral through its OpenAI-compatible Chat Completions
