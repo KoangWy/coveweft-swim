@@ -6,19 +6,25 @@ import type { ChatProvider } from "@/server/ai";
 import type { ErrorCode } from "@/server/errors";
 import { parseInput } from "@/server/result";
 
+import {
+  titleFromQuestion,
+  type ConversationStore,
+  type StoredConversation,
+  type StoredMessage,
+} from "./conversations";
 import { sanitizeHistory } from "./history";
 import type { PrivacyProfile } from "./privacy";
 import type { QuotaStore } from "./quota";
 import type { AssistantCatalog } from "./tools";
 import { runAssistantTurn } from "./turn";
 
-/** Largest number of history entries accepted before sanitization. */
-const MAX_HISTORY_ENTRIES = 100;
-
-export const ChatRequestInput = z.object({
-  locale: z.enum(LOCALES),
-  messages: z.array(z.unknown()).min(1).max(MAX_HISTORY_ENTRIES),
-});
+export const ChatRequestInput = z
+  .object({
+    locale: z.enum(LOCALES),
+    conversationId: z.uuid().nullable(),
+    message: z.string().trim().min(1),
+  })
+  .strict();
 
 export type ChatRequestInput = z.infer<typeof ChatRequestInput>;
 
@@ -47,12 +53,15 @@ export type ChatDependencies = {
   getPrivacyProfile(userId: string): Promise<PrivacyProfile | null>;
   /** The quota store, or `null` when the server cannot reach it. */
   quota(config: AiConfig): QuotaStore | null;
+  /** Conversation reads and writes, or `null` when the service role is absent. */
+  conversations: ConversationStore | null;
   catalog: AssistantCatalog;
 };
 
 const ERROR_STATUS: Partial<Record<ErrorCode, number>> = {
   VALIDATION_ERROR: 400,
   UNAUTHENTICATED: 401,
+  NOT_FOUND: 404,
   AI_INPUT_TOO_LONG: 413,
   AI_QUOTA_USER_DAY: 429,
   AI_QUOTA_USER_MINUTE: 429,
@@ -146,11 +155,30 @@ export async function getChatStatus(dependencies: ChatDependencies): Promise<Cha
   }
 }
 
+class NotFoundError extends Error {}
+
+async function findOwnedConversation(
+  conversations: ConversationStore,
+  userId: string,
+  id: string,
+): Promise<StoredConversation> {
+  const conversation = await conversations.findConversation(userId, id);
+
+  // A missing row, a row of another owner, and a malformed id all look the
+  // same to the caller, so the response never reveals that an id exists.
+  if (!conversation) {
+    throw new NotFoundError();
+  }
+
+  return conversation;
+}
+
 /**
  * `POST /api/chat`. Checks run in order, each returning a JSON error before
- * any stream starts: configuration, session, body size, body shape, history
- * limits, then the quota. Only an accepted question consumes a unit; the
- * answer then streams as server-sent events.
+ * any stream starts: configuration, session, body size, body shape, the
+ * conversation owner, history limits, then the quota. Only an accepted
+ * question consumes a unit and is written to the conversation; the answer
+ * then streams as server-sent events and is written once, when it ends.
  */
 export async function handleChatRequest(
   request: Request,
@@ -158,8 +186,9 @@ export async function handleChatRequest(
 ): Promise<Response> {
   const config = safeConfig(dependencies);
   const quota = config ? dependencies.quota(config) : null;
+  const conversations = dependencies.conversations;
 
-  if (!config || !quota) {
+  if (!config || !quota || !conversations) {
     return errorResponse("AI_NOT_CONFIGURED");
   }
 
@@ -189,10 +218,31 @@ export async function handleChatRequest(
     return errorResponse(parsed.error.code, parsed.error.details);
   }
 
-  const history = sanitizeHistory(parsed.data.messages, config.limits);
+  const question = parsed.data.message;
 
-  if (!history.ok) {
-    return errorResponse(history.code, { reason: history.reason });
+  if (
+    question.length > config.limits.messageMaxChars ||
+    question.length > config.limits.historyMaxChars
+  ) {
+    return errorResponse("AI_INPUT_TOO_LONG", { reason: "question_too_long" });
+  }
+
+  let conversation: StoredConversation | null = null;
+
+  if (parsed.data.conversationId) {
+    try {
+      conversation = await findOwnedConversation(
+        conversations,
+        user.id,
+        parsed.data.conversationId,
+      );
+    } catch (error) {
+      if (error instanceof NotFoundError) {
+        return errorResponse("NOT_FOUND");
+      }
+
+      return errorResponse("INTERNAL");
+    }
   }
 
   const provider = dependencies.createProvider();
@@ -224,18 +274,61 @@ export async function handleChatRequest(
   }
 
   const remainingToday = decision.remainingToday;
+  let history: StoredMessage[];
+
+  try {
+    conversation ??= await conversations.createConversation(user.id, titleFromQuestion(question));
+    await conversations.appendUserMessage(user.id, conversation.id, question);
+    history = await conversations.recentMessages(conversation.id, config.limits.historyMaxMessages);
+  } catch {
+    return errorResponse("INTERNAL");
+  }
+
+  if (!conversation) {
+    return errorResponse("INTERNAL");
+  }
+
+  const sanitized = sanitizeHistory(
+    history.map(({ role, content }) => ({ role, content })),
+    config.limits,
+  );
+
+  if (!sanitized.ok) {
+    return errorResponse(sanitized.code, { reason: sanitized.reason });
+  }
+
+  const conversationId = conversation.id;
   const abort = new AbortController();
   const signal = AbortSignal.any([request.signal, abort.signal]);
 
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
-      let failed = false;
-      let textSent = false;
+      let closed = false;
+      let answer = "";
+      let productSkus: string[] = [];
+      let failure: {
+        code: "AI_UNAVAILABLE" | "AI_STREAM_INTERRUPTED" | "INTERNAL";
+        retryable: boolean;
+      } | null = null;
+
+      const enqueue = (name: string, data: unknown) => {
+        if (closed || signal.aborted) {
+          return false;
+        }
+
+        try {
+          controller.enqueue(sseEvent(name, data));
+          return true;
+        } catch {
+          closed = true;
+          return false;
+        }
+      };
 
       try {
         for await (const event of runAssistantTurn({
           provider,
-          history: history.messages,
+          history: sanitized.messages,
           privacyProfile,
           locale: parsed.data.locale,
           catalog: dependencies.catalog,
@@ -243,36 +336,58 @@ export async function handleChatRequest(
           signal,
         })) {
           if (event.type === "delta") {
-            textSent = true;
-            controller.enqueue(sseEvent("delta", { text: event.text }));
+            answer += event.text;
+            enqueue("delta", { text: event.text });
           } else if (event.type === "products") {
-            controller.enqueue(sseEvent("products", { items: event.items }));
+            productSkus = event.items.map((item) => item.sku);
+            enqueue("products", { items: event.items });
           } else {
-            failed = true;
-            controller.enqueue(sseEvent("error", { code: event.code, retryable: event.retryable }));
+            failure = { code: event.code, retryable: event.retryable };
           }
         }
-
-        if (!failed && !signal.aborted) {
-          controller.enqueue(sseEvent("done", { remainingToday }));
-        }
       } catch {
-        // An unexpected failure after answer text is an interrupted answer,
-        // like a provider failure; before any text it is an internal error.
-        if (!signal.aborted && !failed) {
-          controller.enqueue(
-            sseEvent("error", {
-              code: textSent ? "AI_STREAM_INTERRUPTED" : "INTERNAL",
-              retryable: true,
-            }),
-          );
-        }
-      } finally {
+        failure = {
+          code: answer === "" ? "INTERNAL" : "AI_STREAM_INTERRUPTED",
+          retryable: true,
+        };
+      }
+
+      const aborted = signal.aborted;
+      const status = failure
+        ? answer === ""
+          ? "failed"
+          : "interrupted"
+        : aborted
+          ? "interrupted"
+          : "complete";
+
+      // An empty interrupted answer has nothing to keep; neither has a turn
+      // that ended without text and without a failure. A failed turn is kept
+      // as an empty assistant row so the transcript records what happened.
+      if (status === "failed" || answer !== "") {
         try {
-          controller.close();
+          await conversations.appendAssistantMessage(user.id, conversationId, {
+            content: answer,
+            status,
+            productSkus: status === "failed" ? [] : productSkus,
+          });
         } catch {
-          // The client already went away.
+          // The answer was already streamed; a failed history write must not
+          // turn it into an error. Only the class is logged, never the text.
+          console.error("Shopping assistant history write failed", { kind: "assistant_message" });
         }
+      }
+
+      if (!aborted && failure) {
+        enqueue("error", failure);
+      } else if (!aborted && !failure) {
+        enqueue("done", { remainingToday, conversationId });
+      }
+
+      try {
+        controller.close();
+      } catch {
+        // The client already went away.
       }
     },
     cancel() {
@@ -287,6 +402,7 @@ export async function handleChatRequest(
       "Cache-Control": "no-cache, no-transform",
       Connection: "keep-alive",
       "X-Accel-Buffering": "no",
+      "X-Conversation-Id": conversationId,
     },
   });
 }

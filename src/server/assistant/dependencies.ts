@@ -9,6 +9,7 @@ import { getProductBySku, getStoreSettings, listProducts } from "@/server/catalo
 import { imageUrl } from "@/server/media";
 
 import type { PrivacyProfile } from "./privacy";
+import { createDatabaseConversationStore } from "./conversations";
 import { createDatabaseQuotaStore } from "./quota";
 import type { ChatDependencies } from "./service";
 
@@ -67,6 +68,9 @@ export const chatDependencies: ChatDependencies = {
       ? createDatabaseQuotaStore(createSupabaseAdminClient(), config.quotas)
       : null;
   },
+  conversations: hasAdminKey()
+    ? createDatabaseConversationStore(createSupabaseAdminClient())
+    : null,
   catalog: {
     listProducts,
     getProductBySku,
