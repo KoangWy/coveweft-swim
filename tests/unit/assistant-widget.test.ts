@@ -1,26 +1,18 @@
 import { describe, expect, it, vi } from "vitest";
 
 import {
-  assistantHistoryKey,
-  clearOtherAssistantHistories,
-  createMessageId,
+  clearLegacyAssistantHistories,
   issueBlocksComposer,
   isAbortError,
   issueForError,
   MAX_QUESTION_CHARS,
-  MAX_REQUEST_TURNS,
-  MAX_STORED_TURNS,
   parseProductCards,
-  readAssistantHistory,
   reconcileIssueWithStatus,
   SseParser,
-  toRequestTurns,
-  writeAssistantHistory,
-  type AssistantMessage,
-  type SessionStorageLike,
+  type LegacyStorageLike,
 } from "@/features/assistant/components/assistant-chat";
 
-class MemoryStorage implements SessionStorageLike {
+class MemoryStorage implements LegacyStorageLike {
   private values = new Map<string, string>();
 
   get length(): number {
@@ -42,10 +34,6 @@ class MemoryStorage implements SessionStorageLike {
   removeItem(key: string): void {
     this.values.delete(key);
   }
-}
-
-function message(role: "user" | "assistant", content: string): AssistantMessage {
-  return { id: createMessageId(), role, content, cards: [], interrupted: false };
 }
 
 describe("SseParser", () => {
@@ -88,123 +76,18 @@ describe("SseParser", () => {
   });
 });
 
-describe("assistant transcript", () => {
-  it("sends only user and assistant text turns, keeping the latest ten", () => {
-    const messages = Array.from({ length: MAX_REQUEST_TURNS + 4 }, (_, index) =>
-      message(index % 2 === 0 ? "user" : "assistant", `turn ${index}`),
-    );
-    messages.splice(3, 0, { ...message("user", "   "), role: "user" });
-
-    const turns = toRequestTurns(messages);
-
-    expect(turns).toHaveLength(MAX_REQUEST_TURNS);
-    expect(turns.at(0)?.content).toBe("turn 4");
-    expect(turns.at(-1)?.content).toBe(`turn ${MAX_REQUEST_TURNS + 3}`);
-    expect(turns.every((turn) => turn.role === "user" || turn.role === "assistant")).toBe(true);
-    expect(turns.every((turn) => typeof turn.content === "string")).toBe(true);
-  });
-
-  it("stores text only and reads it back per account", () => {
+describe("legacy browser transcripts", () => {
+  it("removes every old transcript key and keeps unrelated storage", () => {
     const storage = new MemoryStorage();
-    const messages: AssistantMessage[] = [
-      message("user", "Do you have size M?"),
-      {
-        ...message("assistant", "Yes, size M is in stock."),
-        cards: [
-          {
-            sku: "BB25CR",
-            name: "Cherry swimsuit",
-            priceVnd: 450000,
-            inStock: true,
-            imageUrl: null,
-            url: "/en/products/BB25CR",
-          },
-        ],
-      },
-    ];
-
-    writeAssistantHistory(storage, "user-1", messages);
-
-    expect(readAssistantHistory(storage, "user-1")).toEqual([
-      { role: "user", content: "Do you have size M?" },
-      { role: "assistant", content: "Yes, size M is in stock." },
-    ]);
-    expect(readAssistantHistory(storage, "user-2")).toEqual([]);
-  });
-
-  it("keeps the incomplete marker across a stored partial answer", () => {
-    const storage = new MemoryStorage();
-    const messages: AssistantMessage[] = [
-      message("user", "A long question"),
-      { ...message("assistant", "Half an answer"), interrupted: true },
-    ];
-
-    writeAssistantHistory(storage, "user-1", messages);
-
-    expect(readAssistantHistory(storage, "user-1")).toEqual([
-      { role: "user", content: "A long question" },
-      { role: "assistant", content: "Half an answer", interrupted: true },
-    ]);
-    expect(
-      toRequestTurns(
-        readAssistantHistory(storage, "user-1").map((turn) => ({
-          id: createMessageId(),
-          role: turn.role,
-          content: turn.content,
-          cards: [],
-          interrupted: turn.interrupted === true,
-        })),
-      ),
-    ).toEqual([
-      { role: "user", content: "A long question" },
-      { role: "assistant", content: "Half an answer" },
-    ]);
-  });
-
-  it("drops malformed stored entries and caps the stored transcript", () => {
-    const storage = new MemoryStorage();
-    const key = assistantHistoryKey("user-1");
-    const turns = Array.from({ length: MAX_STORED_TURNS + 5 }, (_, index) => ({
-      role: index % 2 === 0 ? "user" : "assistant",
-      content: `turn ${index}`,
-    }));
-    storage.setItem(
-      key,
-      JSON.stringify([
-        { role: "system", content: "ignored" },
-        { role: "user", content: 3 },
-        ...turns,
-      ]),
-    );
-
-    const loaded = readAssistantHistory(storage, "user-1");
-
-    expect(loaded).toHaveLength(MAX_STORED_TURNS);
-    expect(loaded.at(-1)?.content).toBe(`turn ${MAX_STORED_TURNS + 4}`);
-  });
-
-  it("clears another account's transcript but keeps the current one", () => {
-    const storage = new MemoryStorage();
-    storage.setItem(assistantHistoryKey("old"), "[]");
-    storage.setItem(assistantHistoryKey("current"), "[]");
+    storage.setItem("coveweft.assistant.history.a", "[]");
+    storage.setItem("coveweft.assistant.history.b", "[]");
     storage.setItem("unrelated", "keep");
 
-    clearOtherAssistantHistories(storage, "current");
+    clearLegacyAssistantHistories(storage);
 
-    expect(storage.getItem(assistantHistoryKey("old"))).toBeNull();
-    expect(storage.getItem(assistantHistoryKey("current"))).toBe("[]");
+    expect(storage.getItem("coveweft.assistant.history.a")).toBeNull();
+    expect(storage.getItem("coveweft.assistant.history.b")).toBeNull();
     expect(storage.getItem("unrelated")).toBe("keep");
-  });
-
-  it("clears every transcript when nobody is signed in", () => {
-    const storage = new MemoryStorage();
-    storage.setItem(assistantHistoryKey("a"), "[]");
-    storage.setItem(assistantHistoryKey("b"), "[]");
-
-    clearOtherAssistantHistories(storage, null);
-
-    expect(storage.getItem(assistantHistoryKey("a"))).toBeNull();
-    expect(storage.getItem(assistantHistoryKey("b"))).toBeNull();
   });
 });
 

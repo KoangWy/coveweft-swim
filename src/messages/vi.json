@@ -51,7 +51,8 @@
     },
     "breadcrumb": "Đường dẫn trang",
     "home": "Trang chủ",
-    "signIn": "Đăng nhập"
+    "signIn": "Đăng nhập",
+    "assistant": "Trợ lý"
   },
   "demoBanner": {
     "label": "Demo",
@@ -522,7 +523,8 @@
             "account": "Tài khoản: địa chỉ email và mật khẩu (mật khẩu được dịch vụ xác thực lưu dưới dạng băm).",
             "profile": "Hồ sơ: họ tên, số điện thoại và địa chỉ giao hàng mặc định, nếu bạn thêm vào.",
             "orders": "Đơn hàng: sản phẩm, giá, phương thức giao hàng, thông tin người nhận và lịch sử đơn.",
-            "consent": "Sự đồng ý: thời điểm bạn đồng ý với chính sách này và phiên bản chính sách bạn đã đồng ý."
+            "consent": "Sự đồng ý: thời điểm bạn đồng ý với chính sách này và phiên bản chính sách bạn đã đồng ý.",
+            "conversations": "Cuộc trò chuyện: các câu hỏi bạn gửi trợ lý mua sắm và câu trả lời của trợ lý."
           }
         },
         "purpose": {
@@ -531,7 +533,8 @@
             "account": "Cho phép bạn đăng nhập và giữ giỏ hàng trên nhiều thiết bị.",
             "orders": "Đặt đơn demo, hiển thị lịch sử đơn và mô phỏng thanh toán.",
             "admin": "Cho phép quản trị viên demo xử lý đơn demo.",
-            "proof": "Chứng minh bạn đã đồng ý với chính sách này trước khi tạo tài khoản."
+            "proof": "Chứng minh bạn đã đồng ý với chính sách này trước khi tạo tài khoản.",
+            "assistant": "Để hiển thị lại các cuộc trò chuyện sau khi bạn đăng nhập trên bất kỳ thiết bị nào và để trả lời các câu hỏi tiếp theo."
           }
         },
         "processors": {
@@ -544,7 +547,8 @@
             "sent": "Trợ lý chỉ gửi câu hỏi của bạn, các tin nhắn gần đây trong cùng cuộc trò chuyện và kết quả tìm kiếm catalog tới nhà cung cấp AI.",
             "notSent": "Trợ lý không gửi email, họ tên, số điện thoại hay địa chỉ của bạn.",
             "measurements": "Nếu bạn nhập số đo cơ thể để được gợi ý size, số đo đó được gửi tới nhà cung cấp để trả lời.",
-            "notStored": "Cuộc trò chuyện không được lưu trên máy chủ của chúng tôi. Lịch sử chat chỉ nằm trong tab trình duyệt và bị xóa khi bạn đăng xuất."
+            "stored": "Cuộc trò chuyện được lưu trong tài khoản của bạn cho tới khi bạn xóa chúng hoặc xóa tài khoản. Mỗi cuộc trò chuyện giữ nguyên câu hỏi bạn đã nhập và câu trả lời trợ lý đã gửi. Thẻ sản phẩm được dựng lại từ catalog hiện tại khi bạn mở lại.",
+            "delete": "Bạn có thể xóa một cuộc trò chuyện hoặc xóa tất cả ở trang trợ lý. Xóa tài khoản cũng xóa các cuộc trò chuyện của tài khoản đó."
           }
         },
         "rights": {
@@ -552,7 +556,8 @@
           "items": {
             "view": "Bạn có thể xem và sửa hồ sơ bất cứ lúc nào trong trang tài khoản.",
             "delete": "Bạn có thể yêu cầu xóa tài khoản và dữ liệu đi kèm qua kênh liên hệ ở trang Khiếu nại & Liên hệ.",
-            "withdraw": "Bạn có thể ngừng dùng bản demo bất cứ lúc nào. Dữ liệu của tài khoản đã xóa không được giữ lại."
+            "withdraw": "Bạn có thể ngừng dùng bản demo bất cứ lúc nào. Dữ liệu của tài khoản đã xóa không được giữ lại.",
+            "assistant": "Bạn có thể xóa một cuộc trò chuyện hoặc xóa tất cả cuộc trò chuyện ở trang trợ lý bất cứ lúc nào."
           }
         },
         "retention": {
@@ -646,7 +651,6 @@
     },
     "lowQuota": "{count, plural, other {Sắp hết lượt: hôm nay còn # câu hỏi.}}",
     "privacyNote": "Không chia sẻ thông tin cá nhân. Số đo bạn nhập sẽ được gửi tới nhà cung cấp AI để tư vấn size.",
-    "clear": "Xóa cuộc trò chuyện",
     "empty": "Hãy hỏi về sản phẩm, size, tồn kho hoặc chính sách của cửa hàng.",
     "you": "Bạn",
     "assistant": "Trợ lý",
@@ -680,7 +684,28 @@
     "composerHint": "Tối đa {max} ký tự. Enter để gửi, Shift+Enter để xuống dòng.",
     "send": "Gửi",
     "sending": "Đang gửi...",
-    "transcript": "Cuộc trò chuyện"
+    "transcript": "Cuộc trò chuyện",
+    "pageTitle": "Trợ lý mua sắm",
+    "pageIntro": "Hỏi về sản phẩm, size, tồn kho hoặc chính sách của cửa hàng. Các cuộc trò chuyện được lưu theo tài khoản của bạn.",
+    "expand": "Mở trang đầy đủ",
+    "conversations": "Cuộc trò chuyện",
+    "newChat": "Cuộc trò chuyện mới",
+    "delete": "Xóa cuộc trò chuyện",
+    "deleteAll": "Xóa tất cả cuộc trò chuyện",
+    "noConversations": "Chưa có cuộc trò chuyện nào. Hãy đặt câu hỏi để bắt đầu.",
+    "savedNotice": "Cuộc trò chuyện được lưu vào tài khoản của bạn cho tới khi bạn xóa.",
+    "policyUpdate": "Cuộc trò chuyện giờ được lưu vào tài khoản của bạn. Bạn có thể xóa bất cứ lúc nào.",
+    "privacyLink": "Đọc thông báo bảo mật",
+    "seeMore": "Xem thêm",
+    "loading": "Đang tải…",
+    "cancel": "Hủy",
+    "deleting": "Đang xóa…",
+    "deleteTitle": "Xóa cuộc trò chuyện này?",
+    "deleteBody": "Các câu hỏi, câu trả lời và thẻ sản phẩm trong cuộc trò chuyện này sẽ bị xóa. Không thể hoàn tác.",
+    "deleteConfirm": "Xóa cuộc trò chuyện",
+    "deleteAllTitle": "Xóa tất cả cuộc trò chuyện?",
+    "deleteAllBody": "Mọi cuộc trò chuyện trong tài khoản của bạn sẽ bị xóa. Không thể hoàn tác.",
+    "deleteAllConfirm": "Xóa tất cả cuộc trò chuyện"
   },
   "catalog": {
     "shopTitle": "Cửa hàng",

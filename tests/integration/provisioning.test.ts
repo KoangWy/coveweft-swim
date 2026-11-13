@@ -26,7 +26,7 @@ describe("demo account provisioning", () => {
     DEMO_ADMIN_EMAIL: adminEmail,
     DEMO_ADMIN_PASSWORD: adminPassword,
     DEMO_ADMIN_NAME: "Provisioned Admin",
-    DEMO_POLICY_VERSION: "2026-11-06",
+    DEMO_POLICY_VERSION: "2026-11-14",
   };
   let customerId: string | undefined;
   let adminId: string | undefined;
@@ -65,9 +65,9 @@ describe("demo account provisioning", () => {
 
     expect(customerProfile.data?.role).toBe("customer");
     expect(customerProfile.data?.privacy_consent_at).not.toBeNull();
-    expect(customerProfile.data?.privacy_policy_version).toBe("2026-11-06");
+    expect(customerProfile.data?.privacy_policy_version).toBe("2026-11-14");
     expect(adminProfile.data?.role).toBe("admin");
-    expect(adminProfile.data?.privacy_policy_version).toBe("2026-11-06");
+    expect(adminProfile.data?.privacy_policy_version).toBe("2026-11-14");
 
     const second = runProvisioning(overrides);
 

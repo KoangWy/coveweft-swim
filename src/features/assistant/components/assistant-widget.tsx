@@ -1,23 +1,18 @@
 "use client";
 
-import { ChatCircleDots, Trash } from "@phosphor-icons/react";
+import { ArrowsOutSimple, ChatCircleDots, Plus } from "@phosphor-icons/react";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 import { LogoMark } from "@/components/layout/logo-mark";
 import { IconButton } from "@/components/ui/icon-button";
 import { ModalSurface } from "@/components/ui/modal-surface";
-import { usePathname } from "@/i18n/navigation";
+import { usePathname, useRouter } from "@/i18n/navigation";
 import type { Locale } from "@/lib/locale";
 
 import { ASSISTANT_OPEN_EVENT } from "./assistant-events";
 import { AssistantPanel } from "./assistant-panel";
-import { useAssistantChat } from "./use-assistant-chat";
-
-export type AssistantWidgetProps = {
-  /** The signed-in customer, or null for a visitor. */
-  userId: string | null;
-};
+import { useAssistant } from "./assistant-provider";
 
 function useDesktop(): boolean {
   const [desktop, setDesktop] = useState(false);
@@ -33,43 +28,60 @@ function useDesktop(): boolean {
   return desktop;
 }
 
+function hidesWidget(pathname: string): boolean {
+  return pathname === "/sign-in" || pathname === "/sign-up" || pathname.startsWith("/assistant");
+}
+
 /**
  * Fixed shopping-assistant launcher and its panel. The panel is a bottom
- * sheet of fixed height on mobile and a floating window from `lg` up, so it
- * does not resize while the status loads. Closing through Escape, the close
- * button, or the backdrop aborts an active answer. Other buttons on the page
- * can open it through `requestAssistantOpen`.
+ * sheet of fixed height on mobile and a floating window from `lg` up. It
+ * shares its transcript with the Assistant page, so closing it, expanding it,
+ * or changing the URL never stops an answer that is still streaming.
  */
-export function AssistantWidget({ userId }: AssistantWidgetProps) {
+export function AssistantWidget() {
   const t = useTranslations("assistant");
   const tCommon = useTranslations("common");
   const locale = useLocale() as Locale;
   const pathname = usePathname();
+  const router = useRouter();
   const desktop = useDesktop();
-  const [open, setOpen] = useState(false);
-  const [draft, setDraft] = useState("");
-  const chat = useAssistantChat({ userId, locale, open });
-  const { prefetchStatus } = chat;
+  const chat = useAssistant();
+  const {
+    panelOpen,
+    openPanel,
+    closePanel,
+    prefetchStatus,
+    conversationId,
+    draft,
+    setDraft,
+    startNew,
+  } = chat;
+  const hidden = hidesWidget(pathname);
 
   useEffect(() => {
     function onOpenRequest() {
-      prefetchStatus();
-      setOpen(true);
+      openPanel();
     }
     window.addEventListener(ASSISTANT_OPEN_EVENT, onOpenRequest);
     return () => window.removeEventListener(ASSISTANT_OPEN_EVENT, onOpenRequest);
-  }, [prefetchStatus]);
+  }, [openPanel]);
 
-  if (pathname === "/sign-in" || pathname === "/sign-up") {
+  useEffect(() => {
+    if (hidden) {
+      closePanel();
+    }
+  }, [hidden, closePanel]);
+
+  if (hidden) {
     return null;
   }
 
   const search = typeof window === "undefined" ? "" : window.location.search;
   const signInHref = `/sign-in?next=${encodeURIComponent(`${pathname}${search}`)}`;
 
-  function closePanel() {
-    chat.abort();
-    setOpen(false);
+  function expand() {
+    closePanel();
+    router.push(conversationId ? `/assistant/${conversationId}` : "/assistant");
   }
 
   return (
@@ -77,12 +89,12 @@ export function AssistantWidget({ userId }: AssistantWidgetProps) {
       <button
         type="button"
         aria-haspopup="dialog"
-        aria-expanded={open}
+        aria-expanded={panelOpen}
         aria-label={t("open")}
         title={t("open")}
         onPointerEnter={prefetchStatus}
         onFocus={prefetchStatus}
-        onClick={() => setOpen(true)}
+        onClick={openPanel}
         className="group fixed right-4 bottom-[calc(5.5rem+env(safe-area-inset-bottom))] z-(--z-launcher) inline-flex size-14 shrink-0 animate-rise items-center justify-center rounded-full bg-lime-400 text-navy-950 shadow-overlay transition-[background-color,transform] duration-200 ease-out hover:scale-105 hover:bg-lime-500 active:scale-95 lg:right-6 lg:bottom-6"
       >
         <ChatCircleDots
@@ -94,7 +106,7 @@ export function AssistantWidget({ userId }: AssistantWidgetProps) {
       </button>
 
       <ModalSurface
-        open={open}
+        open={panelOpen}
         onClose={closePanel}
         title={t("title")}
         closeLabel={tCommon("close")}
@@ -103,16 +115,21 @@ export function AssistantWidget({ userId }: AssistantWidgetProps) {
         bodyClassName="flex min-h-0 flex-1 flex-col"
         headerStart={<LogoMark className="size-9" />}
         headerActions={
-          chat.messages.length > 0 ? (
+          <>
             <IconButton
-              label={t("clear")}
-              icon={<Trash aria-hidden size={20} />}
+              label={t("newChat")}
+              icon={<Plus aria-hidden size={20} />}
               onClick={() => {
-                chat.clear();
+                startNew();
                 setDraft("");
               }}
             />
-          ) : null
+            <IconButton
+              label={t("expand")}
+              icon={<ArrowsOutSimple aria-hidden size={20} />}
+              onClick={expand}
+            />
+          </>
         }
       >
         <AssistantPanel

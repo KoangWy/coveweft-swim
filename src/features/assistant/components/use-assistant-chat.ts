@@ -1,22 +1,19 @@
 "use client";
 
+import { useRouter } from "@/i18n/navigation";
+import type { Locale } from "@/lib/locale";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import type { Locale } from "@/lib/locale";
-
 import {
-  clearOtherAssistantHistories,
+  clearLegacyAssistantHistories,
   createMessageId,
   isAbortError,
   issueBlocksComposer,
   issueForError,
   MAX_QUESTION_CHARS,
   parseProductCards,
-  readAssistantHistory,
   reconcileIssueWithStatus,
   SseParser,
-  toRequestTurns,
-  writeAssistantHistory,
   type AssistantIssue,
   type AssistantIssueKind,
   type AssistantMessage,
@@ -26,11 +23,10 @@ import {
 export type UseAssistantChatOptions = {
   userId: string | null;
   locale: Locale;
-  /** Fetch status while the panel is open. */
-  open: boolean;
 };
 
 export type AssistantChat = {
+  conversationId: string | null;
   messages: AssistantMessage[];
   pending: boolean;
   streamingId: string | null;
@@ -40,16 +36,22 @@ export type AssistantChat = {
   remaining: number | null;
   send: (content: string) => void;
   retry: () => void;
-  /** Aborts the active turn and settles any partial answer. */
+  /** Aborts the active turn, keeping the partial answer marked incomplete. */
   abort: () => void;
-  /** Aborts the active turn and empties the transcript for this account. */
-  clear: () => void;
-  /** Loads quota and configuration ahead of opening, so the panel opens settled. */
+  /** Aborts the active turn and starts an empty conversation. */
+  startNew: () => void;
+  /** Shows a conversation loaded by the server, unless it is already live. */
+  openConversation: (id: string, messages: AssistantMessage[]) => void;
+  /** True while a turn is streaming; read from event handlers. */
+  isBusy: () => boolean;
+  /** Loads quota and configuration ahead of opening a screen. */
   prefetchStatus: () => void;
+  /** Makes the next open fetch a fresh status instead of reusing a prefetch. */
+  forgetStatus: () => void;
   dismissTooLong: () => void;
 };
 
-/** How long a status response counts as current when the panel opens. */
+/** How long a status response counts as current. */
 const STATUS_FRESH_MS = 30_000;
 
 type ActiveTurn = {
@@ -59,14 +61,17 @@ type ActiveTurn = {
 };
 
 /**
- * Owns one browser chat session: transport, SSE parsing, aborting, quota
- * reconciliation, retry, and session-storage persistence. Closing the panel
- * aborts the active turn; a stale request can never change a newer turn's
+ * Owns the conversation that the panel and the Assistant page share:
+ * transport, SSE parsing, aborting, quota reconciliation, retry, and the
+ * current conversation id. The database is the source of truth, so nothing is
+ * written to browser storage. A stale request can never change a newer turn's
  * state because every run carries a monotonic request id.
  */
-export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptions): AssistantChat {
+export function useAssistantChat({ userId, locale }: UseAssistantChatOptions): AssistantChat {
   const signedIn = userId !== null;
+  const router = useRouter();
 
+  const [conversationId, setConversationIdState] = useState<string | null>(null);
   const [messages, setMessages] = useState<AssistantMessage[]>([]);
   const [pending, setPending] = useState(false);
   const [streamingId, setStreamingId] = useState<string | null>(null);
@@ -75,6 +80,7 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
   const [remaining, setRemaining] = useState<number | null>(null);
   const [failedQuestion, setFailedQuestion] = useState<string | null>(null);
 
+  const conversationIdRef = useRef<string | null>(null);
   const messagesRef = useRef<AssistantMessage[]>([]);
   const remainingRef = useRef<number | null>(null);
   const busyRef = useRef(false);
@@ -85,11 +91,17 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
   const statusRequestIdRef = useRef(0);
   const mountedRef = useRef(true);
   const statusFetchedAtRef = useRef(0);
+  const previousUserRef = useRef(userId);
 
   const updateMessages = (updater: (current: AssistantMessage[]) => AssistantMessage[]) => {
     const next = updater(messagesRef.current);
     messagesRef.current = next;
     setMessages(next);
+  };
+
+  const setConversationId = (value: string | null) => {
+    conversationIdRef.current = value;
+    setConversationIdState(value);
   };
 
   const patchMessage = (id: string, update: (message: AssistantMessage) => AssistantMessage) => {
@@ -100,13 +112,6 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
 
   const removeMessage = (id: string) => {
     updateMessages((current) => current.filter((message) => message.id !== id));
-  };
-
-  const persist = () => {
-    if (!mountedRef.current || typeof window === "undefined") {
-      return;
-    }
-    writeAssistantHistory(window.sessionStorage, userId, messagesRef.current);
   };
 
   function isCurrentRequest(requestId: number, controller: AbortController): boolean {
@@ -192,6 +197,35 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
             ? "unauthenticated"
             : null;
 
+  function settleInterrupted(messageId: string | null) {
+    if (!messageId) {
+      return;
+    }
+
+    const message = messagesRef.current.find((item) => item.id === messageId);
+
+    if (message && (message.content !== "" || message.cards.length > 0)) {
+      patchMessage(messageId, (item) => ({ ...item, interrupted: true }));
+    } else {
+      removeMessage(messageId);
+    }
+  }
+
+  /**
+   * Adopts the id the server assigned before any answer text. On the Assistant
+   * page this replaces `/assistant` with the conversation URL without
+   * remounting the shared state, so the running answer is not interrupted.
+   */
+  function adoptConversation(id: string) {
+    if (conversationIdRef.current !== id) {
+      setConversationId(id);
+    }
+
+    if (typeof window !== "undefined" && window.location.pathname === `/${locale}/assistant`) {
+      router.replace(`/assistant/${id}`);
+    }
+  }
+
   async function runTurn(content: string, appendUser: boolean) {
     if (busyRef.current || content.trim() === "") {
       return;
@@ -216,12 +250,6 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
         },
       ]);
     }
-    persist();
-
-    const requestMessages = toRequestTurns(messagesRef.current);
-    if (requestMessages.at(-1)?.role !== "user") {
-      requestMessages.push({ role: "user", content });
-    }
 
     const controller = new AbortController();
     abortRef.current = controller;
@@ -234,7 +262,11 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
           "Content-Type": "application/json",
           Accept: "text/event-stream",
         },
-        body: JSON.stringify({ locale, messages: requestMessages }),
+        body: JSON.stringify({
+          locale,
+          conversationId: conversationIdRef.current,
+          message: content,
+        }),
         signal: controller.signal,
       });
 
@@ -249,8 +281,7 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
           payload = await response.json();
         } catch (error) {
           // A body read that was cancelled by close/unmount is not a malformed
-          // response; the request is already invalid and must not touch state
-          // or session storage.
+          // response; the request is already invalid and must not touch state.
           if (isAbortError(error) || !isCurrentRequest(requestId, controller)) {
             return;
           }
@@ -263,8 +294,13 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
         const error = (payload as { error?: { code?: unknown; details?: unknown } } | null)?.error;
         const code = typeof error?.code === "string" ? error.code : "INTERNAL";
         showIssue(code, { details: error?.details, count: content.length });
-        persist();
         return;
+      }
+
+      const responseConversationId = response.headers.get("X-Conversation-Id");
+
+      if (responseConversationId) {
+        adoptConversation(responseConversationId);
       }
 
       // The server consumes one question before it starts the SSE response,
@@ -277,7 +313,6 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
 
       if (!response.body) {
         showIssue("INTERNAL");
-        persist();
         void refreshStatus();
         return;
       }
@@ -323,9 +358,12 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
           if (activeTurnRef.current?.requestId === requestId) {
             activeTurnRef.current = { requestId, assistantId, done: true };
           }
-          const value = (event.data as { remainingToday?: unknown } | null)?.remainingToday;
-          if (typeof value === "number") {
-            setRemainingValue(value);
+          const data = event.data as { remainingToday?: unknown; conversationId?: unknown } | null;
+          if (typeof data?.remainingToday === "number") {
+            setRemainingValue(data.remainingToday);
+          }
+          if (typeof data?.conversationId === "string") {
+            adoptConversation(data.conversationId);
           }
         } else if (event.event === "error") {
           const payload = event.data as { code?: unknown; retryable?: unknown } | null;
@@ -376,7 +414,6 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
       } else {
         setIssue(null);
       }
-      persist();
 
       if (acceptedFailure) {
         void refreshStatus();
@@ -401,7 +438,6 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
       } else {
         showIssue("AI_UNAVAILABLE", { retryable: true });
       }
-      persist();
 
       if (accepted) {
         void refreshStatus();
@@ -452,7 +488,7 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
     const controller = abortRef.current;
 
     // Invalidate the running turn before settling, so its finalizer cannot
-    // touch state that belongs to a newer turn opened after this close.
+    // touch state that belongs to a newer turn.
     requestIdRef.current += 1;
     abortRef.current = null;
     activeTurnRef.current = null;
@@ -460,25 +496,31 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
     setPending(false);
     setStreamingId(null);
 
-    if (active && !active.done && active.assistantId) {
-      const message = messagesRef.current.find((item) => item.id === active.assistantId);
-      if (message && (message.content !== "" || message.cards.length > 0)) {
-        patchMessage(active.assistantId, (item) => ({ ...item, interrupted: true }));
-      } else {
-        removeMessage(active.assistantId);
-      }
-      persist();
-    }
-
+    settleInterrupted(active && !active.done ? active.assistantId : null);
     controller?.abort();
   }
 
-  function clear() {
+  function startNew() {
     abort();
+    setConversationId(null);
     updateMessages(() => []);
     setIssue((current) => (current && issueBlocksComposer(current.kind) ? current : null));
     setFailedQuestion(null);
-    persist();
+  }
+
+  function openConversation(id: string, loaded: AssistantMessage[]) {
+    // Expand and the URL change that follows it must not replace the answer
+    // that is still streaming in this same conversation.
+    if (conversationIdRef.current === id) {
+      return;
+    }
+
+    abort();
+    setConversationId(id);
+    messagesRef.current = loaded;
+    setMessages(loaded);
+    setIssue(null);
+    setFailedQuestion(null);
   }
 
   const prefetchStatus = useCallback(() => {
@@ -488,41 +530,44 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
     }
   }, [signedIn, refreshStatus]);
 
+  function forgetStatus() {
+    statusFetchedAtRef.current = 0;
+  }
+
   function dismissTooLong() {
     setIssue((current) => (current?.kind === "too_long" ? null : current));
   }
 
-  // Load the transcript for this account and drop another account's history.
+  // Drop transcripts from the browser-only history of earlier versions.
   useEffect(() => {
-    if (typeof window === "undefined") {
+    if (typeof window !== "undefined") {
+      clearLegacyAssistantHistories(window.sessionStorage);
+    }
+  }, []);
+
+  // A different account must never inherit the previous customer's messages.
+  // The first null -> customer change is the session resolving; a page may
+  // already have opened a saved conversation at that point, so keep it.
+  useEffect(() => {
+    if (previousUserRef.current === userId) {
       return;
     }
-    clearOtherAssistantHistories(window.sessionStorage, userId);
-    const stored = readAssistantHistory(window.sessionStorage, userId);
-    const loaded = stored.map((turn) => ({
-      id: createMessageId(),
-      role: turn.role,
-      content: turn.content,
-      cards: [],
-      interrupted: turn.interrupted === true,
-    }));
-    messagesRef.current = loaded;
-    // Session storage is an external store; the transcript is read once per
-    // mounted account, so this is not a render-derived state update.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMessages(loaded);
-  }, [userId]);
 
-  // Ask for the quota and configuration when the panel opens. A status loaded
-  // by a recent prefetch counts; closing forgets it, so the next opening asks
-  // again.
-  useEffect(() => {
-    if (open) {
-      prefetchStatus();
-    } else {
-      statusFetchedAtRef.current = 0;
+    const signedOut = previousUserRef.current !== null;
+    previousUserRef.current = userId;
+
+    if (!signedOut) {
+      return;
     }
-  }, [open, prefetchStatus]);
+
+    abort();
+    setConversationId(null);
+    updateMessages(() => []);
+    setFailedQuestion(null);
+    setStatus(null);
+    statusFetchedAtRef.current = 0;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId]);
 
   useEffect(() => {
     mountedRef.current = true;
@@ -534,6 +579,7 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
   }, []);
 
   return {
+    conversationId,
     messages,
     pending,
     streamingId,
@@ -543,8 +589,11 @@ export function useAssistantChat({ userId, locale, open }: UseAssistantChatOptio
     send,
     retry,
     abort,
-    clear,
+    startNew,
+    openConversation,
+    isBusy: () => busyRef.current,
     prefetchStatus,
+    forgetStatus,
     dismissTooLong,
   };
 }

@@ -1,7 +1,10 @@
 import { Suspense, type ReactNode } from "react";
 
 import { loadCartCount, loadCurrentUser } from "@/features/account/components/session";
-import { AssistantWidget } from "@/features/assistant/components/assistant-widget";
+import {
+  AssistantProvider,
+  AssistantSession,
+} from "@/features/assistant/components/assistant-session";
 
 import { NavigationProgress } from "./navigation-progress";
 import { SiteFooter } from "./site-footer";
@@ -15,7 +18,7 @@ async function HeaderSession() {
 
 async function SessionAssistant() {
   const user = await loadCurrentUser();
-  return <AssistantWidget key={user?.id ?? "visitor"} userId={user?.id ?? null} />;
+  return <AssistantSession key={user?.id ?? "visitor"} userId={user?.id ?? null} />;
 }
 
 /**
@@ -25,7 +28,7 @@ async function SessionAssistant() {
  */
 export function StorefrontFrame({ children }: { children: ReactNode }) {
   return (
-    <>
+    <AssistantProvider>
       <SkipLink />
       <NavigationProgress />
       <SiteHeader
@@ -42,6 +45,6 @@ export function StorefrontFrame({ children }: { children: ReactNode }) {
       <Suspense fallback={null}>
         <SessionAssistant />
       </Suspense>
-    </>
+    </AssistantProvider>
   );
 }

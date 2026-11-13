@@ -75,6 +75,7 @@ export function SiteHeader({ actions }: SiteHeaderProps) {
   const t = useTranslations("nav");
   const links = [
     { href: "/shop", label: t("shop") },
+    { href: "/assistant", label: t("assistant") },
     ...SHOP_CATEGORIES.map((category) => ({
       href: `/shop?group=${category}`,
       label: t(`categories.${category}`),

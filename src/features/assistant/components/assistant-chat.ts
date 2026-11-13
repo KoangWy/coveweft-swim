@@ -1,27 +1,29 @@
 /**
  * Chat widget helpers that do not depend on React: the SSE decoder, the
- * session-storage transcript, and the mapping from API error codes to the
- * states the panel shows.
+ * conversation list types, and the mapping from API error codes to the states
+ * the panel and the Assistant page show.
  */
 
 /** Longest question the chat endpoint accepts, matching the server default. */
 export const MAX_QUESTION_CHARS = 1000;
-/** Messages sent with one request; the server keeps the most recent ones. */
-export const MAX_REQUEST_TURNS = 10;
-/** Browser history kept per account, so session storage stays small. */
-export const MAX_STORED_TURNS = 20;
 /** The panel mentions the daily allowance only once this few questions remain. */
 export const LOW_QUOTA_THRESHOLD = 5;
 
 export type ChatRole = "user" | "assistant";
 
-/** A text turn as sent to `POST /api/chat`. */
-export type ChatTurn = { role: ChatRole; content: string };
+/** One conversation in the account rail. */
+export type AssistantConversation = {
+  id: string;
+  title: string;
+  updatedAt: string;
+};
 
-/** A stored turn; only assistant turns may carry the incomplete marker. */
-export type StoredChatTurn = ChatTurn & { interrupted?: boolean };
+export type AssistantConversationPage = {
+  items: AssistantConversation[];
+  nextCursor: string | null;
+};
 
-/** A product card from a `products` event. */
+/** A product card from a `products` event or rebuilt from stored SKUs. */
 export type AssistantProductCard = {
   sku: string;
   name: string;
@@ -144,94 +146,25 @@ export function isAbortError(error: unknown): boolean {
 
 export const ASSISTANT_HISTORY_PREFIX = "coveweft.assistant.history.";
 
-/** The session-storage key that keeps one account's transcript. */
-export function assistantHistoryKey(userId: string): string {
-  return `${ASSISTANT_HISTORY_PREFIX}${userId}`;
-}
-
-/** The browser storage methods the widget uses; `sessionStorage` satisfies it. */
-export type SessionStorageLike = {
+/** The browser storage methods used to remove old transcripts. */
+export type LegacyStorageLike = {
   readonly length: number;
   key(index: number): string | null;
-  getItem(key: string): string | null;
-  setItem(key: string, value: string): void;
   removeItem(key: string): void;
 };
 
-function isTurn(value: unknown): value is StoredChatTurn {
-  if (!value || typeof value !== "object") {
-    return false;
-  }
-  const turn = value as { role?: unknown; content?: unknown; interrupted?: unknown };
-  return (
-    (turn.role === "user" || turn.role === "assistant") &&
-    typeof turn.content === "string" &&
-    turn.content.trim() !== "" &&
-    (turn.interrupted === undefined || typeof turn.interrupted === "boolean")
-  );
-}
-
-/** Reads a stored transcript, dropping anything that is not a text turn. */
-export function readAssistantHistory(
-  storage: SessionStorageLike,
-  userId: string | null,
-): StoredChatTurn[] {
-  if (!userId) {
-    return [];
-  }
-  try {
-    const raw = storage.getItem(assistantHistoryKey(userId));
-    if (!raw) {
-      return [];
-    }
-    const parsed: unknown = JSON.parse(raw);
-    if (!Array.isArray(parsed)) {
-      return [];
-    }
-    return parsed.filter(isTurn).slice(-MAX_STORED_TURNS);
-  } catch {
-    return [];
-  }
-}
-
-/** Stores only the text of user and assistant turns; cards are not persisted. */
-export function writeAssistantHistory(
-  storage: SessionStorageLike,
-  userId: string | null,
-  messages: readonly AssistantMessage[],
-): void {
-  if (!userId) {
-    return;
-  }
-  try {
-    const turns = messages
-      .filter((message) => message.content.trim() !== "")
-      .map(({ role, content, interrupted }) =>
-        interrupted ? { role, content, interrupted: true } : { role, content },
-      )
-      .slice(-MAX_STORED_TURNS);
-    storage.setItem(assistantHistoryKey(userId), JSON.stringify(turns));
-  } catch {
-    // A full or unavailable session storage must not break the chat.
-  }
-}
-
 /**
- * Removes assistant transcripts that belong to another account. It runs when
- * the widget mounts or the signed-in user changes, so a shared browser tab
- * never shows the previous customer's conversation after an account switch.
+ * Removes transcripts written by the browser-only history of earlier
+ * versions. Conversations now live in the account; these keys are orphaned
+ * and must not survive a deploy.
  */
-export function clearOtherAssistantHistories(
-  storage: SessionStorageLike,
-  userId: string | null,
-): void {
-  const current = userId ? assistantHistoryKey(userId) : null;
+export function clearLegacyAssistantHistories(storage: LegacyStorageLike): void {
   const stale: string[] = [];
 
   try {
     for (let index = 0; index < storage.length; index += 1) {
       const key = storage.key(index);
-      if (key?.startsWith(ASSISTANT_HISTORY_PREFIX) && key !== current) {
+      if (key?.startsWith(ASSISTANT_HISTORY_PREFIX)) {
         stale.push(key);
       }
     }
@@ -241,20 +174,6 @@ export function clearOtherAssistantHistories(
   } catch {
     // Ignore storage failures.
   }
-}
-
-/**
- * Builds the request history: only `user` and `assistant` text turns, with
- * empty messages and every other field dropped.
- */
-export function toRequestTurns(messages: readonly AssistantMessage[]): ChatTurn[] {
-  return messages
-    .filter(
-      (message) =>
-        (message.role === "user" || message.role === "assistant") && message.content.trim() !== "",
-    )
-    .map(({ role, content }) => ({ role, content }))
-    .slice(-MAX_REQUEST_TURNS);
 }
 
 export type SseEvent = { event: string; data: unknown };

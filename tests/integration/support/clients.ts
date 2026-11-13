@@ -45,7 +45,7 @@ export async function createCustomer(
     email_confirm: true,
     user_metadata: {
       full_name: `Test ${prefix}`,
-      privacy_policy_version: "2026-11-06",
+      privacy_policy_version: "2026-11-14",
     },
   });
 

@@ -25,7 +25,7 @@ describe("auth service", () => {
   const email = uniqueEmail("auth-signup");
   const password = "password123";
   const fullName = "Auth Test Customer";
-  const policyVersion = "2026-11-06";
+  const policyVersion = "2026-11-14";
   let userId: string | undefined;
 
   beforeAll(() => {

@@ -51,7 +51,8 @@
     },
     "breadcrumb": "Breadcrumb",
     "home": "Home",
-    "signIn": "Sign in"
+    "signIn": "Sign in",
+    "assistant": "Assistant"
   },
   "demoBanner": {
     "label": "Demo",
@@ -522,7 +523,8 @@
             "account": "Account: email address and password (the password is stored as a hash by the authentication service).",
             "profile": "Profile: name, phone number, and default delivery address, if you add them.",
             "orders": "Orders: items, prices, shipping choice, recipient details, and order history.",
-            "consent": "Consent: the time you agreed to this policy and the policy version you agreed to."
+            "consent": "Consent: the time you agreed to this policy and the policy version you agreed to.",
+            "conversations": "Conversations: the questions you ask the shopping assistant and the answers it sends."
           }
         },
         "purpose": {
@@ -531,7 +533,8 @@
             "account": "To let you sign in and keep your cart across devices.",
             "orders": "To place demo orders, show your order history, and simulate payments.",
             "admin": "To let the demo admin process demo orders.",
-            "proof": "To show that you agreed to this policy before creating an account."
+            "proof": "To show that you agreed to this policy before creating an account.",
+            "assistant": "To show your past conversations after you sign in on any device and to answer follow-up questions."
           }
         },
         "processors": {
@@ -544,7 +547,8 @@
             "sent": "The assistant sends only your question, recent messages from the same chat, and catalog search results to the AI provider.",
             "notSent": "It does not send your email, name, phone number, or address.",
             "measurements": "If you type body measurements to get a size suggestion, they are sent to the provider for that answer.",
-            "notStored": "Conversations are not saved on our servers. The chat history stays in your browser tab and is cleared when you sign out."
+            "stored": "Conversations are saved in your account until you delete them or delete your account. Each conversation keeps the questions you typed and the answers the assistant sent. Product cards are rebuilt from the current catalog when you reopen it.",
+            "delete": "You can delete one conversation or all of them on the assistant page. Deleting your account also deletes its conversations."
           }
         },
         "rights": {
@@ -552,7 +556,8 @@
           "items": {
             "view": "You can view and edit your profile at any time on your account page.",
             "delete": "You can ask us to delete your account and its data through the contact channel on the Complaints & Contact page.",
-            "withdraw": "You can stop using the demo at any time. Data from deleted accounts is not kept."
+            "withdraw": "You can stop using the demo at any time. Data from deleted accounts is not kept.",
+            "assistant": "You can delete a single conversation or all of your conversations on the assistant page at any time."
           }
         },
         "retention": {
@@ -646,7 +651,6 @@
     },
     "lowQuota": "{count, plural, =1 {Almost out: 1 question left today.} other {Almost out: # questions left today.}}",
     "privacyNote": "Do not share personal data. Measurements you type are sent to the AI provider to suggest a size.",
-    "clear": "Clear conversation",
     "empty": "Ask about a product, size, stock, or store policy.",
     "you": "You",
     "assistant": "Assistant",
@@ -680,7 +684,28 @@
     "composerHint": "Up to {max} characters. Enter sends, Shift+Enter adds a line.",
     "send": "Send",
     "sending": "Sending...",
-    "transcript": "Conversation"
+    "transcript": "Conversation",
+    "pageTitle": "Shopping assistant",
+    "pageIntro": "Ask about products, sizes, stock, or store policies. Your conversations are kept with your account.",
+    "expand": "Open full page",
+    "conversations": "Conversations",
+    "newChat": "New chat",
+    "delete": "Delete conversation",
+    "deleteAll": "Delete all conversations",
+    "noConversations": "No conversations yet. Ask a question to start one.",
+    "savedNotice": "Conversations are saved to your account until you delete them.",
+    "policyUpdate": "Conversations are now saved to your account. You can delete them at any time.",
+    "privacyLink": "Read the privacy notice",
+    "seeMore": "See more",
+    "loading": "Loading…",
+    "cancel": "Cancel",
+    "deleting": "Deleting…",
+    "deleteTitle": "Delete this conversation?",
+    "deleteBody": "The questions, answers, and product cards in this conversation will be deleted. This cannot be undone.",
+    "deleteConfirm": "Delete conversation",
+    "deleteAllTitle": "Delete all conversations?",
+    "deleteAllBody": "Every conversation in your account will be deleted. This cannot be undone.",
+    "deleteAllConfirm": "Delete all conversations"
   },
   "catalog": {
     "shopTitle": "Shop",

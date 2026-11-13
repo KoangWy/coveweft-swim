@@ -185,9 +185,7 @@ test("deltas render progressively and product cards link to the product", async 
   await expect(dialog.getByText("4 questions left today")).toBeVisible();
 });
 
-test("closing during a stream aborts it, keeps the partial answer, and a new turn is unaffected", async ({
-  page,
-}) => {
+test("closing during a stream keeps the answer running", async ({ page }) => {
   await mockStatus(page);
   await page.addInitScript(() => {
     const originalFetch = window.fetch.bind(window);
@@ -201,35 +199,26 @@ test("closing during a stream aborts it, keeps the partial answer, and a new tur
       }
 
       probe.calls += 1;
+      init?.signal?.addEventListener("abort", () => {
+        probe.aborted = true;
+      });
       const encoder = new TextEncoder();
+      const body = new ReadableStream<Uint8Array>({
+        async start(controller) {
+          controller.enqueue(encoder.encode('event: delta\ndata: {"text":"Partial answer"}\n\n'));
+          await new Promise((resolve) => setTimeout(resolve, 1200));
+          controller.enqueue(
+            encoder.encode(
+              'event: delta\ndata: {"text":" and the rest"}\n\n' +
+                'event: done\ndata: {"remainingToday":4}\n\n',
+            ),
+          );
+          controller.close();
+        },
+      });
 
-      if (probe.calls === 1) {
-        const body = new ReadableStream<Uint8Array>({
-          start(controller) {
-            controller.enqueue(encoder.encode('event: delta\ndata: {"text":"Partial answer"}\n\n'));
-            init?.signal?.addEventListener("abort", () => {
-              probe.aborted = true;
-              try {
-                controller.error(new DOMException("Aborted", "AbortError"));
-              } catch {
-                // The stream may already be closed.
-              }
-            });
-          },
-        });
-        return Promise.resolve(
-          new Response(body, {
-            status: 200,
-            headers: { "Content-Type": "text/event-stream" },
-          }),
-        );
-      }
-
-      const second =
-        'event: delta\ndata: {"text":"Second answer"}\n\n' +
-        'event: done\ndata: {"remainingToday":3}\n\n';
       return Promise.resolve(
-        new Response(second, {
+        new Response(body, {
           status: 200,
           headers: { "Content-Type": "text/event-stream" },
         }),
@@ -244,29 +233,22 @@ test("closing during a stream aborts it, keeps the partial answer, and a new tur
 
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog")).toHaveCount(0);
-  await expect
-    .poll(() =>
-      page.evaluate(
-        () =>
-          (window as unknown as { __assistantProbe: { aborted: boolean } }).__assistantProbe
-            .aborted,
-      ),
-    )
-    .toBe(true);
+  expect(
+    await page.evaluate(
+      () =>
+        (window as unknown as { __assistantProbe: { aborted: boolean } }).__assistantProbe.aborted,
+    ),
+  ).toBe(false);
 
+  await page.waitForTimeout(1500);
   const reopened = await openAssistant(page);
-  await expect(reopened.getByText("Partial answer")).toBeVisible();
-  await expect(reopened.getByText("Answer incomplete")).toBeVisible();
-  await expect(reopened.getByLabel("Your question")).toBeVisible();
-
-  await send(reopened, "Second question");
-  await expect(reopened.getByText("Second answer")).toBeVisible();
-  await expect(reopened.getByText("3 questions left today")).toBeVisible();
+  await expect(reopened.getByText("Partial answer and the rest")).toBeVisible();
+  await expect(reopened.getByText("Answer incomplete")).toHaveCount(0);
   expect(
     await page.evaluate(
       () => (window as unknown as { __assistantProbe: { calls: number } }).__assistantProbe.calls,
     ),
-  ).toBe(2);
+  ).toBe(1);
 });
 
 test("a fresh ready status clears an obsolete daily-quota block", async ({ page }) => {
@@ -358,80 +340,6 @@ test("a delayed status response does not overwrite newer quota info", async ({ p
   await page.waitForTimeout(2200);
   await expect(dialog.getByText("3 questions left today")).toBeVisible();
   await expect(dialog.getByText("5 questions left today")).toHaveCount(0);
-});
-
-test("closing while a rejection body is loading does not resurrect cleared history", async ({
-  page,
-}) => {
-  await mockStatus(page);
-  await page.addInitScript(() => {
-    const originalFetch = window.fetch.bind(window);
-    const probe = { jsonStarted: false, aborted: false };
-    (window as unknown as { __assistantProbe: typeof probe }).__assistantProbe = probe;
-
-    window.fetch = (input: RequestInfo | URL, init?: RequestInit) => {
-      const raw =
-        typeof input === "string" ? input : input instanceof Request ? input.url : String(input);
-      if (new URL(raw, window.location.href).pathname !== "/api/chat") {
-        return originalFetch(input, init);
-      }
-
-      const body = new ReadableStream<Uint8Array>({
-        start(controller) {
-          init?.signal?.addEventListener("abort", () => {
-            probe.aborted = true;
-            try {
-              controller.error(new DOMException("Aborted", "AbortError"));
-            } catch {
-              // The stream may already be closed.
-            }
-          });
-        },
-      });
-      const response = new Response(body, {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      });
-      const json = response.json.bind(response);
-      response.json = () => {
-        probe.jsonStarted = true;
-        return json();
-      };
-      return Promise.resolve(response);
-    };
-  });
-
-  await signIn(page);
-  const dialog = await openAssistant(page);
-  await send(dialog, "Private old question");
-  await expect
-    .poll(() =>
-      page.evaluate(
-        () =>
-          (window as unknown as { __assistantProbe: { jsonStarted: boolean } }).__assistantProbe
-            .jsonStarted,
-      ),
-    )
-    .toBe(true);
-
-  await page.keyboard.press("Escape");
-  await expect
-    .poll(() =>
-      page.evaluate(
-        () =>
-          (window as unknown as { __assistantProbe: { aborted: boolean } }).__assistantProbe
-            .aborted,
-      ),
-    )
-    .toBe(true);
-  await page.evaluate(() => window.sessionStorage.clear());
-  await page.waitForTimeout(600);
-
-  expect(
-    await page.evaluate(() =>
-      Object.keys(window.sessionStorage).filter((key) => key.includes("assistant")),
-    ),
-  ).toEqual([]);
 });
 
 test("unmounting while a rejection body is loading does not resurrect cleared history", async ({
@@ -720,10 +628,10 @@ test("an interrupted stream keeps the partial answer and marks it incomplete", a
   await expect(dialog.getByText("The answer was interrupted")).toBeVisible();
   await expect(dialog.getByRole("button", { name: "Try again" })).toBeVisible();
 
-  await page.reload();
-  const reloaded = await openAssistant(page);
-  await expect(reloaded.getByText("The first half of the answer")).toBeVisible();
-  await expect(reloaded.getByText("Answer incomplete")).toBeVisible();
+  await page.keyboard.press("Escape");
+  const reopened = await openAssistant(page);
+  await expect(reopened.getByText("The first half of the answer")).toBeVisible();
+  await expect(reopened.getByText("Answer incomplete")).toBeVisible();
 });
 
 test("a question over the limit never reaches the API", async ({ page }) => {
@@ -766,39 +674,29 @@ test("closing with Escape returns focus to the launcher", async ({ page }) => {
   await expect(trigger).toBeFocused();
 });
 
-test("signing out clears the stored conversation", async ({ page }) => {
+test("signing out clears the shared conversation", async ({ page }) => {
   await mockStatus(page);
   await mockChatSse(
     page,
     sseBody([
-      { event: "delta", data: { text: "A stored answer." } },
+      { event: "delta", data: { text: "An answer that lives in this session." } },
       { event: "done", data: { remainingToday: 1 } },
     ]),
   );
   await signIn(page);
 
   let dialog = await openAssistant(page);
-  await send(dialog, "A stored question");
-  await expect(dialog.getByText("A stored answer.")).toBeVisible();
-  await page.keyboard.press("Escape");
-
-  await page.reload();
-  dialog = await openAssistant(page);
-  await expect(dialog.getByText("A stored question")).toBeVisible();
-  await expect(dialog.getByText("A stored answer.")).toBeVisible();
+  await send(dialog, "A session question");
+  await expect(dialog.getByText("An answer that lives in this session.")).toBeVisible();
   await page.keyboard.press("Escape");
 
   await page.goto("/en/account");
   await page.getByRole("button", { name: "Sign out" }).click();
   await expect(page).toHaveURL(/\/en$/);
-  expect(
-    await page.evaluate(() =>
-      Object.keys(window.sessionStorage).filter((key) => key.includes("assistant")),
-    ),
-  ).toEqual([]);
 
   dialog = await openAssistant(page);
-  await expect(dialog.getByText("A stored question")).toHaveCount(0);
+  await expect(dialog.getByText("A session question")).toHaveCount(0);
+  await expect(dialog.getByText("An answer that lives in this session.")).toHaveCount(0);
   await expect(dialog.getByText("Sign in to chat")).toBeVisible();
 });
 
