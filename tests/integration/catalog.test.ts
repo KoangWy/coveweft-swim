@@ -272,15 +272,22 @@ describe("catalog service", () => {
     selectServiceClient(customer.client);
 
     const result = await listProducts({ locale: "vi", q: token });
+    const catalog = await listProducts({ locale: "vi", pageSize: 1 });
 
     expect(result.ok).toBe(true);
+    expect(catalog.ok).toBe(true);
 
-    if (result.ok) {
+    if (result.ok && catalog.ok) {
       const category = result.data.facets.categories.find((facet) => facet.value === categoryA);
 
       expect(category).toEqual({ value: categoryA, label: "Áo bơi thử", count: 1 });
       expect(result.data.facets.sizes.map((facet) => facet.value).sort()).toEqual(["M", "S"]);
-      expect(result.data.facets.price).toEqual({ minVnd: 350_000, maxVnd: 450_000 });
+      // The slider ceiling is the whole catalog, so it stays put while filters
+      // narrow the result; the minimum comes from the filtered rows.
+      expect(result.data.facets.price).toEqual({
+        minVnd: 350_000,
+        maxVnd: catalog.data.facets.price.maxVnd,
+      });
     }
   });
 

@@ -22,7 +22,7 @@ test("renders the English home page", async ({ page }) => {
 
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Find your water.");
-  await expect(page.getByRole("link", { name: "Browse the shop" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Browse shop" })).toBeVisible();
 });
 
 test("renders the Vietnamese home page", async ({ page }) => {

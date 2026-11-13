@@ -40,7 +40,7 @@ export function HeroIntro({ description, cta }: { description: string; cta: stri
               {index === 0 ? "\u00a0" : ""}
             </m.span>
           ))}
-        </span>
+        </span>{" "}
         <span className="block overflow-hidden pb-1">
           <m.span
             className="block text-lime-400"
