@@ -1,545 +1,225 @@
-# COVEWEFT Swim
+<p align="center">
+  <img src="docs/assets/brand-banner.svg" alt="COVEWEFT Swim — Find your water." width="100%" />
+</p>
 
-_Find your water._
+<p align="center">
+  A swimwear storefront for every kind of water.<br />
+  <strong>Next.js · TypeScript · Tailwind CSS · Supabase</strong>
+</p>
 
-COVEWEFT Swim is a demo B2C swimwear store built for the CO3027 Electronic Commerce course at Ho Chi Minh City University of Technology (HCMUT), semester 261. It is a study project: the store does not sell products, take payments, or ship orders.
+<p align="center">
+  <a href="#run-locally">Run locally</a> ·
+  <a href="#demo-accounts">Demo accounts</a> ·
+  <a href="#development">Development</a> ·
+  <a href="docs/architecture.md">Architecture</a> ·
+  <a href="#tiếng-việt">Tiếng Việt</a>
+</p>
 
-## Status
+## Meet COVEWEFT
 
-The project is in early development. The application scaffold, architecture notes, and development setup are in place; catalog data and attribution will be added as each part lands.
+COVEWEFT Swim is a B2C e-commerce demo for **CO3027 Electronic Commerce** at
+Ho Chi Minh City University of Technology (HCMUT), semester 261.
+The brand is fictional; payments and deliveries are simulated.
 
-## Planned stack
+| Discover                                          | Shop                                                | Manage                               |
+| ------------------------------------------------- | --------------------------------------------------- | ------------------------------------ |
+| Search, filters, studio galleries, and favorites. | Size selection, cart, checkout, and order tracking. | Products, images, stock, and orders. |
 
-- Next.js with TypeScript, React, and Tailwind CSS
-- Supabase for Postgres, authentication, and storage
-- Vercel for hosting
+The **Shopping Assistant** finds products, checks availability, and suggests
+sizes from the Demo Size Guide. The storefront supports **English and Vietnamese**,
+with prices in **VND**.
+Checkout supports COD and simulated bank transfers.
 
-## Run the demo locally
+The [catalog snapshot](data/catalog/SOURCE.md) includes **475 products**, **1,541
+variants**, and **3,224 studio photos** (2026-11-06). Product data and photography
+come from SOBIE; COVEWEFT's size guide is demo data.
 
-The demo runs on Docker alone. The app image, the local Supabase stack, the
-catalog seed, and the studio media all come from this repository plus one
-release archive, so the host does not need Node.js or pnpm.
+## Run locally
 
-### Requirements
+**Install once:** [Docker](https://docs.docker.com/get-started/get-docker/)
+(running, with at least 4 GB of memory available) and the
+[Supabase CLI](https://supabase.com/docs/guides/local-development/cli/getting-started).
+The demo runs in containers; **Node.js, pnpm, a cloud account, and an AI key are
+not required**. The first run needs internet access to download images and media.
 
-- Docker Desktop on macOS or Windows, or Docker Engine on Linux, with at least
-  4 GB of memory available to Docker
-- The Supabase CLI
-- macOS or Linux with `curl`, `tar`, and `shasum` or `sha256sum` (all
-  preinstalled)
-- Windows 10 (1803) or later, which ships `tar.exe` and `curl.exe`
-
-Install the Supabase CLI:
+Clone the repository, then run the command for your system:
 
 ```sh
-# macOS and Linux
-brew install supabase/tap/supabase
+git clone https://github.com/KoangWy/coveweft-swim.git
+cd coveweft-swim
 ```
 
-```powershell
-# Windows, with Scoop
-scoop bucket add supabase https://github.com/supabase/scoop-bucket.git
-scoop install supabase
-```
-
-### Start the demo
-
-macOS and Linux:
+**macOS / Linux**
 
 ```sh
 ./scripts/demo.sh
 ```
 
-Windows (Windows PowerShell 5.1 or PowerShell 7). `-ExecutionPolicy Bypass`
-applies to this process only, so the machine policy is unchanged:
+**Windows · PowerShell**
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\demo.ps1
 ```
 
-With PowerShell 7, use `pwsh` in place of `powershell` if you prefer. The first
-run downloads the Supabase images and the media archive and builds the app
-image, so it can take several minutes. Later runs reuse the images, the
-database volumes, and the media cache and finish in under a minute.
+The script configures `.env.local`, starts Supabase, applies migrations, seeds
+the catalog, verifies and extracts the media, creates demo accounts, and starts
+the app. **Run the same command again to resume**; existing orders, stock edits,
+AI keys, and the media cache are kept. The first run can take several minutes.
 
-The script runs these steps:
+| Open        | Address                                                                      |
+| ----------- | ---------------------------------------------------------------------------- |
+| Storefront  | [English](http://localhost:3000/en) · [Tiếng Việt](http://localhost:3000/vi) |
+| Admin       | <http://localhost:3000/en/admin>                                             |
+| Database UI | <http://127.0.0.1:54323>                                                     |
+| Local email | <http://127.0.0.1:54324>                                                     |
 
-1. Checks that Docker is running and that the Supabase CLI, `curl`, `tar`, and a
-   SHA-256 tool are available, and prints the install hint when one is missing.
-2. Runs `supabase start` and leaves an already running stack alone.
-3. Creates `.env.local` from `.env.example` and fills in the local Supabase URL
-   and keys. Later runs refresh only those values, so AI keys and other edits
-   are kept.
-4. Applies pending migrations.
-5. Loads `supabase/seed.sql`. The seed only inserts missing rows, so orders,
-   stock changes, and admin edits survive a rerun.
-6. Downloads `coveweft-media-studio-v1.tar.gz` from the GitHub release,
-   verifies it against `MEDIA_ARCHIVE_SHA256`, and extracts it into
-   `.media-cache/studio-v1/`. A verified version is not downloaded again, and an
-   interrupted download resumes.
-7. Builds the app image.
-8. Creates the demo customer and administrator inside that image, so the host
-   does not need Node.js.
-9. Starts the container on the Supabase Docker network, where the server reaches
-   Supabase through `SUPABASE_URL_INTERNAL`, and prints the URLs and the demo
-   accounts.
+### Demo accounts
 
-When it finishes:
+Local defaults from [`.env.example`](.env.example):
 
-| What                  | URL                                               |
-| --------------------- | ------------------------------------------------- |
-| Store                 | <http://localhost:3000/en> (`/vi` for Vietnamese) |
-| Admin                 | <http://localhost:3000/en/admin>                  |
-| Supabase Studio       | <http://127.0.0.1:54323>                          |
-| Mailpit (local email) | <http://127.0.0.1:54324>                          |
+| Role     | Email                          | Password            |
+| -------- | ------------------------------ | ------------------- |
+| Customer | `customer@demo.coveweft.local` | `demo-customer-123` |
+| Admin    | `admin@demo.coveweft.local`    | `demo-admin-123`    |
 
-Demo accounts, local only:
+Try browsing the shop, signing in as the customer, placing an order, then signing
+in as the admin to update its status.
 
-- Customer: `customer@demo.coveweft.local` / `demo-customer-123`
-- Administrator: `admin@demo.coveweft.local` / `demo-admin-123`
+### Stop or reset
 
-The container mounts the extracted media at `/app/public/media` and serves it
-at `/media`; admin uploads go to the local Supabase Storage bucket. Stop the
-demo with `docker stop coveweft-swim-app` and `supabase stop`; the database and
-the media cache are kept.
-
-### The same steps by hand
-
-The scripts wrap the commands below. Run them from the repository root after
-starting Docker and the Supabase CLI.
+Stop both services from the repository directory. Data is kept:
 
 ```sh
-# 1. Start the stack and create .env.local only when it is missing, so a rerun
-#    keeps the AI keys you already set.
-supabase start
-[ -f .env.local ] || cp .env.example .env.local
-
-# 2. Read the local Supabase values and copy API_URL, PUBLISHABLE_KEY, and
-#    SECRET_KEY into .env.local. Keep the values unquoted: --env-file passes
-#    quotes through literally.
-supabase status -o env
-
-# 3. Apply the migrations and load the seed, which only inserts missing rows.
-supabase migration up
-docker cp supabase/seed.sql supabase_db_coveweft-swim:/tmp/coveweft-seed.sql
-docker exec supabase_db_coveweft-swim psql -U postgres -d postgres \
-  -f /tmp/coveweft-seed.sql
-
-# 4. Download the media archive and check it against MEDIA_ARCHIVE_SHA256 from
-#    .env.local before extracting it.
-mkdir -p .media-cache/studio-v1
-ARCHIVE=.media-cache/coveweft-media-studio-v1.tar.gz
-curl -fL -o "$ARCHIVE" \
-  https://github.com/KoangWy/coveweft-swim/releases/download/media-studio-v1/coveweft-media-studio-v1.tar.gz
-DIGEST=$(sed -n 's/^MEDIA_ARCHIVE_SHA256=//p' .env.local)
-if command -v sha256sum >/dev/null 2>&1; then
-  ACTUAL=$(sha256sum "$ARCHIVE" | awk '{print $1}')
-else
-  ACTUAL=$(shasum -a 256 "$ARCHIVE" | awk '{print $1}')
-fi
-[ "$ACTUAL" = "$DIGEST" ] || echo "media archive does not match MEDIA_ARCHIVE_SHA256" >&2
-tar -xzf "$ARCHIVE" -C .media-cache/studio-v1
-printf '%s' "$DIGEST" > .media-cache/studio-v1/.verified
-
-# 5. Build the image, then create the demo accounts and start the container on
-#    the Supabase Docker network.
-PUBLISHABLE_KEY=$(supabase status -o env | grep '^PUBLISHABLE_KEY=' | cut -d= -f2- | tr -d '"')
-docker build -t coveweft-swim-app:local \
-  --build-arg NEXT_PUBLIC_APP_URL="http://localhost:3000" \
-  --build-arg NEXT_PUBLIC_SUPABASE_URL="http://127.0.0.1:54321" \
-  --build-arg NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY="$PUBLISHABLE_KEY" .
-
-docker run --rm --network supabase_network_coveweft-swim \
-  --env-file .env.local \
-  -e SUPABASE_URL_INTERNAL="http://supabase_kong_coveweft-swim:8000" \
-  coveweft-swim-app:local node scripts/provision-demo.mjs
-
-docker run -d --name coveweft-swim-app \
-  --network supabase_network_coveweft-swim \
-  --env-file .env.local \
-  -e SUPABASE_URL_INTERNAL="http://supabase_kong_coveweft-swim:8000" \
-  -e NEXT_PUBLIC_APP_URL="http://localhost:3000" \
-  -e MEDIA_BASE_URL="http://localhost:3000/media" \
-  -p "3000:3000" \
-  -v "$PWD/.media-cache/studio-v1:/app/public/media:ro" \
-  coveweft-swim-app:local
+docker stop coveweft-swim-app
+supabase stop
 ```
 
-On Windows, run the same steps in PowerShell. `tar.exe` and
-`Get-FileHash -Algorithm SHA256` replace `tar` and `shasum`; set the values
-first, then use the same commands:
-
-```powershell
-$Digest = (Select-String -Path .env.local -Pattern '^MEDIA_ARCHIVE_SHA256=').Line -replace '^MEDIA_ARCHIVE_SHA256=', ''
-$Actual = (Get-FileHash -Algorithm SHA256 .media-cache/coveweft-media-studio-v1.tar.gz).Hash.ToLowerInvariant()
-if ($Actual -ne $Digest) { Write-Warning 'media archive does not match MEDIA_ARCHIVE_SHA256' }
-tar.exe -xzf .media-cache/coveweft-media-studio-v1.tar.gz -C .media-cache/studio-v1
-Set-Content -NoNewline -Encoding ascii -Path .media-cache/studio-v1/.verified -Value $Digest
-$PublishableKey = (supabase status -o env | Select-String '^PUBLISHABLE_KEY=').Line -replace '^PUBLISHABLE_KEY=', '' -replace '"', ''
-docker build -t coveweft-swim-app:local `
-  --build-arg NEXT_PUBLIC_APP_URL="http://localhost:3000" `
-  --build-arg NEXT_PUBLIC_SUPABASE_URL="http://127.0.0.1:54321" `
-  --build-arg NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY="$PublishableKey" .
-```
-
-Replace `$PWD` with the repository path in the bind mount. The scripts create
-a temporary env file with the same overrides, so `.env.local` stays a normal
-environment file for `pnpm dev`.
-
-### Reset the database
-
-Reset deletes local orders, carts, accounts, and admin edits and rebuilds the
-database from the migrations and seed. The media cache and `.env.local` are
-kept.
+To start over, run the reset script. It asks for confirmation, then **deletes
+local orders, carts, accounts, and admin edits** and restores the seeded demo.
+The media cache and `.env.local` are kept.
 
 ```sh
-./scripts/reset.sh          # asks you to type "reset"
-./scripts/reset.sh --yes    # no question
+./scripts/reset.sh
 ```
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\reset.ps1
-powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\reset.ps1 -Yes
 ```
 
-### Add an AI key
+### Enable the Shopping Assistant
 
-Put the key in `.env.local` (see `.env.example` for the provider settings):
+After the first run, add a Mistral key to `.env.local`:
 
-```sh
+```dotenv
 AI_PRIMARY_API_KEY=your-key
-# The fallback provider is optional:
-AI_FALLBACK_API_KEY=your-fallback-key
+AI_FALLBACK_API_KEY=your-key
 ```
 
-Then run the demo script again. It recreates the app container from the current
-`.env.local` in under a minute; restarting the old container is not enough
-because Docker reads `--env-file` only when it creates the container. Without a
-key the store works and the assistant reports that it is not configured.
+Run the demo command again to apply the keys. The fallback key is optional;
+provider and model settings are in [`.env.example`](.env.example). Without a
+key, shopping still works and the assistant displays its configuration status.
 
-### Use another port
+Conversations belong to the signed-in account and are stored in Postgres, so
+they survive a reload and another device. The floating panel is the quick entry;
+`/{locale}/assistant` starts a new conversation and
+`/{locale}/assistant/{id}` opens a saved one with the conversation rail.
+Customers can delete one conversation or all of them from that page; a visitor
+sees the sign-in gate and no rail.
 
-The default port is 3000. Set `APP_PORT` when something else already uses it:
-
-```sh
-APP_PORT=3100 ./scripts/demo.sh
-```
-
-```powershell
-$env:APP_PORT = "3100"; .\scripts\demo.ps1
-```
-
-The script updates the app URL and the media base URL in the container
-environment, so `/media` keeps working on the new port.
-
-### Troubleshooting
-
-- **Port already in use.** Find the listener with
-  `lsof -nP -iTCP:3000 -sTCP:LISTEN` on macOS or Linux, or
-  `Get-NetTCPConnection -LocalPort 3000 -State Listen` in PowerShell, then stop
-  it or pick another `APP_PORT` as shown above.
-- **Docker is not running.** Start Docker Desktop, `colima start`, or
-  `sudo systemctl start docker`, then run the script again. On Linux,
-  `permission denied` while connecting to the daemon means your user is not in
-  the `docker` group: `sudo usermod -aG docker "$USER"`, then log out and back in.
-- **The media download fails.** The release is public. If the repository is
-  private again, set `GITHUB_TOKEN` to a token with read access
-  (`$env:GITHUB_TOKEN = "<token>"` in PowerShell) and rerun, or download the
-  asset from the releases page and pass it with `MEDIA_ARCHIVE_PATH`.
-- **The first run is slow.** The Supabase images and the media archive are large
-  downloads; the build also installs dependencies once. Later runs reuse all of
-  them. An interrupted media download resumes on the next run.
-- **`supabase start` fails.** Ports 54321-54324 must be free, and Docker needs
-  at least 4 GB of memory. `supabase stop` first if the stack is half started;
-  the database volume is kept.
-- **Platform coverage.** The demo was run end to end on macOS with Docker
-  Desktop. The scripts are also written for Linux and Windows (Windows
-  PowerShell 5.1 and PowerShell 7), but no Linux or Windows run was performed
-  for this check.
+Need CLI install commands, another port, an offline media archive, or help with
+an error? See [Local development](docs/local-development.md).
 
 ## Development
 
-### Requirements
+For hot reload, use **Node.js 26** ([`.nvmrc`](.nvmrc)) and **pnpm 12.6.0**
+([`package.json`](package.json)). First run the demo above to prepare the local
+database, media, accounts, and environment; then follow the
+[development setup](docs/local-development.md#hot-reload) to run `pnpm dev`.
 
-- Node.js 26 LTS (see `.nvmrc`)
-- pnpm 12
-- A Docker-compatible runtime and the Supabase CLI for the local database
+| Command                        | Purpose                                    |
+| ------------------------------ | ------------------------------------------ |
+| `pnpm dev`                     | Start the app with hot reload              |
+| `pnpm build` / `pnpm start`    | Build / serve the production app           |
+| `pnpm lint` / `pnpm typecheck` | Check code and types                       |
+| `pnpm test`                    | Run unit tests; no Docker needed           |
+| `pnpm test:integration`        | Test database rules against local Supabase |
+| `pnpm test:e2e`                | Run Playwright browser tests               |
 
-### Setup
+## Explore the project
 
-```sh
-pnpm install
-cp .env.example .env.local
-pnpm dlx supabase start
-pnpm dlx supabase status   # copy the publishable and secret keys into .env.local
-pnpm dev
-```
+| Guide                                          | Contents                                                          |
+| ---------------------------------------------- | ----------------------------------------------------------------- |
+| [Local development](docs/local-development.md) | CLI installation, hot reload, manual setup, troubleshooting       |
+| [Architecture](docs/architecture.md)           | Module boundaries, database rules, configuration, deployment      |
+| [Media pipeline](docs/media.md)                | Image processing, verification, versioned releases, photo credits |
+| [Catalog source](data/catalog/SOURCE.md)       | Data provenance, normalization, import validation                 |
 
-Open <http://localhost:3000>. The root path redirects to `/en`; `/vi` renders the
-Vietnamese site. If the Supabase CLI is installed globally, drop `pnpm dlx` from
-the commands above.
-
-### Scripts
-
-| Command                 | What it does                                                                     |
-| ----------------------- | -------------------------------------------------------------------------------- |
-| `pnpm dev`              | Start the development server                                                     |
-| `pnpm build`            | Create a production build (`output: "standalone"`)                               |
-| `pnpm start`            | Serve the production build                                                       |
-| `pnpm lint`             | Run ESLint                                                                       |
-| `pnpm typecheck`        | Generate route types and run `tsc --noEmit`                                      |
-| `pnpm test`             | Run unit tests                                                                   |
-| `pnpm test:integration` | Run database integration tests against local Supabase (needs Docker)             |
-| `pnpm test:e2e`         | Run Playwright tests (install browsers once with `pnpm exec playwright install`) |
-| `pnpm catalog:export`   | Rebuild `data/catalog/` and `supabase/seed.sql` from the SOBIE source package    |
-| `pnpm db:seed`          | Load the catalog into a running database without overwriting existing rows       |
-| `pnpm media:build`      | Download studio photos and build the versioned WebP media set                    |
-| `pnpm media:verify`     | Re-check the media manifest, exported files, and archive                         |
-| `pnpm provision:demo`   | Create the demo customer and administrator accounts through the Auth Admin API   |
-| `pnpm ai:smoke`         | Call the configured AI provider roles with live requests and report the results  |
-| `pnpm format`           | Format the repository with Prettier                                              |
-
-### Catalog import
-
-The catalog snapshot comes from the SOBIE Drive package, which stays outside
-this repository. Pass both CSV paths as arguments:
-
-```sh
-pnpm catalog:export \
-  --source /path/to/products.csv \
-  --inventory /path/to/sobie-drive-inventory.csv
-```
-
-The command validates the snapshot (475 products, 1,541 variants, 3,224 studio
-images, full Vietnamese translation coverage, and a size guide key for every
-garment variant), then writes `data/catalog/products.json`, `variants.json`,
-`images.json`, `import-report.json`, and `SOURCE.md`. It also regenerates
-`supabase/seed.sql`. The export is deterministic: running it again against the
-same inputs produces the same files.
-
-`SOURCE.md` records provenance, the columns used, and the normalization rules.
-`import-report.json` lists source anomalies without changing the raw data, such
-as duplicate product names, zero-stock variants, and the `S (Y)` label on
-`BB25HBX`.
-
-The seed is idempotent. `supabase db reset` reloads everything from the
-migrations and `supabase/seed.sql`; `pnpm db:seed` inserts only missing rows in
-an existing database. Both paths keep current stock and administrator edits, so
-use `db reset` when a full reload is intended. The initial variant stock is
-written directly by the seed because the client `INSERT` grant on
-`product_variants` excludes `stock`; later stock changes go through
-`admin_adjust_stock` and are audited.
-
-### Media
-
-Studio images are not committed. The media pipeline reads an inventory CSV as
-an argument, downloads the studio originals from the shared SOBIE Drive folder,
-and exports fixed WebP sizes with a SHA-256 manifest:
-
-```sh
-pnpm media:build --inventory /path/to/sobie-drive-inventory.csv
-pnpm media:verify
-```
-
-`data/media/` holds the committed manifest and build report; `.media-build/`
-holds the generated WebP files and the release archive and is ignored by Git.
-Position numbering matches the catalog export (`studio/<SKU>/<NN>-<size>.webp`).
-See [`docs/media.md`](docs/media.md) for options, resume behavior, and release
-steps.
-
-### Local Supabase
-
-`supabase/config.toml` defines the local stack (`project_id = "coveweft-swim"`).
-Migrations live in `supabase/migrations` and seed data in `supabase/seed.sql`.
-`pnpm dlx supabase stop` shuts the stack down without deleting data, and
-`pnpm dlx supabase db reset` recreates it from the migrations and seed.
-
-The migrations create the catalog, profile, cart, order, payment, and stock
-tables; enable row level security; install the order and stock functions; and
-schedule the unpaid-order expiry job with `pg_cron`. `store_settings` is seeded
-with the local shipping fees, free-shipping threshold, and payment window. The
-catalog seed loads products, variants, studio images, Vietnamese translations,
-and attribute labels from the committed `data/catalog/` snapshot.
-
-Run `pnpm test:integration` after `supabase start` to exercise the policies and
-functions. The runner reads the local URL and keys from `.env.local` or from
-`supabase status`, so the keys copied during setup are enough.
-
-`pnpm provision:demo` creates one customer account and one administrator
-account through the Auth Admin API. It reads `DEMO_CUSTOMER_*` and `DEMO_ADMIN_*`
-from `.env.local` (see `.env.example` for the local defaults). Running it again
-keeps the existing passwords and does not duplicate accounts. Use the same
-command against a cloud project with that project's environment values; do not
-commit cloud passwords.
-
-### Shopping Assistant
-
-Conversations belong to the signed-in account and are stored in Postgres, so
-they survive a reload and another device. The floating panel is the quick
-entry; `/{locale}/assistant` starts a new conversation and
-`/{locale}/assistant/{id}` opens a saved one with the conversation rail.
-Customers can delete one conversation or all of them from that page. A
-visitor sees the sign-in gate and no rail.
-
-### Shopping Assistant provider
-
-The assistant calls Mistral through its OpenAI-compatible Chat Completions
-API. Put the API key in `.env.local` as `AI_PRIMARY_API_KEY` and
-`AI_FALLBACK_API_KEY`; without a key the app still starts and the assistant
-reports that it is not configured. The default models are
-`deepseek-v4-1-flash-1017` (primary, `reasoning_effort` `low`) and
-`mistral-small-2603` (fallback, no `reasoning_effort`); change them with the
-`AI_*` variables in `.env.example`. `pnpm ai:smoke` checks a plain chat, a
-two-round tool call, and streaming against both roles; it needs only the
-`AI_*` variables and a funded Mistral account.
-
-### Continuous integration
-
-`.github/workflows/ci.yml` runs lint, typecheck, and unit tests on every push to
-`main` and every pull request. Database integration tests are not part of that
-job because they need Docker and a running Supabase stack; run
-`pnpm test:integration` locally before merging a migration. The unit suite stays
-Docker-free.
-
-See [`docs/architecture.md`](docs/architecture.md) for module boundaries, shared
-contracts, and environment configuration.
+Source code is licensed under [MIT](LICENSE). Product data and SOBIE photography
+retain their original ownership and are outside the code license; brand photo
+credits are in the [media guide](docs/media.md#brand-photography).
 
 <details>
 <summary>Tiếng Việt</summary>
 
-COVEWEFT Swim là cửa hàng đồ bơi B2C demo, xây dựng cho môn CO3027 Thương mại điện tử tại Trường Đại học Bách khoa TP.HCM (HCMUT), học kỳ 261. Đây là dự án học tập: cửa hàng không bán hàng, không thu tiền và không giao hàng thật.
+### Tiếng Việt
 
-Dự án đang ở giai đoạn đầu. Khung ứng dụng, tài liệu kiến trúc và hướng dẫn cài đặt đã có; dữ liệu catalog và ghi nguồn sẽ được bổ sung theo từng phần.
+Cửa hàng đồ bơi B2C demo cho môn **CO3027 Electronic Commerce**, Trường Đại học
+Bách khoa TP.HCM (HCMUT), học kỳ 261. Thương hiệu giả tưởng; thanh toán và giao
+hàng đều mô phỏng.
 
-Công nghệ dự kiến: Next.js (TypeScript, React, Tailwind CSS), Supabase (Postgres, xác thực, lưu trữ) và Vercel.
+Bạn có thể tìm/lọc sản phẩm, lưu yêu thích, chọn size, đặt hàng và theo dõi đơn.
+Khu vực admin quản lý sản phẩm, ảnh, tồn kho và đơn hàng. **Shopping Assistant**
+tư vấn dựa trên catalog, tồn kho và bảng size demo. Giao diện hỗ trợ tiếng Anh,
+tiếng Việt và giá VND.
 
-### Chạy thử cục bộ
+### Chạy local
 
-Bản demo chỉ cần Docker. Ứng dụng, Supabase local, dữ liệu catalog và ảnh studio đều lấy từ kho mã nguồn và một gói release, nên máy chủ không cần Node.js hay pnpm.
+1. Cài và mở **Docker**, cấp ít nhất 4 GB bộ nhớ; cài **Supabase CLI**.
+2. Clone repo và mở terminal trong thư mục `coveweft-swim`.
+3. Chạy lệnh theo hệ điều hành:
 
-**Yêu cầu**
-
-- Docker Desktop trên macOS hoặc Windows, hoặc Docker Engine trên Linux, cấp ít nhất 4 GB bộ nhớ cho Docker.
-- Supabase CLI.
-- macOS hoặc Linux có `curl`, `tar` và `shasum` hay `sha256sum` (đều có sẵn).
-- Windows 10 (1803) trở lên, đã có `tar.exe` và `curl.exe`.
-
-Cài Supabase CLI:
-
-```sh
-brew install supabase/tap/supabase            # macOS và Linux
-```
-
-```powershell
-scoop bucket add supabase https://github.com/supabase/scoop-bucket.git
-scoop install supabase                        # Windows
-```
-
-**Khởi động**
-
-macOS và Linux:
+**macOS / Linux**
 
 ```sh
 ./scripts/demo.sh
 ```
 
-Windows (Windows PowerShell 5.1 hoặc PowerShell 7). `-ExecutionPolicy Bypass` chỉ áp dụng cho tiến trình này, không đổi chính sách của máy:
+**Windows · PowerShell**
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\demo.ps1
 ```
 
-Lần chạy đầu tải image Supabase và gói media rồi build image ứng dụng nên mất vài phút. Các lần sau dùng lại image, volume và cache media nên xong trong chưa đến một phút.
+Script tự chuẩn bị cấu hình, database, catalog, ảnh và tài khoản. Không cần
+Node.js, pnpm hay tài khoản cloud. Lần đầu cần internet và có thể mất vài phút;
+chạy lại giữ dữ liệu và cache.
 
-Script thực hiện: kiểm tra Docker và Supabase CLI; `supabase start`; tạo `.env.local` từ `.env.example` và điền URL, key local (giữ nguyên key AI bạn đã nhập); áp migration còn thiếu; nạp seed catalog (chỉ thêm dòng còn thiếu); tải `coveweft-media-studio-v1.tar.gz` từ GitHub Release, kiểm SHA-256 rồi giải nén vào `.media-cache/studio-v1/`; tạo tài khoản demo ngay trong image ứng dụng, không cần Node.js trên máy; build và chạy container trên network Docker của Supabase; in URL và tài khoản demo.
+Mở **<http://localhost:3000/vi>**; admin ở **<http://localhost:3000/vi/admin>**.
 
-Khi chạy xong:
+| Vai trò    | Email                          | Mật khẩu            |
+| ---------- | ------------------------------ | ------------------- |
+| Khách hàng | `customer@demo.coveweft.local` | `demo-customer-123` |
+| Admin      | `admin@demo.coveweft.local`    | `demo-admin-123`    |
 
-| Mục                   | URL                                               |
-| --------------------- | ------------------------------------------------- |
-| Cửa hàng              | <http://localhost:3000/en> (`/vi` cho tiếng Việt) |
-| Quản trị              | <http://localhost:3000/en/admin>                  |
-| Supabase Studio       | <http://127.0.0.1:54323>                          |
-| Mailpit (email local) | <http://127.0.0.1:54324>                          |
+**Dừng:** chạy `docker stop coveweft-swim-app`, rồi `supabase stop` trong thư mục
+repo. Dữ liệu được giữ lại; khởi động lại bằng lệnh demo ở trên.
 
-Tài khoản demo (chỉ dùng local): khách `customer@demo.coveweft.local` / `demo-customer-123`; quản trị `admin@demo.coveweft.local` / `demo-admin-123`.
+**Đặt lại:** chạy `./scripts/reset.sh` (macOS/Linux), hoặc
+`powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\reset.ps1`
+(Windows). Script yêu cầu xác nhận trước khi **xóa đơn, giỏ hàng, tài khoản và
+chỉnh sửa admin ở local**, rồi tạo lại dữ liệu demo.
 
-Dừng demo bằng `docker stop coveweft-swim-app` và `supabase stop`; dữ liệu và cache media được giữ lại.
+**Bật Shopping Assistant:** thêm key Mistral vào `AI_PRIMARY_API_KEY` trong
+`.env.local`, có thể thêm `AI_FALLBACK_API_KEY`, rồi chạy lại lệnh demo.
+Không có key vẫn dùng được cửa hàng.
 
-**Các bước thủ công tương đương**
+**Conversation:** hội thoại thuộc tài khoản đã đăng nhập và lưu trong Postgres,
+nên tải lại trang hay mở ở máy khác vẫn xem lại được. Panel nổi là lối vào
+nhanh; `/{locale}/assistant` mở cuộc mới, `/{locale}/assistant/{id}` mở lại cuộc
+đã lưu kèm danh sách conversation. Khách xoá được từng cuộc hoặc tất cả trong
+trang này; khách chưa đăng nhập chỉ thấy lời mời đăng nhập.
 
-Script chỉ gói lại các lệnh sau; chạy từ thư mục gốc của kho:
-
-```sh
-# 1. Khởi động stack; chỉ tạo .env.local khi chưa có để giữ key AI đã nhập.
-supabase start
-[ -f .env.local ] || cp .env.example .env.local
-
-# 2. Đọc giá trị local rồi điền API_URL, PUBLISHABLE_KEY, SECRET_KEY vào
-#    .env.local. Để nguyên không có dấu ngoặc kép vì --env-file đọc đúng từng
-#    ký tự.
-supabase status -o env
-
-# 3. Áp migration và nạp seed; seed chỉ thêm dòng còn thiếu.
-supabase migration up
-docker cp supabase/seed.sql supabase_db_coveweft-swim:/tmp/coveweft-seed.sql
-docker exec supabase_db_coveweft-swim psql -U postgres -d postgres \
-  -f /tmp/coveweft-seed.sql
-
-# 4. Tải gói media, đối chiếu với MEDIA_ARCHIVE_SHA256 trong .env.local rồi
-#    giải nén.
-mkdir -p .media-cache/studio-v1
-ARCHIVE=.media-cache/coveweft-media-studio-v1.tar.gz
-curl -fL -o "$ARCHIVE" \
-  https://github.com/KoangWy/coveweft-swim/releases/download/media-studio-v1/coveweft-media-studio-v1.tar.gz
-DIGEST=$(sed -n 's/^MEDIA_ARCHIVE_SHA256=//p' .env.local)
-if command -v sha256sum >/dev/null 2>&1; then
-  ACTUAL=$(sha256sum "$ARCHIVE" | awk '{print $1}')
-else
-  ACTUAL=$(shasum -a 256 "$ARCHIVE" | awk '{print $1}')
-fi
-[ "$ACTUAL" = "$DIGEST" ] || echo "gói media không khớp MEDIA_ARCHIVE_SHA256" >&2
-tar -xzf "$ARCHIVE" -C .media-cache/studio-v1
-printf '%s' "$DIGEST" > .media-cache/studio-v1/.verified
-
-# 5. Build image với key công khai của Supabase.
-PUBLISHABLE_KEY=$(supabase status -o env | grep '^PUBLISHABLE_KEY=' | cut -d= -f2- | tr -d '"')
-docker build -t coveweft-swim-app:local \
-  --build-arg NEXT_PUBLIC_APP_URL="http://localhost:3000" \
-  --build-arg NEXT_PUBLIC_SUPABASE_URL="http://127.0.0.1:54321" \
-  --build-arg NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY="$PUBLISHABLE_KEY" .
-```
-
-Sau đó chạy hai lệnh `docker run` (tạo tài khoản demo và chạy container) như mục "The same steps by hand" ở phần tiếng Anh. Trên Windows, dùng `tar.exe` và `Get-FileHash -Algorithm SHA256`, đặt biến như đoạn PowerShell ở mục tiếng Anh.
-
-**Reset database**
-
-```sh
-./scripts/reset.sh        # hỏi xác nhận, gõ "reset"
-./scripts/reset.sh --yes  # không hỏi
-```
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\reset.ps1
-powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\reset.ps1 -Yes
-```
-
-Reset xóa đơn hàng, giỏ hàng, tài khoản và chỉnh sửa của quản trị, rồi dựng lại database từ migration và seed. Cache media và `.env.local` được giữ.
-
-**Thêm API key AI**
-
-Điền `AI_PRIMARY_API_KEY` (và `AI_FALLBACK_API_KEY` nếu có) trong `.env.local`, rồi chạy lại script demo để tạo lại container; Docker chỉ đọc `--env-file` khi tạo container nên khởi động lại container cũ không đủ. Không có key thì cửa hàng vẫn chạy và trợ lý báo chưa cấu hình.
-
-**Đổi cổng**
-
-Dùng `APP_PORT=3100 ./scripts/demo.sh`, hoặc trong PowerShell `$env:APP_PORT = "3100"; .\scripts\demo.ps1`. Script tự cập nhật URL ứng dụng và `MEDIA_BASE_URL`.
-
-**Lỗi thường gặp**
-
-- Cổng đã bị chiếm: tìm tiến trình bằng `lsof -nP -iTCP:3000 -sTCP:LISTEN` (macOS, Linux) hoặc `Get-NetTCPConnection -LocalPort 3000 -State Listen` (Windows), rồi đổi `APP_PORT`.
-- Docker chưa chạy: mở Docker Desktop, chạy `colima start`, hoặc `sudo systemctl start docker`. Trên Linux, lỗi `permission denied` nghĩa là người dùng chưa thuộc nhóm `docker`: chạy `sudo usermod -aG docker "$USER"` rồi đăng xuất và đăng nhập lại.
-- Tải media thất bại: release đang công khai; nếu kho chuyển sang riêng tư, đặt `GITHUB_TOKEN` có quyền đọc rồi chạy lại, hoặc tải file thủ công và truyền qua `MEDIA_ARCHIVE_PATH`.
-- Lần đầu chậm: image Supabase và gói media khá lớn, build cũng cài dependency một lần; các lần sau dùng lại. Bản tải dở sẽ tiếp tục ở lần chạy sau.
-- `supabase start` lỗi: cần trống cổng 54321-54324 và Docker có ít nhất 4 GB bộ nhớ; chạy `supabase stop` nếu stack đang dở dang, volume dữ liệu vẫn được giữ.
+Hướng dẫn cài CLI, hot reload và xử lý lỗi nằm trong
+[Local development](docs/local-development.md) (tiếng Anh).
 
 </details>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">COVEWEFT Swim</title>
+  <desc id="desc">Find your water. The white cove and lime wave brand mark on a deep navy background.</desc>
+  <defs>
+    <clipPath id="frame"><rect width="1200" height="320" rx="24"/></clipPath>
+    <linearGradient id="sea" x1="700" y1="0" x2="1200" y2="320" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#123b5c"/>
+      <stop offset="1" stop-color="#0b2545"/>
+    </linearGradient>
+  </defs>
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="320" fill="#0b2545"/>
+    <circle cx="1070" cy="150" r="260" fill="url(#sea)"/>
+    <g stroke="#31536e" stroke-width="1.5" opacity=".55">
+      <circle cx="1070" cy="150" r="220"/>
+      <circle cx="1070" cy="150" r="174"/>
+      <circle cx="1070" cy="150" r="128"/>
+      <circle cx="1070" cy="150" r="82"/>
+    </g>
+    <path d="M876 163q36-50 72 0t72 0 72 0 72 0" stroke="#c8f03c" stroke-width="7" stroke-linecap="round"/>
+    <g transform="translate(66 62) scale(1.75)">
+      <rect width="48" height="48" rx="14" fill="#0b2545"/>
+      <path d="M33.58 15.97A12.5 12.5 0 1 0 33.58 32.03" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M16 24q3-4.2 6 0t6 0 6 0 6 0" stroke="#c8f03c" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <text x="174" y="111" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="49" font-weight="700" letter-spacing="5">COVEWEFT</text>
+    <text x="177" y="140" fill="#c8f03c" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" letter-spacing="8">SWIM</text>
+    <text x="78" y="225" fill="#fff" font-family="Georgia, 'Times New Roman', serif" font-size="43" font-style="italic">Find your water.</text>
+    <text x="80" y="263" fill="#a9c2d3" font-family="Arial, Helvetica, sans-serif" font-size="15" letter-spacing="2">SWIMWEAR FOR EVERY KIND OF WATER</text>
+  </g>
+</svg>

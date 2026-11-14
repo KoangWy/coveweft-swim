@@ -29,6 +29,7 @@ next-env.d.ts
 # Media build output and runtime cache
 /.media-build/
 /.media-cache/
+/public/media
 
 # Misc
 .DS_Store
