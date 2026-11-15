@@ -67,6 +67,18 @@ export const integrationEnv: IntegrationEnv = {
   secretKey: read("SUPABASE_SECRET_KEY") ?? "",
 };
 
+/**
+ * Copies the `AI_*` settings from .env.local into `process.env` for the live
+ * AI suites. Variables already set in the shell take precedence.
+ */
+export function loadAiEnv(): void {
+  for (const [key, value] of Object.entries(fileEnv)) {
+    if (key.startsWith("AI_") && process.env[key] === undefined) {
+      process.env[key] = value;
+    }
+  }
+}
+
 if (!integrationEnv.publishableKey || !integrationEnv.secretKey) {
   throw new Error(
     "Integration tests need SUPABASE_PUBLISHABLE_KEY and SUPABASE_SECRET_KEY. " +

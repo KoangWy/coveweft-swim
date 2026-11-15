@@ -1,5 +1,4 @@
-import { appendFileSync, readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { appendFileSync } from "node:fs";
 
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 
@@ -29,25 +28,12 @@ import {
   deleteUsers,
   type TestUser,
 } from "./support/clients";
+import { loadAiEnv } from "./support/env";
 import { selectServiceClient } from "./support/service-context";
 
 // Calls the real provider and spends API credit, so it only runs when asked:
 // AI_LIVE_SMOKE=1 pnpm test:integration tests/integration/assistant-live.test.ts
 const enabled = process.env.AI_LIVE_SMOKE === "1";
-
-function loadAiEnv(): void {
-  try {
-    for (const line of readFileSync(resolve(process.cwd(), ".env.local"), "utf8").split(/\r?\n/)) {
-      const match = /^(AI_[A-Z_]+)=(.*)$/.exec(line.trim());
-
-      if (match && process.env[match[1]!] === undefined) {
-        process.env[match[1]!] = match[2]!;
-      }
-    }
-  } catch {
-    // The variables may come from the shell instead.
-  }
-}
 
 const QUESTIONS = [
   "Tìm giúp mình đồ bơi nữ giá dưới 400.000 VND.",
