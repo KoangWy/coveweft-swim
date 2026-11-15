@@ -109,7 +109,7 @@ test("the shipping page shows the fees from store settings", async ({ page }) =>
   await expect(table.getByRole("row", { name: /Standard/ })).toContainText("30,000");
   await expect(table.getByRole("row", { name: /Express/ })).toContainText("50,000");
   await expect(page.getByRole("region", { name: "Free Standard shipping" })).toContainText(
-    "500,000 or more",
+    "400,000 or more",
   );
 });
 

@@ -328,7 +328,7 @@ describe("place order", () => {
   });
 
   it("does not waive the standard fee when only the total would reach the threshold", async () => {
-    const product = await newProduct({ priceVnd: 499000, stock: 5 });
+    const product = await newProduct({ priceVnd: 399000, stock: 5 });
     await addToCart(customer, product.variantId);
 
     const placed = await placeOrder(customer.client, {
@@ -337,9 +337,9 @@ describe("place order", () => {
 
     expect(placed.error).toBeNull();
     expect(placed.data).toMatchObject({
-      items_subtotal_vnd: 499000,
+      items_subtotal_vnd: 399000,
       shipping_fee_vnd: 30000,
-      total_vnd: 529000,
+      total_vnd: 429000,
     });
   });
 

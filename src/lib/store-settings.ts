@@ -20,7 +20,7 @@ export interface StoreSettingsSource {
 export const FALLBACK_STORE_SETTINGS: Readonly<StoreSettings> = Object.freeze({
   standardShippingFeeVnd: 30_000,
   expressShippingFeeVnd: 50_000,
-  freeStandardShippingThresholdVnd: 500_000,
+  freeStandardShippingThresholdVnd: 400_000,
   paymentWindowMinutes: 30,
 });
 
