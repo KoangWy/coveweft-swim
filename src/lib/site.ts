@@ -28,4 +28,4 @@ export const SHOP_CATEGORIES = ["women", "men", "kids", "accessories"] as const;
 export type ShopCategory = (typeof SHOP_CATEGORIES)[number];
 
 /** Date the store policy pages were last revised (Vietnam time). */
-export const POLICIES_UPDATED_AT = "2026-11-14";
+export const POLICIES_UPDATED_AT = "2026-11-15";

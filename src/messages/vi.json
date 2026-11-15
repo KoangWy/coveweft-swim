@@ -435,8 +435,8 @@
           "body": "Đơn hàng đi từ Chờ xử lý sang Đã xác nhận, Đang giao rồi Đã giao. Trong bản demo, quản trị viên demo chuyển đơn qua các bước này; không có đơn vị vận chuyển nào tham gia."
         },
         "area": {
-          "title": "Khu vực giao hàng",
-          "body": "Địa chỉ chỉ được thu thập để quy trình thanh toán giống thật. Vì không có hàng được gửi, sẽ không có thời gian giao, đơn vị vận chuyển hay mã vận đơn."
+          "title": "Thời gian và khu vực giao hàng",
+          "body": "Thời gian giao dự kiến là 3 đến 5 ngày với Tiêu chuẩn và 1 đến 2 ngày với Nhanh, trên toàn quốc. Bản demo không giao hàng nên không có đơn vị vận chuyển hay mã vận đơn, và địa chỉ chỉ được thu thập để quy trình thanh toán giống thật."
         }
       }
     },
@@ -472,9 +472,32 @@
     },
     "returns": {
       "title": "Đổi trả",
-      "description": "Hủy đơn, đổi trả và hoàn tiền trong bản demo COVEWEFT Swim.",
-      "lead": "Vì không có đơn nào được giao, sẽ không có hàng cần gửi trả. Trang này giải thích những gì bạn có thể làm với đơn demo.",
+      "description": "Đổi size, hủy đơn và hoàn tiền tại COVEWEFT Swim.",
+      "lead": "Đồ bơi phải vừa người, nên lần đổi size đầu tiên của mỗi sản phẩm được miễn phí. Bản demo không giao hàng nên bạn chưa thể yêu cầu đổi.",
       "sections": {
+        "exchange": {
+          "title": "Đổi size lần đầu miễn phí",
+          "body": "Lần đổi size đầu tiên của mỗi sản phẩm trong đơn được miễn phí: COVEWEFT trả phí vận chuyển cả hai chiều."
+        },
+        "conditions": {
+          "title": "Thời hạn và điều kiện",
+          "items": {
+            "window": "Yêu cầu đổi trong vòng 15 ngày kể từ ngày nhận hàng.",
+            "condition": "Sản phẩm chưa qua sử dụng, còn tem và còn nguyên miếng lót vệ sinh.",
+            "size": "Bạn đổi sang size khác của cùng sản phẩm, tùy theo tồn kho."
+          }
+        },
+        "excluded": {
+          "title": "Không áp dụng",
+          "items": {
+            "mind": "Hoàn tiền vì đổi ý.",
+            "used": "Đồ bơi đã mặc."
+          }
+        },
+        "defects": {
+          "title": "Sản phẩm lỗi",
+          "body": "Sản phẩm lỗi được xử lý theo chính sách bảo hành. Nếu lỗi do nhà sản xuất, bạn được hoàn tiền."
+        },
         "cancel": {
           "title": "Hủy đơn",
           "body": "Bạn có thể tự hủy đơn của mình khi đơn đang Chờ xử lý. Sản phẩm được hoàn lại tồn kho ngay. Khi đơn đã được xác nhận, chỉ quản trị viên demo mới hủy được và chỉ trước khi đơn chuyển sang Đang giao."
@@ -483,9 +506,9 @@
           "title": "Trạng thái hoàn tiền",
           "body": "Khi đơn đã thanh toán bị hủy, trạng thái thanh toán chuyển sang đã hoàn tiền. Không có tiền được chuyển vì thanh toán là mô phỏng."
         },
-        "real": {
-          "title": "Nếu đây là cửa hàng thật",
-          "body": "Một cửa hàng thật sẽ nêu rõ thời hạn đổi trả, tình trạng sản phẩm được chấp nhận, bên chịu phí gửi trả và cách hoàn tiền. Các điều khoản này nằm ngoài phạm vi bản demo."
+        "demo": {
+          "title": "Trong bản demo",
+          "body": "Không có đơn nào được giao, nên không có hàng để đổi hay gửi trả. Trong bản demo, hủy đơn là cách duy nhất để hoàn tác một lần mua."
         }
       }
     },

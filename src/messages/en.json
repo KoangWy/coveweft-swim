@@ -435,8 +435,8 @@
           "body": "Orders move from Pending to Confirmed, then Shipping, then Delivered. In this demo, a demo admin moves orders between these steps; no courier is involved."
         },
         "area": {
-          "title": "Delivery area",
-          "body": "Addresses are collected only to make the checkout realistic. Because nothing is shipped, there are no delivery times, couriers, or tracking numbers."
+          "title": "Delivery times and area",
+          "body": "The planned delivery times are 3 to 5 days for Standard and 1 to 2 days for Express, nationwide. In this demo nothing is shipped, so there are no couriers or tracking numbers, and addresses are collected only to make the checkout realistic."
         }
       }
     },
@@ -472,9 +472,32 @@
     },
     "returns": {
       "title": "Returns",
-      "description": "Cancellations, returns, and refunds in the COVEWEFT Swim demo.",
-      "lead": "Since no order is ever shipped, there is nothing to send back. This page explains what you can do with a demo order instead.",
+      "description": "Size exchanges, cancellations, and refunds at COVEWEFT Swim.",
+      "lead": "Swimwear has to fit, so the first size exchange for each item is free. This demo never ships orders, so you cannot request an exchange yet.",
       "sections": {
+        "exchange": {
+          "title": "Free first size exchange",
+          "body": "The first size exchange for each item in an order is free: COVEWEFT pays the shipping both ways."
+        },
+        "conditions": {
+          "title": "Time limit and condition",
+          "items": {
+            "window": "Ask for the exchange within 15 days of delivery.",
+            "condition": "The item must be unused, with its tags attached and the hygiene liner intact.",
+            "size": "You exchange for another size of the same product, subject to stock."
+          }
+        },
+        "excluded": {
+          "title": "Not covered",
+          "items": {
+            "mind": "Refunds because you changed your mind.",
+            "used": "Swimwear that has been worn."
+          }
+        },
+        "defects": {
+          "title": "Faulty items",
+          "body": "A faulty item is handled under the warranty. If the fault is the manufacturer's, you get a refund."
+        },
         "cancel": {
           "title": "Cancelling an order",
           "body": "You can cancel your own order while it is Pending. The items go back into stock straight away. After an order is Confirmed, only a demo admin can cancel it, and only before it is Shipping."
@@ -483,9 +506,9 @@
           "title": "Refund status",
           "body": "When a paid order is cancelled, its payment status changes to refunded. No money moves because payments are simulated."
         },
-        "real": {
-          "title": "If this were a real store",
-          "body": "A real store would state the return window, the condition items must be in, who pays return shipping, and how refunds are sent. These terms are outside the scope of this demo."
+        "demo": {
+          "title": "In this demo",
+          "body": "No order is ever shipped, so there is nothing to exchange or send back. Cancelling an order is the only way to undo a demo purchase."
         }
       }
     },
