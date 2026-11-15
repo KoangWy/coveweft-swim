@@ -42,7 +42,9 @@ let accountToDelete: Account | null = null;
 
 type Account = { id: string; email: string; password: string };
 
-async function createAccount(): Promise<Account> {
+const CURRENT_POLICY_VERSION = "2026-11-15";
+
+async function createAccount(policyVersion = CURRENT_POLICY_VERSION): Promise<Account> {
   accountSequence += 1;
   const email = `e2e-assistant-${Date.now()}-${process.pid}-${accountSequence}@example.com`;
   const password = "e2e-password-123";
@@ -50,7 +52,7 @@ async function createAccount(): Promise<Account> {
     email,
     password,
     email_confirm: true,
-    user_metadata: { full_name: "E2E Assistant", privacy_policy_version: "2026-11-14" },
+    user_metadata: { full_name: "E2E Assistant", privacy_policy_version: policyVersion },
   });
 
   if (created.error || !created.data.user) {
@@ -366,4 +368,38 @@ test("a visitor sees the sign-in gate without a rail or composer", async ({ page
   await expect(page.getByRole("heading", { name: "Conversations" })).toHaveCount(0);
   await expect(page.getByLabel("Your question")).toHaveCount(0);
   await expect(page.getByRole("button", { name: "Ask the shopping assistant" })).toHaveCount(0);
+});
+
+test("the panel tells a customer on an older privacy notice that conversations are saved", async ({
+  page,
+}) => {
+  const account = await createAccount("2026-11-06");
+  await mockStatus(page);
+  await signIn(page, account);
+
+  const dialog = await openPanel(page);
+
+  await expect(
+    dialog.getByText(
+      "Conversations, including any measurements you type, are now saved to your account until you delete them.",
+    ),
+  ).toBeVisible();
+  await expect(dialog.getByRole("link", { name: "Read the privacy notice" })).toHaveAttribute(
+    "href",
+    "/en/policies/privacy",
+  );
+  await expect(dialog.getByText(/saved with the conversation until you delete it/)).toBeVisible();
+});
+
+test("the panel shows no update notice to a customer on the current privacy notice", async ({
+  page,
+}) => {
+  const account = await createAccount();
+  await mockStatus(page);
+  await signIn(page, account);
+
+  const dialog = await openPanel(page);
+
+  await expect(dialog.getByText(/saved with the conversation until you delete it/)).toBeVisible();
+  await expect(dialog.getByText(/are now saved to your account/)).toHaveCount(0);
 });

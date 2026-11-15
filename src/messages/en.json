@@ -569,7 +569,7 @@
           "items": {
             "sent": "The assistant sends only your question, recent messages from the same chat, and catalog search results to the AI provider.",
             "notSent": "It does not send your email, name, phone number, or address.",
-            "measurements": "If you type body measurements to get a size suggestion, they are sent to the provider for that answer.",
+            "measurements": "If you type body measurements to get a size suggestion, they are sent to the provider for that answer and saved with the conversation until you delete it.",
             "stored": "Conversations are saved in your account until you delete them or delete your account. Each conversation keeps the questions you typed and the answers the assistant sent. Product cards are rebuilt from the current catalog when you reopen it.",
             "delete": "You can delete one conversation or all of them on the assistant page. Deleting your account also deletes its conversations."
           }
@@ -673,7 +673,7 @@
       "kids": "Show me rash guards for kids under 400,000 VND."
     },
     "lowQuota": "{count, plural, =1 {Almost out: 1 question left today.} other {Almost out: # questions left today.}}",
-    "privacyNote": "Do not share personal data. Measurements you type are sent to the AI provider to suggest a size.",
+    "privacyNote": "Do not share personal data. Measurements you type are sent to the AI provider to suggest a size and are saved with the conversation until you delete it.",
     "empty": "Ask about a product, size, stock, or store policy.",
     "you": "You",
     "assistant": "Assistant",
@@ -717,7 +717,7 @@
     "deleteAll": "Delete all conversations",
     "noConversations": "No conversations yet. Ask a question to start one.",
     "savedNotice": "Conversations are saved to your account until you delete them.",
-    "policyUpdate": "Conversations are now saved to your account. You can delete them at any time.",
+    "policyUpdate": "Conversations, including any measurements you type, are now saved to your account until you delete them.",
     "privacyLink": "Read the privacy notice",
     "seeMore": "See more",
     "loading": "Loading…",

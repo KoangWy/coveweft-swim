@@ -9,7 +9,7 @@ import {
 } from "./support/clients";
 
 const PASSWORD = "password123";
-const POLICY_VERSION = "2026-11-14";
+const POLICY_VERSION = "2026-11-15";
 
 describe("privacy consent at sign-up", () => {
   const service = createServiceClient();

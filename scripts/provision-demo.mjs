@@ -13,7 +13,7 @@ const DEFAULTS = {
   adminEmail: "admin@demo.coveweft.local",
   adminPassword: "demo-admin-123",
   adminName: "Demo Admin",
-  policyVersion: "2026-11-14",
+  policyVersion: "2026-11-15",
 };
 
 function parseEnv(contents) {

@@ -569,7 +569,7 @@
           "items": {
             "sent": "Trợ lý chỉ gửi câu hỏi của bạn, các tin nhắn gần đây trong cùng cuộc trò chuyện và kết quả tìm kiếm catalog tới nhà cung cấp AI.",
             "notSent": "Trợ lý không gửi email, họ tên, số điện thoại hay địa chỉ của bạn.",
-            "measurements": "Nếu bạn nhập số đo cơ thể để được gợi ý size, số đo đó được gửi tới nhà cung cấp để trả lời.",
+            "measurements": "Nếu bạn nhập số đo cơ thể để được gợi ý size, số đo đó được gửi tới nhà cung cấp để trả lời và được lưu cùng cuộc trò chuyện cho tới khi bạn xóa.",
             "stored": "Cuộc trò chuyện được lưu trong tài khoản của bạn cho tới khi bạn xóa chúng hoặc xóa tài khoản. Mỗi cuộc trò chuyện giữ nguyên câu hỏi bạn đã nhập và câu trả lời trợ lý đã gửi. Thẻ sản phẩm được dựng lại từ catalog hiện tại khi bạn mở lại.",
             "delete": "Bạn có thể xóa một cuộc trò chuyện hoặc xóa tất cả ở trang trợ lý. Xóa tài khoản cũng xóa các cuộc trò chuyện của tài khoản đó."
           }
@@ -673,7 +673,7 @@
       "kids": "Gợi ý áo rash guard cho trẻ em dưới 400.000 VND."
     },
     "lowQuota": "{count, plural, other {Sắp hết lượt: hôm nay còn # câu hỏi.}}",
-    "privacyNote": "Không chia sẻ thông tin cá nhân. Số đo bạn nhập sẽ được gửi tới nhà cung cấp AI để tư vấn size.",
+    "privacyNote": "Không chia sẻ thông tin cá nhân. Số đo bạn nhập sẽ được gửi tới nhà cung cấp AI để tư vấn size và được lưu cùng cuộc trò chuyện cho tới khi bạn xóa.",
     "empty": "Hãy hỏi về sản phẩm, size, tồn kho hoặc chính sách của cửa hàng.",
     "you": "Bạn",
     "assistant": "Trợ lý",
@@ -717,7 +717,7 @@
     "deleteAll": "Xóa tất cả cuộc trò chuyện",
     "noConversations": "Chưa có cuộc trò chuyện nào. Hãy đặt câu hỏi để bắt đầu.",
     "savedNotice": "Cuộc trò chuyện được lưu vào tài khoản của bạn cho tới khi bạn xóa.",
-    "policyUpdate": "Cuộc trò chuyện giờ được lưu vào tài khoản của bạn. Bạn có thể xóa bất cứ lúc nào.",
+    "policyUpdate": "Cuộc trò chuyện, kể cả số đo bạn nhập, giờ được lưu vào tài khoản của bạn cho tới khi bạn xóa.",
     "privacyLink": "Đọc thông báo bảo mật",
     "seeMore": "Xem thêm",
     "loading": "Đang tải…",

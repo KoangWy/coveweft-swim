@@ -36,6 +36,8 @@ export type AssistantPanelProps = {
   draft: string;
   /** Focus the question field when the panel opens (desktop only). */
   autoFocus?: boolean;
+  /** The customer agreed to an older privacy notice than the current one. */
+  policyNotice?: boolean;
   onDraftChange: (value: string) => void;
   onSend: (content: string) => void;
   onRetry: () => void;
@@ -54,6 +56,7 @@ export function AssistantPanel({
   signInHref,
   draft,
   autoFocus = false,
+  policyNotice = false,
   onDraftChange,
   onSend,
   onRetry,
@@ -206,6 +209,15 @@ export function AssistantPanel({
             autoFocus={autoFocus}
           />
         )}
+
+        {policyNotice ? (
+          <p className="rounded-md border border-neutral-200 bg-neutral-50 px-3 py-2 text-caption text-navy-900">
+            {t("policyUpdate")}{" "}
+            <Link href="/policies/privacy" className="font-semibold underline underline-offset-2">
+              {t("privacyLink")}
+            </Link>
+          </p>
+        ) : null}
 
         <p className="flex items-start gap-1.5 text-caption text-neutral-600">
           <ShieldCheck aria-hidden size={14} className="mt-px shrink-0" />

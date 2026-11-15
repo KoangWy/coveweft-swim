@@ -38,7 +38,7 @@ function hidesWidget(pathname: string): boolean {
  * shares its transcript with the Assistant page, so closing it, expanding it,
  * or changing the URL never stops an answer that is still streaming.
  */
-export function AssistantWidget() {
+export function AssistantWidget({ policyNotice }: { policyNotice: boolean }) {
   const t = useTranslations("assistant");
   const tCommon = useTranslations("common");
   const locale = useLocale() as Locale;
@@ -143,6 +143,7 @@ export function AssistantWidget() {
           signInHref={signInHref}
           draft={draft}
           autoFocus={desktop}
+          policyNotice={policyNotice}
           onDraftChange={setDraft}
           onSend={chat.send}
           onRetry={chat.retry}

@@ -5,6 +5,7 @@ import {
   AssistantProvider,
   AssistantSession,
 } from "@/features/assistant/components/assistant-session";
+import { PRIVACY_POLICY_VERSION } from "@/lib/site";
 
 import { NavigationProgress } from "./navigation-progress";
 import { SiteFooter } from "./site-footer";
@@ -18,7 +19,13 @@ async function HeaderSession() {
 
 async function SessionAssistant() {
   const user = await loadCurrentUser();
-  return <AssistantSession key={user?.id ?? "visitor"} userId={user?.id ?? null} />;
+  return (
+    <AssistantSession
+      key={user?.id ?? "visitor"}
+      userId={user?.id ?? null}
+      policyNotice={user !== null && user.privacyPolicyVersion !== PRIVACY_POLICY_VERSION}
+    />
+  );
 }
 
 /**
