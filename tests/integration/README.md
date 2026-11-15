@@ -46,7 +46,7 @@ Coverage:
   clients, image upload and ordering, order transitions, and the dashboard
   through the admin service;
 - dashboard aggregates beyond the PostgREST 1000-row cap;
-- media URL construction and demo account provisioning.
+- media URL construction and demo account provisioning;
 - the live product retrieval evaluation of the shopping assistant, which
   calls the real model and only runs with `AI_LIVE_EVAL=1` (see
   `assistant-retrieval.test.ts` for the cases and options).
