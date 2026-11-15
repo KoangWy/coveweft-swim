@@ -1317,7 +1317,15 @@ their own client, or run with the `react-server` condition.
   catalog. `AI_LIVE_SMOKE=1 pnpm test:integration
 tests/integration/assistant-live.test.ts` additionally asks the real
   provider two Vietnamese questions on the primary and on a forced fallback;
-  it spends API credit and is skipped otherwise. Concurrency
+  it spends API credit and is skipped otherwise. `AI_LIVE_EVAL=1 pnpm
+test:integration tests/integration/assistant-retrieval.test.ts` runs the
+  product retrieval evaluation: 17 customer questions in English and
+  Vietnamese, each judged against catalog rows read straight from the
+  database. A case passes when every product card matches the request, the
+  answer cites only SKUs and prices the tools returned, and a question with no
+  matching product is answered as such. `AI_LIVE_EVAL_ROLE=fallback` measures
+  the fallback model, and `AI_LIVE_EVAL_REPORT` names a JSON file for the
+  transcripts and scores. The scoring rules have their own unit tests. Concurrency
   regressions use a direct Postgres scheduling connection to hold a table or
   row lock at a precise point; that seam is not reachable by API clients. Run
   them with `pnpm test:integration` after `supabase start`; the runner resolves
