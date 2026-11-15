@@ -641,12 +641,12 @@
   "assistant": {
     "open": "Ask the shopping assistant",
     "title": "Shopping assistant",
-    "intro": "Answers can be wrong, so check the product page before you buy.",
-    "greeting": "Hi, I'm the COVEWEFT shopping assistant.",
+    "intro": "Answers can be wrong, so check the product page before you buy. To reach a person, use <contact>Complaints & Contact</contact>.",
+    "greeting": "Hi, I'm COVEWEFT's AI shopping assistant.",
     "suggestionsLabel": "Try asking",
     "suggestions": {
       "laps": "Which swimsuit is good for lap swimming?",
-      "size": "I'm 160 cm and 52 kg. Which size should I pick?",
+      "size": "My chest is 86 cm, waist 68 cm, and hips 92 cm. Which swimsuit size should I pick?",
       "kids": "Show me rash guards for kids under 400,000 VND."
     },
     "lowQuota": "{count, plural, =1 {Almost out: 1 question left today.} other {Almost out: # questions left today.}}",

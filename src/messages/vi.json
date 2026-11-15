@@ -641,12 +641,12 @@
   "assistant": {
     "open": "Hỏi trợ lý mua sắm",
     "title": "Trợ lý mua sắm",
-    "intro": "Câu trả lời có thể chưa chính xác, hãy kiểm tra trang sản phẩm trước khi mua.",
-    "greeting": "Xin chào, mình là trợ lý mua sắm của COVEWEFT.",
+    "intro": "Câu trả lời có thể chưa chính xác, hãy kiểm tra trang sản phẩm trước khi mua. Muốn trao đổi với người thật, hãy dùng trang <contact>Khiếu nại & Liên hệ</contact>.",
+    "greeting": "Xin chào, mình là trợ lý mua sắm AI của COVEWEFT.",
     "suggestionsLabel": "Thử hỏi",
     "suggestions": {
       "laps": "Đồ bơi nào phù hợp để bơi sải?",
-      "size": "Mình cao 160 cm, nặng 52 kg. Nên chọn size nào?",
+      "size": "Vòng ngực mình 86 cm, eo 68 cm, hông 92 cm. Đồ bơi nên chọn size nào?",
       "kids": "Gợi ý áo rash guard cho trẻ em dưới 400.000 VND."
     },
     "lowQuota": "{count, plural, other {Sắp hết lượt: hôm nay còn # câu hỏi.}}",

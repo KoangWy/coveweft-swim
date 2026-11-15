@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
 
 import { LogoMark } from "@/components/layout/logo-mark";
+import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/lib/locale";
 
 import {
@@ -120,7 +121,18 @@ export function AssistantPanel({
           <div className="max-w-[85%] rounded-lg rounded-bl-sm bg-neutral-100 px-4 py-3 text-small text-navy-900">
             <p className="font-semibold">{t("greeting")}</p>
             <p className="mt-1">{t("empty")}</p>
-            <p className="mt-2 text-caption text-neutral-600">{t("intro")}</p>
+            <p className="mt-2 text-caption text-neutral-600">
+              {t.rich("intro", {
+                contact: (chunks) => (
+                  <Link
+                    href="/policies/contact"
+                    className="font-semibold text-navy-900 underline underline-offset-2"
+                  >
+                    {chunks}
+                  </Link>
+                ),
+              })}
+            </p>
           </div>
         </div>
 
